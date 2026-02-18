@@ -15,7 +15,7 @@
 #define ETS_ModuleId_HUE 4
 #define ETS_ModuleId_LOG 5
 #define ETS_ModuleId_FCB 6
-#define MAIN_FirmwareName "Hue Gateway (Beta)"
+#define MAIN_FirmwareName "Hue Gateway"
 #define MAIN_OpenKnxId 0xAF
 #define MAIN_ApplicationNumber 42
 #define MAIN_ApplicationVersion 1
@@ -267,7 +267,6 @@
 #define HUE_HUEShowConnectionStatus             251      // 1 Bit, Bit 6
 #define     HUE_HUEShowConnectionStatusMask 0x40
 #define     HUE_HUEShowConnectionStatusShift 6
-#define HUE_HUEWebServerPort                    252      // uint16_t
 #define HUE_HUEPairingWindow                    255      // uint8_t
 #define HUE_HUEChannelCount                     254      // uint8_t
 #define HUE_HUEHCLEnable                        256      // 8 Bits, Bit 7-0
@@ -488,8 +487,6 @@
 #define ParamHUE_HUEResetAuth                        ((bool)(knx.paramByte(HUE_HUEResetAuth) & HUE_HUEResetAuthMask))
 // Status Verbindung
 #define ParamHUE_HUEShowConnectionStatus             ((bool)(knx.paramByte(HUE_HUEShowConnectionStatus) & HUE_HUEShowConnectionStatusMask))
-// HTTP Server Port
-#define ParamHUE_HUEWebServerPort                    (knx.paramWord(HUE_HUEWebServerPort))
 // Pairing-Zeitfenster (Sekunden)
 #define ParamHUE_HUEPairingWindow                    (knx.paramByte(HUE_HUEPairingWindow))
 // Anzahl aktiver Kanäle

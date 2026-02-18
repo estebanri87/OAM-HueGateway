@@ -15,19 +15,19 @@
 #define ETS_ModuleId_HUE 4
 #define ETS_ModuleId_LOG 5
 #define ETS_ModuleId_FCB 6
-#define MAIN_FirmwareName "Hue Bridge (Beta)"
-#define MAIN_OpenKnxId 0xAE
+#define MAIN_FirmwareName "Hue Gateway (Beta)"
+#define MAIN_OpenKnxId 0xAF
 #define MAIN_ApplicationNumber 42
 #define MAIN_ApplicationVersion 1
 #define MAIN_ApplicationEncoding iso-8859-15
-#define MAIN_ParameterSize 8815
+#define MAIN_ParameterSize 10230
 #define MAIN_MaxKoNumber 680
-#define MAIN_OrderNumber "MGKnxHUE"
+#define MAIN_OrderNumber "OpenKNX-SR-HUE"
 #define BASE_ModuleVersion 22
 #define NET_ModuleVersion 5
 #define UCT_ModuleVersion 4
 #define HUE_ModuleVersion 1
-#define LOG_ModuleVersion 56
+#define LOG_ModuleVersion 58
 #define FCB_ModuleVersion 9
 // Parameter with single occurrence
 
@@ -267,8 +267,216 @@
 #define HUE_HUEShowConnectionStatus             251      // 1 Bit, Bit 6
 #define     HUE_HUEShowConnectionStatusMask 0x40
 #define     HUE_HUEShowConnectionStatusShift 6
-#define HUE_HUEWebServerPort                    252      // uint16_t
+#define HUE_HUEPairingWindow                    255      // uint8_t
 #define HUE_HUEChannelCount                     254      // uint8_t
+#define HUE_HUEHCLEnable                        256      // 8 Bits, Bit 7-0
+#define HUE_HUEHCLMasterCount                   257      // uint8_t
+#define HUE_HUEHCLUpdateInterval                258      // uint16_t
+#define HUE_HUEHCLFadeDuration                  260      // uint8_t
+#define HUE_HCLM1SP0Time                        261      // char*, 5 Byte
+#define     HUE_HCLM1SP0TimeLength 5
+#define HUE_HCLM1SP0Kelvin                      266      // uint16_t
+#define HUE_HCLM1SP0Brightness                  268      // uint8_t
+#define HUE_HCLM1SP1Time                        269      // char*, 5 Byte
+#define     HUE_HCLM1SP1TimeLength 5
+#define HUE_HCLM1SP1Kelvin                      274      // uint16_t
+#define HUE_HCLM1SP1Brightness                  276      // uint8_t
+#define HUE_HCLM1SP2Time                        277      // char*, 5 Byte
+#define     HUE_HCLM1SP2TimeLength 5
+#define HUE_HCLM1SP2Kelvin                      282      // uint16_t
+#define HUE_HCLM1SP2Brightness                  284      // uint8_t
+#define HUE_HCLM1SP3Time                        285      // char*, 5 Byte
+#define     HUE_HCLM1SP3TimeLength 5
+#define HUE_HCLM1SP3Kelvin                      290      // uint16_t
+#define HUE_HCLM1SP3Brightness                  292      // uint8_t
+#define HUE_HCLM1SP4Time                        293      // char*, 5 Byte
+#define     HUE_HCLM1SP4TimeLength 5
+#define HUE_HCLM1SP4Kelvin                      298      // uint16_t
+#define HUE_HCLM1SP4Brightness                  300      // uint8_t
+#define HUE_HCLM1SP5Time                        301      // char*, 5 Byte
+#define     HUE_HCLM1SP5TimeLength 5
+#define HUE_HCLM1SP5Kelvin                      306      // uint16_t
+#define HUE_HCLM1SP5Brightness                  308      // uint8_t
+#define HUE_HCLM1SP6Time                        309      // char*, 5 Byte
+#define     HUE_HCLM1SP6TimeLength 5
+#define HUE_HCLM1SP6Kelvin                      314      // uint16_t
+#define HUE_HCLM1SP6Brightness                  316      // uint8_t
+#define HUE_HCLM1SP7Time                        317      // char*, 5 Byte
+#define     HUE_HCLM1SP7TimeLength 5
+#define HUE_HCLM1SP7Kelvin                      322      // uint16_t
+#define HUE_HCLM1SP7Brightness                  324      // uint8_t
+#define HUE_HCLM1SP8Time                        325      // char*, 5 Byte
+#define     HUE_HCLM1SP8TimeLength 5
+#define HUE_HCLM1SP8Kelvin                      330      // uint16_t
+#define HUE_HCLM1SP8Brightness                  332      // uint8_t
+#define HUE_HCLM1SP9Time                        333      // char*, 5 Byte
+#define     HUE_HCLM1SP9TimeLength 5
+#define HUE_HCLM1SP9Kelvin                      338      // uint16_t
+#define HUE_HCLM1SP9Brightness                  340      // uint8_t
+#define HUE_HCLM2SP0Time                        341      // char*, 5 Byte
+#define     HUE_HCLM2SP0TimeLength 5
+#define HUE_HCLM2SP0Kelvin                      346      // uint16_t
+#define HUE_HCLM2SP0Brightness                  348      // uint8_t
+#define HUE_HCLM2SP1Time                        349      // char*, 5 Byte
+#define     HUE_HCLM2SP1TimeLength 5
+#define HUE_HCLM2SP1Kelvin                      354      // uint16_t
+#define HUE_HCLM2SP1Brightness                  356      // uint8_t
+#define HUE_HCLM2SP2Time                        357      // char*, 5 Byte
+#define     HUE_HCLM2SP2TimeLength 5
+#define HUE_HCLM2SP2Kelvin                      362      // uint16_t
+#define HUE_HCLM2SP2Brightness                  364      // uint8_t
+#define HUE_HCLM2SP3Time                        365      // char*, 5 Byte
+#define     HUE_HCLM2SP3TimeLength 5
+#define HUE_HCLM2SP3Kelvin                      370      // uint16_t
+#define HUE_HCLM2SP3Brightness                  372      // uint8_t
+#define HUE_HCLM2SP4Time                        373      // char*, 5 Byte
+#define     HUE_HCLM2SP4TimeLength 5
+#define HUE_HCLM2SP4Kelvin                      378      // uint16_t
+#define HUE_HCLM2SP4Brightness                  380      // uint8_t
+#define HUE_HCLM2SP5Time                        381      // char*, 5 Byte
+#define     HUE_HCLM2SP5TimeLength 5
+#define HUE_HCLM2SP5Kelvin                      386      // uint16_t
+#define HUE_HCLM2SP5Brightness                  388      // uint8_t
+#define HUE_HCLM2SP6Time                        389      // char*, 5 Byte
+#define     HUE_HCLM2SP6TimeLength 5
+#define HUE_HCLM2SP6Kelvin                      394      // uint16_t
+#define HUE_HCLM2SP6Brightness                  396      // uint8_t
+#define HUE_HCLM2SP7Time                        397      // char*, 5 Byte
+#define     HUE_HCLM2SP7TimeLength 5
+#define HUE_HCLM2SP7Kelvin                      402      // uint16_t
+#define HUE_HCLM2SP7Brightness                  404      // uint8_t
+#define HUE_HCLM2SP8Time                        405      // char*, 5 Byte
+#define     HUE_HCLM2SP8TimeLength 5
+#define HUE_HCLM2SP8Kelvin                      410      // uint16_t
+#define HUE_HCLM2SP8Brightness                  412      // uint8_t
+#define HUE_HCLM2SP9Time                        413      // char*, 5 Byte
+#define     HUE_HCLM2SP9TimeLength 5
+#define HUE_HCLM2SP9Kelvin                      418      // uint16_t
+#define HUE_HCLM2SP9Brightness                  420      // uint8_t
+#define HUE_HCLM3SP0Time                        421      // char*, 5 Byte
+#define     HUE_HCLM3SP0TimeLength 5
+#define HUE_HCLM3SP0Kelvin                      426      // uint16_t
+#define HUE_HCLM3SP0Brightness                  428      // uint8_t
+#define HUE_HCLM3SP1Time                        429      // char*, 5 Byte
+#define     HUE_HCLM3SP1TimeLength 5
+#define HUE_HCLM3SP1Kelvin                      434      // uint16_t
+#define HUE_HCLM3SP1Brightness                  436      // uint8_t
+#define HUE_HCLM3SP2Time                        437      // char*, 5 Byte
+#define     HUE_HCLM3SP2TimeLength 5
+#define HUE_HCLM3SP2Kelvin                      442      // uint16_t
+#define HUE_HCLM3SP2Brightness                  444      // uint8_t
+#define HUE_HCLM3SP3Time                        445      // char*, 5 Byte
+#define     HUE_HCLM3SP3TimeLength 5
+#define HUE_HCLM3SP3Kelvin                      450      // uint16_t
+#define HUE_HCLM3SP3Brightness                  452      // uint8_t
+#define HUE_HCLM3SP4Time                        453      // char*, 5 Byte
+#define     HUE_HCLM3SP4TimeLength 5
+#define HUE_HCLM3SP4Kelvin                      458      // uint16_t
+#define HUE_HCLM3SP4Brightness                  460      // uint8_t
+#define HUE_HCLM3SP5Time                        461      // char*, 5 Byte
+#define     HUE_HCLM3SP5TimeLength 5
+#define HUE_HCLM3SP5Kelvin                      466      // uint16_t
+#define HUE_HCLM3SP5Brightness                  468      // uint8_t
+#define HUE_HCLM3SP6Time                        469      // char*, 5 Byte
+#define     HUE_HCLM3SP6TimeLength 5
+#define HUE_HCLM3SP6Kelvin                      474      // uint16_t
+#define HUE_HCLM3SP6Brightness                  476      // uint8_t
+#define HUE_HCLM3SP7Time                        477      // char*, 5 Byte
+#define     HUE_HCLM3SP7TimeLength 5
+#define HUE_HCLM3SP7Kelvin                      482      // uint16_t
+#define HUE_HCLM3SP7Brightness                  484      // uint8_t
+#define HUE_HCLM3SP8Time                        485      // char*, 5 Byte
+#define     HUE_HCLM3SP8TimeLength 5
+#define HUE_HCLM3SP8Kelvin                      490      // uint16_t
+#define HUE_HCLM3SP8Brightness                  492      // uint8_t
+#define HUE_HCLM3SP9Time                        493      // char*, 5 Byte
+#define     HUE_HCLM3SP9TimeLength 5
+#define HUE_HCLM3SP9Kelvin                      498      // uint16_t
+#define HUE_HCLM3SP9Brightness                  500      // uint8_t
+#define HUE_HCLM4SP0Time                        501      // char*, 5 Byte
+#define     HUE_HCLM4SP0TimeLength 5
+#define HUE_HCLM4SP0Kelvin                      506      // uint16_t
+#define HUE_HCLM4SP0Brightness                  508      // uint8_t
+#define HUE_HCLM4SP1Time                        509      // char*, 5 Byte
+#define     HUE_HCLM4SP1TimeLength 5
+#define HUE_HCLM4SP1Kelvin                      514      // uint16_t
+#define HUE_HCLM4SP1Brightness                  516      // uint8_t
+#define HUE_HCLM4SP2Time                        517      // char*, 5 Byte
+#define     HUE_HCLM4SP2TimeLength 5
+#define HUE_HCLM4SP2Kelvin                      522      // uint16_t
+#define HUE_HCLM4SP2Brightness                  524      // uint8_t
+#define HUE_HCLM4SP3Time                        525      // char*, 5 Byte
+#define     HUE_HCLM4SP3TimeLength 5
+#define HUE_HCLM4SP3Kelvin                      530      // uint16_t
+#define HUE_HCLM4SP3Brightness                  532      // uint8_t
+#define HUE_HCLM4SP4Time                        533      // char*, 5 Byte
+#define     HUE_HCLM4SP4TimeLength 5
+#define HUE_HCLM4SP4Kelvin                      538      // uint16_t
+#define HUE_HCLM4SP4Brightness                  540      // uint8_t
+#define HUE_HCLM4SP5Time                        541      // char*, 5 Byte
+#define     HUE_HCLM4SP5TimeLength 5
+#define HUE_HCLM4SP5Kelvin                      546      // uint16_t
+#define HUE_HCLM4SP5Brightness                  548      // uint8_t
+#define HUE_HCLM4SP6Time                        549      // char*, 5 Byte
+#define     HUE_HCLM4SP6TimeLength 5
+#define HUE_HCLM4SP6Kelvin                      554      // uint16_t
+#define HUE_HCLM4SP6Brightness                  556      // uint8_t
+#define HUE_HCLM4SP7Time                        557      // char*, 5 Byte
+#define     HUE_HCLM4SP7TimeLength 5
+#define HUE_HCLM4SP7Kelvin                      562      // uint16_t
+#define HUE_HCLM4SP7Brightness                  564      // uint8_t
+#define HUE_HCLM4SP8Time                        565      // char*, 5 Byte
+#define     HUE_HCLM4SP8TimeLength 5
+#define HUE_HCLM4SP8Kelvin                      570      // uint16_t
+#define HUE_HCLM4SP8Brightness                  572      // uint8_t
+#define HUE_HCLM4SP9Time                        573      // char*, 5 Byte
+#define     HUE_HCLM4SP9TimeLength 5
+#define HUE_HCLM4SP9Kelvin                      578      // uint16_t
+#define HUE_HCLM4SP9Brightness                  580      // uint8_t
+#define HUE_HCLM1Name                           581      // char*, 25 Byte
+#define     HUE_HCLM1NameLength 25
+#define HUE_HCLM2Name                           606      // char*, 25 Byte
+#define     HUE_HCLM2NameLength 25
+#define HUE_HCLM3Name                           631      // char*, 25 Byte
+#define     HUE_HCLM3NameLength 25
+#define HUE_HCLM4Name                           656      // char*, 25 Byte
+#define     HUE_HCLM4NameLength 25
+#define HUE_HCLM1CurveType                      681      // 8 Bits, Bit 7-0
+#define HUE_HCLM1SlewRate                       682      // uint16_t
+#define HUE_HCLM1ManualKelvin                   684      // uint16_t
+#define HUE_HCLM1Sunrise                        686      // char*, 5 Byte
+#define     HUE_HCLM1SunriseLength 5
+#define HUE_HCLM1Sunset                         691      // char*, 5 Byte
+#define     HUE_HCLM1SunsetLength 5
+#define HUE_HCLM1SunriseOffset                  696      // int16_t
+#define HUE_HCLM1SunsetOffset                   698      // int16_t
+#define HUE_HCLM2CurveType                      700      // 8 Bits, Bit 7-0
+#define HUE_HCLM2SlewRate                       701      // uint16_t
+#define HUE_HCLM2ManualKelvin                   703      // uint16_t
+#define HUE_HCLM2Sunrise                        705      // char*, 5 Byte
+#define     HUE_HCLM2SunriseLength 5
+#define HUE_HCLM2Sunset                         710      // char*, 5 Byte
+#define     HUE_HCLM2SunsetLength 5
+#define HUE_HCLM2SunriseOffset                  715      // int16_t
+#define HUE_HCLM2SunsetOffset                   717      // int16_t
+#define HUE_HCLM3CurveType                      719      // 8 Bits, Bit 7-0
+#define HUE_HCLM3SlewRate                       720      // uint16_t
+#define HUE_HCLM3ManualKelvin                   722      // uint16_t
+#define HUE_HCLM3Sunrise                        724      // char*, 5 Byte
+#define     HUE_HCLM3SunriseLength 5
+#define HUE_HCLM3Sunset                         729      // char*, 5 Byte
+#define     HUE_HCLM3SunsetLength 5
+#define HUE_HCLM3SunriseOffset                  734      // int16_t
+#define HUE_HCLM3SunsetOffset                   736      // int16_t
+#define HUE_HCLM4CurveType                      738      // 8 Bits, Bit 7-0
+#define HUE_HCLM4SlewRate                       739      // uint16_t
+#define HUE_HCLM4ManualKelvin                   741      // uint16_t
+#define HUE_HCLM4Sunrise                        743      // char*, 5 Byte
+#define     HUE_HCLM4SunriseLength 5
+#define HUE_HCLM4Sunset                         748      // char*, 5 Byte
+#define     HUE_HCLM4SunsetLength 5
+#define HUE_HCLM4SunriseOffset                  753      // int16_t
+#define HUE_HCLM4SunsetOffset                   755      // int16_t
 
 // Bridge Erkennung
 #define ParamHUE_HUEBridgeMode                       (knx.paramByte(HUE_HUEBridgeMode))
@@ -279,23 +487,393 @@
 #define ParamHUE_HUEResetAuth                        ((bool)(knx.paramByte(HUE_HUEResetAuth) & HUE_HUEResetAuthMask))
 // Status Verbindung
 #define ParamHUE_HUEShowConnectionStatus             ((bool)(knx.paramByte(HUE_HUEShowConnectionStatus) & HUE_HUEShowConnectionStatusMask))
-// HTTP Server Port
-#define ParamHUE_HUEWebServerPort                    (knx.paramWord(HUE_HUEWebServerPort))
+// Pairing-Zeitfenster (Sekunden)
+#define ParamHUE_HUEPairingWindow                    (knx.paramByte(HUE_HUEPairingWindow))
 // Anzahl aktiver Kanäle
 #define ParamHUE_HUEChannelCount                     (knx.paramByte(HUE_HUEChannelCount))
+// Human Centric Lighting (HCL)
+#define ParamHUE_HUEHCLEnable                        (knx.paramByte(HUE_HUEHCLEnable))
+// Anzahl HCL Master
+#define ParamHUE_HUEHCLMasterCount                   (knx.paramByte(HUE_HUEHCLMasterCount))
+// Aktualisierungsintervall (Sekunden)
+#define ParamHUE_HUEHCLUpdateInterval                (knx.paramWord(HUE_HUEHCLUpdateInterval))
+// Überblendzeit (Sekunden)
+#define ParamHUE_HUEHCLFadeDuration                  (knx.paramByte(HUE_HUEHCLFadeDuration))
+// M1 SP1 Zeit
+#define ParamHUE_HCLM1SP0Time                        (knx.paramData(HUE_HCLM1SP0Time))
+#define ParamHUE_HCLM1SP0TimeStr                     (knx.paramString(HUE_HCLM1SP0Time, HUE_HCLM1SP0TimeLength))
+// M1 SP1 Kelvin
+#define ParamHUE_HCLM1SP0Kelvin                      (knx.paramWord(HUE_HCLM1SP0Kelvin))
+// M1 SP1 Helligkeit
+#define ParamHUE_HCLM1SP0Brightness                  (knx.paramByte(HUE_HCLM1SP0Brightness))
+// M1 SP2 Zeit
+#define ParamHUE_HCLM1SP1Time                        (knx.paramData(HUE_HCLM1SP1Time))
+#define ParamHUE_HCLM1SP1TimeStr                     (knx.paramString(HUE_HCLM1SP1Time, HUE_HCLM1SP1TimeLength))
+// M1 SP2 Kelvin
+#define ParamHUE_HCLM1SP1Kelvin                      (knx.paramWord(HUE_HCLM1SP1Kelvin))
+// M1 SP2 Helligkeit
+#define ParamHUE_HCLM1SP1Brightness                  (knx.paramByte(HUE_HCLM1SP1Brightness))
+// M1 SP3 Zeit
+#define ParamHUE_HCLM1SP2Time                        (knx.paramData(HUE_HCLM1SP2Time))
+#define ParamHUE_HCLM1SP2TimeStr                     (knx.paramString(HUE_HCLM1SP2Time, HUE_HCLM1SP2TimeLength))
+// M1 SP3 Kelvin
+#define ParamHUE_HCLM1SP2Kelvin                      (knx.paramWord(HUE_HCLM1SP2Kelvin))
+// M1 SP3 Helligkeit
+#define ParamHUE_HCLM1SP2Brightness                  (knx.paramByte(HUE_HCLM1SP2Brightness))
+// M1 SP4 Zeit
+#define ParamHUE_HCLM1SP3Time                        (knx.paramData(HUE_HCLM1SP3Time))
+#define ParamHUE_HCLM1SP3TimeStr                     (knx.paramString(HUE_HCLM1SP3Time, HUE_HCLM1SP3TimeLength))
+// M1 SP4 Kelvin
+#define ParamHUE_HCLM1SP3Kelvin                      (knx.paramWord(HUE_HCLM1SP3Kelvin))
+// M1 SP4 Helligkeit
+#define ParamHUE_HCLM1SP3Brightness                  (knx.paramByte(HUE_HCLM1SP3Brightness))
+// M1 SP5 Zeit
+#define ParamHUE_HCLM1SP4Time                        (knx.paramData(HUE_HCLM1SP4Time))
+#define ParamHUE_HCLM1SP4TimeStr                     (knx.paramString(HUE_HCLM1SP4Time, HUE_HCLM1SP4TimeLength))
+// M1 SP5 Kelvin
+#define ParamHUE_HCLM1SP4Kelvin                      (knx.paramWord(HUE_HCLM1SP4Kelvin))
+// M1 SP5 Helligkeit
+#define ParamHUE_HCLM1SP4Brightness                  (knx.paramByte(HUE_HCLM1SP4Brightness))
+// M1 SP6 Zeit
+#define ParamHUE_HCLM1SP5Time                        (knx.paramData(HUE_HCLM1SP5Time))
+#define ParamHUE_HCLM1SP5TimeStr                     (knx.paramString(HUE_HCLM1SP5Time, HUE_HCLM1SP5TimeLength))
+// M1 SP6 Kelvin
+#define ParamHUE_HCLM1SP5Kelvin                      (knx.paramWord(HUE_HCLM1SP5Kelvin))
+// M1 SP6 Helligkeit
+#define ParamHUE_HCLM1SP5Brightness                  (knx.paramByte(HUE_HCLM1SP5Brightness))
+// M1 SP7 Zeit
+#define ParamHUE_HCLM1SP6Time                        (knx.paramData(HUE_HCLM1SP6Time))
+#define ParamHUE_HCLM1SP6TimeStr                     (knx.paramString(HUE_HCLM1SP6Time, HUE_HCLM1SP6TimeLength))
+// M1 SP7 Kelvin
+#define ParamHUE_HCLM1SP6Kelvin                      (knx.paramWord(HUE_HCLM1SP6Kelvin))
+// M1 SP7 Helligkeit
+#define ParamHUE_HCLM1SP6Brightness                  (knx.paramByte(HUE_HCLM1SP6Brightness))
+// M1 SP8 Zeit
+#define ParamHUE_HCLM1SP7Time                        (knx.paramData(HUE_HCLM1SP7Time))
+#define ParamHUE_HCLM1SP7TimeStr                     (knx.paramString(HUE_HCLM1SP7Time, HUE_HCLM1SP7TimeLength))
+// M1 SP8 Kelvin
+#define ParamHUE_HCLM1SP7Kelvin                      (knx.paramWord(HUE_HCLM1SP7Kelvin))
+// M1 SP8 Helligkeit
+#define ParamHUE_HCLM1SP7Brightness                  (knx.paramByte(HUE_HCLM1SP7Brightness))
+// M1 SP9 Zeit
+#define ParamHUE_HCLM1SP8Time                        (knx.paramData(HUE_HCLM1SP8Time))
+#define ParamHUE_HCLM1SP8TimeStr                     (knx.paramString(HUE_HCLM1SP8Time, HUE_HCLM1SP8TimeLength))
+// M1 SP9 Kelvin
+#define ParamHUE_HCLM1SP8Kelvin                      (knx.paramWord(HUE_HCLM1SP8Kelvin))
+// M1 SP9 Helligkeit
+#define ParamHUE_HCLM1SP8Brightness                  (knx.paramByte(HUE_HCLM1SP8Brightness))
+// M1 SP10 Zeit
+#define ParamHUE_HCLM1SP9Time                        (knx.paramData(HUE_HCLM1SP9Time))
+#define ParamHUE_HCLM1SP9TimeStr                     (knx.paramString(HUE_HCLM1SP9Time, HUE_HCLM1SP9TimeLength))
+// M1 SP10 Kelvin
+#define ParamHUE_HCLM1SP9Kelvin                      (knx.paramWord(HUE_HCLM1SP9Kelvin))
+// M1 SP10 Helligkeit
+#define ParamHUE_HCLM1SP9Brightness                  (knx.paramByte(HUE_HCLM1SP9Brightness))
+// M2 SP1 Zeit
+#define ParamHUE_HCLM2SP0Time                        (knx.paramData(HUE_HCLM2SP0Time))
+#define ParamHUE_HCLM2SP0TimeStr                     (knx.paramString(HUE_HCLM2SP0Time, HUE_HCLM2SP0TimeLength))
+// M2 SP1 Kelvin
+#define ParamHUE_HCLM2SP0Kelvin                      (knx.paramWord(HUE_HCLM2SP0Kelvin))
+// M2 SP1 Helligkeit
+#define ParamHUE_HCLM2SP0Brightness                  (knx.paramByte(HUE_HCLM2SP0Brightness))
+// M2 SP2 Zeit
+#define ParamHUE_HCLM2SP1Time                        (knx.paramData(HUE_HCLM2SP1Time))
+#define ParamHUE_HCLM2SP1TimeStr                     (knx.paramString(HUE_HCLM2SP1Time, HUE_HCLM2SP1TimeLength))
+// M2 SP2 Kelvin
+#define ParamHUE_HCLM2SP1Kelvin                      (knx.paramWord(HUE_HCLM2SP1Kelvin))
+// M2 SP2 Helligkeit
+#define ParamHUE_HCLM2SP1Brightness                  (knx.paramByte(HUE_HCLM2SP1Brightness))
+// M2 SP3 Zeit
+#define ParamHUE_HCLM2SP2Time                        (knx.paramData(HUE_HCLM2SP2Time))
+#define ParamHUE_HCLM2SP2TimeStr                     (knx.paramString(HUE_HCLM2SP2Time, HUE_HCLM2SP2TimeLength))
+// M2 SP3 Kelvin
+#define ParamHUE_HCLM2SP2Kelvin                      (knx.paramWord(HUE_HCLM2SP2Kelvin))
+// M2 SP3 Helligkeit
+#define ParamHUE_HCLM2SP2Brightness                  (knx.paramByte(HUE_HCLM2SP2Brightness))
+// M2 SP4 Zeit
+#define ParamHUE_HCLM2SP3Time                        (knx.paramData(HUE_HCLM2SP3Time))
+#define ParamHUE_HCLM2SP3TimeStr                     (knx.paramString(HUE_HCLM2SP3Time, HUE_HCLM2SP3TimeLength))
+// M2 SP4 Kelvin
+#define ParamHUE_HCLM2SP3Kelvin                      (knx.paramWord(HUE_HCLM2SP3Kelvin))
+// M2 SP4 Helligkeit
+#define ParamHUE_HCLM2SP3Brightness                  (knx.paramByte(HUE_HCLM2SP3Brightness))
+// M2 SP5 Zeit
+#define ParamHUE_HCLM2SP4Time                        (knx.paramData(HUE_HCLM2SP4Time))
+#define ParamHUE_HCLM2SP4TimeStr                     (knx.paramString(HUE_HCLM2SP4Time, HUE_HCLM2SP4TimeLength))
+// M2 SP5 Kelvin
+#define ParamHUE_HCLM2SP4Kelvin                      (knx.paramWord(HUE_HCLM2SP4Kelvin))
+// M2 SP5 Helligkeit
+#define ParamHUE_HCLM2SP4Brightness                  (knx.paramByte(HUE_HCLM2SP4Brightness))
+// M2 SP6 Zeit
+#define ParamHUE_HCLM2SP5Time                        (knx.paramData(HUE_HCLM2SP5Time))
+#define ParamHUE_HCLM2SP5TimeStr                     (knx.paramString(HUE_HCLM2SP5Time, HUE_HCLM2SP5TimeLength))
+// M2 SP6 Kelvin
+#define ParamHUE_HCLM2SP5Kelvin                      (knx.paramWord(HUE_HCLM2SP5Kelvin))
+// M2 SP6 Helligkeit
+#define ParamHUE_HCLM2SP5Brightness                  (knx.paramByte(HUE_HCLM2SP5Brightness))
+// M2 SP7 Zeit
+#define ParamHUE_HCLM2SP6Time                        (knx.paramData(HUE_HCLM2SP6Time))
+#define ParamHUE_HCLM2SP6TimeStr                     (knx.paramString(HUE_HCLM2SP6Time, HUE_HCLM2SP6TimeLength))
+// M2 SP7 Kelvin
+#define ParamHUE_HCLM2SP6Kelvin                      (knx.paramWord(HUE_HCLM2SP6Kelvin))
+// M2 SP7 Helligkeit
+#define ParamHUE_HCLM2SP6Brightness                  (knx.paramByte(HUE_HCLM2SP6Brightness))
+// M2 SP8 Zeit
+#define ParamHUE_HCLM2SP7Time                        (knx.paramData(HUE_HCLM2SP7Time))
+#define ParamHUE_HCLM2SP7TimeStr                     (knx.paramString(HUE_HCLM2SP7Time, HUE_HCLM2SP7TimeLength))
+// M2 SP8 Kelvin
+#define ParamHUE_HCLM2SP7Kelvin                      (knx.paramWord(HUE_HCLM2SP7Kelvin))
+// M2 SP8 Helligkeit
+#define ParamHUE_HCLM2SP7Brightness                  (knx.paramByte(HUE_HCLM2SP7Brightness))
+// M2 SP9 Zeit
+#define ParamHUE_HCLM2SP8Time                        (knx.paramData(HUE_HCLM2SP8Time))
+#define ParamHUE_HCLM2SP8TimeStr                     (knx.paramString(HUE_HCLM2SP8Time, HUE_HCLM2SP8TimeLength))
+// M2 SP9 Kelvin
+#define ParamHUE_HCLM2SP8Kelvin                      (knx.paramWord(HUE_HCLM2SP8Kelvin))
+// M2 SP9 Helligkeit
+#define ParamHUE_HCLM2SP8Brightness                  (knx.paramByte(HUE_HCLM2SP8Brightness))
+// M2 SP10 Zeit
+#define ParamHUE_HCLM2SP9Time                        (knx.paramData(HUE_HCLM2SP9Time))
+#define ParamHUE_HCLM2SP9TimeStr                     (knx.paramString(HUE_HCLM2SP9Time, HUE_HCLM2SP9TimeLength))
+// M2 SP10 Kelvin
+#define ParamHUE_HCLM2SP9Kelvin                      (knx.paramWord(HUE_HCLM2SP9Kelvin))
+// M2 SP10 Helligkeit
+#define ParamHUE_HCLM2SP9Brightness                  (knx.paramByte(HUE_HCLM2SP9Brightness))
+// M3 SP1 Zeit
+#define ParamHUE_HCLM3SP0Time                        (knx.paramData(HUE_HCLM3SP0Time))
+#define ParamHUE_HCLM3SP0TimeStr                     (knx.paramString(HUE_HCLM3SP0Time, HUE_HCLM3SP0TimeLength))
+// M3 SP1 Kelvin
+#define ParamHUE_HCLM3SP0Kelvin                      (knx.paramWord(HUE_HCLM3SP0Kelvin))
+// M3 SP1 Helligkeit
+#define ParamHUE_HCLM3SP0Brightness                  (knx.paramByte(HUE_HCLM3SP0Brightness))
+// M3 SP2 Zeit
+#define ParamHUE_HCLM3SP1Time                        (knx.paramData(HUE_HCLM3SP1Time))
+#define ParamHUE_HCLM3SP1TimeStr                     (knx.paramString(HUE_HCLM3SP1Time, HUE_HCLM3SP1TimeLength))
+// M3 SP2 Kelvin
+#define ParamHUE_HCLM3SP1Kelvin                      (knx.paramWord(HUE_HCLM3SP1Kelvin))
+// M3 SP2 Helligkeit
+#define ParamHUE_HCLM3SP1Brightness                  (knx.paramByte(HUE_HCLM3SP1Brightness))
+// M3 SP3 Zeit
+#define ParamHUE_HCLM3SP2Time                        (knx.paramData(HUE_HCLM3SP2Time))
+#define ParamHUE_HCLM3SP2TimeStr                     (knx.paramString(HUE_HCLM3SP2Time, HUE_HCLM3SP2TimeLength))
+// M3 SP3 Kelvin
+#define ParamHUE_HCLM3SP2Kelvin                      (knx.paramWord(HUE_HCLM3SP2Kelvin))
+// M3 SP3 Helligkeit
+#define ParamHUE_HCLM3SP2Brightness                  (knx.paramByte(HUE_HCLM3SP2Brightness))
+// M3 SP4 Zeit
+#define ParamHUE_HCLM3SP3Time                        (knx.paramData(HUE_HCLM3SP3Time))
+#define ParamHUE_HCLM3SP3TimeStr                     (knx.paramString(HUE_HCLM3SP3Time, HUE_HCLM3SP3TimeLength))
+// M3 SP4 Kelvin
+#define ParamHUE_HCLM3SP3Kelvin                      (knx.paramWord(HUE_HCLM3SP3Kelvin))
+// M3 SP4 Helligkeit
+#define ParamHUE_HCLM3SP3Brightness                  (knx.paramByte(HUE_HCLM3SP3Brightness))
+// M3 SP5 Zeit
+#define ParamHUE_HCLM3SP4Time                        (knx.paramData(HUE_HCLM3SP4Time))
+#define ParamHUE_HCLM3SP4TimeStr                     (knx.paramString(HUE_HCLM3SP4Time, HUE_HCLM3SP4TimeLength))
+// M3 SP5 Kelvin
+#define ParamHUE_HCLM3SP4Kelvin                      (knx.paramWord(HUE_HCLM3SP4Kelvin))
+// M3 SP5 Helligkeit
+#define ParamHUE_HCLM3SP4Brightness                  (knx.paramByte(HUE_HCLM3SP4Brightness))
+// M3 SP6 Zeit
+#define ParamHUE_HCLM3SP5Time                        (knx.paramData(HUE_HCLM3SP5Time))
+#define ParamHUE_HCLM3SP5TimeStr                     (knx.paramString(HUE_HCLM3SP5Time, HUE_HCLM3SP5TimeLength))
+// M3 SP6 Kelvin
+#define ParamHUE_HCLM3SP5Kelvin                      (knx.paramWord(HUE_HCLM3SP5Kelvin))
+// M3 SP6 Helligkeit
+#define ParamHUE_HCLM3SP5Brightness                  (knx.paramByte(HUE_HCLM3SP5Brightness))
+// M3 SP7 Zeit
+#define ParamHUE_HCLM3SP6Time                        (knx.paramData(HUE_HCLM3SP6Time))
+#define ParamHUE_HCLM3SP6TimeStr                     (knx.paramString(HUE_HCLM3SP6Time, HUE_HCLM3SP6TimeLength))
+// M3 SP7 Kelvin
+#define ParamHUE_HCLM3SP6Kelvin                      (knx.paramWord(HUE_HCLM3SP6Kelvin))
+// M3 SP7 Helligkeit
+#define ParamHUE_HCLM3SP6Brightness                  (knx.paramByte(HUE_HCLM3SP6Brightness))
+// M3 SP8 Zeit
+#define ParamHUE_HCLM3SP7Time                        (knx.paramData(HUE_HCLM3SP7Time))
+#define ParamHUE_HCLM3SP7TimeStr                     (knx.paramString(HUE_HCLM3SP7Time, HUE_HCLM3SP7TimeLength))
+// M3 SP8 Kelvin
+#define ParamHUE_HCLM3SP7Kelvin                      (knx.paramWord(HUE_HCLM3SP7Kelvin))
+// M3 SP8 Helligkeit
+#define ParamHUE_HCLM3SP7Brightness                  (knx.paramByte(HUE_HCLM3SP7Brightness))
+// M3 SP9 Zeit
+#define ParamHUE_HCLM3SP8Time                        (knx.paramData(HUE_HCLM3SP8Time))
+#define ParamHUE_HCLM3SP8TimeStr                     (knx.paramString(HUE_HCLM3SP8Time, HUE_HCLM3SP8TimeLength))
+// M3 SP9 Kelvin
+#define ParamHUE_HCLM3SP8Kelvin                      (knx.paramWord(HUE_HCLM3SP8Kelvin))
+// M3 SP9 Helligkeit
+#define ParamHUE_HCLM3SP8Brightness                  (knx.paramByte(HUE_HCLM3SP8Brightness))
+// M3 SP10 Zeit
+#define ParamHUE_HCLM3SP9Time                        (knx.paramData(HUE_HCLM3SP9Time))
+#define ParamHUE_HCLM3SP9TimeStr                     (knx.paramString(HUE_HCLM3SP9Time, HUE_HCLM3SP9TimeLength))
+// M3 SP10 Kelvin
+#define ParamHUE_HCLM3SP9Kelvin                      (knx.paramWord(HUE_HCLM3SP9Kelvin))
+// M3 SP10 Helligkeit
+#define ParamHUE_HCLM3SP9Brightness                  (knx.paramByte(HUE_HCLM3SP9Brightness))
+// M4 SP1 Zeit
+#define ParamHUE_HCLM4SP0Time                        (knx.paramData(HUE_HCLM4SP0Time))
+#define ParamHUE_HCLM4SP0TimeStr                     (knx.paramString(HUE_HCLM4SP0Time, HUE_HCLM4SP0TimeLength))
+// M4 SP1 Kelvin
+#define ParamHUE_HCLM4SP0Kelvin                      (knx.paramWord(HUE_HCLM4SP0Kelvin))
+// M4 SP1 Helligkeit
+#define ParamHUE_HCLM4SP0Brightness                  (knx.paramByte(HUE_HCLM4SP0Brightness))
+// M4 SP2 Zeit
+#define ParamHUE_HCLM4SP1Time                        (knx.paramData(HUE_HCLM4SP1Time))
+#define ParamHUE_HCLM4SP1TimeStr                     (knx.paramString(HUE_HCLM4SP1Time, HUE_HCLM4SP1TimeLength))
+// M4 SP2 Kelvin
+#define ParamHUE_HCLM4SP1Kelvin                      (knx.paramWord(HUE_HCLM4SP1Kelvin))
+// M4 SP2 Helligkeit
+#define ParamHUE_HCLM4SP1Brightness                  (knx.paramByte(HUE_HCLM4SP1Brightness))
+// M4 SP3 Zeit
+#define ParamHUE_HCLM4SP2Time                        (knx.paramData(HUE_HCLM4SP2Time))
+#define ParamHUE_HCLM4SP2TimeStr                     (knx.paramString(HUE_HCLM4SP2Time, HUE_HCLM4SP2TimeLength))
+// M4 SP3 Kelvin
+#define ParamHUE_HCLM4SP2Kelvin                      (knx.paramWord(HUE_HCLM4SP2Kelvin))
+// M4 SP3 Helligkeit
+#define ParamHUE_HCLM4SP2Brightness                  (knx.paramByte(HUE_HCLM4SP2Brightness))
+// M4 SP4 Zeit
+#define ParamHUE_HCLM4SP3Time                        (knx.paramData(HUE_HCLM4SP3Time))
+#define ParamHUE_HCLM4SP3TimeStr                     (knx.paramString(HUE_HCLM4SP3Time, HUE_HCLM4SP3TimeLength))
+// M4 SP4 Kelvin
+#define ParamHUE_HCLM4SP3Kelvin                      (knx.paramWord(HUE_HCLM4SP3Kelvin))
+// M4 SP4 Helligkeit
+#define ParamHUE_HCLM4SP3Brightness                  (knx.paramByte(HUE_HCLM4SP3Brightness))
+// M4 SP5 Zeit
+#define ParamHUE_HCLM4SP4Time                        (knx.paramData(HUE_HCLM4SP4Time))
+#define ParamHUE_HCLM4SP4TimeStr                     (knx.paramString(HUE_HCLM4SP4Time, HUE_HCLM4SP4TimeLength))
+// M4 SP5 Kelvin
+#define ParamHUE_HCLM4SP4Kelvin                      (knx.paramWord(HUE_HCLM4SP4Kelvin))
+// M4 SP5 Helligkeit
+#define ParamHUE_HCLM4SP4Brightness                  (knx.paramByte(HUE_HCLM4SP4Brightness))
+// M4 SP6 Zeit
+#define ParamHUE_HCLM4SP5Time                        (knx.paramData(HUE_HCLM4SP5Time))
+#define ParamHUE_HCLM4SP5TimeStr                     (knx.paramString(HUE_HCLM4SP5Time, HUE_HCLM4SP5TimeLength))
+// M4 SP6 Kelvin
+#define ParamHUE_HCLM4SP5Kelvin                      (knx.paramWord(HUE_HCLM4SP5Kelvin))
+// M4 SP6 Helligkeit
+#define ParamHUE_HCLM4SP5Brightness                  (knx.paramByte(HUE_HCLM4SP5Brightness))
+// M4 SP7 Zeit
+#define ParamHUE_HCLM4SP6Time                        (knx.paramData(HUE_HCLM4SP6Time))
+#define ParamHUE_HCLM4SP6TimeStr                     (knx.paramString(HUE_HCLM4SP6Time, HUE_HCLM4SP6TimeLength))
+// M4 SP7 Kelvin
+#define ParamHUE_HCLM4SP6Kelvin                      (knx.paramWord(HUE_HCLM4SP6Kelvin))
+// M4 SP7 Helligkeit
+#define ParamHUE_HCLM4SP6Brightness                  (knx.paramByte(HUE_HCLM4SP6Brightness))
+// M4 SP8 Zeit
+#define ParamHUE_HCLM4SP7Time                        (knx.paramData(HUE_HCLM4SP7Time))
+#define ParamHUE_HCLM4SP7TimeStr                     (knx.paramString(HUE_HCLM4SP7Time, HUE_HCLM4SP7TimeLength))
+// M4 SP8 Kelvin
+#define ParamHUE_HCLM4SP7Kelvin                      (knx.paramWord(HUE_HCLM4SP7Kelvin))
+// M4 SP8 Helligkeit
+#define ParamHUE_HCLM4SP7Brightness                  (knx.paramByte(HUE_HCLM4SP7Brightness))
+// M4 SP9 Zeit
+#define ParamHUE_HCLM4SP8Time                        (knx.paramData(HUE_HCLM4SP8Time))
+#define ParamHUE_HCLM4SP8TimeStr                     (knx.paramString(HUE_HCLM4SP8Time, HUE_HCLM4SP8TimeLength))
+// M4 SP9 Kelvin
+#define ParamHUE_HCLM4SP8Kelvin                      (knx.paramWord(HUE_HCLM4SP8Kelvin))
+// M4 SP9 Helligkeit
+#define ParamHUE_HCLM4SP8Brightness                  (knx.paramByte(HUE_HCLM4SP8Brightness))
+// M4 SP10 Zeit
+#define ParamHUE_HCLM4SP9Time                        (knx.paramData(HUE_HCLM4SP9Time))
+#define ParamHUE_HCLM4SP9TimeStr                     (knx.paramString(HUE_HCLM4SP9Time, HUE_HCLM4SP9TimeLength))
+// M4 SP10 Kelvin
+#define ParamHUE_HCLM4SP9Kelvin                      (knx.paramWord(HUE_HCLM4SP9Kelvin))
+// M4 SP10 Helligkeit
+#define ParamHUE_HCLM4SP9Brightness                  (knx.paramByte(HUE_HCLM4SP9Brightness))
+// Name HCL Master 1
+#define ParamHUE_HCLM1Name                           (knx.paramData(HUE_HCLM1Name))
+#define ParamHUE_HCLM1NameStr                        (knx.paramString(HUE_HCLM1Name, HUE_HCLM1NameLength))
+// Name HCL Master 2
+#define ParamHUE_HCLM2Name                           (knx.paramData(HUE_HCLM2Name))
+#define ParamHUE_HCLM2NameStr                        (knx.paramString(HUE_HCLM2Name, HUE_HCLM2NameLength))
+// Name HCL Master 3
+#define ParamHUE_HCLM3Name                           (knx.paramData(HUE_HCLM3Name))
+#define ParamHUE_HCLM3NameStr                        (knx.paramString(HUE_HCLM3Name, HUE_HCLM3NameLength))
+// Name HCL Master 4
+#define ParamHUE_HCLM4Name                           (knx.paramData(HUE_HCLM4Name))
+#define ParamHUE_HCLM4NameStr                        (knx.paramString(HUE_HCLM4Name, HUE_HCLM4NameLength))
+// Kurventyp
+#define ParamHUE_HCLM1CurveType                      (knx.paramByte(HUE_HCLM1CurveType))
+// Slew-Rate (K/min)
+#define ParamHUE_HCLM1SlewRate                       (knx.paramWord(HUE_HCLM1SlewRate))
+// Manual Kelvin
+#define ParamHUE_HCLM1ManualKelvin                   (knx.paramWord(HUE_HCLM1ManualKelvin))
+// Sunrise (HH:MM)
+#define ParamHUE_HCLM1Sunrise                        (knx.paramData(HUE_HCLM1Sunrise))
+#define ParamHUE_HCLM1SunriseStr                     (knx.paramString(HUE_HCLM1Sunrise, HUE_HCLM1SunriseLength))
+// Sunset (HH:MM)
+#define ParamHUE_HCLM1Sunset                         (knx.paramData(HUE_HCLM1Sunset))
+#define ParamHUE_HCLM1SunsetStr                      (knx.paramString(HUE_HCLM1Sunset, HUE_HCLM1SunsetLength))
+// Sunrise Offset (min)
+#define ParamHUE_HCLM1SunriseOffset                  ((int16_t)knx.paramWord(HUE_HCLM1SunriseOffset))
+// Sunset Offset (min)
+#define ParamHUE_HCLM1SunsetOffset                   ((int16_t)knx.paramWord(HUE_HCLM1SunsetOffset))
+// Kurventyp
+#define ParamHUE_HCLM2CurveType                      (knx.paramByte(HUE_HCLM2CurveType))
+// Slew-Rate (K/min)
+#define ParamHUE_HCLM2SlewRate                       (knx.paramWord(HUE_HCLM2SlewRate))
+// Manual Kelvin
+#define ParamHUE_HCLM2ManualKelvin                   (knx.paramWord(HUE_HCLM2ManualKelvin))
+// Sunrise (HH:MM)
+#define ParamHUE_HCLM2Sunrise                        (knx.paramData(HUE_HCLM2Sunrise))
+#define ParamHUE_HCLM2SunriseStr                     (knx.paramString(HUE_HCLM2Sunrise, HUE_HCLM2SunriseLength))
+// Sunset (HH:MM)
+#define ParamHUE_HCLM2Sunset                         (knx.paramData(HUE_HCLM2Sunset))
+#define ParamHUE_HCLM2SunsetStr                      (knx.paramString(HUE_HCLM2Sunset, HUE_HCLM2SunsetLength))
+// Sunrise Offset (min)
+#define ParamHUE_HCLM2SunriseOffset                  ((int16_t)knx.paramWord(HUE_HCLM2SunriseOffset))
+// Sunset Offset (min)
+#define ParamHUE_HCLM2SunsetOffset                   ((int16_t)knx.paramWord(HUE_HCLM2SunsetOffset))
+// Kurventyp
+#define ParamHUE_HCLM3CurveType                      (knx.paramByte(HUE_HCLM3CurveType))
+// Slew-Rate (K/min)
+#define ParamHUE_HCLM3SlewRate                       (knx.paramWord(HUE_HCLM3SlewRate))
+// Manual Kelvin
+#define ParamHUE_HCLM3ManualKelvin                   (knx.paramWord(HUE_HCLM3ManualKelvin))
+// Sunrise (HH:MM)
+#define ParamHUE_HCLM3Sunrise                        (knx.paramData(HUE_HCLM3Sunrise))
+#define ParamHUE_HCLM3SunriseStr                     (knx.paramString(HUE_HCLM3Sunrise, HUE_HCLM3SunriseLength))
+// Sunset (HH:MM)
+#define ParamHUE_HCLM3Sunset                         (knx.paramData(HUE_HCLM3Sunset))
+#define ParamHUE_HCLM3SunsetStr                      (knx.paramString(HUE_HCLM3Sunset, HUE_HCLM3SunsetLength))
+// Sunrise Offset (min)
+#define ParamHUE_HCLM3SunriseOffset                  ((int16_t)knx.paramWord(HUE_HCLM3SunriseOffset))
+// Sunset Offset (min)
+#define ParamHUE_HCLM3SunsetOffset                   ((int16_t)knx.paramWord(HUE_HCLM3SunsetOffset))
+// Kurventyp
+#define ParamHUE_HCLM4CurveType                      (knx.paramByte(HUE_HCLM4CurveType))
+// Slew-Rate (K/min)
+#define ParamHUE_HCLM4SlewRate                       (knx.paramWord(HUE_HCLM4SlewRate))
+// Manual Kelvin
+#define ParamHUE_HCLM4ManualKelvin                   (knx.paramWord(HUE_HCLM4ManualKelvin))
+// Sunrise (HH:MM)
+#define ParamHUE_HCLM4Sunrise                        (knx.paramData(HUE_HCLM4Sunrise))
+#define ParamHUE_HCLM4SunriseStr                     (knx.paramString(HUE_HCLM4Sunrise, HUE_HCLM4SunriseLength))
+// Sunset (HH:MM)
+#define ParamHUE_HCLM4Sunset                         (knx.paramData(HUE_HCLM4Sunset))
+#define ParamHUE_HCLM4SunsetStr                      (knx.paramString(HUE_HCLM4Sunset, HUE_HCLM4SunsetLength))
+// Sunrise Offset (min)
+#define ParamHUE_HCLM4SunriseOffset                  ((int16_t)knx.paramWord(HUE_HCLM4SunriseOffset))
+// Sunset Offset (min)
+#define ParamHUE_HCLM4SunsetOffset                   ((int16_t)knx.paramWord(HUE_HCLM4SunsetOffset))
 
-#define HUE_KoHUEConnectionStatus 500
+#define HUE_KoHUEConnectionStatus 480
+#define HUE_KoHUEPairingTrigger 481
 
 // Bridge Verbindungsstatus
 #define KoHUE_HUEConnectionStatus                 (knx.getGroupObject(HUE_KoHUEConnectionStatus))
+// Pairing Trigger
+#define KoHUE_HUEPairingTrigger                   (knx.getGroupObject(HUE_KoHUEPairingTrigger))
 
 #define HUE_ChannelCount 20
 
 // Parameter per channel
-#define HUE_ParamBlockOffset 255
-#define HUE_ParamBlockSize 4
+#define HUE_ParamBlockOffset 757
+#define HUE_ParamBlockSize 45
 #define HUE_ParamCalcIndex(index) (index + HUE_ParamBlockOffset + _channelIndex * HUE_ParamBlockSize)
 
+#define HUE_CHLightUUID                          5      // char*, 40 Byte
+#define     HUE_CHLightUUIDLength 40
+#define HUE_CHHCLMaster                          4      // 8 Bits, Bit 7-0
 #define HUE_CHLightType                          0      // 8 Bits, Bit 7-0
 #define HUE_CHDisabled                           1      // 1 Bit, Bit 7
 #define     HUE_CHDisabledMask 0x80
@@ -306,9 +884,14 @@
 #define HUE_CHPollInterval                       2      // uint8_t
 #define HUE_CHMinBrightness                      3      // uint8_t
 
+// Hue Lampen-ID (UUID)
+#define ParamHUE_CHLightUUID                         (knx.paramData(HUE_ParamCalcIndex(HUE_CHLightUUID)))
+#define ParamHUE_CHLightUUIDStr                      (knx.paramString(HUE_ParamCalcIndex(HUE_CHLightUUID), HUE_CHLightUUIDLength))
+// HCL Master
+#define ParamHUE_CHHCLMaster                         (knx.paramByte(HUE_ParamCalcIndex(HUE_CHHCLMaster)))
 // Lampentyp
 #define ParamHUE_CHLightType                         (knx.paramByte(HUE_ParamCalcIndex(HUE_CHLightType)))
-// Kanal deaktivieren
+// Kanal deaktivieren (zu Testzwecken)
 #define ParamHUE_CHDisabled                          ((bool)(knx.paramByte(HUE_ParamCalcIndex(HUE_CHDisabled)) & HUE_CHDisabledMask))
 // Synchronisationsrichtung
 #define ParamHUE_CHSyncDir                           ((knx.paramByte(HUE_ParamCalcIndex(HUE_CHSyncDir)) & HUE_CHSyncDirMask) >> HUE_CHSyncDirShift)
@@ -357,291 +940,277 @@
 // Status RGB
 #define KoHUE_CHStatusColorRGB                    (knx.getGroupObject(HUE_KoCalcNumber(HUE_KoCHStatusColorRGB)))
 
-#define LOG_BuzzerInstalled                     335      // 1 Bit, Bit 7
-#define     LOG_BuzzerInstalledMask 0x80
-#define     LOG_BuzzerInstalledShift 7
-#define LOG_LedInstalled                        335      // 1 Bit, Bit 6
-#define     LOG_LedInstalledMask 0x40
-#define     LOG_LedInstalledShift 6
-#define LOG_VacationKo                          335      // 1 Bit, Bit 5
-#define     LOG_VacationKoMask 0x20
-#define     LOG_VacationKoShift 5
-#define LOG_HolidayKo                           335      // 1 Bit, Bit 4
-#define     LOG_HolidayKoMask 0x10
-#define     LOG_HolidayKoShift 4
-#define LOG_VacationRead                        335      // 1 Bit, Bit 3
-#define     LOG_VacationReadMask 0x08
-#define     LOG_VacationReadShift 3
-#define LOG_HolidaySend                         335      // 1 Bit, Bit 2
-#define     LOG_HolidaySendMask 0x04
-#define     LOG_HolidaySendShift 2
-#define LOG_Neujahr                             336      // 1 Bit, Bit 7
+#define LOG_VisibleChannels                     1657      // uint8_t
+#define LOG_VacationKo                          1658      // 1 Bit, Bit 7
+#define     LOG_VacationKoMask 0x80
+#define     LOG_VacationKoShift 7
+#define LOG_HolidayKo                           1658      // 1 Bit, Bit 6
+#define     LOG_HolidayKoMask 0x40
+#define     LOG_HolidayKoShift 6
+#define LOG_VacationRead                        1658      // 1 Bit, Bit 5
+#define     LOG_VacationReadMask 0x20
+#define     LOG_VacationReadShift 5
+#define LOG_HolidaySend                         1658      // 1 Bit, Bit 4
+#define     LOG_HolidaySendMask 0x10
+#define     LOG_HolidaySendShift 4
+#define LOG_Neujahr                             1659      // 1 Bit, Bit 7
 #define     LOG_NeujahrMask 0x80
 #define     LOG_NeujahrShift 7
-#define LOG_DreiKoenige                         336      // 1 Bit, Bit 6
+#define LOG_DreiKoenige                         1659      // 1 Bit, Bit 6
 #define     LOG_DreiKoenigeMask 0x40
 #define     LOG_DreiKoenigeShift 6
-#define LOG_Weiberfastnacht                     336      // 1 Bit, Bit 5
+#define LOG_Weiberfastnacht                     1659      // 1 Bit, Bit 5
 #define     LOG_WeiberfastnachtMask 0x20
 #define     LOG_WeiberfastnachtShift 5
-#define LOG_Rosenmontag                         336      // 1 Bit, Bit 4
+#define LOG_Rosenmontag                         1659      // 1 Bit, Bit 4
 #define     LOG_RosenmontagMask 0x10
 #define     LOG_RosenmontagShift 4
-#define LOG_Fastnachtsdienstag                  336      // 1 Bit, Bit 3
+#define LOG_Fastnachtsdienstag                  1659      // 1 Bit, Bit 3
 #define     LOG_FastnachtsdienstagMask 0x08
 #define     LOG_FastnachtsdienstagShift 3
-#define LOG_Aschermittwoch                      336      // 1 Bit, Bit 2
+#define LOG_Aschermittwoch                      1659      // 1 Bit, Bit 2
 #define     LOG_AschermittwochMask 0x04
 #define     LOG_AschermittwochShift 2
-#define LOG_Frauentag                           336      // 1 Bit, Bit 1
+#define LOG_Frauentag                           1659      // 1 Bit, Bit 1
 #define     LOG_FrauentagMask 0x02
 #define     LOG_FrauentagShift 1
-#define LOG_Gruendonnerstag                     336      // 1 Bit, Bit 0
+#define LOG_Gruendonnerstag                     1659      // 1 Bit, Bit 0
 #define     LOG_GruendonnerstagMask 0x01
 #define     LOG_GruendonnerstagShift 0
-#define LOG_Karfreitag                          337      // 1 Bit, Bit 7
+#define LOG_Karfreitag                          1660      // 1 Bit, Bit 7
 #define     LOG_KarfreitagMask 0x80
 #define     LOG_KarfreitagShift 7
-#define LOG_Ostersonntag                        337      // 1 Bit, Bit 6
+#define LOG_Ostersonntag                        1660      // 1 Bit, Bit 6
 #define     LOG_OstersonntagMask 0x40
 #define     LOG_OstersonntagShift 6
-#define LOG_Ostermontag                         337      // 1 Bit, Bit 5
+#define LOG_Ostermontag                         1660      // 1 Bit, Bit 5
 #define     LOG_OstermontagMask 0x20
 #define     LOG_OstermontagShift 5
-#define LOG_TagDerArbeit                        337      // 1 Bit, Bit 4
+#define LOG_TagDerArbeit                        1660      // 1 Bit, Bit 4
 #define     LOG_TagDerArbeitMask 0x10
 #define     LOG_TagDerArbeitShift 4
-#define LOG_Himmelfahrt                         337      // 1 Bit, Bit 3
+#define LOG_Himmelfahrt                         1660      // 1 Bit, Bit 3
 #define     LOG_HimmelfahrtMask 0x08
 #define     LOG_HimmelfahrtShift 3
-#define LOG_Pfingstsonntag                      337      // 1 Bit, Bit 2
+#define LOG_Pfingstsonntag                      1660      // 1 Bit, Bit 2
 #define     LOG_PfingstsonntagMask 0x04
 #define     LOG_PfingstsonntagShift 2
-#define LOG_Pfingstmontag                       337      // 1 Bit, Bit 1
+#define LOG_Pfingstmontag                       1660      // 1 Bit, Bit 1
 #define     LOG_PfingstmontagMask 0x02
 #define     LOG_PfingstmontagShift 1
-#define LOG_Fronleichnam                        337      // 1 Bit, Bit 0
+#define LOG_Fronleichnam                        1660      // 1 Bit, Bit 0
 #define     LOG_FronleichnamMask 0x01
 #define     LOG_FronleichnamShift 0
-#define LOG_Friedensfest                        338      // 1 Bit, Bit 7
+#define LOG_Friedensfest                        1661      // 1 Bit, Bit 7
 #define     LOG_FriedensfestMask 0x80
 #define     LOG_FriedensfestShift 7
-#define LOG_MariaHimmelfahrt                    338      // 1 Bit, Bit 6
+#define LOG_MariaHimmelfahrt                    1661      // 1 Bit, Bit 6
 #define     LOG_MariaHimmelfahrtMask 0x40
 #define     LOG_MariaHimmelfahrtShift 6
-#define LOG_DeutscheEinheit                     338      // 1 Bit, Bit 5
+#define LOG_DeutscheEinheit                     1661      // 1 Bit, Bit 5
 #define     LOG_DeutscheEinheitMask 0x20
 #define     LOG_DeutscheEinheitShift 5
-#define LOG_Reformationstag                     338      // 1 Bit, Bit 4
+#define LOG_Reformationstag                     1661      // 1 Bit, Bit 4
 #define     LOG_ReformationstagMask 0x10
 #define     LOG_ReformationstagShift 4
-#define LOG_Allerheiligen                       338      // 1 Bit, Bit 3
+#define LOG_Allerheiligen                       1661      // 1 Bit, Bit 3
 #define     LOG_AllerheiligenMask 0x08
 #define     LOG_AllerheiligenShift 3
-#define LOG_BussBettag                          338      // 1 Bit, Bit 2
+#define LOG_BussBettag                          1661      // 1 Bit, Bit 2
 #define     LOG_BussBettagMask 0x04
 #define     LOG_BussBettagShift 2
-#define LOG_Advent1                             338      // 1 Bit, Bit 1
+#define LOG_Advent1                             1661      // 1 Bit, Bit 1
 #define     LOG_Advent1Mask 0x02
 #define     LOG_Advent1Shift 1
-#define LOG_Advent2                             338      // 1 Bit, Bit 0
+#define LOG_Advent2                             1661      // 1 Bit, Bit 0
 #define     LOG_Advent2Mask 0x01
 #define     LOG_Advent2Shift 0
-#define LOG_Advent3                             339      // 1 Bit, Bit 7
+#define LOG_Advent3                             1662      // 1 Bit, Bit 7
 #define     LOG_Advent3Mask 0x80
 #define     LOG_Advent3Shift 7
-#define LOG_Advent4                             339      // 1 Bit, Bit 6
+#define LOG_Advent4                             1662      // 1 Bit, Bit 6
 #define     LOG_Advent4Mask 0x40
 #define     LOG_Advent4Shift 6
-#define LOG_Heiligabend                         339      // 1 Bit, Bit 5
+#define LOG_Heiligabend                         1662      // 1 Bit, Bit 5
 #define     LOG_HeiligabendMask 0x20
 #define     LOG_HeiligabendShift 5
-#define LOG_Weihnachtstag1                      339      // 1 Bit, Bit 4
+#define LOG_Weihnachtstag1                      1662      // 1 Bit, Bit 4
 #define     LOG_Weihnachtstag1Mask 0x10
 #define     LOG_Weihnachtstag1Shift 4
-#define LOG_Weihnachtstag2                      339      // 1 Bit, Bit 3
+#define LOG_Weihnachtstag2                      1662      // 1 Bit, Bit 3
 #define     LOG_Weihnachtstag2Mask 0x08
 #define     LOG_Weihnachtstag2Shift 3
-#define LOG_Silvester                           339      // 1 Bit, Bit 2
+#define LOG_Silvester                           1662      // 1 Bit, Bit 2
 #define     LOG_SilvesterMask 0x04
 #define     LOG_SilvesterShift 2
-#define LOG_Nationalfeiertag                    339      // 1 Bit, Bit 1
+#define LOG_Nationalfeiertag                    1662      // 1 Bit, Bit 1
 #define     LOG_NationalfeiertagMask 0x02
 #define     LOG_NationalfeiertagShift 1
-#define LOG_MariaEmpfaengnis                    339      // 1 Bit, Bit 0
+#define LOG_MariaEmpfaengnis                    1662      // 1 Bit, Bit 0
 #define     LOG_MariaEmpfaengnisMask 0x01
 #define     LOG_MariaEmpfaengnisShift 0
-#define LOG_NationalfeiertagSchweiz             340      // 1 Bit, Bit 7
+#define LOG_NationalfeiertagSchweiz             1663      // 1 Bit, Bit 7
 #define     LOG_NationalfeiertagSchweizMask 0x80
 #define     LOG_NationalfeiertagSchweizShift 7
-#define LOG_Totensonntag                        340      // 1 Bit, Bit 6
+#define LOG_Totensonntag                        1663      // 1 Bit, Bit 6
 #define     LOG_TotensonntagMask 0x40
 #define     LOG_TotensonntagShift 6
-#define LOG_Weltkindertag                       340      // 1 Bit, Bit 5
+#define LOG_Weltkindertag                       1663      // 1 Bit, Bit 5
 #define     LOG_WeltkindertagMask 0x20
 #define     LOG_WeltkindertagShift 5
-#define LOG_BuzzerSilent                        341      // uint16_t
-#define LOG_BuzzerNormal                        343      // uint16_t
-#define LOG_BuzzerLoud                          345      // uint16_t
-#define LOG_VisibleChannels                     347      // uint8_t
-#define LOG_LedMapping                          348      // 3 Bits, Bit 7-5
-#define     LOG_LedMappingMask 0xE0
-#define     LOG_LedMappingShift 5
-#define LOG_UserFormula1                        349      // char*, 99 Byte
+#define LOG_UserFormula1                        1664      // char*, 99 Byte
 #define     LOG_UserFormula1Length 99
-#define LOG_UserFormula1Active                  448      // 1 Bit, Bit 7
+#define LOG_UserFormula1Active                  1763      // 1 Bit, Bit 7
 #define     LOG_UserFormula1ActiveMask 0x80
 #define     LOG_UserFormula1ActiveShift 7
-#define LOG_UserFormula2                        449      // char*, 99 Byte
+#define LOG_UserFormula2                        1764      // char*, 99 Byte
 #define     LOG_UserFormula2Length 99
-#define LOG_UserFormula2Active                  548      // 1 Bit, Bit 7
+#define LOG_UserFormula2Active                  1863      // 1 Bit, Bit 7
 #define     LOG_UserFormula2ActiveMask 0x80
 #define     LOG_UserFormula2ActiveShift 7
-#define LOG_UserFormula3                        549      // char*, 99 Byte
+#define LOG_UserFormula3                        1864      // char*, 99 Byte
 #define     LOG_UserFormula3Length 99
-#define LOG_UserFormula3Active                  648      // 1 Bit, Bit 7
+#define LOG_UserFormula3Active                  1963      // 1 Bit, Bit 7
 #define     LOG_UserFormula3ActiveMask 0x80
 #define     LOG_UserFormula3ActiveShift 7
-#define LOG_UserFormula4                        649      // char*, 99 Byte
+#define LOG_UserFormula4                        1964      // char*, 99 Byte
 #define     LOG_UserFormula4Length 99
-#define LOG_UserFormula4Active                  748      // 1 Bit, Bit 7
+#define LOG_UserFormula4Active                  2063      // 1 Bit, Bit 7
 #define     LOG_UserFormula4ActiveMask 0x80
 #define     LOG_UserFormula4ActiveShift 7
-#define LOG_UserFormula5                        749      // char*, 99 Byte
+#define LOG_UserFormula5                        2064      // char*, 99 Byte
 #define     LOG_UserFormula5Length 99
-#define LOG_UserFormula5Active                  848      // 1 Bit, Bit 7
+#define LOG_UserFormula5Active                  2163      // 1 Bit, Bit 7
 #define     LOG_UserFormula5ActiveMask 0x80
 #define     LOG_UserFormula5ActiveShift 7
-#define LOG_UserFormula6                        849      // char*, 99 Byte
+#define LOG_UserFormula6                        2164      // char*, 99 Byte
 #define     LOG_UserFormula6Length 99
-#define LOG_UserFormula6Active                  948      // 1 Bit, Bit 7
+#define LOG_UserFormula6Active                  2263      // 1 Bit, Bit 7
 #define     LOG_UserFormula6ActiveMask 0x80
 #define     LOG_UserFormula6ActiveShift 7
-#define LOG_UserFormula7                        949      // char*, 99 Byte
+#define LOG_UserFormula7                        2264      // char*, 99 Byte
 #define     LOG_UserFormula7Length 99
-#define LOG_UserFormula7Active                  1048      // 1 Bit, Bit 7
+#define LOG_UserFormula7Active                  2363      // 1 Bit, Bit 7
 #define     LOG_UserFormula7ActiveMask 0x80
 #define     LOG_UserFormula7ActiveShift 7
-#define LOG_UserFormula8                        1049      // char*, 99 Byte
+#define LOG_UserFormula8                        2364      // char*, 99 Byte
 #define     LOG_UserFormula8Length 99
-#define LOG_UserFormula8Active                  1148      // 1 Bit, Bit 7
+#define LOG_UserFormula8Active                  2463      // 1 Bit, Bit 7
 #define     LOG_UserFormula8ActiveMask 0x80
 #define     LOG_UserFormula8ActiveShift 7
-#define LOG_UserFormula9                        1149      // char*, 99 Byte
+#define LOG_UserFormula9                        2464      // char*, 99 Byte
 #define     LOG_UserFormula9Length 99
-#define LOG_UserFormula9Active                  1248      // 1 Bit, Bit 7
+#define LOG_UserFormula9Active                  2563      // 1 Bit, Bit 7
 #define     LOG_UserFormula9ActiveMask 0x80
 #define     LOG_UserFormula9ActiveShift 7
-#define LOG_UserFormula10                       1249      // char*, 99 Byte
+#define LOG_UserFormula10                       2564      // char*, 99 Byte
 #define     LOG_UserFormula10Length 99
-#define LOG_UserFormula10Active                 1348      // 1 Bit, Bit 7
+#define LOG_UserFormula10Active                 2663      // 1 Bit, Bit 7
 #define     LOG_UserFormula10ActiveMask 0x80
 #define     LOG_UserFormula10ActiveShift 7
-#define LOG_UserFormula11                       1349      // char*, 99 Byte
+#define LOG_UserFormula11                       2664      // char*, 99 Byte
 #define     LOG_UserFormula11Length 99
-#define LOG_UserFormula11Active                 1448      // 1 Bit, Bit 7
+#define LOG_UserFormula11Active                 2763      // 1 Bit, Bit 7
 #define     LOG_UserFormula11ActiveMask 0x80
 #define     LOG_UserFormula11ActiveShift 7
-#define LOG_UserFormula12                       1449      // char*, 99 Byte
+#define LOG_UserFormula12                       2764      // char*, 99 Byte
 #define     LOG_UserFormula12Length 99
-#define LOG_UserFormula12Active                 1548      // 1 Bit, Bit 7
+#define LOG_UserFormula12Active                 2863      // 1 Bit, Bit 7
 #define     LOG_UserFormula12ActiveMask 0x80
 #define     LOG_UserFormula12ActiveShift 7
-#define LOG_UserFormula13                       1549      // char*, 99 Byte
+#define LOG_UserFormula13                       2864      // char*, 99 Byte
 #define     LOG_UserFormula13Length 99
-#define LOG_UserFormula13Active                 1648      // 1 Bit, Bit 7
+#define LOG_UserFormula13Active                 2963      // 1 Bit, Bit 7
 #define     LOG_UserFormula13ActiveMask 0x80
 #define     LOG_UserFormula13ActiveShift 7
-#define LOG_UserFormula14                       1649      // char*, 99 Byte
+#define LOG_UserFormula14                       2964      // char*, 99 Byte
 #define     LOG_UserFormula14Length 99
-#define LOG_UserFormula14Active                 1748      // 1 Bit, Bit 7
+#define LOG_UserFormula14Active                 3063      // 1 Bit, Bit 7
 #define     LOG_UserFormula14ActiveMask 0x80
 #define     LOG_UserFormula14ActiveShift 7
-#define LOG_UserFormula15                       1749      // char*, 99 Byte
+#define LOG_UserFormula15                       3064      // char*, 99 Byte
 #define     LOG_UserFormula15Length 99
-#define LOG_UserFormula15Active                 1848      // 1 Bit, Bit 7
+#define LOG_UserFormula15Active                 3163      // 1 Bit, Bit 7
 #define     LOG_UserFormula15ActiveMask 0x80
 #define     LOG_UserFormula15ActiveShift 7
-#define LOG_UserFormula16                       1849      // char*, 99 Byte
+#define LOG_UserFormula16                       3164      // char*, 99 Byte
 #define     LOG_UserFormula16Length 99
-#define LOG_UserFormula16Active                 1948      // 1 Bit, Bit 7
+#define LOG_UserFormula16Active                 3263      // 1 Bit, Bit 7
 #define     LOG_UserFormula16ActiveMask 0x80
 #define     LOG_UserFormula16ActiveShift 7
-#define LOG_UserFormula17                       1949      // char*, 99 Byte
+#define LOG_UserFormula17                       3264      // char*, 99 Byte
 #define     LOG_UserFormula17Length 99
-#define LOG_UserFormula17Active                 2048      // 1 Bit, Bit 7
+#define LOG_UserFormula17Active                 3363      // 1 Bit, Bit 7
 #define     LOG_UserFormula17ActiveMask 0x80
 #define     LOG_UserFormula17ActiveShift 7
-#define LOG_UserFormula18                       2049      // char*, 99 Byte
+#define LOG_UserFormula18                       3364      // char*, 99 Byte
 #define     LOG_UserFormula18Length 99
-#define LOG_UserFormula18Active                 2148      // 1 Bit, Bit 7
+#define LOG_UserFormula18Active                 3463      // 1 Bit, Bit 7
 #define     LOG_UserFormula18ActiveMask 0x80
 #define     LOG_UserFormula18ActiveShift 7
-#define LOG_UserFormula19                       2149      // char*, 99 Byte
+#define LOG_UserFormula19                       3464      // char*, 99 Byte
 #define     LOG_UserFormula19Length 99
-#define LOG_UserFormula19Active                 2248      // 1 Bit, Bit 7
+#define LOG_UserFormula19Active                 3563      // 1 Bit, Bit 7
 #define     LOG_UserFormula19ActiveMask 0x80
 #define     LOG_UserFormula19ActiveShift 7
-#define LOG_UserFormula20                       2249      // char*, 99 Byte
+#define LOG_UserFormula20                       3564      // char*, 99 Byte
 #define     LOG_UserFormula20Length 99
-#define LOG_UserFormula20Active                 2348      // 1 Bit, Bit 7
+#define LOG_UserFormula20Active                 3663      // 1 Bit, Bit 7
 #define     LOG_UserFormula20ActiveMask 0x80
 #define     LOG_UserFormula20ActiveShift 7
-#define LOG_UserFormula21                       2349      // char*, 99 Byte
+#define LOG_UserFormula21                       3664      // char*, 99 Byte
 #define     LOG_UserFormula21Length 99
-#define LOG_UserFormula21Active                 2448      // 1 Bit, Bit 7
+#define LOG_UserFormula21Active                 3763      // 1 Bit, Bit 7
 #define     LOG_UserFormula21ActiveMask 0x80
 #define     LOG_UserFormula21ActiveShift 7
-#define LOG_UserFormula22                       2449      // char*, 99 Byte
+#define LOG_UserFormula22                       3764      // char*, 99 Byte
 #define     LOG_UserFormula22Length 99
-#define LOG_UserFormula22Active                 2548      // 1 Bit, Bit 7
+#define LOG_UserFormula22Active                 3863      // 1 Bit, Bit 7
 #define     LOG_UserFormula22ActiveMask 0x80
 #define     LOG_UserFormula22ActiveShift 7
-#define LOG_UserFormula23                       2549      // char*, 99 Byte
+#define LOG_UserFormula23                       3864      // char*, 99 Byte
 #define     LOG_UserFormula23Length 99
-#define LOG_UserFormula23Active                 2648      // 1 Bit, Bit 7
+#define LOG_UserFormula23Active                 3963      // 1 Bit, Bit 7
 #define     LOG_UserFormula23ActiveMask 0x80
 #define     LOG_UserFormula23ActiveShift 7
-#define LOG_UserFormula24                       2649      // char*, 99 Byte
+#define LOG_UserFormula24                       3964      // char*, 99 Byte
 #define     LOG_UserFormula24Length 99
-#define LOG_UserFormula24Active                 2748      // 1 Bit, Bit 7
+#define LOG_UserFormula24Active                 4063      // 1 Bit, Bit 7
 #define     LOG_UserFormula24ActiveMask 0x80
 #define     LOG_UserFormula24ActiveShift 7
-#define LOG_UserFormula25                       2749      // char*, 99 Byte
+#define LOG_UserFormula25                       4064      // char*, 99 Byte
 #define     LOG_UserFormula25Length 99
-#define LOG_UserFormula25Active                 2848      // 1 Bit, Bit 7
+#define LOG_UserFormula25Active                 4163      // 1 Bit, Bit 7
 #define     LOG_UserFormula25ActiveMask 0x80
 #define     LOG_UserFormula25ActiveShift 7
-#define LOG_UserFormula26                       2849      // char*, 99 Byte
+#define LOG_UserFormula26                       4164      // char*, 99 Byte
 #define     LOG_UserFormula26Length 99
-#define LOG_UserFormula26Active                 2948      // 1 Bit, Bit 7
+#define LOG_UserFormula26Active                 4263      // 1 Bit, Bit 7
 #define     LOG_UserFormula26ActiveMask 0x80
 #define     LOG_UserFormula26ActiveShift 7
-#define LOG_UserFormula27                       2949      // char*, 99 Byte
+#define LOG_UserFormula27                       4264      // char*, 99 Byte
 #define     LOG_UserFormula27Length 99
-#define LOG_UserFormula27Active                 3048      // 1 Bit, Bit 7
+#define LOG_UserFormula27Active                 4363      // 1 Bit, Bit 7
 #define     LOG_UserFormula27ActiveMask 0x80
 #define     LOG_UserFormula27ActiveShift 7
-#define LOG_UserFormula28                       3049      // char*, 99 Byte
+#define LOG_UserFormula28                       4364      // char*, 99 Byte
 #define     LOG_UserFormula28Length 99
-#define LOG_UserFormula28Active                 3148      // 1 Bit, Bit 7
+#define LOG_UserFormula28Active                 4463      // 1 Bit, Bit 7
 #define     LOG_UserFormula28ActiveMask 0x80
 #define     LOG_UserFormula28ActiveShift 7
-#define LOG_UserFormula29                       3149      // char*, 99 Byte
+#define LOG_UserFormula29                       4464      // char*, 99 Byte
 #define     LOG_UserFormula29Length 99
-#define LOG_UserFormula29Active                 3248      // 1 Bit, Bit 7
+#define LOG_UserFormula29Active                 4563      // 1 Bit, Bit 7
 #define     LOG_UserFormula29ActiveMask 0x80
 #define     LOG_UserFormula29ActiveShift 7
-#define LOG_UserFormula30                       3249      // char*, 99 Byte
+#define LOG_UserFormula30                       4564      // char*, 99 Byte
 #define     LOG_UserFormula30Length 99
-#define LOG_UserFormula30Active                 3348      // 1 Bit, Bit 7
+#define LOG_UserFormula30Active                 4663      // 1 Bit, Bit 7
 #define     LOG_UserFormula30ActiveMask 0x80
 #define     LOG_UserFormula30ActiveShift 7
 
-// Akustischer Signalgeber vorhanden (Buzzer)?
-#define ParamLOG_BuzzerInstalled                     ((bool)(knx.paramByte(LOG_BuzzerInstalled) & LOG_BuzzerInstalledMask))
-// Optischer Signalgeber vorhanden (RGB-LED)?
-#define ParamLOG_LedInstalled                        ((bool)(knx.paramByte(LOG_LedInstalled) & LOG_LedInstalledMask))
+// Verfügbare Kanäle
+#define ParamLOG_VisibleChannels                     (knx.paramByte(LOG_VisibleChannels))
 // Urlaubsbehandlung aktivieren?
 #define ParamLOG_VacationKo                          ((bool)(knx.paramByte(LOG_VacationKo) & LOG_VacationKoMask))
 // Feiertage auf dem Bus verfügbar machen?
@@ -720,16 +1289,6 @@
 #define ParamLOG_Totensonntag                        ((bool)(knx.paramByte(LOG_Totensonntag) & LOG_TotensonntagMask))
 // 35. Weltkindertag
 #define ParamLOG_Weltkindertag                       ((bool)(knx.paramByte(LOG_Weltkindertag) & LOG_WeltkindertagMask))
-// Frequenz für Buzzer (leise)
-#define ParamLOG_BuzzerSilent                        (knx.paramWord(LOG_BuzzerSilent))
-// Frequenz für Buzzer (normal)
-#define ParamLOG_BuzzerNormal                        (knx.paramWord(LOG_BuzzerNormal))
-// Frequenz für Buzzer (laut)
-#define ParamLOG_BuzzerLoud                          (knx.paramWord(LOG_BuzzerLoud))
-// Verfügbare Kanäle
-#define ParamLOG_VisibleChannels                     (knx.paramByte(LOG_VisibleChannels))
-// Lötpad A / B / C entspricht
-#define ParamLOG_LedMapping                          ((knx.paramByte(LOG_LedMapping) & LOG_LedMappingMask) >> LOG_LedMappingShift)
 // Formeldefinition
 #define ParamLOG_UserFormula1                        (knx.paramData(LOG_UserFormula1))
 #define ParamLOG_UserFormula1Str                     (knx.paramString(LOG_UserFormula1, LOG_UserFormula1Length))
@@ -884,8 +1443,6 @@
 #define LOG_KoVacation 15
 #define LOG_KoHoliday1 16
 #define LOG_KoHoliday2 17
-#define LOG_KoLedLock 18
-#define LOG_KoBuzzerLock 19
 
 // Urlaub
 #define KoLOG_Vacation                            (knx.getGroupObject(LOG_KoVacation))
@@ -893,16 +1450,12 @@
 #define KoLOG_Holiday1                            (knx.getGroupObject(LOG_KoHoliday1))
 // Welcher Feiertag ist morgen?
 #define KoLOG_Holiday2                            (knx.getGroupObject(LOG_KoHoliday2))
-// LED sperren
-#define KoLOG_LedLock                             (knx.getGroupObject(LOG_KoLedLock))
-// Buzzer sperren
-#define KoLOG_BuzzerLock                          (knx.getGroupObject(LOG_KoBuzzerLock))
 
 #define LOG_ChannelCount 50
 
 // Parameter per channel
-#define LOG_ParamBlockOffset 3349
-#define LOG_ParamBlockSize 85
+#define LOG_ParamBlockOffset 4664
+#define LOG_ParamBlockSize 87
 #define LOG_ParamCalcIndex(index) (index + LOG_ParamBlockOffset + _channelIndex * LOG_ParamBlockSize)
 
 #define LOG_fChannelDelayBase                    0      // 2 Bits, Bit 7-6
@@ -918,9 +1471,6 @@
 #define LOG_fDisable                             3      // 1 Bit, Bit 2
 #define     LOG_fDisableMask 0x04
 #define     LOG_fDisableShift 2
-#define LOG_fAlarm                               3      // 1 Bit, Bit 3
-#define     LOG_fAlarmMask 0x08
-#define     LOG_fAlarmShift 3
 #define LOG_fTGate                               3      // 1 Bit, Bit 4
 #define     LOG_fTGateMask 0x10
 #define     LOG_fTGateShift 4
@@ -1623,183 +2173,197 @@
 #define LOG_fI1AsTrigger                        36      // 1 Bit, Bit 3
 #define     LOG_fI1AsTriggerMask 0x08
 #define     LOG_fI1AsTriggerShift 3
+#define LOG_fI1InternalInputType                36      // 1 Bit, Bit 2
+#define     LOG_fI1InternalInputTypeMask 0x04
+#define     LOG_fI1InternalInputTypeShift 2
 #define LOG_fI1Function                         37      // uint8_t
 #define LOG_fI1FunctionRel                      37      // int8_t
-#define LOG_fI2                                 38      // 2 Bits, Bit 7-6
+#define LOG_fI1StatusLed                        37      // 16 Bits, Bit 15-0
+#define LOG_fI2                                 39      // 2 Bits, Bit 7-6
 #define     LOG_fI2Mask 0xC0
 #define     LOG_fI2Shift 6
-#define LOG_fI2Kind                             38      // 2 Bits, Bit 5-4
+#define LOG_fI2Kind                             39      // 2 Bits, Bit 5-4
 #define     LOG_fI2KindMask 0x30
 #define     LOG_fI2KindShift 4
-#define LOG_fI2AsTrigger                        38      // 1 Bit, Bit 3
+#define LOG_fI2AsTrigger                        39      // 1 Bit, Bit 3
 #define     LOG_fI2AsTriggerMask 0x08
 #define     LOG_fI2AsTriggerShift 3
-#define LOG_fI2Function                         39      // uint8_t
-#define LOG_fI2FunctionRel                      39      // int8_t
-#define LOG_fOStairtimeBase                     40      // 2 Bits, Bit 7-6
+#define LOG_fI2InternalInputType                39      // 1 Bit, Bit 2
+#define     LOG_fI2InternalInputTypeMask 0x04
+#define     LOG_fI2InternalInputTypeShift 2
+#define LOG_fI2Function                         40      // uint8_t
+#define LOG_fI2FunctionRel                      40      // int8_t
+#define LOG_fI2StatusLed                        40      // 16 Bits, Bit 15-0
+#define LOG_fOStairtimeBase                     42      // 2 Bits, Bit 7-6
 #define     LOG_fOStairtimeBaseMask 0xC0
 #define     LOG_fOStairtimeBaseShift 6
-#define LOG_fOStairtimeTime                     40      // 14 Bits, Bit 13-0
+#define LOG_fOStairtimeTime                     42      // 14 Bits, Bit 13-0
 #define     LOG_fOStairtimeTimeMask 0x3FFF
 #define     LOG_fOStairtimeTimeShift 0
-#define LOG_fOBlinkBase                         42      // 2 Bits, Bit 7-6
+#define LOG_fOBlinkBase                         44      // 2 Bits, Bit 7-6
 #define     LOG_fOBlinkBaseMask 0xC0
 #define     LOG_fOBlinkBaseShift 6
-#define LOG_fOBlinkTime                         42      // 14 Bits, Bit 13-0
+#define LOG_fOBlinkTime                         44      // 14 Bits, Bit 13-0
 #define     LOG_fOBlinkTimeMask 0x3FFF
 #define     LOG_fOBlinkTimeShift 0
-#define LOG_fODelayOnBase                       44      // 2 Bits, Bit 7-6
+#define LOG_fODelayOnBase                       46      // 2 Bits, Bit 7-6
 #define     LOG_fODelayOnBaseMask 0xC0
 #define     LOG_fODelayOnBaseShift 6
-#define LOG_fODelayOnTime                       44      // 14 Bits, Bit 13-0
+#define LOG_fODelayOnTime                       46      // 14 Bits, Bit 13-0
 #define     LOG_fODelayOnTimeMask 0x3FFF
 #define     LOG_fODelayOnTimeShift 0
-#define LOG_fODelayOffBase                      46      // 2 Bits, Bit 7-6
+#define LOG_fODelayOffBase                      48      // 2 Bits, Bit 7-6
 #define     LOG_fODelayOffBaseMask 0xC0
 #define     LOG_fODelayOffBaseShift 6
-#define LOG_fODelayOffTime                      46      // 14 Bits, Bit 13-0
+#define LOG_fODelayOffTime                      48      // 14 Bits, Bit 13-0
 #define     LOG_fODelayOffTimeMask 0x3FFF
 #define     LOG_fODelayOffTimeShift 0
-#define LOG_fORepeatOnBase                      48      // 2 Bits, Bit 7-6
+#define LOG_fORepeatOnBase                      50      // 2 Bits, Bit 7-6
 #define     LOG_fORepeatOnBaseMask 0xC0
 #define     LOG_fORepeatOnBaseShift 6
-#define LOG_fORepeatOnTime                      48      // 14 Bits, Bit 13-0
+#define LOG_fORepeatOnTime                      50      // 14 Bits, Bit 13-0
 #define     LOG_fORepeatOnTimeMask 0x3FFF
 #define     LOG_fORepeatOnTimeShift 0
-#define LOG_fORepeatOffBase                     50      // 2 Bits, Bit 7-6
+#define LOG_fORepeatOffBase                     52      // 2 Bits, Bit 7-6
 #define     LOG_fORepeatOffBaseMask 0xC0
 #define     LOG_fORepeatOffBaseShift 6
-#define LOG_fORepeatOffTime                     50      // 14 Bits, Bit 13-0
+#define LOG_fORepeatOffTime                     52      // 14 Bits, Bit 13-0
 #define     LOG_fORepeatOffTimeMask 0x3FFF
 #define     LOG_fORepeatOffTimeShift 0
-#define LOG_fODelay                             52      // 1 Bit, Bit 7
+#define LOG_fODelay                             54      // 1 Bit, Bit 7
 #define     LOG_fODelayMask 0x80
 #define     LOG_fODelayShift 7
-#define LOG_fODelayOnRepeat                     52      // 2 Bits, Bit 6-5
+#define LOG_fODelayOnRepeat                     54      // 2 Bits, Bit 6-5
 #define     LOG_fODelayOnRepeatMask 0x60
 #define     LOG_fODelayOnRepeatShift 5
-#define LOG_fODelayOnReset                      52      // 1 Bit, Bit 4
+#define LOG_fODelayOnReset                      54      // 1 Bit, Bit 4
 #define     LOG_fODelayOnResetMask 0x10
 #define     LOG_fODelayOnResetShift 4
-#define LOG_fODelayOffRepeat                    52      // 2 Bits, Bit 3-2
+#define LOG_fODelayOffRepeat                    54      // 2 Bits, Bit 3-2
 #define     LOG_fODelayOffRepeatMask 0x0C
 #define     LOG_fODelayOffRepeatShift 2
-#define LOG_fODelayOffReset                     52      // 1 Bit, Bit 1
+#define LOG_fODelayOffReset                     54      // 1 Bit, Bit 1
 #define     LOG_fODelayOffResetMask 0x02
 #define     LOG_fODelayOffResetShift 1
-#define LOG_fOStair                             52      // 1 Bit, Bit 0
+#define LOG_fOStair                             54      // 1 Bit, Bit 0
 #define     LOG_fOStairMask 0x01
 #define     LOG_fOStairShift 0
-#define LOG_fORetrigger                         53      // 1 Bit, Bit 7
+#define LOG_fORetrigger                         55      // 1 Bit, Bit 7
 #define     LOG_fORetriggerMask 0x80
 #define     LOG_fORetriggerShift 7
-#define LOG_fOStairOff                          53      // 1 Bit, Bit 6
+#define LOG_fOStairOff                          55      // 1 Bit, Bit 6
 #define     LOG_fOStairOffMask 0x40
 #define     LOG_fOStairOffShift 6
-#define LOG_fORepeat                            53      // 1 Bit, Bit 5
+#define LOG_fORepeat                            55      // 1 Bit, Bit 5
 #define     LOG_fORepeatMask 0x20
 #define     LOG_fORepeatShift 5
-#define LOG_fOOutputFilter                      53      // 2 Bits, Bit 4-3
+#define LOG_fOOutputFilter                      55      // 2 Bits, Bit 4-3
 #define     LOG_fOOutputFilterMask 0x18
 #define     LOG_fOOutputFilterShift 3
-#define LOG_fOSendOnChange                      53      // 1 Bit, Bit 2
+#define LOG_fOSendOnChange                      55      // 1 Bit, Bit 2
 #define     LOG_fOSendOnChangeMask 0x04
 #define     LOG_fOSendOnChangeShift 2
-#define LOG_fODpt                               54      // 8 Bits, Bit 7-0
-#define LOG_fOOn                                55      // 8 Bits, Bit 7-0
-#define LOG_fOOnBuzzer                          55      // 8 Bits, Bit 7-0
-#define LOG_fOOnLed                             55      // 8 Bits, Bit 7-0
-#define LOG_fOOnAll                             55      // 8 Bits, Bit 7-0
-#define LOG_fOOnTone                            56      // 8 Bits, Bit 7-0
-#define LOG_fOOnDpt1                            56      // 8 Bits, Bit 7-0
-#define LOG_fOOnDpt2                            56      // 8 Bits, Bit 7-0
-#define LOG_fOOnDpt3Dir                         56      // 5 Bits, Bit 7-3
+#define LOG_fODpt                               56      // 8 Bits, Bit 7-0
+#define LOG_fOOnAll                             57      // 8 Bits, Bit 7-0
+#define LOG_fOOnDpt1                            58      // 8 Bits, Bit 7-0
+#define LOG_fOOnDpt2                            58      // 8 Bits, Bit 7-0
+#define LOG_fOOnDpt3Dir                         58      // 5 Bits, Bit 7-3
 #define     LOG_fOOnDpt3DirMask 0xF8
 #define     LOG_fOOnDpt3DirShift 3
-#define LOG_fOOnDpt3Dim                         56      // 3 Bits, Bit 2-0
+#define LOG_fOOnDpt3Dim                         58      // 3 Bits, Bit 2-0
 #define     LOG_fOOnDpt3DimMask 0x07
 #define     LOG_fOOnDpt3DimShift 0
-#define LOG_fOOnDpt5                            56      // uint8_t
-#define LOG_fOOnDpt5001                         56      // uint8_t
-#define LOG_fOOnDpt6                            56      // int8_t
-#define LOG_fOOnDpt7                            56      // uint16_t
-#define LOG_fOOnDpt8                            56      // int16_t
-#define LOG_fOOnDpt9                            56      // float
-#define LOG_fOOnDpt12                           56      // uint32_t
-#define LOG_fOOnDpt13                           56      // int32_t
-#define LOG_fOOnDpt14                           56      // float
-#define LOG_fOOnDpt16                           56      // char*, 14 Byte
+#define LOG_fOOnDpt5                            58      // uint8_t
+#define LOG_fOOnDpt5001                         58      // uint8_t
+#define LOG_fOOnDpt6                            58      // int8_t
+#define LOG_fOOnDpt7                            58      // uint16_t
+#define LOG_fOOnDpt8                            58      // int16_t
+#define LOG_fOOnDpt9                            58      // float
+#define LOG_fOOnDpt12                           58      // uint32_t
+#define LOG_fOOnDpt13                           58      // int32_t
+#define LOG_fOOnDpt14                           58      // float
+#define LOG_fOOnDpt16                           58      // char*, 14 Byte
 #define     LOG_fOOnDpt16Length 14
-#define LOG_fOOnDpt17                           56      // 8 Bits, Bit 7-0
-#define LOG_fOOnRGB                             56      // 24 Bits, Bit 31-8
+#define LOG_fOOnDpt17                           58      // 8 Bits, Bit 7-0
+#define LOG_fOOnRGB                             58      // 24 Bits, Bit 31-8
 #define     LOG_fOOnRGBMask 0xFFFFFF00
 #define     LOG_fOOnRGBShift 8
-#define LOG_fOOnPAArea                          56      // 4 Bits, Bit 7-4
+#define LOG_fOOnLedProvider                     62      // 3 Bits, Bit 2-0
+#define     LOG_fOOnLedProviderMask 0x07
+#define     LOG_fOOnLedProviderShift 0
+#define LOG_fOOnLedEffect                       63      // 3 Bits, Bit 2-0
+#define     LOG_fOOnLedEffectMask 0x07
+#define     LOG_fOOnLedEffectShift 0
+#define LOG_fOOnLedDuration                     64      // uint16_t
+#define LOG_fOOnPAArea                          58      // 4 Bits, Bit 7-4
 #define     LOG_fOOnPAAreaMask 0xF0
 #define     LOG_fOOnPAAreaShift 4
-#define LOG_fOOnPALine                          56      // 4 Bits, Bit 3-0
+#define LOG_fOOnPALine                          58      // 4 Bits, Bit 3-0
 #define     LOG_fOOnPALineMask 0x0F
 #define     LOG_fOOnPALineShift 0
-#define LOG_fOOnPADevice                        57      // uint8_t
-#define LOG_fOOnFunction                        56      // 8 Bits, Bit 7-0
-#define LOG_fOOnKOKind                          61      // 2 Bits, Bit 7-6
+#define LOG_fOOnPADevice                        59      // uint8_t
+#define LOG_fOOnFunction                        58      // 8 Bits, Bit 7-0
+#define LOG_fOOnKOKind                          63      // 2 Bits, Bit 7-6
 #define     LOG_fOOnKOKindMask 0xC0
 #define     LOG_fOOnKOKindShift 6
-#define LOG_fOOnKONumber                        56      // uint16_t
-#define LOG_fOOnKONumberRel                     56      // int16_t
-#define LOG_fOOnKODpt                           58      // 8 Bits, Bit 7-0
-#define LOG_fOOnKOSend                          61      // 2 Bits, Bit 5-4
+#define LOG_fOOnKONumber                        58      // uint16_t
+#define LOG_fOOnKONumberRel                     58      // int16_t
+#define LOG_fOOnKODpt                           60      // 8 Bits, Bit 7-0
+#define LOG_fOOnKOSend                          63      // 2 Bits, Bit 5-4
 #define     LOG_fOOnKOSendMask 0x30
 #define     LOG_fOOnKOSendShift 4
-#define LOG_fOOnKOSendNumber                    62      // uint16_t
-#define LOG_fOOnKOSendNumberRel                 62      // int16_t
-#define LOG_fOOff                               70      // 8 Bits, Bit 7-0
-#define LOG_fOOffBuzzer                         70      // 8 Bits, Bit 7-0
-#define LOG_fOOffLed                            70      // 8 Bits, Bit 7-0
-#define LOG_fOOffAll                            70      // 8 Bits, Bit 7-0
-#define LOG_fOOffTone                           71      // 8 Bits, Bit 7-0
-#define LOG_fOOffDpt1                           71      // 8 Bits, Bit 7-0
-#define LOG_fOOffDpt2                           71      // 8 Bits, Bit 7-0
-#define LOG_fOOffDpt3Dir                        71      // 5 Bits, Bit 7-3
+#define LOG_fOOnKOSendNumber                    64      // uint16_t
+#define LOG_fOOnKOSendNumberRel                 64      // int16_t
+#define LOG_fOOffAll                            72      // 8 Bits, Bit 7-0
+#define LOG_fOOffDpt1                           73      // 8 Bits, Bit 7-0
+#define LOG_fOOffDpt2                           73      // 8 Bits, Bit 7-0
+#define LOG_fOOffDpt3Dir                        73      // 5 Bits, Bit 7-3
 #define     LOG_fOOffDpt3DirMask 0xF8
 #define     LOG_fOOffDpt3DirShift 3
-#define LOG_fOOffDpt3Dim                        71      // 3 Bits, Bit 2-0
+#define LOG_fOOffDpt3Dim                        73      // 3 Bits, Bit 2-0
 #define     LOG_fOOffDpt3DimMask 0x07
 #define     LOG_fOOffDpt3DimShift 0
-#define LOG_fOOffDpt5                           71      // uint8_t
-#define LOG_fOOffDpt5001                        71      // uint8_t
-#define LOG_fOOffDpt6                           71      // int8_t
-#define LOG_fOOffDpt7                           71      // uint16_t
-#define LOG_fOOffDpt8                           71      // int16_t
-#define LOG_fOOffDpt9                           71      // float
-#define LOG_fOOffDpt12                          71      // uint32_t
-#define LOG_fOOffDpt13                          71      // int32_t
-#define LOG_fOOffDpt14                          71      // float
-#define LOG_fOOffDpt16                          71      // char*, 14 Byte
+#define LOG_fOOffDpt5                           73      // uint8_t
+#define LOG_fOOffDpt5001                        73      // uint8_t
+#define LOG_fOOffDpt6                           73      // int8_t
+#define LOG_fOOffDpt7                           73      // uint16_t
+#define LOG_fOOffDpt8                           73      // int16_t
+#define LOG_fOOffDpt9                           73      // float
+#define LOG_fOOffDpt12                          73      // uint32_t
+#define LOG_fOOffDpt13                          73      // int32_t
+#define LOG_fOOffDpt14                          73      // float
+#define LOG_fOOffDpt16                          73      // char*, 14 Byte
 #define     LOG_fOOffDpt16Length 14
-#define LOG_fOOffDpt17                          71      // 8 Bits, Bit 7-0
-#define LOG_fOOffRGB                            71      // 24 Bits, Bit 31-8
+#define LOG_fOOffDpt17                          73      // 8 Bits, Bit 7-0
+#define LOG_fOOffRGB                            73      // 24 Bits, Bit 31-8
 #define     LOG_fOOffRGBMask 0xFFFFFF00
 #define     LOG_fOOffRGBShift 8
-#define LOG_fOOffPAArea                         71      // 4 Bits, Bit 7-4
+#define LOG_fOOffLedProvider                    77      // 3 Bits, Bit 2-0
+#define     LOG_fOOffLedProviderMask 0x07
+#define     LOG_fOOffLedProviderShift 0
+#define LOG_fOOffLedEffect                      78      // 3 Bits, Bit 2-0
+#define     LOG_fOOffLedEffectMask 0x07
+#define     LOG_fOOffLedEffectShift 0
+#define LOG_fOOffLedDuration                    79      // uint16_t
+#define LOG_fOOffPAArea                         73      // 4 Bits, Bit 7-4
 #define     LOG_fOOffPAAreaMask 0xF0
 #define     LOG_fOOffPAAreaShift 4
-#define LOG_fOOffPALine                         71      // 4 Bits, Bit 3-0
+#define LOG_fOOffPALine                         73      // 4 Bits, Bit 3-0
 #define     LOG_fOOffPALineMask 0x0F
 #define     LOG_fOOffPALineShift 0
-#define LOG_fOOffPADevice                       72      // uint8_t
-#define LOG_fOOffFunction                       71      // 8 Bits, Bit 7-0
-#define LOG_fOOffKOKind                         76      // 2 Bits, Bit 7-6
+#define LOG_fOOffPADevice                       74      // uint8_t
+#define LOG_fOOffFunction                       73      // 8 Bits, Bit 7-0
+#define LOG_fOOffKOKind                         78      // 2 Bits, Bit 7-6
 #define     LOG_fOOffKOKindMask 0xC0
 #define     LOG_fOOffKOKindShift 6
-#define LOG_fOOffKONumber                       71      // uint16_t
-#define LOG_fOOffKONumberRel                    71      // int16_t
-#define LOG_fOOffKODpt                          73      // 8 Bits, Bit 7-0
-#define LOG_fOOffKOSend                         76      // 2 Bits, Bit 5-4
+#define LOG_fOOffKONumber                       73      // uint16_t
+#define LOG_fOOffKONumberRel                    73      // int16_t
+#define LOG_fOOffKODpt                          75      // 8 Bits, Bit 7-0
+#define LOG_fOOffKOSend                         78      // 2 Bits, Bit 5-4
 #define     LOG_fOOffKOSendMask 0x30
 #define     LOG_fOOffKOSendShift 4
-#define LOG_fOOffKOSendNumber                   77      // uint16_t
-#define LOG_fOOffKOSendNumberRel                77      // int16_t
+#define LOG_fOOffKOSendNumber                   79      // uint16_t
+#define LOG_fOOffKOSendNumberRel                79      // int16_t
 
 // Zeit bis der Kanal nach einem Neustart aktiv wird
 #define ParamLOG_fChannelDelayBase                   ((knx.paramByte(LOG_ParamCalcIndex(LOG_fChannelDelayBase)) & LOG_fChannelDelayBaseMask) >> LOG_fChannelDelayBaseShift)
@@ -1813,8 +2377,6 @@
 #define ParamLOG_fCalculate                          (knx.paramByte(LOG_ParamCalcIndex(LOG_fCalculate)) & LOG_fCalculateMask)
 // Kanal deaktivieren (zu Testzwecken)
 #define ParamLOG_fDisable                            ((bool)(knx.paramByte(LOG_ParamCalcIndex(LOG_fDisable)) & LOG_fDisableMask))
-// Alarmausgabe (Buzzer oder LED trotz Sperre schalten)?
-#define ParamLOG_fAlarm                              ((bool)(knx.paramByte(LOG_ParamCalcIndex(LOG_fAlarm)) & LOG_fAlarmMask))
 // Tor geht sofort wieder zu
 #define ParamLOG_fTGate                              ((bool)(knx.paramByte(LOG_ParamCalcIndex(LOG_fTGate)) & LOG_fTGateMask))
 // Wert EIN intern weiterleiten
@@ -2535,20 +3097,28 @@
 #define ParamLOG_fI1Kind                             ((knx.paramByte(LOG_ParamCalcIndex(LOG_fI1Kind)) & LOG_fI1KindMask) >> LOG_fI1KindShift)
 // Internen Eingang als Trigger nutzen(ist immer logisch EIN)
 #define ParamLOG_fI1AsTrigger                        ((bool)(knx.paramByte(LOG_ParamCalcIndex(LOG_fI1AsTrigger)) & LOG_fI1AsTriggerMask))
+// Interner Eingang wird versorgt vom
+#define ParamLOG_fI1InternalInputType                ((bool)(knx.paramByte(LOG_ParamCalcIndex(LOG_fI1InternalInputType)) & LOG_fI1InternalInputTypeMask))
 // Internen Eingang verbinden mit Kanal Nr.
 #define ParamLOG_fI1Function                         (knx.paramByte(LOG_ParamCalcIndex(LOG_fI1Function)))
 // Internen Eingang verbinden mit Kanal Nr.
 #define ParamLOG_fI1FunctionRel                      ((int8_t)knx.paramByte(LOG_ParamCalcIndex(LOG_fI1FunctionRel)))
+// Statuskanal
+#define ParamLOG_fI1StatusLed                        (knx.paramWord(LOG_ParamCalcIndex(LOG_fI1StatusLed)))
 // Interner Eingang 4
 #define ParamLOG_fI2                                 ((knx.paramByte(LOG_ParamCalcIndex(LOG_fI2)) & LOG_fI2Mask) >> LOG_fI2Shift)
 // Art der Verknüpfung
 #define ParamLOG_fI2Kind                             ((knx.paramByte(LOG_ParamCalcIndex(LOG_fI2Kind)) & LOG_fI2KindMask) >> LOG_fI2KindShift)
 // Internen Eingang als Trigger nutzen(ist immer logisch EIN)
 #define ParamLOG_fI2AsTrigger                        ((bool)(knx.paramByte(LOG_ParamCalcIndex(LOG_fI2AsTrigger)) & LOG_fI2AsTriggerMask))
+// Interner Eingang wird versorgt vom
+#define ParamLOG_fI2InternalInputType                ((bool)(knx.paramByte(LOG_ParamCalcIndex(LOG_fI2InternalInputType)) & LOG_fI2InternalInputTypeMask))
 // Internen Eingang verbinden mit Kanal Nr.
 #define ParamLOG_fI2Function                         (knx.paramByte(LOG_ParamCalcIndex(LOG_fI2Function)))
 // Internen Eingang verbinden mit Kanal Nr.
 #define ParamLOG_fI2FunctionRel                      ((int8_t)knx.paramByte(LOG_ParamCalcIndex(LOG_fI2FunctionRel)))
+// Statuskanal
+#define ParamLOG_fI2StatusLed                        (knx.paramWord(LOG_ParamCalcIndex(LOG_fI2StatusLed)))
 // Zeit für Treppenlicht
 #define ParamLOG_fOStairtimeBase                     ((knx.paramByte(LOG_ParamCalcIndex(LOG_fOStairtimeBase)) & LOG_fOStairtimeBaseMask) >> LOG_fOStairtimeBaseShift)
 // Zeit für Treppenlicht
@@ -2610,15 +3180,7 @@
 // DPT für Ausgang
 #define ParamLOG_fODpt                               (knx.paramByte(LOG_ParamCalcIndex(LOG_fODpt)))
 // Wert für EIN senden?
-#define ParamLOG_fOOn                                (knx.paramByte(LOG_ParamCalcIndex(LOG_fOOn)))
-// Wert für EIN senden?
-#define ParamLOG_fOOnBuzzer                          (knx.paramByte(LOG_ParamCalcIndex(LOG_fOOnBuzzer)))
-// Wert für EIN senden?
-#define ParamLOG_fOOnLed                             (knx.paramByte(LOG_ParamCalcIndex(LOG_fOOnLed)))
-// Wert für EIN senden?
 #define ParamLOG_fOOnAll                             (knx.paramByte(LOG_ParamCalcIndex(LOG_fOOnAll)))
-//     Wert für EIN senden als
-#define ParamLOG_fOOnTone                            (knx.paramByte(LOG_ParamCalcIndex(LOG_fOOnTone)))
 //     Wert für EIN senden als
 #define ParamLOG_fOOnDpt1                            (knx.paramByte(LOG_ParamCalcIndex(LOG_fOOnDpt1)))
 //     Wert für EIN senden als
@@ -2652,6 +3214,12 @@
 #define ParamLOG_fOOnDpt17                           (knx.paramByte(LOG_ParamCalcIndex(LOG_fOOnDpt17)))
 //     Wert für EIN senden als (3-Byte-RGB)
 #define ParamLOG_fOOnRGB                             ((knx.paramInt(LOG_ParamCalcIndex(LOG_fOOnRGB)) & LOG_fOOnRGBMask) >> LOG_fOOnRGBShift)
+//     Status-LED Kanal
+#define ParamLOG_fOOnLedProvider                     (knx.paramByte(LOG_ParamCalcIndex(LOG_fOOnLedProvider)) & LOG_fOOnLedProviderMask)
+//     Status-LED Effekt
+#define ParamLOG_fOOnLedEffect                       (knx.paramByte(LOG_ParamCalcIndex(LOG_fOOnLedEffect)) & LOG_fOOnLedEffectMask)
+//     Status-LED Effektdauer
+#define ParamLOG_fOOnLedDuration                     (knx.paramWord(LOG_ParamCalcIndex(LOG_fOOnLedDuration)))
 // 
 #define ParamLOG_fOOnPAArea                          ((knx.paramByte(LOG_ParamCalcIndex(LOG_fOOnPAArea)) & LOG_fOOnPAAreaMask) >> LOG_fOOnPAAreaShift)
 // 
@@ -2675,15 +3243,7 @@
 //         Nummer des zusätzlichen KO
 #define ParamLOG_fOOnKOSendNumberRel                 ((int16_t)knx.paramWord(LOG_ParamCalcIndex(LOG_fOOnKOSendNumberRel)))
 // Wert für AUS senden?
-#define ParamLOG_fOOff                               (knx.paramByte(LOG_ParamCalcIndex(LOG_fOOff)))
-// Wert für AUS senden?
-#define ParamLOG_fOOffBuzzer                         (knx.paramByte(LOG_ParamCalcIndex(LOG_fOOffBuzzer)))
-// Wert für AUS senden?
-#define ParamLOG_fOOffLed                            (knx.paramByte(LOG_ParamCalcIndex(LOG_fOOffLed)))
-// Wert für AUS senden?
 #define ParamLOG_fOOffAll                            (knx.paramByte(LOG_ParamCalcIndex(LOG_fOOffAll)))
-//     Wert für AUS senden als
-#define ParamLOG_fOOffTone                           (knx.paramByte(LOG_ParamCalcIndex(LOG_fOOffTone)))
 //     Wert für AUS senden als
 #define ParamLOG_fOOffDpt1                           (knx.paramByte(LOG_ParamCalcIndex(LOG_fOOffDpt1)))
 //     Wert für AUS senden als
@@ -2717,6 +3277,12 @@
 #define ParamLOG_fOOffDpt17                          (knx.paramByte(LOG_ParamCalcIndex(LOG_fOOffDpt17)))
 //     Wert für AUS senden als (3-Byte-RGB)
 #define ParamLOG_fOOffRGB                            ((knx.paramInt(LOG_ParamCalcIndex(LOG_fOOffRGB)) & LOG_fOOffRGBMask) >> LOG_fOOffRGBShift)
+//     Status-LED-Kanal
+#define ParamLOG_fOOffLedProvider                    (knx.paramByte(LOG_ParamCalcIndex(LOG_fOOffLedProvider)) & LOG_fOOffLedProviderMask)
+//     Status-LED Effekt
+#define ParamLOG_fOOffLedEffect                      (knx.paramByte(LOG_ParamCalcIndex(LOG_fOOffLedEffect)) & LOG_fOOffLedEffectMask)
+//     Status-LED Effektdauer
+#define ParamLOG_fOOffLedDuration                    (knx.paramWord(LOG_ParamCalcIndex(LOG_fOOffLedDuration)))
 // 
 #define ParamLOG_fOOffPAArea                         ((knx.paramByte(LOG_ParamCalcIndex(LOG_fOOffPAArea)) & LOG_fOOffPAAreaMask) >> LOG_fOOffPAAreaShift)
 // 
@@ -2762,7 +3328,7 @@
 // Ausgang
 #define KoLOG_KOfO                                (knx.getGroupObject(LOG_KoCalcNumber(LOG_KoKOfO)))
 
-#define FCB_VisibleChannels                     7599      // uint8_t
+#define FCB_VisibleChannels                     9014      // uint8_t
 
 // Verfügbare Kanäle
 #define ParamFCB_VisibleChannels                     (knx.paramByte(FCB_VisibleChannels))
@@ -2770,7 +3336,7 @@
 #define FCB_ChannelCount 15
 
 // Parameter per channel
-#define FCB_ParamBlockOffset 7600
+#define FCB_ParamBlockOffset 9015
 #define FCB_ParamBlockSize 81
 #define FCB_ParamCalcIndex(index) (index + FCB_ParamBlockOffset + _channelIndex * FCB_ParamBlockSize)
 
@@ -3842,7 +4408,7 @@
 #define BASE_KommentarModuleModuleParamSize 0
 #define BASE_KommentarModuleSubmodulesParamSize 0
 #define BASE_KommentarModuleParamSize 0
-#define BASE_KommentarModuleParamOffset 8815
+#define BASE_KommentarModuleParamOffset 10230
 #define BASE_KommentarModuleCalcIndex(index, m1) (index + BASE_KommentarModuleParamOffset + _channelIndex * BASE_KommentarModuleCount * BASE_KommentarModuleParamSize + m1 * BASE_KommentarModuleParamSize)
 
 

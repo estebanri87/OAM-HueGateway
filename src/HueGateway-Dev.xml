@@ -15,7 +15,7 @@
     BuildSuffix="-Debug"
     BuildSuffixText=" (Debug)"
     MediumTypes="MT-0 MT-5"
-    OrderNumber="MGKnxHUE" />
+    OrderNumber="OpenKNX-SR-HUE" />
 
   <op:define prefix="BASE" ModuleType="10"
     share="../lib/OGM-Common/src/Common.share.xml">
