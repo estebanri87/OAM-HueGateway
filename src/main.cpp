@@ -1,5 +1,4 @@
 #include "OpenKNX.h"
-#include "DNSServer.h"
 #include "NetworkModule.h"
 #include "FileTransferModule.h"
 #include "Logic.h"
@@ -63,17 +62,17 @@ OpenKNX::Led::GPIO *led3 = nullptr;
 
 void setup()
 {
+  openknx.init(0);
 #ifdef PROG_LED_PIN2
-  led2 = new OpenKNX::Led::GPIO();
-  led2->init(PROG_LED_PIN2, PROG_LED_PIN2_ACTIVE_ON);
+  led2 = new OpenKNX::Led::GPIO(PROG_LED_PIN2, PROG_LED_PIN2_ACTIVE_ON);
+  led2->init();
   led2->pulsing();
 #endif
 #ifdef PROG_LED_PIN3
-  led3 = new OpenKNX::Led::GPIO();
-  led3->init(PROG_LED_PIN3, PROG_LED_PIN2_ACTIVE_ON);
+  led3 = new OpenKNX::Led::GPIO(PROG_LED_PIN3, PROG_LED_PIN3_ACTIVE_ON);
+  led3->init();
   led3->pulsing();
 #endif
-  openknx.init(0);
  
 // GPIO1 is used for serial TX, special handling needed to turn of Serial
 #if (USE_PROG_LED_ON_SERIAL_TX == 1)
