@@ -15,15 +15,15 @@
 #define ETS_ModuleId_HUE 4
 #define ETS_ModuleId_LOG 5
 #define ETS_ModuleId_FCB 6
-#define MAIN_FirmwareName "Hue Gateway"
+#define MAIN_FirmwareName "Hue Gateway (Beta)"
 #define MAIN_OpenKnxId 0xAF
 #define MAIN_ApplicationNumber 42
 #define MAIN_ApplicationVersion 1
 #define MAIN_ApplicationEncoding iso-8859-15
 #define MAIN_ParameterSize 10230
 #define MAIN_MaxKoNumber 680
-#define MAIN_OrderNumber "MGKnxHUE"
-#define BASE_ModuleVersion 22
+#define MAIN_OrderNumber "OpenKNX-SR-HUE"
+#define BASE_ModuleVersion 23
 #define NET_ModuleVersion 5
 #define UCT_ModuleVersion 4
 #define HUE_ModuleVersion 1
@@ -891,7 +891,7 @@
 #define ParamHUE_CHHCLMaster                         (knx.paramByte(HUE_ParamCalcIndex(HUE_CHHCLMaster)))
 // Lampentyp
 #define ParamHUE_CHLightType                         (knx.paramByte(HUE_ParamCalcIndex(HUE_CHLightType)))
-// Kanal deaktivieren
+// Kanal deaktivieren (zu Testzwecken)
 #define ParamHUE_CHDisabled                          ((bool)(knx.paramByte(HUE_ParamCalcIndex(HUE_CHDisabled)) & HUE_CHDisabledMask))
 // Synchronisationsrichtung
 #define ParamHUE_CHSyncDir                           ((knx.paramByte(HUE_ParamCalcIndex(HUE_CHSyncDir)) & HUE_CHSyncDirMask) >> HUE_CHSyncDirShift)
