@@ -23,7 +23,7 @@
 #define MAIN_ParameterSize 10230
 #define MAIN_MaxKoNumber 680
 #define MAIN_OrderNumber "OpenKNX-SR-HUE"
-#define BASE_ModuleVersion 22
+#define BASE_ModuleVersion 23
 #define NET_ModuleVersion 5
 #define UCT_ModuleVersion 4
 #define HUE_ModuleVersion 1
@@ -273,6 +273,48 @@
 #define HUE_HUEHCLMasterCount                   257      // uint8_t
 #define HUE_HUEHCLUpdateInterval                258      // uint16_t
 #define HUE_HUEHCLFadeDuration                  260      // uint8_t
+#define HUE_HUEHCLLockFallback                  476      // 4 Bits, Bit 7-4
+#define     HUE_HUEHCLLockFallbackMask 0xF0
+#define     HUE_HUEHCLLockFallbackShift 4
+#define HUE_HUEHCLLockFallbackEnable            476      // 1 Bit, Bit 7
+#define     HUE_HUEHCLLockFallbackEnableMask 0x80
+#define     HUE_HUEHCLLockFallbackEnableShift 7
+#define HUE_HUEHCLM1StatusKoEnable              477      // 1 Bit, Bit 7
+#define     HUE_HUEHCLM1StatusKoEnableMask 0x80
+#define     HUE_HUEHCLM1StatusKoEnableShift 7
+#define HUE_HUEHCLM2StatusKoEnable              477      // 1 Bit, Bit 6
+#define     HUE_HUEHCLM2StatusKoEnableMask 0x40
+#define     HUE_HUEHCLM2StatusKoEnableShift 6
+#define HUE_HUEHCLM3StatusKoEnable              477      // 1 Bit, Bit 5
+#define     HUE_HUEHCLM3StatusKoEnableMask 0x20
+#define     HUE_HUEHCLM3StatusKoEnableShift 5
+#define HUE_HUEHCLM4StatusKoEnable              477      // 1 Bit, Bit 4
+#define     HUE_HUEHCLM4StatusKoEnableMask 0x10
+#define     HUE_HUEHCLM4StatusKoEnableShift 4
+#define HUE_HUEHCLM1LockFallbackEnable          478      // 1 Bit, Bit 7
+#define     HUE_HUEHCLM1LockFallbackEnableMask 0x80
+#define     HUE_HUEHCLM1LockFallbackEnableShift 7
+#define HUE_HUEHCLM1LockFallback                479      // 4 Bits, Bit 7-4
+#define     HUE_HUEHCLM1LockFallbackMask 0xF0
+#define     HUE_HUEHCLM1LockFallbackShift 4
+#define HUE_HUEHCLM2LockFallbackEnable          478      // 1 Bit, Bit 6
+#define     HUE_HUEHCLM2LockFallbackEnableMask 0x40
+#define     HUE_HUEHCLM2LockFallbackEnableShift 6
+#define HUE_HUEHCLM2LockFallback                480      // 4 Bits, Bit 7-4
+#define     HUE_HUEHCLM2LockFallbackMask 0xF0
+#define     HUE_HUEHCLM2LockFallbackShift 4
+#define HUE_HUEHCLM3LockFallbackEnable          478      // 1 Bit, Bit 5
+#define     HUE_HUEHCLM3LockFallbackEnableMask 0x20
+#define     HUE_HUEHCLM3LockFallbackEnableShift 5
+#define HUE_HUEHCLM3LockFallback                481      // 4 Bits, Bit 7-4
+#define     HUE_HUEHCLM3LockFallbackMask 0xF0
+#define     HUE_HUEHCLM3LockFallbackShift 4
+#define HUE_HUEHCLM4LockFallbackEnable          478      // 1 Bit, Bit 4
+#define     HUE_HUEHCLM4LockFallbackEnableMask 0x10
+#define     HUE_HUEHCLM4LockFallbackEnableShift 4
+#define HUE_HUEHCLM4LockFallback                482      // 4 Bits, Bit 7-4
+#define     HUE_HUEHCLM4LockFallbackMask 0xF0
+#define     HUE_HUEHCLM4LockFallbackShift 4
 #define HUE_HCLM1SP0Time                        261      // char*, 5 Byte
 #define     HUE_HCLM1SP0TimeLength 5
 #define HUE_HCLM1SP0Kelvin                      266      // uint16_t
@@ -493,12 +535,40 @@
 #define ParamHUE_HUEChannelCount                     (knx.paramByte(HUE_HUEChannelCount))
 // Human Centric Lighting (HCL)
 #define ParamHUE_HUEHCLEnable                        (knx.paramByte(HUE_HUEHCLEnable))
-// Anzahl HCL Master
+// Anzahl HCL Manager
 #define ParamHUE_HUEHCLMasterCount                   (knx.paramByte(HUE_HUEHCLMasterCount))
 // Aktualisierungsintervall (Sekunden)
 #define ParamHUE_HUEHCLUpdateInterval                (knx.paramWord(HUE_HUEHCLUpdateInterval))
 // Überblendzeit (Sekunden)
 #define ParamHUE_HUEHCLFadeDuration                  (knx.paramByte(HUE_HUEHCLFadeDuration))
+// Rückfallzeit nach HCL-Sperre
+#define ParamHUE_HUEHCLLockFallback                  ((knx.paramByte(HUE_HUEHCLLockFallback) & HUE_HUEHCLLockFallbackMask) >> HUE_HUEHCLLockFallbackShift)
+// Rückfall aktivieren
+#define ParamHUE_HUEHCLLockFallbackEnable            ((bool)(knx.paramByte(HUE_HUEHCLLockFallbackEnable) & HUE_HUEHCLLockFallbackEnableMask))
+// Manager 1 Status-KOs verwenden
+#define ParamHUE_HUEHCLM1StatusKoEnable              ((bool)(knx.paramByte(HUE_HUEHCLM1StatusKoEnable) & HUE_HUEHCLM1StatusKoEnableMask))
+// Manager 2 Status-KOs verwenden
+#define ParamHUE_HUEHCLM2StatusKoEnable              ((bool)(knx.paramByte(HUE_HUEHCLM2StatusKoEnable) & HUE_HUEHCLM2StatusKoEnableMask))
+// Manager 3 Status-KOs verwenden
+#define ParamHUE_HUEHCLM3StatusKoEnable              ((bool)(knx.paramByte(HUE_HUEHCLM3StatusKoEnable) & HUE_HUEHCLM3StatusKoEnableMask))
+// Manager 4 Status-KOs verwenden
+#define ParamHUE_HUEHCLM4StatusKoEnable              ((bool)(knx.paramByte(HUE_HUEHCLM4StatusKoEnable) & HUE_HUEHCLM4StatusKoEnableMask))
+// Rückfall aktivieren
+#define ParamHUE_HUEHCLM1LockFallbackEnable          ((bool)(knx.paramByte(HUE_HUEHCLM1LockFallbackEnable) & HUE_HUEHCLM1LockFallbackEnableMask))
+// Rückfallzeit nach HCL-Sperre
+#define ParamHUE_HUEHCLM1LockFallback                ((knx.paramByte(HUE_HUEHCLM1LockFallback) & HUE_HUEHCLM1LockFallbackMask) >> HUE_HUEHCLM1LockFallbackShift)
+// Rückfall aktivieren
+#define ParamHUE_HUEHCLM2LockFallbackEnable          ((bool)(knx.paramByte(HUE_HUEHCLM2LockFallbackEnable) & HUE_HUEHCLM2LockFallbackEnableMask))
+// Rückfallzeit nach HCL-Sperre
+#define ParamHUE_HUEHCLM2LockFallback                ((knx.paramByte(HUE_HUEHCLM2LockFallback) & HUE_HUEHCLM2LockFallbackMask) >> HUE_HUEHCLM2LockFallbackShift)
+// Rückfall aktivieren
+#define ParamHUE_HUEHCLM3LockFallbackEnable          ((bool)(knx.paramByte(HUE_HUEHCLM3LockFallbackEnable) & HUE_HUEHCLM3LockFallbackEnableMask))
+// Rückfallzeit nach HCL-Sperre
+#define ParamHUE_HUEHCLM3LockFallback                ((knx.paramByte(HUE_HUEHCLM3LockFallback) & HUE_HUEHCLM3LockFallbackMask) >> HUE_HUEHCLM3LockFallbackShift)
+// Rückfall aktivieren
+#define ParamHUE_HUEHCLM4LockFallbackEnable          ((bool)(knx.paramByte(HUE_HUEHCLM4LockFallbackEnable) & HUE_HUEHCLM4LockFallbackEnableMask))
+// Rückfallzeit nach HCL-Sperre
+#define ParamHUE_HUEHCLM4LockFallback                ((knx.paramByte(HUE_HUEHCLM4LockFallback) & HUE_HUEHCLM4LockFallbackMask) >> HUE_HUEHCLM4LockFallbackShift)
 // M1 SP1 Zeit
 #define ParamHUE_HCLM1SP0Time                        (knx.paramData(HUE_HCLM1SP0Time))
 #define ParamHUE_HCLM1SP0TimeStr                     (knx.paramString(HUE_HCLM1SP0Time, HUE_HCLM1SP0TimeLength))
@@ -779,16 +849,16 @@
 #define ParamHUE_HCLM4SP9Kelvin                      (knx.paramWord(HUE_HCLM4SP9Kelvin))
 // M4 SP10 Helligkeit
 #define ParamHUE_HCLM4SP9Brightness                  (knx.paramByte(HUE_HCLM4SP9Brightness))
-// Name HCL Master 1
+// Name HCL Manager 1
 #define ParamHUE_HCLM1Name                           (knx.paramData(HUE_HCLM1Name))
 #define ParamHUE_HCLM1NameStr                        (knx.paramString(HUE_HCLM1Name, HUE_HCLM1NameLength))
-// Name HCL Master 2
+// Name HCL Manager 2
 #define ParamHUE_HCLM2Name                           (knx.paramData(HUE_HCLM2Name))
 #define ParamHUE_HCLM2NameStr                        (knx.paramString(HUE_HCLM2Name, HUE_HCLM2NameLength))
-// Name HCL Master 3
+// Name HCL Manager 3
 #define ParamHUE_HCLM3Name                           (knx.paramData(HUE_HCLM3Name))
 #define ParamHUE_HCLM3NameStr                        (knx.paramString(HUE_HCLM3Name, HUE_HCLM3NameLength))
-// Name HCL Master 4
+// Name HCL Manager 4
 #define ParamHUE_HCLM4Name                           (knx.paramData(HUE_HCLM4Name))
 #define ParamHUE_HCLM4NameStr                        (knx.paramString(HUE_HCLM4Name, HUE_HCLM4NameLength))
 // Kurventyp
@@ -858,11 +928,65 @@
 
 #define HUE_KoHUEConnectionStatus 480
 #define HUE_KoHUEPairingTrigger 481
+#define HUE_KoHUEHCLLock 482
+#define HUE_KoHUEHCLLockStatus 483
+#define HUE_KoHUEHCLM1StatusBrightness 484
+#define HUE_KoHUEHCLM1StatusColorTemp 485
+#define HUE_KoHUEHCLM2StatusBrightness 486
+#define HUE_KoHUEHCLM2StatusColorTemp 487
+#define HUE_KoHUEHCLM3StatusBrightness 488
+#define HUE_KoHUEHCLM3StatusColorTemp 489
+#define HUE_KoHUEHCLM4StatusBrightness 490
+#define HUE_KoHUEHCLM4StatusColorTemp 491
+#define HUE_KoHUEHCLM1Lock 492
+#define HUE_KoHUEHCLM1LockStatus 493
+#define HUE_KoHUEHCLM2Lock 494
+#define HUE_KoHUEHCLM2LockStatus 495
+#define HUE_KoHUEHCLM3Lock 496
+#define HUE_KoHUEHCLM3LockStatus 497
+#define HUE_KoHUEHCLM4Lock 498
+#define HUE_KoHUEHCLM4LockStatus 499
 
 // Bridge Verbindungsstatus
 #define KoHUE_HUEConnectionStatus                 (knx.getGroupObject(HUE_KoHUEConnectionStatus))
 // Pairing Trigger
 #define KoHUE_HUEPairingTrigger                   (knx.getGroupObject(HUE_KoHUEPairingTrigger))
+// HCL Sperre (global)
+#define KoHUE_HUEHCLLock                          (knx.getGroupObject(HUE_KoHUEHCLLock))
+// Status HCL Sperre
+#define KoHUE_HUEHCLLockStatus                    (knx.getGroupObject(HUE_KoHUEHCLLockStatus))
+// HCL M1 Soll Helligkeit
+#define KoHUE_HUEHCLM1StatusBrightness            (knx.getGroupObject(HUE_KoHUEHCLM1StatusBrightness))
+// HCL M1 Soll Farbtemp.
+#define KoHUE_HUEHCLM1StatusColorTemp             (knx.getGroupObject(HUE_KoHUEHCLM1StatusColorTemp))
+// HCL M2 Soll Helligkeit
+#define KoHUE_HUEHCLM2StatusBrightness            (knx.getGroupObject(HUE_KoHUEHCLM2StatusBrightness))
+// HCL M2 Soll Farbtemp.
+#define KoHUE_HUEHCLM2StatusColorTemp             (knx.getGroupObject(HUE_KoHUEHCLM2StatusColorTemp))
+// HCL M3 Soll Helligkeit
+#define KoHUE_HUEHCLM3StatusBrightness            (knx.getGroupObject(HUE_KoHUEHCLM3StatusBrightness))
+// HCL M3 Soll Farbtemp.
+#define KoHUE_HUEHCLM3StatusColorTemp             (knx.getGroupObject(HUE_KoHUEHCLM3StatusColorTemp))
+// HCL M4 Soll Helligkeit
+#define KoHUE_HUEHCLM4StatusBrightness            (knx.getGroupObject(HUE_KoHUEHCLM4StatusBrightness))
+// HCL M4 Soll Farbtemp.
+#define KoHUE_HUEHCLM4StatusColorTemp             (knx.getGroupObject(HUE_KoHUEHCLM4StatusColorTemp))
+// HCL Sperre M1
+#define KoHUE_HUEHCLM1Lock                        (knx.getGroupObject(HUE_KoHUEHCLM1Lock))
+// Status HCL Sperre M1
+#define KoHUE_HUEHCLM1LockStatus                  (knx.getGroupObject(HUE_KoHUEHCLM1LockStatus))
+// HCL Sperre M2
+#define KoHUE_HUEHCLM2Lock                        (knx.getGroupObject(HUE_KoHUEHCLM2Lock))
+// Status HCL Sperre M2
+#define KoHUE_HUEHCLM2LockStatus                  (knx.getGroupObject(HUE_KoHUEHCLM2LockStatus))
+// HCL Sperre M3
+#define KoHUE_HUEHCLM3Lock                        (knx.getGroupObject(HUE_KoHUEHCLM3Lock))
+// Status HCL Sperre M3
+#define KoHUE_HUEHCLM3LockStatus                  (knx.getGroupObject(HUE_KoHUEHCLM3LockStatus))
+// HCL Sperre M4
+#define KoHUE_HUEHCLM4Lock                        (knx.getGroupObject(HUE_KoHUEHCLM4Lock))
+// Status HCL Sperre M4
+#define KoHUE_HUEHCLM4LockStatus                  (knx.getGroupObject(HUE_KoHUEHCLM4LockStatus))
 
 #define HUE_ChannelCount 20
 
