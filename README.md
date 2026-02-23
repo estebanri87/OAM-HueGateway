@@ -31,13 +31,6 @@ Als Hardware kann jede OpenKNX oder OpenKNX-Ready Hardware mit LAN oder WLAN ver
 Die vorkompilierte Firmware unterstützt:
 
 - [REG1-LAN-TP-Base](http://device.openknx.de/REG1-LAN-TP-Base)
-- [Adafruit ESP32 Feather V2](https://github.com/OpenKNX/OpenKNX/wiki/Adafruit-ESP32-Feather-V2)
-
-### Optional bei Adafruit ESP32 Feather V2: Zusätzlicher Prog Taster und LED
-
-An Pin GPIO 7 (RX) und/oder GPIO 20 (am Stecker) kann jeweils ein zusätzlicher Taster angeschlossen werden. Dieser muss gegen GND schalten.
-
-An PIN GPIO 8 (TX) und/oder GPIO 22 (am Stecker) kann mit einem 100 Ohm Wiederstand eine LED (Anode) angeschlossen werden. Die Kathode mit GND verbinden.
 
 ## Lizenz
 
