@@ -18,16 +18,16 @@
 #define MAIN_FirmwareName "Hue Gateway (Beta)"
 #define MAIN_OpenKnxId 0xAF
 #define MAIN_ApplicationNumber 42
-#define MAIN_ApplicationVersion 1
+#define MAIN_ApplicationVersion 2
 #define MAIN_ApplicationEncoding iso-8859-15
-#define MAIN_ParameterSize 10230
+#define MAIN_ParameterSize 10730
 #define MAIN_MaxKoNumber 680
 #define MAIN_OrderNumber "OpenKNX-SR-HUE"
 #define BASE_ModuleVersion 23
 #define NET_ModuleVersion 5
-#define UCT_ModuleVersion 4
-#define HUE_ModuleVersion 1
-#define LOG_ModuleVersion 58
+#define UCT_ModuleVersion 5
+#define HUE_ModuleVersion 2
+#define LOG_ModuleVersion 64
 #define FCB_ModuleVersion 9
 // Parameter with single occurrence
 
@@ -992,11 +992,13 @@
 
 // Parameter per channel
 #define HUE_ParamBlockOffset 757
-#define HUE_ParamBlockSize 45
+#define HUE_ParamBlockSize 70
 #define HUE_ParamCalcIndex(index) (index + HUE_ParamBlockOffset + _channelIndex * HUE_ParamBlockSize)
 
 #define HUE_CHLightUUID                          5      // char*, 40 Byte
 #define     HUE_CHLightUUIDLength 40
+#define HUE_CHTargetRID                         30      // char*, 40 Byte
+#define     HUE_CHTargetRIDLength 40
 #define HUE_CHHCLMaster                          4      // 8 Bits, Bit 7-0
 #define HUE_CHLightType                          0      // 8 Bits, Bit 7-0
 #define HUE_CHDisabled                           1      // 1 Bit, Bit 7
@@ -1005,12 +1007,18 @@
 #define HUE_CHSyncDir                            1      // 2 Bits, Bit 6-5
 #define     HUE_CHSyncDirMask 0x60
 #define     HUE_CHSyncDirShift 5
+#define HUE_CHTargetType                         1      // 2 Bits, Bit 4-3
+#define     HUE_CHTargetTypeMask 0x18
+#define     HUE_CHTargetTypeShift 3
 #define HUE_CHPollInterval                       2      // uint8_t
 #define HUE_CHMinBrightness                      3      // uint8_t
 
 // Hue Lampen-ID (UUID)
 #define ParamHUE_CHLightUUID                         (knx.paramData(HUE_ParamCalcIndex(HUE_CHLightUUID)))
 #define ParamHUE_CHLightUUIDStr                      (knx.paramString(HUE_ParamCalcIndex(HUE_CHLightUUID), HUE_CHLightUUIDLength))
+// Hue Ziel (Light-/Room-/Zone-ID oder Name)
+#define ParamHUE_CHTargetRID                         (knx.paramData(HUE_ParamCalcIndex(HUE_CHTargetRID)))
+#define ParamHUE_CHTargetRIDStr                      (knx.paramString(HUE_ParamCalcIndex(HUE_CHTargetRID), HUE_CHTargetRIDLength))
 // HCL Master
 #define ParamHUE_CHHCLMaster                         (knx.paramByte(HUE_ParamCalcIndex(HUE_CHHCLMaster)))
 // Lampentyp
@@ -1019,6 +1027,8 @@
 #define ParamHUE_CHDisabled                          ((bool)(knx.paramByte(HUE_ParamCalcIndex(HUE_CHDisabled)) & HUE_CHDisabledMask))
 // Synchronisationsrichtung
 #define ParamHUE_CHSyncDir                           ((knx.paramByte(HUE_ParamCalcIndex(HUE_CHSyncDir)) & HUE_CHSyncDirMask) >> HUE_CHSyncDirShift)
+// Zieltyp
+#define ParamHUE_CHTargetType                        ((knx.paramByte(HUE_ParamCalcIndex(HUE_CHTargetType)) & HUE_CHTargetTypeMask) >> HUE_CHTargetTypeShift)
 // Polling-Intervall
 #define ParamHUE_CHPollInterval                      (knx.paramByte(HUE_ParamCalcIndex(HUE_CHPollInterval)))
 // Minimale Helligkeit
@@ -1064,272 +1074,272 @@
 // Status RGB
 #define KoHUE_CHStatusColorRGB                    (knx.getGroupObject(HUE_KoCalcNumber(HUE_KoCHStatusColorRGB)))
 
-#define LOG_VisibleChannels                     1657      // uint8_t
-#define LOG_VacationKo                          1658      // 1 Bit, Bit 7
+#define LOG_VisibleChannels                     2157      // uint8_t
+#define LOG_VacationKo                          2158      // 1 Bit, Bit 7
 #define     LOG_VacationKoMask 0x80
 #define     LOG_VacationKoShift 7
-#define LOG_HolidayKo                           1658      // 1 Bit, Bit 6
+#define LOG_HolidayKo                           2158      // 1 Bit, Bit 6
 #define     LOG_HolidayKoMask 0x40
 #define     LOG_HolidayKoShift 6
-#define LOG_VacationRead                        1658      // 1 Bit, Bit 5
+#define LOG_VacationRead                        2158      // 1 Bit, Bit 5
 #define     LOG_VacationReadMask 0x20
 #define     LOG_VacationReadShift 5
-#define LOG_HolidaySend                         1658      // 1 Bit, Bit 4
+#define LOG_HolidaySend                         2158      // 1 Bit, Bit 4
 #define     LOG_HolidaySendMask 0x10
 #define     LOG_HolidaySendShift 4
-#define LOG_Neujahr                             1659      // 1 Bit, Bit 7
+#define LOG_Neujahr                             2159      // 1 Bit, Bit 7
 #define     LOG_NeujahrMask 0x80
 #define     LOG_NeujahrShift 7
-#define LOG_DreiKoenige                         1659      // 1 Bit, Bit 6
+#define LOG_DreiKoenige                         2159      // 1 Bit, Bit 6
 #define     LOG_DreiKoenigeMask 0x40
 #define     LOG_DreiKoenigeShift 6
-#define LOG_Weiberfastnacht                     1659      // 1 Bit, Bit 5
+#define LOG_Weiberfastnacht                     2159      // 1 Bit, Bit 5
 #define     LOG_WeiberfastnachtMask 0x20
 #define     LOG_WeiberfastnachtShift 5
-#define LOG_Rosenmontag                         1659      // 1 Bit, Bit 4
+#define LOG_Rosenmontag                         2159      // 1 Bit, Bit 4
 #define     LOG_RosenmontagMask 0x10
 #define     LOG_RosenmontagShift 4
-#define LOG_Fastnachtsdienstag                  1659      // 1 Bit, Bit 3
+#define LOG_Fastnachtsdienstag                  2159      // 1 Bit, Bit 3
 #define     LOG_FastnachtsdienstagMask 0x08
 #define     LOG_FastnachtsdienstagShift 3
-#define LOG_Aschermittwoch                      1659      // 1 Bit, Bit 2
+#define LOG_Aschermittwoch                      2159      // 1 Bit, Bit 2
 #define     LOG_AschermittwochMask 0x04
 #define     LOG_AschermittwochShift 2
-#define LOG_Frauentag                           1659      // 1 Bit, Bit 1
+#define LOG_Frauentag                           2159      // 1 Bit, Bit 1
 #define     LOG_FrauentagMask 0x02
 #define     LOG_FrauentagShift 1
-#define LOG_Gruendonnerstag                     1659      // 1 Bit, Bit 0
+#define LOG_Gruendonnerstag                     2159      // 1 Bit, Bit 0
 #define     LOG_GruendonnerstagMask 0x01
 #define     LOG_GruendonnerstagShift 0
-#define LOG_Karfreitag                          1660      // 1 Bit, Bit 7
+#define LOG_Karfreitag                          2160      // 1 Bit, Bit 7
 #define     LOG_KarfreitagMask 0x80
 #define     LOG_KarfreitagShift 7
-#define LOG_Ostersonntag                        1660      // 1 Bit, Bit 6
+#define LOG_Ostersonntag                        2160      // 1 Bit, Bit 6
 #define     LOG_OstersonntagMask 0x40
 #define     LOG_OstersonntagShift 6
-#define LOG_Ostermontag                         1660      // 1 Bit, Bit 5
+#define LOG_Ostermontag                         2160      // 1 Bit, Bit 5
 #define     LOG_OstermontagMask 0x20
 #define     LOG_OstermontagShift 5
-#define LOG_TagDerArbeit                        1660      // 1 Bit, Bit 4
+#define LOG_TagDerArbeit                        2160      // 1 Bit, Bit 4
 #define     LOG_TagDerArbeitMask 0x10
 #define     LOG_TagDerArbeitShift 4
-#define LOG_Himmelfahrt                         1660      // 1 Bit, Bit 3
+#define LOG_Himmelfahrt                         2160      // 1 Bit, Bit 3
 #define     LOG_HimmelfahrtMask 0x08
 #define     LOG_HimmelfahrtShift 3
-#define LOG_Pfingstsonntag                      1660      // 1 Bit, Bit 2
+#define LOG_Pfingstsonntag                      2160      // 1 Bit, Bit 2
 #define     LOG_PfingstsonntagMask 0x04
 #define     LOG_PfingstsonntagShift 2
-#define LOG_Pfingstmontag                       1660      // 1 Bit, Bit 1
+#define LOG_Pfingstmontag                       2160      // 1 Bit, Bit 1
 #define     LOG_PfingstmontagMask 0x02
 #define     LOG_PfingstmontagShift 1
-#define LOG_Fronleichnam                        1660      // 1 Bit, Bit 0
+#define LOG_Fronleichnam                        2160      // 1 Bit, Bit 0
 #define     LOG_FronleichnamMask 0x01
 #define     LOG_FronleichnamShift 0
-#define LOG_Friedensfest                        1661      // 1 Bit, Bit 7
+#define LOG_Friedensfest                        2161      // 1 Bit, Bit 7
 #define     LOG_FriedensfestMask 0x80
 #define     LOG_FriedensfestShift 7
-#define LOG_MariaHimmelfahrt                    1661      // 1 Bit, Bit 6
+#define LOG_MariaHimmelfahrt                    2161      // 1 Bit, Bit 6
 #define     LOG_MariaHimmelfahrtMask 0x40
 #define     LOG_MariaHimmelfahrtShift 6
-#define LOG_DeutscheEinheit                     1661      // 1 Bit, Bit 5
+#define LOG_DeutscheEinheit                     2161      // 1 Bit, Bit 5
 #define     LOG_DeutscheEinheitMask 0x20
 #define     LOG_DeutscheEinheitShift 5
-#define LOG_Reformationstag                     1661      // 1 Bit, Bit 4
+#define LOG_Reformationstag                     2161      // 1 Bit, Bit 4
 #define     LOG_ReformationstagMask 0x10
 #define     LOG_ReformationstagShift 4
-#define LOG_Allerheiligen                       1661      // 1 Bit, Bit 3
+#define LOG_Allerheiligen                       2161      // 1 Bit, Bit 3
 #define     LOG_AllerheiligenMask 0x08
 #define     LOG_AllerheiligenShift 3
-#define LOG_BussBettag                          1661      // 1 Bit, Bit 2
+#define LOG_BussBettag                          2161      // 1 Bit, Bit 2
 #define     LOG_BussBettagMask 0x04
 #define     LOG_BussBettagShift 2
-#define LOG_Advent1                             1661      // 1 Bit, Bit 1
+#define LOG_Advent1                             2161      // 1 Bit, Bit 1
 #define     LOG_Advent1Mask 0x02
 #define     LOG_Advent1Shift 1
-#define LOG_Advent2                             1661      // 1 Bit, Bit 0
+#define LOG_Advent2                             2161      // 1 Bit, Bit 0
 #define     LOG_Advent2Mask 0x01
 #define     LOG_Advent2Shift 0
-#define LOG_Advent3                             1662      // 1 Bit, Bit 7
+#define LOG_Advent3                             2162      // 1 Bit, Bit 7
 #define     LOG_Advent3Mask 0x80
 #define     LOG_Advent3Shift 7
-#define LOG_Advent4                             1662      // 1 Bit, Bit 6
+#define LOG_Advent4                             2162      // 1 Bit, Bit 6
 #define     LOG_Advent4Mask 0x40
 #define     LOG_Advent4Shift 6
-#define LOG_Heiligabend                         1662      // 1 Bit, Bit 5
+#define LOG_Heiligabend                         2162      // 1 Bit, Bit 5
 #define     LOG_HeiligabendMask 0x20
 #define     LOG_HeiligabendShift 5
-#define LOG_Weihnachtstag1                      1662      // 1 Bit, Bit 4
+#define LOG_Weihnachtstag1                      2162      // 1 Bit, Bit 4
 #define     LOG_Weihnachtstag1Mask 0x10
 #define     LOG_Weihnachtstag1Shift 4
-#define LOG_Weihnachtstag2                      1662      // 1 Bit, Bit 3
+#define LOG_Weihnachtstag2                      2162      // 1 Bit, Bit 3
 #define     LOG_Weihnachtstag2Mask 0x08
 #define     LOG_Weihnachtstag2Shift 3
-#define LOG_Silvester                           1662      // 1 Bit, Bit 2
+#define LOG_Silvester                           2162      // 1 Bit, Bit 2
 #define     LOG_SilvesterMask 0x04
 #define     LOG_SilvesterShift 2
-#define LOG_Nationalfeiertag                    1662      // 1 Bit, Bit 1
+#define LOG_Nationalfeiertag                    2162      // 1 Bit, Bit 1
 #define     LOG_NationalfeiertagMask 0x02
 #define     LOG_NationalfeiertagShift 1
-#define LOG_MariaEmpfaengnis                    1662      // 1 Bit, Bit 0
+#define LOG_MariaEmpfaengnis                    2162      // 1 Bit, Bit 0
 #define     LOG_MariaEmpfaengnisMask 0x01
 #define     LOG_MariaEmpfaengnisShift 0
-#define LOG_NationalfeiertagSchweiz             1663      // 1 Bit, Bit 7
+#define LOG_NationalfeiertagSchweiz             2163      // 1 Bit, Bit 7
 #define     LOG_NationalfeiertagSchweizMask 0x80
 #define     LOG_NationalfeiertagSchweizShift 7
-#define LOG_Totensonntag                        1663      // 1 Bit, Bit 6
+#define LOG_Totensonntag                        2163      // 1 Bit, Bit 6
 #define     LOG_TotensonntagMask 0x40
 #define     LOG_TotensonntagShift 6
-#define LOG_Weltkindertag                       1663      // 1 Bit, Bit 5
+#define LOG_Weltkindertag                       2163      // 1 Bit, Bit 5
 #define     LOG_WeltkindertagMask 0x20
 #define     LOG_WeltkindertagShift 5
-#define LOG_UserFormula1                        1664      // char*, 99 Byte
+#define LOG_UserFormula1                        2164      // char*, 99 Byte
 #define     LOG_UserFormula1Length 99
-#define LOG_UserFormula1Active                  1763      // 1 Bit, Bit 7
+#define LOG_UserFormula1Active                  2263      // 1 Bit, Bit 7
 #define     LOG_UserFormula1ActiveMask 0x80
 #define     LOG_UserFormula1ActiveShift 7
-#define LOG_UserFormula2                        1764      // char*, 99 Byte
+#define LOG_UserFormula2                        2264      // char*, 99 Byte
 #define     LOG_UserFormula2Length 99
-#define LOG_UserFormula2Active                  1863      // 1 Bit, Bit 7
+#define LOG_UserFormula2Active                  2363      // 1 Bit, Bit 7
 #define     LOG_UserFormula2ActiveMask 0x80
 #define     LOG_UserFormula2ActiveShift 7
-#define LOG_UserFormula3                        1864      // char*, 99 Byte
+#define LOG_UserFormula3                        2364      // char*, 99 Byte
 #define     LOG_UserFormula3Length 99
-#define LOG_UserFormula3Active                  1963      // 1 Bit, Bit 7
+#define LOG_UserFormula3Active                  2463      // 1 Bit, Bit 7
 #define     LOG_UserFormula3ActiveMask 0x80
 #define     LOG_UserFormula3ActiveShift 7
-#define LOG_UserFormula4                        1964      // char*, 99 Byte
+#define LOG_UserFormula4                        2464      // char*, 99 Byte
 #define     LOG_UserFormula4Length 99
-#define LOG_UserFormula4Active                  2063      // 1 Bit, Bit 7
+#define LOG_UserFormula4Active                  2563      // 1 Bit, Bit 7
 #define     LOG_UserFormula4ActiveMask 0x80
 #define     LOG_UserFormula4ActiveShift 7
-#define LOG_UserFormula5                        2064      // char*, 99 Byte
+#define LOG_UserFormula5                        2564      // char*, 99 Byte
 #define     LOG_UserFormula5Length 99
-#define LOG_UserFormula5Active                  2163      // 1 Bit, Bit 7
+#define LOG_UserFormula5Active                  2663      // 1 Bit, Bit 7
 #define     LOG_UserFormula5ActiveMask 0x80
 #define     LOG_UserFormula5ActiveShift 7
-#define LOG_UserFormula6                        2164      // char*, 99 Byte
+#define LOG_UserFormula6                        2664      // char*, 99 Byte
 #define     LOG_UserFormula6Length 99
-#define LOG_UserFormula6Active                  2263      // 1 Bit, Bit 7
+#define LOG_UserFormula6Active                  2763      // 1 Bit, Bit 7
 #define     LOG_UserFormula6ActiveMask 0x80
 #define     LOG_UserFormula6ActiveShift 7
-#define LOG_UserFormula7                        2264      // char*, 99 Byte
+#define LOG_UserFormula7                        2764      // char*, 99 Byte
 #define     LOG_UserFormula7Length 99
-#define LOG_UserFormula7Active                  2363      // 1 Bit, Bit 7
+#define LOG_UserFormula7Active                  2863      // 1 Bit, Bit 7
 #define     LOG_UserFormula7ActiveMask 0x80
 #define     LOG_UserFormula7ActiveShift 7
-#define LOG_UserFormula8                        2364      // char*, 99 Byte
+#define LOG_UserFormula8                        2864      // char*, 99 Byte
 #define     LOG_UserFormula8Length 99
-#define LOG_UserFormula8Active                  2463      // 1 Bit, Bit 7
+#define LOG_UserFormula8Active                  2963      // 1 Bit, Bit 7
 #define     LOG_UserFormula8ActiveMask 0x80
 #define     LOG_UserFormula8ActiveShift 7
-#define LOG_UserFormula9                        2464      // char*, 99 Byte
+#define LOG_UserFormula9                        2964      // char*, 99 Byte
 #define     LOG_UserFormula9Length 99
-#define LOG_UserFormula9Active                  2563      // 1 Bit, Bit 7
+#define LOG_UserFormula9Active                  3063      // 1 Bit, Bit 7
 #define     LOG_UserFormula9ActiveMask 0x80
 #define     LOG_UserFormula9ActiveShift 7
-#define LOG_UserFormula10                       2564      // char*, 99 Byte
+#define LOG_UserFormula10                       3064      // char*, 99 Byte
 #define     LOG_UserFormula10Length 99
-#define LOG_UserFormula10Active                 2663      // 1 Bit, Bit 7
+#define LOG_UserFormula10Active                 3163      // 1 Bit, Bit 7
 #define     LOG_UserFormula10ActiveMask 0x80
 #define     LOG_UserFormula10ActiveShift 7
-#define LOG_UserFormula11                       2664      // char*, 99 Byte
+#define LOG_UserFormula11                       3164      // char*, 99 Byte
 #define     LOG_UserFormula11Length 99
-#define LOG_UserFormula11Active                 2763      // 1 Bit, Bit 7
+#define LOG_UserFormula11Active                 3263      // 1 Bit, Bit 7
 #define     LOG_UserFormula11ActiveMask 0x80
 #define     LOG_UserFormula11ActiveShift 7
-#define LOG_UserFormula12                       2764      // char*, 99 Byte
+#define LOG_UserFormula12                       3264      // char*, 99 Byte
 #define     LOG_UserFormula12Length 99
-#define LOG_UserFormula12Active                 2863      // 1 Bit, Bit 7
+#define LOG_UserFormula12Active                 3363      // 1 Bit, Bit 7
 #define     LOG_UserFormula12ActiveMask 0x80
 #define     LOG_UserFormula12ActiveShift 7
-#define LOG_UserFormula13                       2864      // char*, 99 Byte
+#define LOG_UserFormula13                       3364      // char*, 99 Byte
 #define     LOG_UserFormula13Length 99
-#define LOG_UserFormula13Active                 2963      // 1 Bit, Bit 7
+#define LOG_UserFormula13Active                 3463      // 1 Bit, Bit 7
 #define     LOG_UserFormula13ActiveMask 0x80
 #define     LOG_UserFormula13ActiveShift 7
-#define LOG_UserFormula14                       2964      // char*, 99 Byte
+#define LOG_UserFormula14                       3464      // char*, 99 Byte
 #define     LOG_UserFormula14Length 99
-#define LOG_UserFormula14Active                 3063      // 1 Bit, Bit 7
+#define LOG_UserFormula14Active                 3563      // 1 Bit, Bit 7
 #define     LOG_UserFormula14ActiveMask 0x80
 #define     LOG_UserFormula14ActiveShift 7
-#define LOG_UserFormula15                       3064      // char*, 99 Byte
+#define LOG_UserFormula15                       3564      // char*, 99 Byte
 #define     LOG_UserFormula15Length 99
-#define LOG_UserFormula15Active                 3163      // 1 Bit, Bit 7
+#define LOG_UserFormula15Active                 3663      // 1 Bit, Bit 7
 #define     LOG_UserFormula15ActiveMask 0x80
 #define     LOG_UserFormula15ActiveShift 7
-#define LOG_UserFormula16                       3164      // char*, 99 Byte
+#define LOG_UserFormula16                       3664      // char*, 99 Byte
 #define     LOG_UserFormula16Length 99
-#define LOG_UserFormula16Active                 3263      // 1 Bit, Bit 7
+#define LOG_UserFormula16Active                 3763      // 1 Bit, Bit 7
 #define     LOG_UserFormula16ActiveMask 0x80
 #define     LOG_UserFormula16ActiveShift 7
-#define LOG_UserFormula17                       3264      // char*, 99 Byte
+#define LOG_UserFormula17                       3764      // char*, 99 Byte
 #define     LOG_UserFormula17Length 99
-#define LOG_UserFormula17Active                 3363      // 1 Bit, Bit 7
+#define LOG_UserFormula17Active                 3863      // 1 Bit, Bit 7
 #define     LOG_UserFormula17ActiveMask 0x80
 #define     LOG_UserFormula17ActiveShift 7
-#define LOG_UserFormula18                       3364      // char*, 99 Byte
+#define LOG_UserFormula18                       3864      // char*, 99 Byte
 #define     LOG_UserFormula18Length 99
-#define LOG_UserFormula18Active                 3463      // 1 Bit, Bit 7
+#define LOG_UserFormula18Active                 3963      // 1 Bit, Bit 7
 #define     LOG_UserFormula18ActiveMask 0x80
 #define     LOG_UserFormula18ActiveShift 7
-#define LOG_UserFormula19                       3464      // char*, 99 Byte
+#define LOG_UserFormula19                       3964      // char*, 99 Byte
 #define     LOG_UserFormula19Length 99
-#define LOG_UserFormula19Active                 3563      // 1 Bit, Bit 7
+#define LOG_UserFormula19Active                 4063      // 1 Bit, Bit 7
 #define     LOG_UserFormula19ActiveMask 0x80
 #define     LOG_UserFormula19ActiveShift 7
-#define LOG_UserFormula20                       3564      // char*, 99 Byte
+#define LOG_UserFormula20                       4064      // char*, 99 Byte
 #define     LOG_UserFormula20Length 99
-#define LOG_UserFormula20Active                 3663      // 1 Bit, Bit 7
+#define LOG_UserFormula20Active                 4163      // 1 Bit, Bit 7
 #define     LOG_UserFormula20ActiveMask 0x80
 #define     LOG_UserFormula20ActiveShift 7
-#define LOG_UserFormula21                       3664      // char*, 99 Byte
+#define LOG_UserFormula21                       4164      // char*, 99 Byte
 #define     LOG_UserFormula21Length 99
-#define LOG_UserFormula21Active                 3763      // 1 Bit, Bit 7
+#define LOG_UserFormula21Active                 4263      // 1 Bit, Bit 7
 #define     LOG_UserFormula21ActiveMask 0x80
 #define     LOG_UserFormula21ActiveShift 7
-#define LOG_UserFormula22                       3764      // char*, 99 Byte
+#define LOG_UserFormula22                       4264      // char*, 99 Byte
 #define     LOG_UserFormula22Length 99
-#define LOG_UserFormula22Active                 3863      // 1 Bit, Bit 7
+#define LOG_UserFormula22Active                 4363      // 1 Bit, Bit 7
 #define     LOG_UserFormula22ActiveMask 0x80
 #define     LOG_UserFormula22ActiveShift 7
-#define LOG_UserFormula23                       3864      // char*, 99 Byte
+#define LOG_UserFormula23                       4364      // char*, 99 Byte
 #define     LOG_UserFormula23Length 99
-#define LOG_UserFormula23Active                 3963      // 1 Bit, Bit 7
+#define LOG_UserFormula23Active                 4463      // 1 Bit, Bit 7
 #define     LOG_UserFormula23ActiveMask 0x80
 #define     LOG_UserFormula23ActiveShift 7
-#define LOG_UserFormula24                       3964      // char*, 99 Byte
+#define LOG_UserFormula24                       4464      // char*, 99 Byte
 #define     LOG_UserFormula24Length 99
-#define LOG_UserFormula24Active                 4063      // 1 Bit, Bit 7
+#define LOG_UserFormula24Active                 4563      // 1 Bit, Bit 7
 #define     LOG_UserFormula24ActiveMask 0x80
 #define     LOG_UserFormula24ActiveShift 7
-#define LOG_UserFormula25                       4064      // char*, 99 Byte
+#define LOG_UserFormula25                       4564      // char*, 99 Byte
 #define     LOG_UserFormula25Length 99
-#define LOG_UserFormula25Active                 4163      // 1 Bit, Bit 7
+#define LOG_UserFormula25Active                 4663      // 1 Bit, Bit 7
 #define     LOG_UserFormula25ActiveMask 0x80
 #define     LOG_UserFormula25ActiveShift 7
-#define LOG_UserFormula26                       4164      // char*, 99 Byte
+#define LOG_UserFormula26                       4664      // char*, 99 Byte
 #define     LOG_UserFormula26Length 99
-#define LOG_UserFormula26Active                 4263      // 1 Bit, Bit 7
+#define LOG_UserFormula26Active                 4763      // 1 Bit, Bit 7
 #define     LOG_UserFormula26ActiveMask 0x80
 #define     LOG_UserFormula26ActiveShift 7
-#define LOG_UserFormula27                       4264      // char*, 99 Byte
+#define LOG_UserFormula27                       4764      // char*, 99 Byte
 #define     LOG_UserFormula27Length 99
-#define LOG_UserFormula27Active                 4363      // 1 Bit, Bit 7
+#define LOG_UserFormula27Active                 4863      // 1 Bit, Bit 7
 #define     LOG_UserFormula27ActiveMask 0x80
 #define     LOG_UserFormula27ActiveShift 7
-#define LOG_UserFormula28                       4364      // char*, 99 Byte
+#define LOG_UserFormula28                       4864      // char*, 99 Byte
 #define     LOG_UserFormula28Length 99
-#define LOG_UserFormula28Active                 4463      // 1 Bit, Bit 7
+#define LOG_UserFormula28Active                 4963      // 1 Bit, Bit 7
 #define     LOG_UserFormula28ActiveMask 0x80
 #define     LOG_UserFormula28ActiveShift 7
-#define LOG_UserFormula29                       4464      // char*, 99 Byte
+#define LOG_UserFormula29                       4964      // char*, 99 Byte
 #define     LOG_UserFormula29Length 99
-#define LOG_UserFormula29Active                 4563      // 1 Bit, Bit 7
+#define LOG_UserFormula29Active                 5063      // 1 Bit, Bit 7
 #define     LOG_UserFormula29ActiveMask 0x80
 #define     LOG_UserFormula29ActiveShift 7
-#define LOG_UserFormula30                       4564      // char*, 99 Byte
+#define LOG_UserFormula30                       5064      // char*, 99 Byte
 #define     LOG_UserFormula30Length 99
-#define LOG_UserFormula30Active                 4663      // 1 Bit, Bit 7
+#define LOG_UserFormula30Active                 5163      // 1 Bit, Bit 7
 #define     LOG_UserFormula30ActiveMask 0x80
 #define     LOG_UserFormula30ActiveShift 7
 
@@ -1578,7 +1588,7 @@
 #define LOG_ChannelCount 50
 
 // Parameter per channel
-#define LOG_ParamBlockOffset 4664
+#define LOG_ParamBlockOffset 5164
 #define LOG_ParamBlockSize 87
 #define LOG_ParamCalcIndex(index) (index + LOG_ParamBlockOffset + _channelIndex * LOG_ParamBlockSize)
 
@@ -3452,7 +3462,7 @@
 // Ausgang
 #define KoLOG_KOfO                                (knx.getGroupObject(LOG_KoCalcNumber(LOG_KoKOfO)))
 
-#define FCB_VisibleChannels                     9014      // uint8_t
+#define FCB_VisibleChannels                     9514      // uint8_t
 
 // Verfügbare Kanäle
 #define ParamFCB_VisibleChannels                     (knx.paramByte(FCB_VisibleChannels))
@@ -3460,7 +3470,7 @@
 #define FCB_ChannelCount 15
 
 // Parameter per channel
-#define FCB_ParamBlockOffset 9015
+#define FCB_ParamBlockOffset 9515
 #define FCB_ParamBlockSize 81
 #define FCB_ParamCalcIndex(index) (index + FCB_ParamBlockOffset + _channelIndex * FCB_ParamBlockSize)
 
@@ -4532,7 +4542,7 @@
 #define BASE_KommentarModuleModuleParamSize 0
 #define BASE_KommentarModuleSubmodulesParamSize 0
 #define BASE_KommentarModuleParamSize 0
-#define BASE_KommentarModuleParamOffset 10230
+#define BASE_KommentarModuleParamOffset 10730
 #define BASE_KommentarModuleCalcIndex(index, m1) (index + BASE_KommentarModuleParamOffset + _channelIndex * BASE_KommentarModuleCount * BASE_KommentarModuleParamSize + m1 * BASE_KommentarModuleParamSize)
 
 

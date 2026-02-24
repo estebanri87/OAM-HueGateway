@@ -7,8 +7,8 @@
   <op:ETS
     OpenKnxId="0xAF"
     ApplicationNumber="0x29" 
-    ApplicationVersion="0.1.0"
-    ReplacesVersions="0.0"
+    ApplicationVersion="0.2.0"
+    ReplacesVersions="0.1.0"
     ApplicationRevision="0"
     ProductName="Hue Gateway"
     BusCurrent="10"

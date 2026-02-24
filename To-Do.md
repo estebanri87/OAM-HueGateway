@@ -1,19 +1,20 @@
-Offene To-Do´s für V0.1 Beta
-
-- HCL Manager testen
-- Helligkeit dimmen relativ per Taster testen
-
 To-Do für V0.2 Beta
 
-- Räume/Zonen implementieren
-    - Hinzufügen neuer Lampen wird deutlich vereinfacht wenn nur der Raum oder Zone angesteuert wird. Bei hinzufügen einer Lampe in einen Raum/Zone muss keine neue ETS Parametrierung vorgenommen werden.
+- Räume/Zonen implementieren 
+    - Schalten und dimmen bereits implementiert. Farbtemperatur und RGB noch nicht.
 
-- Applikationsbeschreibung für V1.0 Release überarbeiten
+- Dimmgeschwindigkeit ein - schneller und aus langsamer 
+
+- Applikationsbeschreibung für V0.2 Release überarbeiten
 - Kontexthilfe detiallieren
 
+- HCL Manager testen
+
 To-Do für V0.3 Beta
-- Dimmgeschwindigkeit ein/aus anpassbar?!
+- Helligkeit dimmen relativ per Taster testen
+- Ein-/Ausschaltgeschwindigkeit anpassbar machen
 - Offset (helligeit und Farbtemperatur) für einzelne Lampen in HCL Manager -> Abgleich vereinfachen
+- Weitere Hue Komponenten (Bewegunsmelder usw) implementieren
 
 Einlesen
 - Wie mehrere Bridges implementieren ? 

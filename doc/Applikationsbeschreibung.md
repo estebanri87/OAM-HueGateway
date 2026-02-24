@@ -12,6 +12,6 @@ Die OpenKNX Hue Gateway besteht aus folgenden Modulen:
 
 - [Basiseinstellungen](https://github.com/OpenKNX/OGM-Common/blob/v1/doc/Applikationsbeschreibung-Common.md)
 - [Netzwerk](https://github.com/OpenKNX/OFM-Network/blob/v1/doc/Applikationsbeschreibung-Netzwerk.md)
-- [Hue Bridge](https://github.com/estebanri87/OFM-HueBridgeModule/blob/v1/docs/Applikationsbeschreibung.md)
+- [Hue Bridge](https://github.com/estebanri87/OFM-HueGatewayModule/blob/v1/docs/Applikationsbeschreibung.md)
 - [Logik](https://github.com/OpenKNX/OFM-LogicModule/blob/v1/doc/Applikationsbeschreibung-Logik.md)
 - [Funktionsblöcke](https://github.com/OpenKNX/OFM-FunctionBlocks/blob/v1/doc/Applikationsbeschreibung-FunctionBlocks.md)
