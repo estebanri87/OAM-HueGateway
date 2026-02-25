@@ -9,8 +9,8 @@
   <op:config name="%FCB_VerifyVersion%" value="0.9" />
   <op:config name="%HUE_VerifyVersion%" value="0.2" />
 
-  <op:config name="%ReleaseApplicationVersion%" value="2" />
-  <op:config name="%ReleaseReplacesVersions%" value="1" />
+  <op:config name="%ReleaseApplicationVersion%" value="0.2" />
+  <op:config name="%ReleaseReplacesVersions%" value="0.1" />
 
   <op:config name="%LOG_NumChannelsDefault%" value="1" />
   <op:config name="%LOG_EnableSave%" value="1" />
