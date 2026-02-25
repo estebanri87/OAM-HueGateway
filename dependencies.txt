@@ -3,7 +3,7 @@ f6111d3 v1 lib/knx https://github.com/OpenKNX/knx.git
 eca6977 v1 lib/OFM-ConfigTransfer https://github.com/OpenKNX/OFM-ConfigTransfer.git
 178f186 v1 lib/OFM-FileTransferModule https://github.com/OpenKNX/OFM-FileTransferModule.git
 411b2f9 v1 lib/OFM-FunctionBlocks https://github.com/OpenKNX/OFM-FunctionBlocks.git
-ee13a76 v1dev_addroomandzones lib/OFM-HueGatewayModule https://github.com/estebanri87/OFM-HueGatewayModule.git
+ce4f41e v1dev_addroomandzones lib/OFM-HueGatewayModule https://github.com/estebanri87/OFM-HueGatewayModule.git
 2bc2557 v1 lib/OFM-LogicModule https://github.com/OpenKNX/OFM-LogicModule.git
 3052857 v1 lib/OFM-Network https://github.com/OpenKNX/OFM-Network.git
 08710e3 DETACHED lib/OFM-WebUI https://github.com/OpenKNX/OFM-WebUI.git

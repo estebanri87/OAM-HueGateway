@@ -1,20 +1,15 @@
 To-Do für V0.2 Beta
 
-- Räume/Zonen implementieren 
-    - Schalten und dimmen bereits implementiert. Farbtemperatur und RGB noch nicht.
-
-- Dimmgeschwindigkeit ein - schneller und aus langsamer 
-
-- Applikationsbeschreibung für V0.2 Release überarbeiten
-- Kontexthilfe detiallieren
-
-- HCL Manager testen
+- HCL Manager testen über den Tag hinweg
 
 To-Do für V0.3 Beta
 - Helligkeit dimmen relativ per Taster testen
-- Ein-/Ausschaltgeschwindigkeit anpassbar machen
-- Offset (helligeit und Farbtemperatur) für einzelne Lampen in HCL Manager -> Abgleich vereinfachen
-- Weitere Hue Komponenten (Bewegunsmelder usw) implementieren
+- Ein-/Ausschaltgeschwindigkeit/Dimmgeschwindigkeit anpassbar machen
+- Offset (Helligeit und Farbtemperatur) für einzelne Lampen in HCL Manager -> Abgleich mehrerer Lampen im Raum vereinfachen
+- Kontexthilfe weiter detaillieren
+
+Tp-Do für V0.4 Beta
+- Weitere Hue Komponenten (Bewegunsmelder etc.) implementieren
 
 Einlesen
 - Wie mehrere Bridges implementieren ? 
