@@ -5,9 +5,9 @@ Die OpenKNX Hue Gateway integriert Philips Hue Lampen in das KNX-System.
 ## Features
 
 - Bidirektionale Synchronisation zwischen KNX und Philips Hue
-- WebServer zur UUID-Entdeckung der Hue Lampen
+- WebServer zur UUID-Entdeckung der Hue Geräte
 - mDNS-Service (openknx-bridge.local)
-- Unterstützung für bis zu 20 Hue Lampen-Kanäle
+- Unterstützung für bis zu 24 Hue Kanäle
 - Konfigurierbar über ETS
 
 ### Unterstützte Lampentypen

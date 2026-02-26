@@ -20,8 +20,8 @@
 #define MAIN_ApplicationNumber 42
 #define MAIN_ApplicationVersion 2
 #define MAIN_ApplicationEncoding iso-8859-15
-#define MAIN_ParameterSize 11070
-#define MAIN_MaxKoNumber 720
+#define MAIN_ParameterSize 11913
+#define MAIN_MaxKoNumber 780
 #define MAIN_OrderNumber "OpenKNX-SR-HUE"
 #define BASE_ModuleVersion 23
 #define NET_ModuleVersion 5
@@ -268,6 +268,8 @@
 #define     HUE_HUEShowConnectionStatusMask 0x40
 #define     HUE_HUEShowConnectionStatusShift 6
 #define HUE_HUEPairingWindow                    255      // uint8_t
+#define HUE_HUESwitchOnTransitionSec            487      // uint8_t
+#define HUE_HUESwitchOffTransitionSec           488      // uint8_t
 #define HUE_HUEChannelCount                     254      // uint8_t
 #define HUE_HUEHCLEnable                        256      // 8 Bits, Bit 7-0
 #define HUE_HUEHCLMasterCount                   257      // uint8_t
@@ -276,9 +278,6 @@
 #define HUE_HUEHCLLockFallback                  476      // 4 Bits, Bit 7-4
 #define     HUE_HUEHCLLockFallbackMask 0xF0
 #define     HUE_HUEHCLLockFallbackShift 4
-#define HUE_HUEHCLLockFallbackEnable            476      // 1 Bit, Bit 7
-#define     HUE_HUEHCLLockFallbackEnableMask 0x80
-#define     HUE_HUEHCLLockFallbackEnableShift 7
 #define HUE_HUEHCLM1StatusKoEnable              477      // 1 Bit, Bit 7
 #define     HUE_HUEHCLM1StatusKoEnableMask 0x80
 #define     HUE_HUEHCLM1StatusKoEnableShift 7
@@ -291,30 +290,42 @@
 #define HUE_HUEHCLM4StatusKoEnable              477      // 1 Bit, Bit 4
 #define     HUE_HUEHCLM4StatusKoEnableMask 0x10
 #define     HUE_HUEHCLM4StatusKoEnableShift 4
-#define HUE_HUEHCLM1LockFallbackEnable          478      // 1 Bit, Bit 7
-#define     HUE_HUEHCLM1LockFallbackEnableMask 0x80
-#define     HUE_HUEHCLM1LockFallbackEnableShift 7
 #define HUE_HUEHCLM1LockFallback                479      // 4 Bits, Bit 7-4
 #define     HUE_HUEHCLM1LockFallbackMask 0xF0
 #define     HUE_HUEHCLM1LockFallbackShift 4
-#define HUE_HUEHCLM2LockFallbackEnable          478      // 1 Bit, Bit 6
-#define     HUE_HUEHCLM2LockFallbackEnableMask 0x40
-#define     HUE_HUEHCLM2LockFallbackEnableShift 6
 #define HUE_HUEHCLM2LockFallback                480      // 4 Bits, Bit 7-4
 #define     HUE_HUEHCLM2LockFallbackMask 0xF0
 #define     HUE_HUEHCLM2LockFallbackShift 4
-#define HUE_HUEHCLM3LockFallbackEnable          478      // 1 Bit, Bit 5
-#define     HUE_HUEHCLM3LockFallbackEnableMask 0x20
-#define     HUE_HUEHCLM3LockFallbackEnableShift 5
 #define HUE_HUEHCLM3LockFallback                481      // 4 Bits, Bit 7-4
 #define     HUE_HUEHCLM3LockFallbackMask 0xF0
 #define     HUE_HUEHCLM3LockFallbackShift 4
-#define HUE_HUEHCLM4LockFallbackEnable          478      // 1 Bit, Bit 4
-#define     HUE_HUEHCLM4LockFallbackEnableMask 0x10
-#define     HUE_HUEHCLM4LockFallbackEnableShift 4
 #define HUE_HUEHCLM4LockFallback                482      // 4 Bits, Bit 7-4
 #define     HUE_HUEHCLM4LockFallbackMask 0xF0
 #define     HUE_HUEHCLM4LockFallbackShift 4
+#define HUE_HUEHCLM5StatusKoEnable              477      // 1 Bit, Bit 3
+#define     HUE_HUEHCLM5StatusKoEnableMask 0x08
+#define     HUE_HUEHCLM5StatusKoEnableShift 3
+#define HUE_HUEHCLM6StatusKoEnable              477      // 1 Bit, Bit 2
+#define     HUE_HUEHCLM6StatusKoEnableMask 0x04
+#define     HUE_HUEHCLM6StatusKoEnableShift 2
+#define HUE_HUEHCLM7StatusKoEnable              477      // 1 Bit, Bit 1
+#define     HUE_HUEHCLM7StatusKoEnableMask 0x02
+#define     HUE_HUEHCLM7StatusKoEnableShift 1
+#define HUE_HUEHCLM8StatusKoEnable              477      // 1 Bit, Bit 0
+#define     HUE_HUEHCLM8StatusKoEnableMask 0x01
+#define     HUE_HUEHCLM8StatusKoEnableShift 0
+#define HUE_HUEHCLM5LockFallback                483      // 4 Bits, Bit 7-4
+#define     HUE_HUEHCLM5LockFallbackMask 0xF0
+#define     HUE_HUEHCLM5LockFallbackShift 4
+#define HUE_HUEHCLM6LockFallback                484      // 4 Bits, Bit 7-4
+#define     HUE_HUEHCLM6LockFallbackMask 0xF0
+#define     HUE_HUEHCLM6LockFallbackShift 4
+#define HUE_HUEHCLM7LockFallback                485      // 4 Bits, Bit 7-4
+#define     HUE_HUEHCLM7LockFallbackMask 0xF0
+#define     HUE_HUEHCLM7LockFallbackShift 4
+#define HUE_HUEHCLM8LockFallback                486      // 4 Bits, Bit 7-4
+#define     HUE_HUEHCLM8LockFallbackMask 0xF0
+#define     HUE_HUEHCLM8LockFallbackShift 4
 #define HUE_HCLM1SP0Time                        261      // char*, 5 Byte
 #define     HUE_HCLM1SP0TimeLength 5
 #define HUE_HCLM1SP0Kelvin                      266      // uint16_t
@@ -475,6 +486,166 @@
 #define     HUE_HCLM4SP9TimeLength 5
 #define HUE_HCLM4SP9Kelvin                      578      // uint16_t
 #define HUE_HCLM4SP9Brightness                  580      // uint8_t
+#define HUE_HCLM5SP0Time                        756      // char*, 5 Byte
+#define     HUE_HCLM5SP0TimeLength 5
+#define HUE_HCLM5SP0Kelvin                      761      // uint16_t
+#define HUE_HCLM5SP0Brightness                  763      // uint8_t
+#define HUE_HCLM5SP1Time                        764      // char*, 5 Byte
+#define     HUE_HCLM5SP1TimeLength 5
+#define HUE_HCLM5SP1Kelvin                      769      // uint16_t
+#define HUE_HCLM5SP1Brightness                  771      // uint8_t
+#define HUE_HCLM5SP2Time                        772      // char*, 5 Byte
+#define     HUE_HCLM5SP2TimeLength 5
+#define HUE_HCLM5SP2Kelvin                      777      // uint16_t
+#define HUE_HCLM5SP2Brightness                  779      // uint8_t
+#define HUE_HCLM5SP3Time                        780      // char*, 5 Byte
+#define     HUE_HCLM5SP3TimeLength 5
+#define HUE_HCLM5SP3Kelvin                      785      // uint16_t
+#define HUE_HCLM5SP3Brightness                  787      // uint8_t
+#define HUE_HCLM5SP4Time                        788      // char*, 5 Byte
+#define     HUE_HCLM5SP4TimeLength 5
+#define HUE_HCLM5SP4Kelvin                      793      // uint16_t
+#define HUE_HCLM5SP4Brightness                  795      // uint8_t
+#define HUE_HCLM5SP5Time                        796      // char*, 5 Byte
+#define     HUE_HCLM5SP5TimeLength 5
+#define HUE_HCLM5SP5Kelvin                      801      // uint16_t
+#define HUE_HCLM5SP5Brightness                  803      // uint8_t
+#define HUE_HCLM5SP6Time                        804      // char*, 5 Byte
+#define     HUE_HCLM5SP6TimeLength 5
+#define HUE_HCLM5SP6Kelvin                      809      // uint16_t
+#define HUE_HCLM5SP6Brightness                  811      // uint8_t
+#define HUE_HCLM5SP7Time                        812      // char*, 5 Byte
+#define     HUE_HCLM5SP7TimeLength 5
+#define HUE_HCLM5SP7Kelvin                      817      // uint16_t
+#define HUE_HCLM5SP7Brightness                  819      // uint8_t
+#define HUE_HCLM5SP8Time                        820      // char*, 5 Byte
+#define     HUE_HCLM5SP8TimeLength 5
+#define HUE_HCLM5SP8Kelvin                      825      // uint16_t
+#define HUE_HCLM5SP8Brightness                  827      // uint8_t
+#define HUE_HCLM5SP9Time                        828      // char*, 5 Byte
+#define     HUE_HCLM5SP9TimeLength 5
+#define HUE_HCLM5SP9Kelvin                      833      // uint16_t
+#define HUE_HCLM5SP9Brightness                  835      // uint8_t
+#define HUE_HCLM6SP0Time                        836      // char*, 5 Byte
+#define     HUE_HCLM6SP0TimeLength 5
+#define HUE_HCLM6SP0Kelvin                      841      // uint16_t
+#define HUE_HCLM6SP0Brightness                  843      // uint8_t
+#define HUE_HCLM6SP1Time                        844      // char*, 5 Byte
+#define     HUE_HCLM6SP1TimeLength 5
+#define HUE_HCLM6SP1Kelvin                      849      // uint16_t
+#define HUE_HCLM6SP1Brightness                  851      // uint8_t
+#define HUE_HCLM6SP2Time                        852      // char*, 5 Byte
+#define     HUE_HCLM6SP2TimeLength 5
+#define HUE_HCLM6SP2Kelvin                      857      // uint16_t
+#define HUE_HCLM6SP2Brightness                  859      // uint8_t
+#define HUE_HCLM6SP3Time                        860      // char*, 5 Byte
+#define     HUE_HCLM6SP3TimeLength 5
+#define HUE_HCLM6SP3Kelvin                      865      // uint16_t
+#define HUE_HCLM6SP3Brightness                  867      // uint8_t
+#define HUE_HCLM6SP4Time                        868      // char*, 5 Byte
+#define     HUE_HCLM6SP4TimeLength 5
+#define HUE_HCLM6SP4Kelvin                      873      // uint16_t
+#define HUE_HCLM6SP4Brightness                  875      // uint8_t
+#define HUE_HCLM6SP5Time                        876      // char*, 5 Byte
+#define     HUE_HCLM6SP5TimeLength 5
+#define HUE_HCLM6SP5Kelvin                      881      // uint16_t
+#define HUE_HCLM6SP5Brightness                  883      // uint8_t
+#define HUE_HCLM6SP6Time                        884      // char*, 5 Byte
+#define     HUE_HCLM6SP6TimeLength 5
+#define HUE_HCLM6SP6Kelvin                      889      // uint16_t
+#define HUE_HCLM6SP6Brightness                  891      // uint8_t
+#define HUE_HCLM6SP7Time                        892      // char*, 5 Byte
+#define     HUE_HCLM6SP7TimeLength 5
+#define HUE_HCLM6SP7Kelvin                      897      // uint16_t
+#define HUE_HCLM6SP7Brightness                  899      // uint8_t
+#define HUE_HCLM6SP8Time                        900      // char*, 5 Byte
+#define     HUE_HCLM6SP8TimeLength 5
+#define HUE_HCLM6SP8Kelvin                      905      // uint16_t
+#define HUE_HCLM6SP8Brightness                  907      // uint8_t
+#define HUE_HCLM6SP9Time                        908      // char*, 5 Byte
+#define     HUE_HCLM6SP9TimeLength 5
+#define HUE_HCLM6SP9Kelvin                      913      // uint16_t
+#define HUE_HCLM6SP9Brightness                  915      // uint8_t
+#define HUE_HCLM7SP0Time                        916      // char*, 5 Byte
+#define     HUE_HCLM7SP0TimeLength 5
+#define HUE_HCLM7SP0Kelvin                      921      // uint16_t
+#define HUE_HCLM7SP0Brightness                  923      // uint8_t
+#define HUE_HCLM7SP1Time                        924      // char*, 5 Byte
+#define     HUE_HCLM7SP1TimeLength 5
+#define HUE_HCLM7SP1Kelvin                      929      // uint16_t
+#define HUE_HCLM7SP1Brightness                  931      // uint8_t
+#define HUE_HCLM7SP2Time                        932      // char*, 5 Byte
+#define     HUE_HCLM7SP2TimeLength 5
+#define HUE_HCLM7SP2Kelvin                      937      // uint16_t
+#define HUE_HCLM7SP2Brightness                  939      // uint8_t
+#define HUE_HCLM7SP3Time                        940      // char*, 5 Byte
+#define     HUE_HCLM7SP3TimeLength 5
+#define HUE_HCLM7SP3Kelvin                      945      // uint16_t
+#define HUE_HCLM7SP3Brightness                  947      // uint8_t
+#define HUE_HCLM7SP4Time                        948      // char*, 5 Byte
+#define     HUE_HCLM7SP4TimeLength 5
+#define HUE_HCLM7SP4Kelvin                      953      // uint16_t
+#define HUE_HCLM7SP4Brightness                  955      // uint8_t
+#define HUE_HCLM7SP5Time                        956      // char*, 5 Byte
+#define     HUE_HCLM7SP5TimeLength 5
+#define HUE_HCLM7SP5Kelvin                      961      // uint16_t
+#define HUE_HCLM7SP5Brightness                  963      // uint8_t
+#define HUE_HCLM7SP6Time                        964      // char*, 5 Byte
+#define     HUE_HCLM7SP6TimeLength 5
+#define HUE_HCLM7SP6Kelvin                      969      // uint16_t
+#define HUE_HCLM7SP6Brightness                  971      // uint8_t
+#define HUE_HCLM7SP7Time                        972      // char*, 5 Byte
+#define     HUE_HCLM7SP7TimeLength 5
+#define HUE_HCLM7SP7Kelvin                      977      // uint16_t
+#define HUE_HCLM7SP7Brightness                  979      // uint8_t
+#define HUE_HCLM7SP8Time                        980      // char*, 5 Byte
+#define     HUE_HCLM7SP8TimeLength 5
+#define HUE_HCLM7SP8Kelvin                      985      // uint16_t
+#define HUE_HCLM7SP8Brightness                  987      // uint8_t
+#define HUE_HCLM7SP9Time                        988      // char*, 5 Byte
+#define     HUE_HCLM7SP9TimeLength 5
+#define HUE_HCLM7SP9Kelvin                      993      // uint16_t
+#define HUE_HCLM7SP9Brightness                  995      // uint8_t
+#define HUE_HCLM8SP0Time                        996      // char*, 5 Byte
+#define     HUE_HCLM8SP0TimeLength 5
+#define HUE_HCLM8SP0Kelvin                      1001      // uint16_t
+#define HUE_HCLM8SP0Brightness                  1003      // uint8_t
+#define HUE_HCLM8SP1Time                        1004      // char*, 5 Byte
+#define     HUE_HCLM8SP1TimeLength 5
+#define HUE_HCLM8SP1Kelvin                      1009      // uint16_t
+#define HUE_HCLM8SP1Brightness                  1011      // uint8_t
+#define HUE_HCLM8SP2Time                        1012      // char*, 5 Byte
+#define     HUE_HCLM8SP2TimeLength 5
+#define HUE_HCLM8SP2Kelvin                      1017      // uint16_t
+#define HUE_HCLM8SP2Brightness                  1019      // uint8_t
+#define HUE_HCLM8SP3Time                        1020      // char*, 5 Byte
+#define     HUE_HCLM8SP3TimeLength 5
+#define HUE_HCLM8SP3Kelvin                      1025      // uint16_t
+#define HUE_HCLM8SP3Brightness                  1027      // uint8_t
+#define HUE_HCLM8SP4Time                        1028      // char*, 5 Byte
+#define     HUE_HCLM8SP4TimeLength 5
+#define HUE_HCLM8SP4Kelvin                      1033      // uint16_t
+#define HUE_HCLM8SP4Brightness                  1035      // uint8_t
+#define HUE_HCLM8SP5Time                        1036      // char*, 5 Byte
+#define     HUE_HCLM8SP5TimeLength 5
+#define HUE_HCLM8SP5Kelvin                      1041      // uint16_t
+#define HUE_HCLM8SP5Brightness                  1043      // uint8_t
+#define HUE_HCLM8SP6Time                        1044      // char*, 5 Byte
+#define     HUE_HCLM8SP6TimeLength 5
+#define HUE_HCLM8SP6Kelvin                      1049      // uint16_t
+#define HUE_HCLM8SP6Brightness                  1051      // uint8_t
+#define HUE_HCLM8SP7Time                        1052      // char*, 5 Byte
+#define     HUE_HCLM8SP7TimeLength 5
+#define HUE_HCLM8SP7Kelvin                      1057      // uint16_t
+#define HUE_HCLM8SP7Brightness                  1059      // uint8_t
+#define HUE_HCLM8SP8Time                        1060      // char*, 5 Byte
+#define     HUE_HCLM8SP8TimeLength 5
+#define HUE_HCLM8SP8Kelvin                      1065      // uint16_t
+#define HUE_HCLM8SP8Brightness                  1067      // uint8_t
+#define HUE_HCLM8SP9Time                        1068      // char*, 5 Byte
+#define     HUE_HCLM8SP9TimeLength 5
+#define HUE_HCLM8SP9Kelvin                      1073      // uint16_t
+#define HUE_HCLM8SP9Brightness                  1075      // uint8_t
 #define HUE_HCLM1Name                           581      // char*, 25 Byte
 #define     HUE_HCLM1NameLength 25
 #define HUE_HCLM2Name                           606      // char*, 25 Byte
@@ -483,6 +654,14 @@
 #define     HUE_HCLM3NameLength 25
 #define HUE_HCLM4Name                           656      // char*, 25 Byte
 #define     HUE_HCLM4NameLength 25
+#define HUE_HCLM5Name                           1076      // char*, 25 Byte
+#define     HUE_HCLM5NameLength 25
+#define HUE_HCLM6Name                           1101      // char*, 25 Byte
+#define     HUE_HCLM6NameLength 25
+#define HUE_HCLM7Name                           1126      // char*, 25 Byte
+#define     HUE_HCLM7NameLength 25
+#define HUE_HCLM8Name                           1151      // char*, 25 Byte
+#define     HUE_HCLM8NameLength 25
 #define HUE_HCLM1CurveType                      681      // 8 Bits, Bit 7-0
 #define HUE_HCLM1SlewRate                       682      // uint16_t
 #define HUE_HCLM1ManualKelvin                   684      // uint16_t
@@ -519,6 +698,42 @@
 #define     HUE_HCLM4SunsetLength 5
 #define HUE_HCLM4SunriseOffset                  753      // int16_t
 #define HUE_HCLM4SunsetOffset                   755      // int16_t
+#define HUE_HCLM5CurveType                      1176      // 8 Bits, Bit 7-0
+#define HUE_HCLM5SlewRate                       1177      // uint16_t
+#define HUE_HCLM5ManualKelvin                   1179      // uint16_t
+#define HUE_HCLM5Sunrise                        1181      // char*, 5 Byte
+#define     HUE_HCLM5SunriseLength 5
+#define HUE_HCLM5Sunset                         1186      // char*, 5 Byte
+#define     HUE_HCLM5SunsetLength 5
+#define HUE_HCLM5SunriseOffset                  1191      // int16_t
+#define HUE_HCLM5SunsetOffset                   1193      // int16_t
+#define HUE_HCLM6CurveType                      1195      // 8 Bits, Bit 7-0
+#define HUE_HCLM6SlewRate                       1196      // uint16_t
+#define HUE_HCLM6ManualKelvin                   1198      // uint16_t
+#define HUE_HCLM6Sunrise                        1200      // char*, 5 Byte
+#define     HUE_HCLM6SunriseLength 5
+#define HUE_HCLM6Sunset                         1205      // char*, 5 Byte
+#define     HUE_HCLM6SunsetLength 5
+#define HUE_HCLM6SunriseOffset                  1210      // int16_t
+#define HUE_HCLM6SunsetOffset                   1212      // int16_t
+#define HUE_HCLM7CurveType                      1214      // 8 Bits, Bit 7-0
+#define HUE_HCLM7SlewRate                       1215      // uint16_t
+#define HUE_HCLM7ManualKelvin                   1217      // uint16_t
+#define HUE_HCLM7Sunrise                        1219      // char*, 5 Byte
+#define     HUE_HCLM7SunriseLength 5
+#define HUE_HCLM7Sunset                         1224      // char*, 5 Byte
+#define     HUE_HCLM7SunsetLength 5
+#define HUE_HCLM7SunriseOffset                  1229      // int16_t
+#define HUE_HCLM7SunsetOffset                   1231      // int16_t
+#define HUE_HCLM8CurveType                      1233      // 8 Bits, Bit 7-0
+#define HUE_HCLM8SlewRate                       1234      // uint16_t
+#define HUE_HCLM8ManualKelvin                   1236      // uint16_t
+#define HUE_HCLM8Sunrise                        1238      // char*, 5 Byte
+#define     HUE_HCLM8SunriseLength 5
+#define HUE_HCLM8Sunset                         1243      // char*, 5 Byte
+#define     HUE_HCLM8SunsetLength 5
+#define HUE_HCLM8SunriseOffset                  1248      // int16_t
+#define HUE_HCLM8SunsetOffset                   1250      // int16_t
 
 // Bridge Erkennung
 #define ParamHUE_HUEBridgeMode                       (knx.paramByte(HUE_HUEBridgeMode))
@@ -531,6 +746,10 @@
 #define ParamHUE_HUEShowConnectionStatus             ((bool)(knx.paramByte(HUE_HUEShowConnectionStatus) & HUE_HUEShowConnectionStatusMask))
 // Pairing-Zeitfenster (Sekunden)
 #define ParamHUE_HUEPairingWindow                    (knx.paramByte(HUE_HUEPairingWindow))
+// Einschaltgeschwindigkeit (Sekunden)
+#define ParamHUE_HUESwitchOnTransitionSec            (knx.paramByte(HUE_HUESwitchOnTransitionSec))
+// Ausschaltgeschwindigkeit (Sekunden)
+#define ParamHUE_HUESwitchOffTransitionSec           (knx.paramByte(HUE_HUESwitchOffTransitionSec))
 // Anzahl aktiver Kanäle
 #define ParamHUE_HUEChannelCount                     (knx.paramByte(HUE_HUEChannelCount))
 // Human Centric Lighting (HCL)
@@ -543,8 +762,6 @@
 #define ParamHUE_HUEHCLFadeDuration                  (knx.paramByte(HUE_HUEHCLFadeDuration))
 // Rückfallzeit nach HCL-Sperre
 #define ParamHUE_HUEHCLLockFallback                  ((knx.paramByte(HUE_HUEHCLLockFallback) & HUE_HUEHCLLockFallbackMask) >> HUE_HUEHCLLockFallbackShift)
-// Rückfall aktivieren
-#define ParamHUE_HUEHCLLockFallbackEnable            ((bool)(knx.paramByte(HUE_HUEHCLLockFallbackEnable) & HUE_HUEHCLLockFallbackEnableMask))
 // Manager 1 Status-KOs verwenden
 #define ParamHUE_HUEHCLM1StatusKoEnable              ((bool)(knx.paramByte(HUE_HUEHCLM1StatusKoEnable) & HUE_HUEHCLM1StatusKoEnableMask))
 // Manager 2 Status-KOs verwenden
@@ -553,22 +770,30 @@
 #define ParamHUE_HUEHCLM3StatusKoEnable              ((bool)(knx.paramByte(HUE_HUEHCLM3StatusKoEnable) & HUE_HUEHCLM3StatusKoEnableMask))
 // Manager 4 Status-KOs verwenden
 #define ParamHUE_HUEHCLM4StatusKoEnable              ((bool)(knx.paramByte(HUE_HUEHCLM4StatusKoEnable) & HUE_HUEHCLM4StatusKoEnableMask))
-// Rückfall aktivieren
-#define ParamHUE_HUEHCLM1LockFallbackEnable          ((bool)(knx.paramByte(HUE_HUEHCLM1LockFallbackEnable) & HUE_HUEHCLM1LockFallbackEnableMask))
 // Rückfallzeit nach HCL-Sperre
 #define ParamHUE_HUEHCLM1LockFallback                ((knx.paramByte(HUE_HUEHCLM1LockFallback) & HUE_HUEHCLM1LockFallbackMask) >> HUE_HUEHCLM1LockFallbackShift)
-// Rückfall aktivieren
-#define ParamHUE_HUEHCLM2LockFallbackEnable          ((bool)(knx.paramByte(HUE_HUEHCLM2LockFallbackEnable) & HUE_HUEHCLM2LockFallbackEnableMask))
 // Rückfallzeit nach HCL-Sperre
 #define ParamHUE_HUEHCLM2LockFallback                ((knx.paramByte(HUE_HUEHCLM2LockFallback) & HUE_HUEHCLM2LockFallbackMask) >> HUE_HUEHCLM2LockFallbackShift)
-// Rückfall aktivieren
-#define ParamHUE_HUEHCLM3LockFallbackEnable          ((bool)(knx.paramByte(HUE_HUEHCLM3LockFallbackEnable) & HUE_HUEHCLM3LockFallbackEnableMask))
 // Rückfallzeit nach HCL-Sperre
 #define ParamHUE_HUEHCLM3LockFallback                ((knx.paramByte(HUE_HUEHCLM3LockFallback) & HUE_HUEHCLM3LockFallbackMask) >> HUE_HUEHCLM3LockFallbackShift)
-// Rückfall aktivieren
-#define ParamHUE_HUEHCLM4LockFallbackEnable          ((bool)(knx.paramByte(HUE_HUEHCLM4LockFallbackEnable) & HUE_HUEHCLM4LockFallbackEnableMask))
 // Rückfallzeit nach HCL-Sperre
 #define ParamHUE_HUEHCLM4LockFallback                ((knx.paramByte(HUE_HUEHCLM4LockFallback) & HUE_HUEHCLM4LockFallbackMask) >> HUE_HUEHCLM4LockFallbackShift)
+// Manager 5 Status-KOs verwenden
+#define ParamHUE_HUEHCLM5StatusKoEnable              ((bool)(knx.paramByte(HUE_HUEHCLM5StatusKoEnable) & HUE_HUEHCLM5StatusKoEnableMask))
+// Manager 6 Status-KOs verwenden
+#define ParamHUE_HUEHCLM6StatusKoEnable              ((bool)(knx.paramByte(HUE_HUEHCLM6StatusKoEnable) & HUE_HUEHCLM6StatusKoEnableMask))
+// Manager 7 Status-KOs verwenden
+#define ParamHUE_HUEHCLM7StatusKoEnable              ((bool)(knx.paramByte(HUE_HUEHCLM7StatusKoEnable) & HUE_HUEHCLM7StatusKoEnableMask))
+// Manager 8 Status-KOs verwenden
+#define ParamHUE_HUEHCLM8StatusKoEnable              ((bool)(knx.paramByte(HUE_HUEHCLM8StatusKoEnable) & HUE_HUEHCLM8StatusKoEnableMask))
+// Rückfallzeit nach HCL-Sperre
+#define ParamHUE_HUEHCLM5LockFallback                ((knx.paramByte(HUE_HUEHCLM5LockFallback) & HUE_HUEHCLM5LockFallbackMask) >> HUE_HUEHCLM5LockFallbackShift)
+// Rückfallzeit nach HCL-Sperre
+#define ParamHUE_HUEHCLM6LockFallback                ((knx.paramByte(HUE_HUEHCLM6LockFallback) & HUE_HUEHCLM6LockFallbackMask) >> HUE_HUEHCLM6LockFallbackShift)
+// Rückfallzeit nach HCL-Sperre
+#define ParamHUE_HUEHCLM7LockFallback                ((knx.paramByte(HUE_HUEHCLM7LockFallback) & HUE_HUEHCLM7LockFallbackMask) >> HUE_HUEHCLM7LockFallbackShift)
+// Rückfallzeit nach HCL-Sperre
+#define ParamHUE_HUEHCLM8LockFallback                ((knx.paramByte(HUE_HUEHCLM8LockFallback) & HUE_HUEHCLM8LockFallbackMask) >> HUE_HUEHCLM8LockFallbackShift)
 // M1 SP1 Zeit
 #define ParamHUE_HCLM1SP0Time                        (knx.paramData(HUE_HCLM1SP0Time))
 #define ParamHUE_HCLM1SP0TimeStr                     (knx.paramString(HUE_HCLM1SP0Time, HUE_HCLM1SP0TimeLength))
@@ -849,6 +1074,286 @@
 #define ParamHUE_HCLM4SP9Kelvin                      (knx.paramWord(HUE_HCLM4SP9Kelvin))
 // M4 SP10 Helligkeit
 #define ParamHUE_HCLM4SP9Brightness                  (knx.paramByte(HUE_HCLM4SP9Brightness))
+// M5 SP1 Zeit
+#define ParamHUE_HCLM5SP0Time                        (knx.paramData(HUE_HCLM5SP0Time))
+#define ParamHUE_HCLM5SP0TimeStr                     (knx.paramString(HUE_HCLM5SP0Time, HUE_HCLM5SP0TimeLength))
+// M5 SP1 Kelvin
+#define ParamHUE_HCLM5SP0Kelvin                      (knx.paramWord(HUE_HCLM5SP0Kelvin))
+// M5 SP1 Helligkeit
+#define ParamHUE_HCLM5SP0Brightness                  (knx.paramByte(HUE_HCLM5SP0Brightness))
+// M5 SP2 Zeit
+#define ParamHUE_HCLM5SP1Time                        (knx.paramData(HUE_HCLM5SP1Time))
+#define ParamHUE_HCLM5SP1TimeStr                     (knx.paramString(HUE_HCLM5SP1Time, HUE_HCLM5SP1TimeLength))
+// M5 SP2 Kelvin
+#define ParamHUE_HCLM5SP1Kelvin                      (knx.paramWord(HUE_HCLM5SP1Kelvin))
+// M5 SP2 Helligkeit
+#define ParamHUE_HCLM5SP1Brightness                  (knx.paramByte(HUE_HCLM5SP1Brightness))
+// M5 SP3 Zeit
+#define ParamHUE_HCLM5SP2Time                        (knx.paramData(HUE_HCLM5SP2Time))
+#define ParamHUE_HCLM5SP2TimeStr                     (knx.paramString(HUE_HCLM5SP2Time, HUE_HCLM5SP2TimeLength))
+// M5 SP3 Kelvin
+#define ParamHUE_HCLM5SP2Kelvin                      (knx.paramWord(HUE_HCLM5SP2Kelvin))
+// M5 SP3 Helligkeit
+#define ParamHUE_HCLM5SP2Brightness                  (knx.paramByte(HUE_HCLM5SP2Brightness))
+// M5 SP4 Zeit
+#define ParamHUE_HCLM5SP3Time                        (knx.paramData(HUE_HCLM5SP3Time))
+#define ParamHUE_HCLM5SP3TimeStr                     (knx.paramString(HUE_HCLM5SP3Time, HUE_HCLM5SP3TimeLength))
+// M5 SP4 Kelvin
+#define ParamHUE_HCLM5SP3Kelvin                      (knx.paramWord(HUE_HCLM5SP3Kelvin))
+// M5 SP4 Helligkeit
+#define ParamHUE_HCLM5SP3Brightness                  (knx.paramByte(HUE_HCLM5SP3Brightness))
+// M5 SP5 Zeit
+#define ParamHUE_HCLM5SP4Time                        (knx.paramData(HUE_HCLM5SP4Time))
+#define ParamHUE_HCLM5SP4TimeStr                     (knx.paramString(HUE_HCLM5SP4Time, HUE_HCLM5SP4TimeLength))
+// M5 SP5 Kelvin
+#define ParamHUE_HCLM5SP4Kelvin                      (knx.paramWord(HUE_HCLM5SP4Kelvin))
+// M5 SP5 Helligkeit
+#define ParamHUE_HCLM5SP4Brightness                  (knx.paramByte(HUE_HCLM5SP4Brightness))
+// M5 SP6 Zeit
+#define ParamHUE_HCLM5SP5Time                        (knx.paramData(HUE_HCLM5SP5Time))
+#define ParamHUE_HCLM5SP5TimeStr                     (knx.paramString(HUE_HCLM5SP5Time, HUE_HCLM5SP5TimeLength))
+// M5 SP6 Kelvin
+#define ParamHUE_HCLM5SP5Kelvin                      (knx.paramWord(HUE_HCLM5SP5Kelvin))
+// M5 SP6 Helligkeit
+#define ParamHUE_HCLM5SP5Brightness                  (knx.paramByte(HUE_HCLM5SP5Brightness))
+// M5 SP7 Zeit
+#define ParamHUE_HCLM5SP6Time                        (knx.paramData(HUE_HCLM5SP6Time))
+#define ParamHUE_HCLM5SP6TimeStr                     (knx.paramString(HUE_HCLM5SP6Time, HUE_HCLM5SP6TimeLength))
+// M5 SP7 Kelvin
+#define ParamHUE_HCLM5SP6Kelvin                      (knx.paramWord(HUE_HCLM5SP6Kelvin))
+// M5 SP7 Helligkeit
+#define ParamHUE_HCLM5SP6Brightness                  (knx.paramByte(HUE_HCLM5SP6Brightness))
+// M5 SP8 Zeit
+#define ParamHUE_HCLM5SP7Time                        (knx.paramData(HUE_HCLM5SP7Time))
+#define ParamHUE_HCLM5SP7TimeStr                     (knx.paramString(HUE_HCLM5SP7Time, HUE_HCLM5SP7TimeLength))
+// M5 SP8 Kelvin
+#define ParamHUE_HCLM5SP7Kelvin                      (knx.paramWord(HUE_HCLM5SP7Kelvin))
+// M5 SP8 Helligkeit
+#define ParamHUE_HCLM5SP7Brightness                  (knx.paramByte(HUE_HCLM5SP7Brightness))
+// M5 SP9 Zeit
+#define ParamHUE_HCLM5SP8Time                        (knx.paramData(HUE_HCLM5SP8Time))
+#define ParamHUE_HCLM5SP8TimeStr                     (knx.paramString(HUE_HCLM5SP8Time, HUE_HCLM5SP8TimeLength))
+// M5 SP9 Kelvin
+#define ParamHUE_HCLM5SP8Kelvin                      (knx.paramWord(HUE_HCLM5SP8Kelvin))
+// M5 SP9 Helligkeit
+#define ParamHUE_HCLM5SP8Brightness                  (knx.paramByte(HUE_HCLM5SP8Brightness))
+// M5 SP10 Zeit
+#define ParamHUE_HCLM5SP9Time                        (knx.paramData(HUE_HCLM5SP9Time))
+#define ParamHUE_HCLM5SP9TimeStr                     (knx.paramString(HUE_HCLM5SP9Time, HUE_HCLM5SP9TimeLength))
+// M5 SP10 Kelvin
+#define ParamHUE_HCLM5SP9Kelvin                      (knx.paramWord(HUE_HCLM5SP9Kelvin))
+// M5 SP10 Helligkeit
+#define ParamHUE_HCLM5SP9Brightness                  (knx.paramByte(HUE_HCLM5SP9Brightness))
+// M6 SP1 Zeit
+#define ParamHUE_HCLM6SP0Time                        (knx.paramData(HUE_HCLM6SP0Time))
+#define ParamHUE_HCLM6SP0TimeStr                     (knx.paramString(HUE_HCLM6SP0Time, HUE_HCLM6SP0TimeLength))
+// M6 SP1 Kelvin
+#define ParamHUE_HCLM6SP0Kelvin                      (knx.paramWord(HUE_HCLM6SP0Kelvin))
+// M6 SP1 Helligkeit
+#define ParamHUE_HCLM6SP0Brightness                  (knx.paramByte(HUE_HCLM6SP0Brightness))
+// M6 SP2 Zeit
+#define ParamHUE_HCLM6SP1Time                        (knx.paramData(HUE_HCLM6SP1Time))
+#define ParamHUE_HCLM6SP1TimeStr                     (knx.paramString(HUE_HCLM6SP1Time, HUE_HCLM6SP1TimeLength))
+// M6 SP2 Kelvin
+#define ParamHUE_HCLM6SP1Kelvin                      (knx.paramWord(HUE_HCLM6SP1Kelvin))
+// M6 SP2 Helligkeit
+#define ParamHUE_HCLM6SP1Brightness                  (knx.paramByte(HUE_HCLM6SP1Brightness))
+// M6 SP3 Zeit
+#define ParamHUE_HCLM6SP2Time                        (knx.paramData(HUE_HCLM6SP2Time))
+#define ParamHUE_HCLM6SP2TimeStr                     (knx.paramString(HUE_HCLM6SP2Time, HUE_HCLM6SP2TimeLength))
+// M6 SP3 Kelvin
+#define ParamHUE_HCLM6SP2Kelvin                      (knx.paramWord(HUE_HCLM6SP2Kelvin))
+// M6 SP3 Helligkeit
+#define ParamHUE_HCLM6SP2Brightness                  (knx.paramByte(HUE_HCLM6SP2Brightness))
+// M6 SP4 Zeit
+#define ParamHUE_HCLM6SP3Time                        (knx.paramData(HUE_HCLM6SP3Time))
+#define ParamHUE_HCLM6SP3TimeStr                     (knx.paramString(HUE_HCLM6SP3Time, HUE_HCLM6SP3TimeLength))
+// M6 SP4 Kelvin
+#define ParamHUE_HCLM6SP3Kelvin                      (knx.paramWord(HUE_HCLM6SP3Kelvin))
+// M6 SP4 Helligkeit
+#define ParamHUE_HCLM6SP3Brightness                  (knx.paramByte(HUE_HCLM6SP3Brightness))
+// M6 SP5 Zeit
+#define ParamHUE_HCLM6SP4Time                        (knx.paramData(HUE_HCLM6SP4Time))
+#define ParamHUE_HCLM6SP4TimeStr                     (knx.paramString(HUE_HCLM6SP4Time, HUE_HCLM6SP4TimeLength))
+// M6 SP5 Kelvin
+#define ParamHUE_HCLM6SP4Kelvin                      (knx.paramWord(HUE_HCLM6SP4Kelvin))
+// M6 SP5 Helligkeit
+#define ParamHUE_HCLM6SP4Brightness                  (knx.paramByte(HUE_HCLM6SP4Brightness))
+// M6 SP6 Zeit
+#define ParamHUE_HCLM6SP5Time                        (knx.paramData(HUE_HCLM6SP5Time))
+#define ParamHUE_HCLM6SP5TimeStr                     (knx.paramString(HUE_HCLM6SP5Time, HUE_HCLM6SP5TimeLength))
+// M6 SP6 Kelvin
+#define ParamHUE_HCLM6SP5Kelvin                      (knx.paramWord(HUE_HCLM6SP5Kelvin))
+// M6 SP6 Helligkeit
+#define ParamHUE_HCLM6SP5Brightness                  (knx.paramByte(HUE_HCLM6SP5Brightness))
+// M6 SP7 Zeit
+#define ParamHUE_HCLM6SP6Time                        (knx.paramData(HUE_HCLM6SP6Time))
+#define ParamHUE_HCLM6SP6TimeStr                     (knx.paramString(HUE_HCLM6SP6Time, HUE_HCLM6SP6TimeLength))
+// M6 SP7 Kelvin
+#define ParamHUE_HCLM6SP6Kelvin                      (knx.paramWord(HUE_HCLM6SP6Kelvin))
+// M6 SP7 Helligkeit
+#define ParamHUE_HCLM6SP6Brightness                  (knx.paramByte(HUE_HCLM6SP6Brightness))
+// M6 SP8 Zeit
+#define ParamHUE_HCLM6SP7Time                        (knx.paramData(HUE_HCLM6SP7Time))
+#define ParamHUE_HCLM6SP7TimeStr                     (knx.paramString(HUE_HCLM6SP7Time, HUE_HCLM6SP7TimeLength))
+// M6 SP8 Kelvin
+#define ParamHUE_HCLM6SP7Kelvin                      (knx.paramWord(HUE_HCLM6SP7Kelvin))
+// M6 SP8 Helligkeit
+#define ParamHUE_HCLM6SP7Brightness                  (knx.paramByte(HUE_HCLM6SP7Brightness))
+// M6 SP9 Zeit
+#define ParamHUE_HCLM6SP8Time                        (knx.paramData(HUE_HCLM6SP8Time))
+#define ParamHUE_HCLM6SP8TimeStr                     (knx.paramString(HUE_HCLM6SP8Time, HUE_HCLM6SP8TimeLength))
+// M6 SP9 Kelvin
+#define ParamHUE_HCLM6SP8Kelvin                      (knx.paramWord(HUE_HCLM6SP8Kelvin))
+// M6 SP9 Helligkeit
+#define ParamHUE_HCLM6SP8Brightness                  (knx.paramByte(HUE_HCLM6SP8Brightness))
+// M6 SP10 Zeit
+#define ParamHUE_HCLM6SP9Time                        (knx.paramData(HUE_HCLM6SP9Time))
+#define ParamHUE_HCLM6SP9TimeStr                     (knx.paramString(HUE_HCLM6SP9Time, HUE_HCLM6SP9TimeLength))
+// M6 SP10 Kelvin
+#define ParamHUE_HCLM6SP9Kelvin                      (knx.paramWord(HUE_HCLM6SP9Kelvin))
+// M6 SP10 Helligkeit
+#define ParamHUE_HCLM6SP9Brightness                  (knx.paramByte(HUE_HCLM6SP9Brightness))
+// M7 SP1 Zeit
+#define ParamHUE_HCLM7SP0Time                        (knx.paramData(HUE_HCLM7SP0Time))
+#define ParamHUE_HCLM7SP0TimeStr                     (knx.paramString(HUE_HCLM7SP0Time, HUE_HCLM7SP0TimeLength))
+// M7 SP1 Kelvin
+#define ParamHUE_HCLM7SP0Kelvin                      (knx.paramWord(HUE_HCLM7SP0Kelvin))
+// M7 SP1 Helligkeit
+#define ParamHUE_HCLM7SP0Brightness                  (knx.paramByte(HUE_HCLM7SP0Brightness))
+// M7 SP2 Zeit
+#define ParamHUE_HCLM7SP1Time                        (knx.paramData(HUE_HCLM7SP1Time))
+#define ParamHUE_HCLM7SP1TimeStr                     (knx.paramString(HUE_HCLM7SP1Time, HUE_HCLM7SP1TimeLength))
+// M7 SP2 Kelvin
+#define ParamHUE_HCLM7SP1Kelvin                      (knx.paramWord(HUE_HCLM7SP1Kelvin))
+// M7 SP2 Helligkeit
+#define ParamHUE_HCLM7SP1Brightness                  (knx.paramByte(HUE_HCLM7SP1Brightness))
+// M7 SP3 Zeit
+#define ParamHUE_HCLM7SP2Time                        (knx.paramData(HUE_HCLM7SP2Time))
+#define ParamHUE_HCLM7SP2TimeStr                     (knx.paramString(HUE_HCLM7SP2Time, HUE_HCLM7SP2TimeLength))
+// M7 SP3 Kelvin
+#define ParamHUE_HCLM7SP2Kelvin                      (knx.paramWord(HUE_HCLM7SP2Kelvin))
+// M7 SP3 Helligkeit
+#define ParamHUE_HCLM7SP2Brightness                  (knx.paramByte(HUE_HCLM7SP2Brightness))
+// M7 SP4 Zeit
+#define ParamHUE_HCLM7SP3Time                        (knx.paramData(HUE_HCLM7SP3Time))
+#define ParamHUE_HCLM7SP3TimeStr                     (knx.paramString(HUE_HCLM7SP3Time, HUE_HCLM7SP3TimeLength))
+// M7 SP4 Kelvin
+#define ParamHUE_HCLM7SP3Kelvin                      (knx.paramWord(HUE_HCLM7SP3Kelvin))
+// M7 SP4 Helligkeit
+#define ParamHUE_HCLM7SP3Brightness                  (knx.paramByte(HUE_HCLM7SP3Brightness))
+// M7 SP5 Zeit
+#define ParamHUE_HCLM7SP4Time                        (knx.paramData(HUE_HCLM7SP4Time))
+#define ParamHUE_HCLM7SP4TimeStr                     (knx.paramString(HUE_HCLM7SP4Time, HUE_HCLM7SP4TimeLength))
+// M7 SP5 Kelvin
+#define ParamHUE_HCLM7SP4Kelvin                      (knx.paramWord(HUE_HCLM7SP4Kelvin))
+// M7 SP5 Helligkeit
+#define ParamHUE_HCLM7SP4Brightness                  (knx.paramByte(HUE_HCLM7SP4Brightness))
+// M7 SP6 Zeit
+#define ParamHUE_HCLM7SP5Time                        (knx.paramData(HUE_HCLM7SP5Time))
+#define ParamHUE_HCLM7SP5TimeStr                     (knx.paramString(HUE_HCLM7SP5Time, HUE_HCLM7SP5TimeLength))
+// M7 SP6 Kelvin
+#define ParamHUE_HCLM7SP5Kelvin                      (knx.paramWord(HUE_HCLM7SP5Kelvin))
+// M7 SP6 Helligkeit
+#define ParamHUE_HCLM7SP5Brightness                  (knx.paramByte(HUE_HCLM7SP5Brightness))
+// M7 SP7 Zeit
+#define ParamHUE_HCLM7SP6Time                        (knx.paramData(HUE_HCLM7SP6Time))
+#define ParamHUE_HCLM7SP6TimeStr                     (knx.paramString(HUE_HCLM7SP6Time, HUE_HCLM7SP6TimeLength))
+// M7 SP7 Kelvin
+#define ParamHUE_HCLM7SP6Kelvin                      (knx.paramWord(HUE_HCLM7SP6Kelvin))
+// M7 SP7 Helligkeit
+#define ParamHUE_HCLM7SP6Brightness                  (knx.paramByte(HUE_HCLM7SP6Brightness))
+// M7 SP8 Zeit
+#define ParamHUE_HCLM7SP7Time                        (knx.paramData(HUE_HCLM7SP7Time))
+#define ParamHUE_HCLM7SP7TimeStr                     (knx.paramString(HUE_HCLM7SP7Time, HUE_HCLM7SP7TimeLength))
+// M7 SP8 Kelvin
+#define ParamHUE_HCLM7SP7Kelvin                      (knx.paramWord(HUE_HCLM7SP7Kelvin))
+// M7 SP8 Helligkeit
+#define ParamHUE_HCLM7SP7Brightness                  (knx.paramByte(HUE_HCLM7SP7Brightness))
+// M7 SP9 Zeit
+#define ParamHUE_HCLM7SP8Time                        (knx.paramData(HUE_HCLM7SP8Time))
+#define ParamHUE_HCLM7SP8TimeStr                     (knx.paramString(HUE_HCLM7SP8Time, HUE_HCLM7SP8TimeLength))
+// M7 SP9 Kelvin
+#define ParamHUE_HCLM7SP8Kelvin                      (knx.paramWord(HUE_HCLM7SP8Kelvin))
+// M7 SP9 Helligkeit
+#define ParamHUE_HCLM7SP8Brightness                  (knx.paramByte(HUE_HCLM7SP8Brightness))
+// M7 SP10 Zeit
+#define ParamHUE_HCLM7SP9Time                        (knx.paramData(HUE_HCLM7SP9Time))
+#define ParamHUE_HCLM7SP9TimeStr                     (knx.paramString(HUE_HCLM7SP9Time, HUE_HCLM7SP9TimeLength))
+// M7 SP10 Kelvin
+#define ParamHUE_HCLM7SP9Kelvin                      (knx.paramWord(HUE_HCLM7SP9Kelvin))
+// M7 SP10 Helligkeit
+#define ParamHUE_HCLM7SP9Brightness                  (knx.paramByte(HUE_HCLM7SP9Brightness))
+// M8 SP1 Zeit
+#define ParamHUE_HCLM8SP0Time                        (knx.paramData(HUE_HCLM8SP0Time))
+#define ParamHUE_HCLM8SP0TimeStr                     (knx.paramString(HUE_HCLM8SP0Time, HUE_HCLM8SP0TimeLength))
+// M8 SP1 Kelvin
+#define ParamHUE_HCLM8SP0Kelvin                      (knx.paramWord(HUE_HCLM8SP0Kelvin))
+// M8 SP1 Helligkeit
+#define ParamHUE_HCLM8SP0Brightness                  (knx.paramByte(HUE_HCLM8SP0Brightness))
+// M8 SP2 Zeit
+#define ParamHUE_HCLM8SP1Time                        (knx.paramData(HUE_HCLM8SP1Time))
+#define ParamHUE_HCLM8SP1TimeStr                     (knx.paramString(HUE_HCLM8SP1Time, HUE_HCLM8SP1TimeLength))
+// M8 SP2 Kelvin
+#define ParamHUE_HCLM8SP1Kelvin                      (knx.paramWord(HUE_HCLM8SP1Kelvin))
+// M8 SP2 Helligkeit
+#define ParamHUE_HCLM8SP1Brightness                  (knx.paramByte(HUE_HCLM8SP1Brightness))
+// M8 SP3 Zeit
+#define ParamHUE_HCLM8SP2Time                        (knx.paramData(HUE_HCLM8SP2Time))
+#define ParamHUE_HCLM8SP2TimeStr                     (knx.paramString(HUE_HCLM8SP2Time, HUE_HCLM8SP2TimeLength))
+// M8 SP3 Kelvin
+#define ParamHUE_HCLM8SP2Kelvin                      (knx.paramWord(HUE_HCLM8SP2Kelvin))
+// M8 SP3 Helligkeit
+#define ParamHUE_HCLM8SP2Brightness                  (knx.paramByte(HUE_HCLM8SP2Brightness))
+// M8 SP4 Zeit
+#define ParamHUE_HCLM8SP3Time                        (knx.paramData(HUE_HCLM8SP3Time))
+#define ParamHUE_HCLM8SP3TimeStr                     (knx.paramString(HUE_HCLM8SP3Time, HUE_HCLM8SP3TimeLength))
+// M8 SP4 Kelvin
+#define ParamHUE_HCLM8SP3Kelvin                      (knx.paramWord(HUE_HCLM8SP3Kelvin))
+// M8 SP4 Helligkeit
+#define ParamHUE_HCLM8SP3Brightness                  (knx.paramByte(HUE_HCLM8SP3Brightness))
+// M8 SP5 Zeit
+#define ParamHUE_HCLM8SP4Time                        (knx.paramData(HUE_HCLM8SP4Time))
+#define ParamHUE_HCLM8SP4TimeStr                     (knx.paramString(HUE_HCLM8SP4Time, HUE_HCLM8SP4TimeLength))
+// M8 SP5 Kelvin
+#define ParamHUE_HCLM8SP4Kelvin                      (knx.paramWord(HUE_HCLM8SP4Kelvin))
+// M8 SP5 Helligkeit
+#define ParamHUE_HCLM8SP4Brightness                  (knx.paramByte(HUE_HCLM8SP4Brightness))
+// M8 SP6 Zeit
+#define ParamHUE_HCLM8SP5Time                        (knx.paramData(HUE_HCLM8SP5Time))
+#define ParamHUE_HCLM8SP5TimeStr                     (knx.paramString(HUE_HCLM8SP5Time, HUE_HCLM8SP5TimeLength))
+// M8 SP6 Kelvin
+#define ParamHUE_HCLM8SP5Kelvin                      (knx.paramWord(HUE_HCLM8SP5Kelvin))
+// M8 SP6 Helligkeit
+#define ParamHUE_HCLM8SP5Brightness                  (knx.paramByte(HUE_HCLM8SP5Brightness))
+// M8 SP7 Zeit
+#define ParamHUE_HCLM8SP6Time                        (knx.paramData(HUE_HCLM8SP6Time))
+#define ParamHUE_HCLM8SP6TimeStr                     (knx.paramString(HUE_HCLM8SP6Time, HUE_HCLM8SP6TimeLength))
+// M8 SP7 Kelvin
+#define ParamHUE_HCLM8SP6Kelvin                      (knx.paramWord(HUE_HCLM8SP6Kelvin))
+// M8 SP7 Helligkeit
+#define ParamHUE_HCLM8SP6Brightness                  (knx.paramByte(HUE_HCLM8SP6Brightness))
+// M8 SP8 Zeit
+#define ParamHUE_HCLM8SP7Time                        (knx.paramData(HUE_HCLM8SP7Time))
+#define ParamHUE_HCLM8SP7TimeStr                     (knx.paramString(HUE_HCLM8SP7Time, HUE_HCLM8SP7TimeLength))
+// M8 SP8 Kelvin
+#define ParamHUE_HCLM8SP7Kelvin                      (knx.paramWord(HUE_HCLM8SP7Kelvin))
+// M8 SP8 Helligkeit
+#define ParamHUE_HCLM8SP7Brightness                  (knx.paramByte(HUE_HCLM8SP7Brightness))
+// M8 SP9 Zeit
+#define ParamHUE_HCLM8SP8Time                        (knx.paramData(HUE_HCLM8SP8Time))
+#define ParamHUE_HCLM8SP8TimeStr                     (knx.paramString(HUE_HCLM8SP8Time, HUE_HCLM8SP8TimeLength))
+// M8 SP9 Kelvin
+#define ParamHUE_HCLM8SP8Kelvin                      (knx.paramWord(HUE_HCLM8SP8Kelvin))
+// M8 SP9 Helligkeit
+#define ParamHUE_HCLM8SP8Brightness                  (knx.paramByte(HUE_HCLM8SP8Brightness))
+// M8 SP10 Zeit
+#define ParamHUE_HCLM8SP9Time                        (knx.paramData(HUE_HCLM8SP9Time))
+#define ParamHUE_HCLM8SP9TimeStr                     (knx.paramString(HUE_HCLM8SP9Time, HUE_HCLM8SP9TimeLength))
+// M8 SP10 Kelvin
+#define ParamHUE_HCLM8SP9Kelvin                      (knx.paramWord(HUE_HCLM8SP9Kelvin))
+// M8 SP10 Helligkeit
+#define ParamHUE_HCLM8SP9Brightness                  (knx.paramByte(HUE_HCLM8SP9Brightness))
 // Name HCL Manager 1
 #define ParamHUE_HCLM1Name                           (knx.paramData(HUE_HCLM1Name))
 #define ParamHUE_HCLM1NameStr                        (knx.paramString(HUE_HCLM1Name, HUE_HCLM1NameLength))
@@ -861,6 +1366,18 @@
 // Name HCL Manager 4
 #define ParamHUE_HCLM4Name                           (knx.paramData(HUE_HCLM4Name))
 #define ParamHUE_HCLM4NameStr                        (knx.paramString(HUE_HCLM4Name, HUE_HCLM4NameLength))
+// Name HCL Manager 5
+#define ParamHUE_HCLM5Name                           (knx.paramData(HUE_HCLM5Name))
+#define ParamHUE_HCLM5NameStr                        (knx.paramString(HUE_HCLM5Name, HUE_HCLM5NameLength))
+// Name HCL Manager 6
+#define ParamHUE_HCLM6Name                           (knx.paramData(HUE_HCLM6Name))
+#define ParamHUE_HCLM6NameStr                        (knx.paramString(HUE_HCLM6Name, HUE_HCLM6NameLength))
+// Name HCL Manager 7
+#define ParamHUE_HCLM7Name                           (knx.paramData(HUE_HCLM7Name))
+#define ParamHUE_HCLM7NameStr                        (knx.paramString(HUE_HCLM7Name, HUE_HCLM7NameLength))
+// Name HCL Manager 8
+#define ParamHUE_HCLM8Name                           (knx.paramData(HUE_HCLM8Name))
+#define ParamHUE_HCLM8NameStr                        (knx.paramString(HUE_HCLM8Name, HUE_HCLM8NameLength))
 // Kurventyp
 #define ParamHUE_HCLM1CurveType                      (knx.paramByte(HUE_HCLM1CurveType))
 // Slew-Rate (K/min)
@@ -925,6 +1442,70 @@
 #define ParamHUE_HCLM4SunriseOffset                  ((int16_t)knx.paramWord(HUE_HCLM4SunriseOffset))
 // Sunset Offset (min)
 #define ParamHUE_HCLM4SunsetOffset                   ((int16_t)knx.paramWord(HUE_HCLM4SunsetOffset))
+// Kurventyp
+#define ParamHUE_HCLM5CurveType                      (knx.paramByte(HUE_HCLM5CurveType))
+// Slew-Rate (K/min)
+#define ParamHUE_HCLM5SlewRate                       (knx.paramWord(HUE_HCLM5SlewRate))
+// Manual Kelvin
+#define ParamHUE_HCLM5ManualKelvin                   (knx.paramWord(HUE_HCLM5ManualKelvin))
+// Sunrise (HH:MM)
+#define ParamHUE_HCLM5Sunrise                        (knx.paramData(HUE_HCLM5Sunrise))
+#define ParamHUE_HCLM5SunriseStr                     (knx.paramString(HUE_HCLM5Sunrise, HUE_HCLM5SunriseLength))
+// Sunset (HH:MM)
+#define ParamHUE_HCLM5Sunset                         (knx.paramData(HUE_HCLM5Sunset))
+#define ParamHUE_HCLM5SunsetStr                      (knx.paramString(HUE_HCLM5Sunset, HUE_HCLM5SunsetLength))
+// Sunrise Offset (min)
+#define ParamHUE_HCLM5SunriseOffset                  ((int16_t)knx.paramWord(HUE_HCLM5SunriseOffset))
+// Sunset Offset (min)
+#define ParamHUE_HCLM5SunsetOffset                   ((int16_t)knx.paramWord(HUE_HCLM5SunsetOffset))
+// Kurventyp
+#define ParamHUE_HCLM6CurveType                      (knx.paramByte(HUE_HCLM6CurveType))
+// Slew-Rate (K/min)
+#define ParamHUE_HCLM6SlewRate                       (knx.paramWord(HUE_HCLM6SlewRate))
+// Manual Kelvin
+#define ParamHUE_HCLM6ManualKelvin                   (knx.paramWord(HUE_HCLM6ManualKelvin))
+// Sunrise (HH:MM)
+#define ParamHUE_HCLM6Sunrise                        (knx.paramData(HUE_HCLM6Sunrise))
+#define ParamHUE_HCLM6SunriseStr                     (knx.paramString(HUE_HCLM6Sunrise, HUE_HCLM6SunriseLength))
+// Sunset (HH:MM)
+#define ParamHUE_HCLM6Sunset                         (knx.paramData(HUE_HCLM6Sunset))
+#define ParamHUE_HCLM6SunsetStr                      (knx.paramString(HUE_HCLM6Sunset, HUE_HCLM6SunsetLength))
+// Sunrise Offset (min)
+#define ParamHUE_HCLM6SunriseOffset                  ((int16_t)knx.paramWord(HUE_HCLM6SunriseOffset))
+// Sunset Offset (min)
+#define ParamHUE_HCLM6SunsetOffset                   ((int16_t)knx.paramWord(HUE_HCLM6SunsetOffset))
+// Kurventyp
+#define ParamHUE_HCLM7CurveType                      (knx.paramByte(HUE_HCLM7CurveType))
+// Slew-Rate (K/min)
+#define ParamHUE_HCLM7SlewRate                       (knx.paramWord(HUE_HCLM7SlewRate))
+// Manual Kelvin
+#define ParamHUE_HCLM7ManualKelvin                   (knx.paramWord(HUE_HCLM7ManualKelvin))
+// Sunrise (HH:MM)
+#define ParamHUE_HCLM7Sunrise                        (knx.paramData(HUE_HCLM7Sunrise))
+#define ParamHUE_HCLM7SunriseStr                     (knx.paramString(HUE_HCLM7Sunrise, HUE_HCLM7SunriseLength))
+// Sunset (HH:MM)
+#define ParamHUE_HCLM7Sunset                         (knx.paramData(HUE_HCLM7Sunset))
+#define ParamHUE_HCLM7SunsetStr                      (knx.paramString(HUE_HCLM7Sunset, HUE_HCLM7SunsetLength))
+// Sunrise Offset (min)
+#define ParamHUE_HCLM7SunriseOffset                  ((int16_t)knx.paramWord(HUE_HCLM7SunriseOffset))
+// Sunset Offset (min)
+#define ParamHUE_HCLM7SunsetOffset                   ((int16_t)knx.paramWord(HUE_HCLM7SunsetOffset))
+// Kurventyp
+#define ParamHUE_HCLM8CurveType                      (knx.paramByte(HUE_HCLM8CurveType))
+// Slew-Rate (K/min)
+#define ParamHUE_HCLM8SlewRate                       (knx.paramWord(HUE_HCLM8SlewRate))
+// Manual Kelvin
+#define ParamHUE_HCLM8ManualKelvin                   (knx.paramWord(HUE_HCLM8ManualKelvin))
+// Sunrise (HH:MM)
+#define ParamHUE_HCLM8Sunrise                        (knx.paramData(HUE_HCLM8Sunrise))
+#define ParamHUE_HCLM8SunriseStr                     (knx.paramString(HUE_HCLM8Sunrise, HUE_HCLM8SunriseLength))
+// Sunset (HH:MM)
+#define ParamHUE_HCLM8Sunset                         (knx.paramData(HUE_HCLM8Sunset))
+#define ParamHUE_HCLM8SunsetStr                      (knx.paramString(HUE_HCLM8Sunset, HUE_HCLM8SunsetLength))
+// Sunrise Offset (min)
+#define ParamHUE_HCLM8SunriseOffset                  ((int16_t)knx.paramWord(HUE_HCLM8SunriseOffset))
+// Sunset Offset (min)
+#define ParamHUE_HCLM8SunsetOffset                   ((int16_t)knx.paramWord(HUE_HCLM8SunsetOffset))
 
 #define HUE_KoHUEConnectionStatus 480
 #define HUE_KoHUEPairingTrigger 481
@@ -946,6 +1527,22 @@
 #define HUE_KoHUEHCLM3LockStatus 497
 #define HUE_KoHUEHCLM4Lock 498
 #define HUE_KoHUEHCLM4LockStatus 499
+#define HUE_KoHUEHCLM5StatusBrightness 500
+#define HUE_KoHUEHCLM5StatusColorTemp 501
+#define HUE_KoHUEHCLM6StatusBrightness 502
+#define HUE_KoHUEHCLM6StatusColorTemp 503
+#define HUE_KoHUEHCLM7StatusBrightness 504
+#define HUE_KoHUEHCLM7StatusColorTemp 505
+#define HUE_KoHUEHCLM8StatusBrightness 506
+#define HUE_KoHUEHCLM8StatusColorTemp 507
+#define HUE_KoHUEHCLM5Lock 508
+#define HUE_KoHUEHCLM5LockStatus 509
+#define HUE_KoHUEHCLM6Lock 510
+#define HUE_KoHUEHCLM6LockStatus 511
+#define HUE_KoHUEHCLM7Lock 512
+#define HUE_KoHUEHCLM7LockStatus 513
+#define HUE_KoHUEHCLM8Lock 514
+#define HUE_KoHUEHCLM8LockStatus 515
 
 // Bridge Verbindungsstatus
 #define KoHUE_HUEConnectionStatus                 (knx.getGroupObject(HUE_KoHUEConnectionStatus))
@@ -987,11 +1584,43 @@
 #define KoHUE_HUEHCLM4Lock                        (knx.getGroupObject(HUE_KoHUEHCLM4Lock))
 // Status HCL Sperre M4
 #define KoHUE_HUEHCLM4LockStatus                  (knx.getGroupObject(HUE_KoHUEHCLM4LockStatus))
+// HCL M5 Soll Helligkeit
+#define KoHUE_HUEHCLM5StatusBrightness            (knx.getGroupObject(HUE_KoHUEHCLM5StatusBrightness))
+// HCL M5 Soll Farbtemp.
+#define KoHUE_HUEHCLM5StatusColorTemp             (knx.getGroupObject(HUE_KoHUEHCLM5StatusColorTemp))
+// HCL M6 Soll Helligkeit
+#define KoHUE_HUEHCLM6StatusBrightness            (knx.getGroupObject(HUE_KoHUEHCLM6StatusBrightness))
+// HCL M6 Soll Farbtemp.
+#define KoHUE_HUEHCLM6StatusColorTemp             (knx.getGroupObject(HUE_KoHUEHCLM6StatusColorTemp))
+// HCL M7 Soll Helligkeit
+#define KoHUE_HUEHCLM7StatusBrightness            (knx.getGroupObject(HUE_KoHUEHCLM7StatusBrightness))
+// HCL M7 Soll Farbtemp.
+#define KoHUE_HUEHCLM7StatusColorTemp             (knx.getGroupObject(HUE_KoHUEHCLM7StatusColorTemp))
+// HCL M8 Soll Helligkeit
+#define KoHUE_HUEHCLM8StatusBrightness            (knx.getGroupObject(HUE_KoHUEHCLM8StatusBrightness))
+// HCL M8 Soll Farbtemp.
+#define KoHUE_HUEHCLM8StatusColorTemp             (knx.getGroupObject(HUE_KoHUEHCLM8StatusColorTemp))
+// HCL Sperre M5
+#define KoHUE_HUEHCLM5Lock                        (knx.getGroupObject(HUE_KoHUEHCLM5Lock))
+// Status HCL Sperre M5
+#define KoHUE_HUEHCLM5LockStatus                  (knx.getGroupObject(HUE_KoHUEHCLM5LockStatus))
+// HCL Sperre M6
+#define KoHUE_HUEHCLM6Lock                        (knx.getGroupObject(HUE_KoHUEHCLM6Lock))
+// Status HCL Sperre M6
+#define KoHUE_HUEHCLM6LockStatus                  (knx.getGroupObject(HUE_KoHUEHCLM6LockStatus))
+// HCL Sperre M7
+#define KoHUE_HUEHCLM7Lock                        (knx.getGroupObject(HUE_KoHUEHCLM7Lock))
+// Status HCL Sperre M7
+#define KoHUE_HUEHCLM7LockStatus                  (knx.getGroupObject(HUE_KoHUEHCLM7LockStatus))
+// HCL Sperre M8
+#define KoHUE_HUEHCLM8Lock                        (knx.getGroupObject(HUE_KoHUEHCLM8Lock))
+// Status HCL Sperre M8
+#define KoHUE_HUEHCLM8LockStatus                  (knx.getGroupObject(HUE_KoHUEHCLM8LockStatus))
 
-#define HUE_ChannelCount 20
+#define HUE_ChannelCount 24
 
 // Parameter per channel
-#define HUE_ParamBlockOffset 757
+#define HUE_ParamBlockOffset 1252
 #define HUE_ParamBlockSize 87
 #define HUE_ParamCalcIndex(index) (index + HUE_ParamBlockOffset + _channelIndex * HUE_ParamBlockSize)
 
@@ -1000,9 +1629,6 @@
 #define HUE_CHTargetRID                         45      // char*, 40 Byte
 #define     HUE_CHTargetRIDLength 40
 #define HUE_CHHCLMaster                          4      // 8 Bits, Bit 7-0
-#define HUE_CHHCLLockFallbackEnable             85      // 1 Bit, Bit 7
-#define     HUE_CHHCLLockFallbackEnableMask 0x80
-#define     HUE_CHHCLLockFallbackEnableShift 7
 #define HUE_CHHCLLockFallback                   86      // 4 Bits, Bit 7-4
 #define     HUE_CHHCLLockFallbackMask 0xF0
 #define     HUE_CHHCLLockFallbackShift 4
@@ -1027,8 +1653,6 @@
 #define ParamHUE_CHTargetRIDStr                      (knx.paramString(HUE_ParamCalcIndex(HUE_CHTargetRID), HUE_CHTargetRIDLength))
 // HCL Master
 #define ParamHUE_CHHCLMaster                         (knx.paramByte(HUE_ParamCalcIndex(HUE_CHHCLMaster)))
-// Rückfall aktivieren
-#define ParamHUE_CHHCLLockFallbackEnable             ((bool)(knx.paramByte(HUE_ParamCalcIndex(HUE_CHHCLLockFallbackEnable)) & HUE_CHHCLLockFallbackEnableMask))
 // Rückfallzeit nach HCL-Sperre
 #define ParamHUE_CHHCLLockFallback                   ((knx.paramByte(HUE_ParamCalcIndex(HUE_CHHCLLockFallback)) & HUE_CHHCLLockFallbackMask) >> HUE_CHHCLLockFallbackShift)
 // Lampentyp
@@ -1045,10 +1669,10 @@
 #define ParamHUE_CHMinBrightness                     (knx.paramByte(HUE_ParamCalcIndex(HUE_CHMinBrightness)))
 
 // deprecated
-#define HUE_KoOffset 501
+#define HUE_KoOffset 517
 
 // Communication objects per channel (multiple occurrence)
-#define HUE_KoBlockOffset 501
+#define HUE_KoBlockOffset 517
 #define HUE_KoBlockSize 11
 
 #define HUE_KoCalcNumber(index) (index + HUE_KoBlockOffset + _channelIndex * HUE_KoBlockSize)
@@ -1090,272 +1714,272 @@
 // Status HCL Sperre
 #define KoHUE_CHHCLLockStatus                     (knx.getGroupObject(HUE_KoCalcNumber(HUE_KoCHHCLLockStatus)))
 
-#define LOG_VisibleChannels                     2497      // uint8_t
-#define LOG_VacationKo                          2498      // 1 Bit, Bit 7
+#define LOG_VisibleChannels                     3340      // uint8_t
+#define LOG_VacationKo                          3341      // 1 Bit, Bit 7
 #define     LOG_VacationKoMask 0x80
 #define     LOG_VacationKoShift 7
-#define LOG_HolidayKo                           2498      // 1 Bit, Bit 6
+#define LOG_HolidayKo                           3341      // 1 Bit, Bit 6
 #define     LOG_HolidayKoMask 0x40
 #define     LOG_HolidayKoShift 6
-#define LOG_VacationRead                        2498      // 1 Bit, Bit 5
+#define LOG_VacationRead                        3341      // 1 Bit, Bit 5
 #define     LOG_VacationReadMask 0x20
 #define     LOG_VacationReadShift 5
-#define LOG_HolidaySend                         2498      // 1 Bit, Bit 4
+#define LOG_HolidaySend                         3341      // 1 Bit, Bit 4
 #define     LOG_HolidaySendMask 0x10
 #define     LOG_HolidaySendShift 4
-#define LOG_Neujahr                             2499      // 1 Bit, Bit 7
+#define LOG_Neujahr                             3342      // 1 Bit, Bit 7
 #define     LOG_NeujahrMask 0x80
 #define     LOG_NeujahrShift 7
-#define LOG_DreiKoenige                         2499      // 1 Bit, Bit 6
+#define LOG_DreiKoenige                         3342      // 1 Bit, Bit 6
 #define     LOG_DreiKoenigeMask 0x40
 #define     LOG_DreiKoenigeShift 6
-#define LOG_Weiberfastnacht                     2499      // 1 Bit, Bit 5
+#define LOG_Weiberfastnacht                     3342      // 1 Bit, Bit 5
 #define     LOG_WeiberfastnachtMask 0x20
 #define     LOG_WeiberfastnachtShift 5
-#define LOG_Rosenmontag                         2499      // 1 Bit, Bit 4
+#define LOG_Rosenmontag                         3342      // 1 Bit, Bit 4
 #define     LOG_RosenmontagMask 0x10
 #define     LOG_RosenmontagShift 4
-#define LOG_Fastnachtsdienstag                  2499      // 1 Bit, Bit 3
+#define LOG_Fastnachtsdienstag                  3342      // 1 Bit, Bit 3
 #define     LOG_FastnachtsdienstagMask 0x08
 #define     LOG_FastnachtsdienstagShift 3
-#define LOG_Aschermittwoch                      2499      // 1 Bit, Bit 2
+#define LOG_Aschermittwoch                      3342      // 1 Bit, Bit 2
 #define     LOG_AschermittwochMask 0x04
 #define     LOG_AschermittwochShift 2
-#define LOG_Frauentag                           2499      // 1 Bit, Bit 1
+#define LOG_Frauentag                           3342      // 1 Bit, Bit 1
 #define     LOG_FrauentagMask 0x02
 #define     LOG_FrauentagShift 1
-#define LOG_Gruendonnerstag                     2499      // 1 Bit, Bit 0
+#define LOG_Gruendonnerstag                     3342      // 1 Bit, Bit 0
 #define     LOG_GruendonnerstagMask 0x01
 #define     LOG_GruendonnerstagShift 0
-#define LOG_Karfreitag                          2500      // 1 Bit, Bit 7
+#define LOG_Karfreitag                          3343      // 1 Bit, Bit 7
 #define     LOG_KarfreitagMask 0x80
 #define     LOG_KarfreitagShift 7
-#define LOG_Ostersonntag                        2500      // 1 Bit, Bit 6
+#define LOG_Ostersonntag                        3343      // 1 Bit, Bit 6
 #define     LOG_OstersonntagMask 0x40
 #define     LOG_OstersonntagShift 6
-#define LOG_Ostermontag                         2500      // 1 Bit, Bit 5
+#define LOG_Ostermontag                         3343      // 1 Bit, Bit 5
 #define     LOG_OstermontagMask 0x20
 #define     LOG_OstermontagShift 5
-#define LOG_TagDerArbeit                        2500      // 1 Bit, Bit 4
+#define LOG_TagDerArbeit                        3343      // 1 Bit, Bit 4
 #define     LOG_TagDerArbeitMask 0x10
 #define     LOG_TagDerArbeitShift 4
-#define LOG_Himmelfahrt                         2500      // 1 Bit, Bit 3
+#define LOG_Himmelfahrt                         3343      // 1 Bit, Bit 3
 #define     LOG_HimmelfahrtMask 0x08
 #define     LOG_HimmelfahrtShift 3
-#define LOG_Pfingstsonntag                      2500      // 1 Bit, Bit 2
+#define LOG_Pfingstsonntag                      3343      // 1 Bit, Bit 2
 #define     LOG_PfingstsonntagMask 0x04
 #define     LOG_PfingstsonntagShift 2
-#define LOG_Pfingstmontag                       2500      // 1 Bit, Bit 1
+#define LOG_Pfingstmontag                       3343      // 1 Bit, Bit 1
 #define     LOG_PfingstmontagMask 0x02
 #define     LOG_PfingstmontagShift 1
-#define LOG_Fronleichnam                        2500      // 1 Bit, Bit 0
+#define LOG_Fronleichnam                        3343      // 1 Bit, Bit 0
 #define     LOG_FronleichnamMask 0x01
 #define     LOG_FronleichnamShift 0
-#define LOG_Friedensfest                        2501      // 1 Bit, Bit 7
+#define LOG_Friedensfest                        3344      // 1 Bit, Bit 7
 #define     LOG_FriedensfestMask 0x80
 #define     LOG_FriedensfestShift 7
-#define LOG_MariaHimmelfahrt                    2501      // 1 Bit, Bit 6
+#define LOG_MariaHimmelfahrt                    3344      // 1 Bit, Bit 6
 #define     LOG_MariaHimmelfahrtMask 0x40
 #define     LOG_MariaHimmelfahrtShift 6
-#define LOG_DeutscheEinheit                     2501      // 1 Bit, Bit 5
+#define LOG_DeutscheEinheit                     3344      // 1 Bit, Bit 5
 #define     LOG_DeutscheEinheitMask 0x20
 #define     LOG_DeutscheEinheitShift 5
-#define LOG_Reformationstag                     2501      // 1 Bit, Bit 4
+#define LOG_Reformationstag                     3344      // 1 Bit, Bit 4
 #define     LOG_ReformationstagMask 0x10
 #define     LOG_ReformationstagShift 4
-#define LOG_Allerheiligen                       2501      // 1 Bit, Bit 3
+#define LOG_Allerheiligen                       3344      // 1 Bit, Bit 3
 #define     LOG_AllerheiligenMask 0x08
 #define     LOG_AllerheiligenShift 3
-#define LOG_BussBettag                          2501      // 1 Bit, Bit 2
+#define LOG_BussBettag                          3344      // 1 Bit, Bit 2
 #define     LOG_BussBettagMask 0x04
 #define     LOG_BussBettagShift 2
-#define LOG_Advent1                             2501      // 1 Bit, Bit 1
+#define LOG_Advent1                             3344      // 1 Bit, Bit 1
 #define     LOG_Advent1Mask 0x02
 #define     LOG_Advent1Shift 1
-#define LOG_Advent2                             2501      // 1 Bit, Bit 0
+#define LOG_Advent2                             3344      // 1 Bit, Bit 0
 #define     LOG_Advent2Mask 0x01
 #define     LOG_Advent2Shift 0
-#define LOG_Advent3                             2502      // 1 Bit, Bit 7
+#define LOG_Advent3                             3345      // 1 Bit, Bit 7
 #define     LOG_Advent3Mask 0x80
 #define     LOG_Advent3Shift 7
-#define LOG_Advent4                             2502      // 1 Bit, Bit 6
+#define LOG_Advent4                             3345      // 1 Bit, Bit 6
 #define     LOG_Advent4Mask 0x40
 #define     LOG_Advent4Shift 6
-#define LOG_Heiligabend                         2502      // 1 Bit, Bit 5
+#define LOG_Heiligabend                         3345      // 1 Bit, Bit 5
 #define     LOG_HeiligabendMask 0x20
 #define     LOG_HeiligabendShift 5
-#define LOG_Weihnachtstag1                      2502      // 1 Bit, Bit 4
+#define LOG_Weihnachtstag1                      3345      // 1 Bit, Bit 4
 #define     LOG_Weihnachtstag1Mask 0x10
 #define     LOG_Weihnachtstag1Shift 4
-#define LOG_Weihnachtstag2                      2502      // 1 Bit, Bit 3
+#define LOG_Weihnachtstag2                      3345      // 1 Bit, Bit 3
 #define     LOG_Weihnachtstag2Mask 0x08
 #define     LOG_Weihnachtstag2Shift 3
-#define LOG_Silvester                           2502      // 1 Bit, Bit 2
+#define LOG_Silvester                           3345      // 1 Bit, Bit 2
 #define     LOG_SilvesterMask 0x04
 #define     LOG_SilvesterShift 2
-#define LOG_Nationalfeiertag                    2502      // 1 Bit, Bit 1
+#define LOG_Nationalfeiertag                    3345      // 1 Bit, Bit 1
 #define     LOG_NationalfeiertagMask 0x02
 #define     LOG_NationalfeiertagShift 1
-#define LOG_MariaEmpfaengnis                    2502      // 1 Bit, Bit 0
+#define LOG_MariaEmpfaengnis                    3345      // 1 Bit, Bit 0
 #define     LOG_MariaEmpfaengnisMask 0x01
 #define     LOG_MariaEmpfaengnisShift 0
-#define LOG_NationalfeiertagSchweiz             2503      // 1 Bit, Bit 7
+#define LOG_NationalfeiertagSchweiz             3346      // 1 Bit, Bit 7
 #define     LOG_NationalfeiertagSchweizMask 0x80
 #define     LOG_NationalfeiertagSchweizShift 7
-#define LOG_Totensonntag                        2503      // 1 Bit, Bit 6
+#define LOG_Totensonntag                        3346      // 1 Bit, Bit 6
 #define     LOG_TotensonntagMask 0x40
 #define     LOG_TotensonntagShift 6
-#define LOG_Weltkindertag                       2503      // 1 Bit, Bit 5
+#define LOG_Weltkindertag                       3346      // 1 Bit, Bit 5
 #define     LOG_WeltkindertagMask 0x20
 #define     LOG_WeltkindertagShift 5
-#define LOG_UserFormula1                        2504      // char*, 99 Byte
+#define LOG_UserFormula1                        3347      // char*, 99 Byte
 #define     LOG_UserFormula1Length 99
-#define LOG_UserFormula1Active                  2603      // 1 Bit, Bit 7
+#define LOG_UserFormula1Active                  3446      // 1 Bit, Bit 7
 #define     LOG_UserFormula1ActiveMask 0x80
 #define     LOG_UserFormula1ActiveShift 7
-#define LOG_UserFormula2                        2604      // char*, 99 Byte
+#define LOG_UserFormula2                        3447      // char*, 99 Byte
 #define     LOG_UserFormula2Length 99
-#define LOG_UserFormula2Active                  2703      // 1 Bit, Bit 7
+#define LOG_UserFormula2Active                  3546      // 1 Bit, Bit 7
 #define     LOG_UserFormula2ActiveMask 0x80
 #define     LOG_UserFormula2ActiveShift 7
-#define LOG_UserFormula3                        2704      // char*, 99 Byte
+#define LOG_UserFormula3                        3547      // char*, 99 Byte
 #define     LOG_UserFormula3Length 99
-#define LOG_UserFormula3Active                  2803      // 1 Bit, Bit 7
+#define LOG_UserFormula3Active                  3646      // 1 Bit, Bit 7
 #define     LOG_UserFormula3ActiveMask 0x80
 #define     LOG_UserFormula3ActiveShift 7
-#define LOG_UserFormula4                        2804      // char*, 99 Byte
+#define LOG_UserFormula4                        3647      // char*, 99 Byte
 #define     LOG_UserFormula4Length 99
-#define LOG_UserFormula4Active                  2903      // 1 Bit, Bit 7
+#define LOG_UserFormula4Active                  3746      // 1 Bit, Bit 7
 #define     LOG_UserFormula4ActiveMask 0x80
 #define     LOG_UserFormula4ActiveShift 7
-#define LOG_UserFormula5                        2904      // char*, 99 Byte
+#define LOG_UserFormula5                        3747      // char*, 99 Byte
 #define     LOG_UserFormula5Length 99
-#define LOG_UserFormula5Active                  3003      // 1 Bit, Bit 7
+#define LOG_UserFormula5Active                  3846      // 1 Bit, Bit 7
 #define     LOG_UserFormula5ActiveMask 0x80
 #define     LOG_UserFormula5ActiveShift 7
-#define LOG_UserFormula6                        3004      // char*, 99 Byte
+#define LOG_UserFormula6                        3847      // char*, 99 Byte
 #define     LOG_UserFormula6Length 99
-#define LOG_UserFormula6Active                  3103      // 1 Bit, Bit 7
+#define LOG_UserFormula6Active                  3946      // 1 Bit, Bit 7
 #define     LOG_UserFormula6ActiveMask 0x80
 #define     LOG_UserFormula6ActiveShift 7
-#define LOG_UserFormula7                        3104      // char*, 99 Byte
+#define LOG_UserFormula7                        3947      // char*, 99 Byte
 #define     LOG_UserFormula7Length 99
-#define LOG_UserFormula7Active                  3203      // 1 Bit, Bit 7
+#define LOG_UserFormula7Active                  4046      // 1 Bit, Bit 7
 #define     LOG_UserFormula7ActiveMask 0x80
 #define     LOG_UserFormula7ActiveShift 7
-#define LOG_UserFormula8                        3204      // char*, 99 Byte
+#define LOG_UserFormula8                        4047      // char*, 99 Byte
 #define     LOG_UserFormula8Length 99
-#define LOG_UserFormula8Active                  3303      // 1 Bit, Bit 7
+#define LOG_UserFormula8Active                  4146      // 1 Bit, Bit 7
 #define     LOG_UserFormula8ActiveMask 0x80
 #define     LOG_UserFormula8ActiveShift 7
-#define LOG_UserFormula9                        3304      // char*, 99 Byte
+#define LOG_UserFormula9                        4147      // char*, 99 Byte
 #define     LOG_UserFormula9Length 99
-#define LOG_UserFormula9Active                  3403      // 1 Bit, Bit 7
+#define LOG_UserFormula9Active                  4246      // 1 Bit, Bit 7
 #define     LOG_UserFormula9ActiveMask 0x80
 #define     LOG_UserFormula9ActiveShift 7
-#define LOG_UserFormula10                       3404      // char*, 99 Byte
+#define LOG_UserFormula10                       4247      // char*, 99 Byte
 #define     LOG_UserFormula10Length 99
-#define LOG_UserFormula10Active                 3503      // 1 Bit, Bit 7
+#define LOG_UserFormula10Active                 4346      // 1 Bit, Bit 7
 #define     LOG_UserFormula10ActiveMask 0x80
 #define     LOG_UserFormula10ActiveShift 7
-#define LOG_UserFormula11                       3504      // char*, 99 Byte
+#define LOG_UserFormula11                       4347      // char*, 99 Byte
 #define     LOG_UserFormula11Length 99
-#define LOG_UserFormula11Active                 3603      // 1 Bit, Bit 7
+#define LOG_UserFormula11Active                 4446      // 1 Bit, Bit 7
 #define     LOG_UserFormula11ActiveMask 0x80
 #define     LOG_UserFormula11ActiveShift 7
-#define LOG_UserFormula12                       3604      // char*, 99 Byte
+#define LOG_UserFormula12                       4447      // char*, 99 Byte
 #define     LOG_UserFormula12Length 99
-#define LOG_UserFormula12Active                 3703      // 1 Bit, Bit 7
+#define LOG_UserFormula12Active                 4546      // 1 Bit, Bit 7
 #define     LOG_UserFormula12ActiveMask 0x80
 #define     LOG_UserFormula12ActiveShift 7
-#define LOG_UserFormula13                       3704      // char*, 99 Byte
+#define LOG_UserFormula13                       4547      // char*, 99 Byte
 #define     LOG_UserFormula13Length 99
-#define LOG_UserFormula13Active                 3803      // 1 Bit, Bit 7
+#define LOG_UserFormula13Active                 4646      // 1 Bit, Bit 7
 #define     LOG_UserFormula13ActiveMask 0x80
 #define     LOG_UserFormula13ActiveShift 7
-#define LOG_UserFormula14                       3804      // char*, 99 Byte
+#define LOG_UserFormula14                       4647      // char*, 99 Byte
 #define     LOG_UserFormula14Length 99
-#define LOG_UserFormula14Active                 3903      // 1 Bit, Bit 7
+#define LOG_UserFormula14Active                 4746      // 1 Bit, Bit 7
 #define     LOG_UserFormula14ActiveMask 0x80
 #define     LOG_UserFormula14ActiveShift 7
-#define LOG_UserFormula15                       3904      // char*, 99 Byte
+#define LOG_UserFormula15                       4747      // char*, 99 Byte
 #define     LOG_UserFormula15Length 99
-#define LOG_UserFormula15Active                 4003      // 1 Bit, Bit 7
+#define LOG_UserFormula15Active                 4846      // 1 Bit, Bit 7
 #define     LOG_UserFormula15ActiveMask 0x80
 #define     LOG_UserFormula15ActiveShift 7
-#define LOG_UserFormula16                       4004      // char*, 99 Byte
+#define LOG_UserFormula16                       4847      // char*, 99 Byte
 #define     LOG_UserFormula16Length 99
-#define LOG_UserFormula16Active                 4103      // 1 Bit, Bit 7
+#define LOG_UserFormula16Active                 4946      // 1 Bit, Bit 7
 #define     LOG_UserFormula16ActiveMask 0x80
 #define     LOG_UserFormula16ActiveShift 7
-#define LOG_UserFormula17                       4104      // char*, 99 Byte
+#define LOG_UserFormula17                       4947      // char*, 99 Byte
 #define     LOG_UserFormula17Length 99
-#define LOG_UserFormula17Active                 4203      // 1 Bit, Bit 7
+#define LOG_UserFormula17Active                 5046      // 1 Bit, Bit 7
 #define     LOG_UserFormula17ActiveMask 0x80
 #define     LOG_UserFormula17ActiveShift 7
-#define LOG_UserFormula18                       4204      // char*, 99 Byte
+#define LOG_UserFormula18                       5047      // char*, 99 Byte
 #define     LOG_UserFormula18Length 99
-#define LOG_UserFormula18Active                 4303      // 1 Bit, Bit 7
+#define LOG_UserFormula18Active                 5146      // 1 Bit, Bit 7
 #define     LOG_UserFormula18ActiveMask 0x80
 #define     LOG_UserFormula18ActiveShift 7
-#define LOG_UserFormula19                       4304      // char*, 99 Byte
+#define LOG_UserFormula19                       5147      // char*, 99 Byte
 #define     LOG_UserFormula19Length 99
-#define LOG_UserFormula19Active                 4403      // 1 Bit, Bit 7
+#define LOG_UserFormula19Active                 5246      // 1 Bit, Bit 7
 #define     LOG_UserFormula19ActiveMask 0x80
 #define     LOG_UserFormula19ActiveShift 7
-#define LOG_UserFormula20                       4404      // char*, 99 Byte
+#define LOG_UserFormula20                       5247      // char*, 99 Byte
 #define     LOG_UserFormula20Length 99
-#define LOG_UserFormula20Active                 4503      // 1 Bit, Bit 7
+#define LOG_UserFormula20Active                 5346      // 1 Bit, Bit 7
 #define     LOG_UserFormula20ActiveMask 0x80
 #define     LOG_UserFormula20ActiveShift 7
-#define LOG_UserFormula21                       4504      // char*, 99 Byte
+#define LOG_UserFormula21                       5347      // char*, 99 Byte
 #define     LOG_UserFormula21Length 99
-#define LOG_UserFormula21Active                 4603      // 1 Bit, Bit 7
+#define LOG_UserFormula21Active                 5446      // 1 Bit, Bit 7
 #define     LOG_UserFormula21ActiveMask 0x80
 #define     LOG_UserFormula21ActiveShift 7
-#define LOG_UserFormula22                       4604      // char*, 99 Byte
+#define LOG_UserFormula22                       5447      // char*, 99 Byte
 #define     LOG_UserFormula22Length 99
-#define LOG_UserFormula22Active                 4703      // 1 Bit, Bit 7
+#define LOG_UserFormula22Active                 5546      // 1 Bit, Bit 7
 #define     LOG_UserFormula22ActiveMask 0x80
 #define     LOG_UserFormula22ActiveShift 7
-#define LOG_UserFormula23                       4704      // char*, 99 Byte
+#define LOG_UserFormula23                       5547      // char*, 99 Byte
 #define     LOG_UserFormula23Length 99
-#define LOG_UserFormula23Active                 4803      // 1 Bit, Bit 7
+#define LOG_UserFormula23Active                 5646      // 1 Bit, Bit 7
 #define     LOG_UserFormula23ActiveMask 0x80
 #define     LOG_UserFormula23ActiveShift 7
-#define LOG_UserFormula24                       4804      // char*, 99 Byte
+#define LOG_UserFormula24                       5647      // char*, 99 Byte
 #define     LOG_UserFormula24Length 99
-#define LOG_UserFormula24Active                 4903      // 1 Bit, Bit 7
+#define LOG_UserFormula24Active                 5746      // 1 Bit, Bit 7
 #define     LOG_UserFormula24ActiveMask 0x80
 #define     LOG_UserFormula24ActiveShift 7
-#define LOG_UserFormula25                       4904      // char*, 99 Byte
+#define LOG_UserFormula25                       5747      // char*, 99 Byte
 #define     LOG_UserFormula25Length 99
-#define LOG_UserFormula25Active                 5003      // 1 Bit, Bit 7
+#define LOG_UserFormula25Active                 5846      // 1 Bit, Bit 7
 #define     LOG_UserFormula25ActiveMask 0x80
 #define     LOG_UserFormula25ActiveShift 7
-#define LOG_UserFormula26                       5004      // char*, 99 Byte
+#define LOG_UserFormula26                       5847      // char*, 99 Byte
 #define     LOG_UserFormula26Length 99
-#define LOG_UserFormula26Active                 5103      // 1 Bit, Bit 7
+#define LOG_UserFormula26Active                 5946      // 1 Bit, Bit 7
 #define     LOG_UserFormula26ActiveMask 0x80
 #define     LOG_UserFormula26ActiveShift 7
-#define LOG_UserFormula27                       5104      // char*, 99 Byte
+#define LOG_UserFormula27                       5947      // char*, 99 Byte
 #define     LOG_UserFormula27Length 99
-#define LOG_UserFormula27Active                 5203      // 1 Bit, Bit 7
+#define LOG_UserFormula27Active                 6046      // 1 Bit, Bit 7
 #define     LOG_UserFormula27ActiveMask 0x80
 #define     LOG_UserFormula27ActiveShift 7
-#define LOG_UserFormula28                       5204      // char*, 99 Byte
+#define LOG_UserFormula28                       6047      // char*, 99 Byte
 #define     LOG_UserFormula28Length 99
-#define LOG_UserFormula28Active                 5303      // 1 Bit, Bit 7
+#define LOG_UserFormula28Active                 6146      // 1 Bit, Bit 7
 #define     LOG_UserFormula28ActiveMask 0x80
 #define     LOG_UserFormula28ActiveShift 7
-#define LOG_UserFormula29                       5304      // char*, 99 Byte
+#define LOG_UserFormula29                       6147      // char*, 99 Byte
 #define     LOG_UserFormula29Length 99
-#define LOG_UserFormula29Active                 5403      // 1 Bit, Bit 7
+#define LOG_UserFormula29Active                 6246      // 1 Bit, Bit 7
 #define     LOG_UserFormula29ActiveMask 0x80
 #define     LOG_UserFormula29ActiveShift 7
-#define LOG_UserFormula30                       5404      // char*, 99 Byte
+#define LOG_UserFormula30                       6247      // char*, 99 Byte
 #define     LOG_UserFormula30Length 99
-#define LOG_UserFormula30Active                 5503      // 1 Bit, Bit 7
+#define LOG_UserFormula30Active                 6346      // 1 Bit, Bit 7
 #define     LOG_UserFormula30ActiveMask 0x80
 #define     LOG_UserFormula30ActiveShift 7
 
@@ -1604,7 +2228,7 @@
 #define LOG_ChannelCount 50
 
 // Parameter per channel
-#define LOG_ParamBlockOffset 5504
+#define LOG_ParamBlockOffset 6347
 #define LOG_ParamBlockSize 87
 #define LOG_ParamCalcIndex(index) (index + LOG_ParamBlockOffset + _channelIndex * LOG_ParamBlockSize)
 
@@ -3478,7 +4102,7 @@
 // Ausgang
 #define KoLOG_KOfO                                (knx.getGroupObject(LOG_KoCalcNumber(LOG_KoKOfO)))
 
-#define FCB_VisibleChannels                     9854      // uint8_t
+#define FCB_VisibleChannels                     10697      // uint8_t
 
 // Verfügbare Kanäle
 #define ParamFCB_VisibleChannels                     (knx.paramByte(FCB_VisibleChannels))
@@ -3486,7 +4110,7 @@
 #define FCB_ChannelCount 15
 
 // Parameter per channel
-#define FCB_ParamBlockOffset 9855
+#define FCB_ParamBlockOffset 10698
 #define FCB_ParamBlockSize 81
 #define FCB_ParamCalcIndex(index) (index + FCB_ParamBlockOffset + _channelIndex * FCB_ParamBlockSize)
 
@@ -4558,7 +5182,7 @@
 #define BASE_KommentarModuleModuleParamSize 0
 #define BASE_KommentarModuleSubmodulesParamSize 0
 #define BASE_KommentarModuleParamSize 0
-#define BASE_KommentarModuleParamOffset 11070
+#define BASE_KommentarModuleParamOffset 11913
 #define BASE_KommentarModuleCalcIndex(index, m1) (index + BASE_KommentarModuleParamOffset + _channelIndex * BASE_KommentarModuleCount * BASE_KommentarModuleParamSize + m1 * BASE_KommentarModuleParamSize)
 
 

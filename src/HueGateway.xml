@@ -35,8 +35,8 @@
   <op:define prefix="HUE" ModuleType="14"
     share="../lib/OFM-HueGatewayModule/src/HueGatewayModule.share.xml"
     template="../lib/OFM-HueGatewayModule/src/HueGatewayModule.templ.xml"
-    NumChannels="20"
-    KoOffset="501"
+    NumChannels="24"
+    KoOffset="517"
     KoBlockSize="9"
     KoSingleOffset="480">
     <op:verify File="../lib/OFM-HueGatewayModule/library.json" ModuleVersion="%HUE_VerifyVersion%" />

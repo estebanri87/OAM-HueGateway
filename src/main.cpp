@@ -60,9 +60,11 @@ OpenKNX::Led::GPIO *led2 = nullptr;
 OpenKNX::Led::GPIO *led3 = nullptr;
 #endif
 
+const uint8_t firmwareRevision = 2;
+
 void setup()
 {
-  openknx.init(0);
+  openknx.init(firmwareRevision);
 #ifdef PROG_LED_PIN2
   led2 = new OpenKNX::Led::GPIO(PROG_LED_PIN2, PROG_LED_PIN2_ACTIVE_ON);
   led2->init();
