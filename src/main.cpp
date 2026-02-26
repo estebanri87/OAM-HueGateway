@@ -60,7 +60,7 @@ OpenKNX::Led::GPIO *led2 = nullptr;
 OpenKNX::Led::GPIO *led3 = nullptr;
 #endif
 
-const uint8_t firmwareRevision = 2;
+const uint8_t firmwareRevision = 0;
 
 void setup()
 {
