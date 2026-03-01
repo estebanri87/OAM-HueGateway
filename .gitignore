@@ -14,4 +14,5 @@ src/*.generated.xml
 compile_commands.json
 include/versions.h
 data/
+Archiv_Build/
 doc/Hue-Runtime-Checkplan.md
