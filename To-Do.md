@@ -1,24 +1,20 @@
 
-To-Do für V0.4 Beta
+To-Do für v0.3.5 Beta
 
-- Stabilisierung Event Stream und Memorylast + generelle Performance Optimierung
+- Rückmeldungen Torben abwarten und ggf. Bugfixing
 
-- Kontexthilfe überarbeiten
+- Helligkeit dimmen relativ per Taster (DPT 3.007) 
 
-- Helligkeit dimmen relativ per Taster (DPT 3.007)
+Backlog für V0.4 Beta
 
-- Erweiterung der Hue Kanäle auf 32 
-
-- Rückmeldung Torben 
-
-To-Do für V0.5 Beta
-
-- Weitere Hue Komponenten (Bewegunsmelder, Dimm-Schalter, Drehschalter etc.) implementieren
-
-- Hue Szenen implementieren oder 1 Bit/1Byte KNX Szenen integration möglich?
+- Hue Szenen implementieren oder 1 Byte KNX Szenen integration
     - KNX Nativ Recall only 
     - Später Hue Scene Recall als zweite Betriebsart
 
-Generell zu klärennde Features: 
+- Kontexthilfe überarbeiten
 
-- Möglichkeit zweite Hue Bridge implementieren notwendig ? Tendenziell nicht nötig da Hue Bridge Pro 150 Geräte kann. Eher Fokus auf Funktionen. 
+Backlog für V0.5 Beta
+
+- Weitere Hue Komponenten (Bewegunsmelder, Dimm-Schalter, Drehschalter etc.) implementieren
+
+- Erweiterung der Hue Kanäle auf 32 
