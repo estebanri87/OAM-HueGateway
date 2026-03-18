@@ -9,7 +9,7 @@
 ## Stand Version 0.3
 
 - Bis zu **24 Hue-Kanäle** projektierbar.
-- Bis zu **8 HCL Manager** konfigurierbar und nutzbar.
+- Bis zu **8 Lichtmanager** konfigurierbar und nutzbar.
 - Globales Schaltverhalten über ETS einstellbar:
 	- **Einschaltgeschwindigkeit (Sekunden)**
 	- **Ausschaltgeschwindigkeit (Sekunden)**
