@@ -20,6 +20,8 @@
             "args": [
                 "create",
                 "--Debug",
+                "--HeaderFileName",
+                "../include/knxprod.h",
                 "HueGateway"
             ],
             "problemMatcher": [],
