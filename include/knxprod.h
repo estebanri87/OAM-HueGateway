@@ -20,7 +20,7 @@
 #define MAIN_ApplicationNumber 42
 #define MAIN_ApplicationVersion 3
 #define MAIN_ApplicationEncoding iso-8859-15
-#define MAIN_ParameterSize 11924
+#define MAIN_ParameterSize 12279
 #define MAIN_MaxKoNumber 780
 #define MAIN_OrderNumber "OpenKNX-SR-HUE"
 #define BASE_ModuleVersion 23
@@ -259,8 +259,7 @@
 
 
 #define HUE_HUEBridgeMode                       225      // 8 Bits, Bit 7-0
-#define HUE_HUEBridgeIP                         226      // char*, 25 Byte
-#define     HUE_HUEBridgeIPLength 25
+#define HUE_HUEBridgeIP                         226      // IP address, 4 Byte
 #define HUE_HUEResetAuth                        251      // 1 Bit, Bit 7
 #define     HUE_HUEResetAuthMask 0x80
 #define     HUE_HUEResetAuthShift 7
@@ -275,9 +274,43 @@
 #define HUE_HUEHCLMasterCount                   257      // uint8_t
 #define HUE_HUEHCLUpdateInterval                258      // uint16_t
 #define HUE_HUEHCLFadeDuration                  260      // uint8_t
-#define HUE_HUEHCLLockFallback                  1251      // 4 Bits, Bit 7-4
-#define     HUE_HUEHCLLockFallbackMask 0xF0
-#define     HUE_HUEHCLLockFallbackShift 4
+#define HUE_HUEHCLLockFallback                  1266      // 8 Bits, Bit 7-0
+#define HUE_HUEHCLFallbackPolicy                1263      // 8 Bits, Bit 7-0
+#define HUE_HUEHCLFallbackDurationSec           1264      // uint16_t
+#define HUE_HUEHCLFallbackReleaseTime           1268      // char*, 5 Byte
+#define     HUE_HUEHCLFallbackReleaseTimeLength 5
+#define HUE_HUEHCLM1FallbackPolicy              1554      // 8 Bits, Bit 7-0
+#define HUE_HUEHCLM2FallbackPolicy              1555      // 8 Bits, Bit 7-0
+#define HUE_HUEHCLM3FallbackPolicy              1556      // 8 Bits, Bit 7-0
+#define HUE_HUEHCLM4FallbackPolicy              1557      // 8 Bits, Bit 7-0
+#define HUE_HUEHCLM5FallbackPolicy              1558      // 8 Bits, Bit 7-0
+#define HUE_HUEHCLM6FallbackPolicy              1559      // 8 Bits, Bit 7-0
+#define HUE_HUEHCLM7FallbackPolicy              1560      // 8 Bits, Bit 7-0
+#define HUE_HUEHCLM8FallbackPolicy              1561      // 8 Bits, Bit 7-0
+#define HUE_HUEHCLM1FallbackDurationSec         1562      // uint16_t
+#define HUE_HUEHCLM2FallbackDurationSec         1564      // uint16_t
+#define HUE_HUEHCLM3FallbackDurationSec         1566      // uint16_t
+#define HUE_HUEHCLM4FallbackDurationSec         1568      // uint16_t
+#define HUE_HUEHCLM5FallbackDurationSec         1570      // uint16_t
+#define HUE_HUEHCLM6FallbackDurationSec         1572      // uint16_t
+#define HUE_HUEHCLM7FallbackDurationSec         1574      // uint16_t
+#define HUE_HUEHCLM8FallbackDurationSec         1576      // uint16_t
+#define HUE_HUEHCLM1FallbackReleaseTime         1578      // char*, 5 Byte
+#define     HUE_HUEHCLM1FallbackReleaseTimeLength 5
+#define HUE_HUEHCLM2FallbackReleaseTime         1583      // char*, 5 Byte
+#define     HUE_HUEHCLM2FallbackReleaseTimeLength 5
+#define HUE_HUEHCLM3FallbackReleaseTime         1588      // char*, 5 Byte
+#define     HUE_HUEHCLM3FallbackReleaseTimeLength 5
+#define HUE_HUEHCLM4FallbackReleaseTime         1593      // char*, 5 Byte
+#define     HUE_HUEHCLM4FallbackReleaseTimeLength 5
+#define HUE_HUEHCLM5FallbackReleaseTime         1598      // char*, 5 Byte
+#define     HUE_HUEHCLM5FallbackReleaseTimeLength 5
+#define HUE_HUEHCLM6FallbackReleaseTime         1603      // char*, 5 Byte
+#define     HUE_HUEHCLM6FallbackReleaseTimeLength 5
+#define HUE_HUEHCLM7FallbackReleaseTime         1608      // char*, 5 Byte
+#define     HUE_HUEHCLM7FallbackReleaseTimeLength 5
+#define HUE_HUEHCLM8FallbackReleaseTime         1613      // char*, 5 Byte
+#define     HUE_HUEHCLM8FallbackReleaseTimeLength 5
 #define HUE_HUEHCLM1StatusKoEnable              1252      // 1 Bit, Bit 7
 #define     HUE_HUEHCLM1StatusKoEnableMask 0x80
 #define     HUE_HUEHCLM1StatusKoEnableShift 7
@@ -290,18 +323,10 @@
 #define HUE_HUEHCLM4StatusKoEnable              1252      // 1 Bit, Bit 4
 #define     HUE_HUEHCLM4StatusKoEnableMask 0x10
 #define     HUE_HUEHCLM4StatusKoEnableShift 4
-#define HUE_HUEHCLM1LockFallback                1253      // 4 Bits, Bit 7-4
-#define     HUE_HUEHCLM1LockFallbackMask 0xF0
-#define     HUE_HUEHCLM1LockFallbackShift 4
-#define HUE_HUEHCLM2LockFallback                1254      // 4 Bits, Bit 7-4
-#define     HUE_HUEHCLM2LockFallbackMask 0xF0
-#define     HUE_HUEHCLM2LockFallbackShift 4
-#define HUE_HUEHCLM3LockFallback                1255      // 4 Bits, Bit 7-4
-#define     HUE_HUEHCLM3LockFallbackMask 0xF0
-#define     HUE_HUEHCLM3LockFallbackShift 4
-#define HUE_HUEHCLM4LockFallback                1256      // 4 Bits, Bit 7-4
-#define     HUE_HUEHCLM4LockFallbackMask 0xF0
-#define     HUE_HUEHCLM4LockFallbackShift 4
+#define HUE_HUEHCLM1LockFallback                1253      // 8 Bits, Bit 7-0
+#define HUE_HUEHCLM2LockFallback                1254      // 8 Bits, Bit 7-0
+#define HUE_HUEHCLM3LockFallback                1255      // 8 Bits, Bit 7-0
+#define HUE_HUEHCLM4LockFallback                1256      // 8 Bits, Bit 7-0
 #define HUE_HUEHCLM5StatusKoEnable              1252      // 1 Bit, Bit 3
 #define     HUE_HUEHCLM5StatusKoEnableMask 0x08
 #define     HUE_HUEHCLM5StatusKoEnableShift 3
@@ -314,18 +339,10 @@
 #define HUE_HUEHCLM8StatusKoEnable              1252      // 1 Bit, Bit 0
 #define     HUE_HUEHCLM8StatusKoEnableMask 0x01
 #define     HUE_HUEHCLM8StatusKoEnableShift 0
-#define HUE_HUEHCLM5LockFallback                1257      // 4 Bits, Bit 7-4
-#define     HUE_HUEHCLM5LockFallbackMask 0xF0
-#define     HUE_HUEHCLM5LockFallbackShift 4
-#define HUE_HUEHCLM6LockFallback                1258      // 4 Bits, Bit 7-4
-#define     HUE_HUEHCLM6LockFallbackMask 0xF0
-#define     HUE_HUEHCLM6LockFallbackShift 4
-#define HUE_HUEHCLM7LockFallback                1259      // 4 Bits, Bit 7-4
-#define     HUE_HUEHCLM7LockFallbackMask 0xF0
-#define     HUE_HUEHCLM7LockFallbackShift 4
-#define HUE_HUEHCLM8LockFallback                1260      // 4 Bits, Bit 7-4
-#define     HUE_HUEHCLM8LockFallbackMask 0xF0
-#define     HUE_HUEHCLM8LockFallbackShift 4
+#define HUE_HUEHCLM5LockFallback                1257      // 8 Bits, Bit 7-0
+#define HUE_HUEHCLM6LockFallback                1258      // 8 Bits, Bit 7-0
+#define HUE_HUEHCLM7LockFallback                1259      // 8 Bits, Bit 7-0
+#define HUE_HUEHCLM8LockFallback                1260      // 8 Bits, Bit 7-0
 #define HUE_HCLM1SP0Time                        261      // char*, 5 Byte
 #define     HUE_HCLM1SP0TimeLength 5
 #define HUE_HCLM1SP0Kelvin                      266      // uint16_t
@@ -671,6 +688,10 @@
 #define     HUE_HCLM1SunsetLength 5
 #define HUE_HCLM1SunriseOffset                  696      // int16_t
 #define HUE_HCLM1SunsetOffset                   698      // int16_t
+#define HUE_HCLM1AstroMinKelvin                 1273      // uint16_t
+#define HUE_HCLM1AstroMaxKelvin                 1275      // uint16_t
+#define HUE_HCLM1AstroMinBrightness             1277      // uint8_t
+#define HUE_HCLM1AstroMaxBrightness             1278      // uint8_t
 #define HUE_HCLM2CurveType                      700      // 8 Bits, Bit 7-0
 #define HUE_HCLM2SlewRate                       701      // uint16_t
 #define HUE_HCLM2ManualKelvin                   703      // uint16_t
@@ -680,6 +701,10 @@
 #define     HUE_HCLM2SunsetLength 5
 #define HUE_HCLM2SunriseOffset                  715      // int16_t
 #define HUE_HCLM2SunsetOffset                   717      // int16_t
+#define HUE_HCLM2AstroMinKelvin                 1279      // uint16_t
+#define HUE_HCLM2AstroMaxKelvin                 1281      // uint16_t
+#define HUE_HCLM2AstroMinBrightness             1283      // uint8_t
+#define HUE_HCLM2AstroMaxBrightness             1284      // uint8_t
 #define HUE_HCLM3CurveType                      719      // 8 Bits, Bit 7-0
 #define HUE_HCLM3SlewRate                       720      // uint16_t
 #define HUE_HCLM3ManualKelvin                   722      // uint16_t
@@ -689,6 +714,10 @@
 #define     HUE_HCLM3SunsetLength 5
 #define HUE_HCLM3SunriseOffset                  734      // int16_t
 #define HUE_HCLM3SunsetOffset                   736      // int16_t
+#define HUE_HCLM3AstroMinKelvin                 1285      // uint16_t
+#define HUE_HCLM3AstroMaxKelvin                 1287      // uint16_t
+#define HUE_HCLM3AstroMinBrightness             1289      // uint8_t
+#define HUE_HCLM3AstroMaxBrightness             1290      // uint8_t
 #define HUE_HCLM4CurveType                      738      // 8 Bits, Bit 7-0
 #define HUE_HCLM4SlewRate                       739      // uint16_t
 #define HUE_HCLM4ManualKelvin                   741      // uint16_t
@@ -698,6 +727,10 @@
 #define     HUE_HCLM4SunsetLength 5
 #define HUE_HCLM4SunriseOffset                  753      // int16_t
 #define HUE_HCLM4SunsetOffset                   755      // int16_t
+#define HUE_HCLM4AstroMinKelvin                 1291      // uint16_t
+#define HUE_HCLM4AstroMaxKelvin                 1293      // uint16_t
+#define HUE_HCLM4AstroMinBrightness             1295      // uint8_t
+#define HUE_HCLM4AstroMaxBrightness             1296      // uint8_t
 #define HUE_HCLM5CurveType                      1176      // 8 Bits, Bit 7-0
 #define HUE_HCLM5SlewRate                       1177      // uint16_t
 #define HUE_HCLM5ManualKelvin                   1179      // uint16_t
@@ -707,6 +740,10 @@
 #define     HUE_HCLM5SunsetLength 5
 #define HUE_HCLM5SunriseOffset                  1191      // int16_t
 #define HUE_HCLM5SunsetOffset                   1193      // int16_t
+#define HUE_HCLM5AstroMinKelvin                 1297      // uint16_t
+#define HUE_HCLM5AstroMaxKelvin                 1299      // uint16_t
+#define HUE_HCLM5AstroMinBrightness             1301      // uint8_t
+#define HUE_HCLM5AstroMaxBrightness             1302      // uint8_t
 #define HUE_HCLM6CurveType                      1195      // 8 Bits, Bit 7-0
 #define HUE_HCLM6SlewRate                       1196      // uint16_t
 #define HUE_HCLM6ManualKelvin                   1198      // uint16_t
@@ -716,6 +753,10 @@
 #define     HUE_HCLM6SunsetLength 5
 #define HUE_HCLM6SunriseOffset                  1210      // int16_t
 #define HUE_HCLM6SunsetOffset                   1212      // int16_t
+#define HUE_HCLM6AstroMinKelvin                 1303      // uint16_t
+#define HUE_HCLM6AstroMaxKelvin                 1305      // uint16_t
+#define HUE_HCLM6AstroMinBrightness             1307      // uint8_t
+#define HUE_HCLM6AstroMaxBrightness             1308      // uint8_t
 #define HUE_HCLM7CurveType                      1214      // 8 Bits, Bit 7-0
 #define HUE_HCLM7SlewRate                       1215      // uint16_t
 #define HUE_HCLM7ManualKelvin                   1217      // uint16_t
@@ -725,6 +766,10 @@
 #define     HUE_HCLM7SunsetLength 5
 #define HUE_HCLM7SunriseOffset                  1229      // int16_t
 #define HUE_HCLM7SunsetOffset                   1231      // int16_t
+#define HUE_HCLM7AstroMinKelvin                 1309      // uint16_t
+#define HUE_HCLM7AstroMaxKelvin                 1311      // uint16_t
+#define HUE_HCLM7AstroMinBrightness             1313      // uint8_t
+#define HUE_HCLM7AstroMaxBrightness             1314      // uint8_t
 #define HUE_HCLM8CurveType                      1233      // 8 Bits, Bit 7-0
 #define HUE_HCLM8SlewRate                       1234      // uint16_t
 #define HUE_HCLM8ManualKelvin                   1236      // uint16_t
@@ -734,34 +779,108 @@
 #define     HUE_HCLM8SunsetLength 5
 #define HUE_HCLM8SunriseOffset                  1248      // int16_t
 #define HUE_HCLM8SunsetOffset                   1250      // int16_t
+#define HUE_HCLM8AstroMinKelvin                 1315      // uint16_t
+#define HUE_HCLM8AstroMaxKelvin                 1317      // uint16_t
+#define HUE_HCLM8AstroMinBrightness             1319      // uint8_t
+#define HUE_HCLM8AstroMaxBrightness             1320      // uint8_t
+#define HUE_HCLM1SetpointCount                  1321      // 8 Bits, Bit 7-0
+#define HUE_HCLM2SetpointCount                  1322      // 8 Bits, Bit 7-0
+#define HUE_HCLM3SetpointCount                  1323      // 8 Bits, Bit 7-0
+#define HUE_HCLM4SetpointCount                  1324      // 8 Bits, Bit 7-0
+#define HUE_HCLM5SetpointCount                  1325      // 8 Bits, Bit 7-0
+#define HUE_HCLM6SetpointCount                  1326      // 8 Bits, Bit 7-0
+#define HUE_HCLM7SetpointCount                  1327      // 8 Bits, Bit 7-0
+#define HUE_HCLM8SetpointCount                  1328      // 8 Bits, Bit 7-0
 
 // Bridge Erkennung
 #define ParamHUE_HUEBridgeMode                       (knx.paramByte(HUE_HUEBridgeMode))
 // Bridge IP-Adresse
-#define ParamHUE_HUEBridgeIP                         (knx.paramData(HUE_HUEBridgeIP))
-#define ParamHUE_HUEBridgeIPStr                      (knx.paramString(HUE_HUEBridgeIP, HUE_HUEBridgeIPLength))
+#define ParamHUE_HUEBridgeIP                         (knx.paramInt(HUE_HUEBridgeIP))
 // Authentication zurücksetzen
 #define ParamHUE_HUEResetAuth                        ((bool)(knx.paramByte(HUE_HUEResetAuth) & HUE_HUEResetAuthMask))
 // Status Verbindung
 #define ParamHUE_HUEShowConnectionStatus             ((bool)(knx.paramByte(HUE_HUEShowConnectionStatus) & HUE_HUEShowConnectionStatusMask))
-// Pairing-Zeitfenster (Sekunden)
+// Pairing-Zeitfenster
 #define ParamHUE_HUEPairingWindow                    (knx.paramByte(HUE_HUEPairingWindow))
-// Einschaltgeschwindigkeit (Sekunden)
+// Einschaltgeschwindigkeit
 #define ParamHUE_HUESwitchOnTransitionSec            (knx.paramByte(HUE_HUESwitchOnTransitionSec))
-// Ausschaltgeschwindigkeit (Sekunden)
+// Ausschaltgeschwindigkeit
 #define ParamHUE_HUESwitchOffTransitionSec           (knx.paramByte(HUE_HUESwitchOffTransitionSec))
 // Anzahl aktiver Kanäle
 #define ParamHUE_HUEChannelCount                     (knx.paramByte(HUE_HUEChannelCount))
-// Human Centric Lighting (HCL)
+// Lichtmanager
 #define ParamHUE_HUEHCLEnable                        (knx.paramByte(HUE_HUEHCLEnable))
-// Anzahl HCL Manager
+// Anzahl Lichtmanager
 #define ParamHUE_HUEHCLMasterCount                   (knx.paramByte(HUE_HUEHCLMasterCount))
-// Aktualisierungsintervall (Sekunden)
+// Aktualisierungsintervall
 #define ParamHUE_HUEHCLUpdateInterval                (knx.paramWord(HUE_HUEHCLUpdateInterval))
-// Überblendzeit (Sekunden)
+// Überblendzeit
 #define ParamHUE_HUEHCLFadeDuration                  (knx.paramByte(HUE_HUEHCLFadeDuration))
-// Rückfallzeit nach HCL-Sperre
-#define ParamHUE_HUEHCLLockFallback                  ((knx.paramByte(HUE_HUEHCLLockFallback) & HUE_HUEHCLLockFallbackMask) >> HUE_HUEHCLLockFallbackShift)
+// Rückfallzeit nach Sperre
+#define ParamHUE_HUEHCLLockFallback                  (knx.paramByte(HUE_HUEHCLLockFallback))
+// Rückfallstrategie nach Sperre
+#define ParamHUE_HUEHCLFallbackPolicy                (knx.paramByte(HUE_HUEHCLFallbackPolicy))
+// Freie Rückfalldauer
+#define ParamHUE_HUEHCLFallbackDurationSec           (knx.paramWord(HUE_HUEHCLFallbackDurationSec))
+// Rückfall-Uhrzeit
+#define ParamHUE_HUEHCLFallbackReleaseTime           (knx.paramData(HUE_HUEHCLFallbackReleaseTime))
+#define ParamHUE_HUEHCLFallbackReleaseTimeStr        (knx.paramString(HUE_HUEHCLFallbackReleaseTime, HUE_HUEHCLFallbackReleaseTimeLength))
+// Rückfallstrategie nach Sperre
+#define ParamHUE_HUEHCLM1FallbackPolicy              (knx.paramByte(HUE_HUEHCLM1FallbackPolicy))
+// Rückfallstrategie nach Sperre
+#define ParamHUE_HUEHCLM2FallbackPolicy              (knx.paramByte(HUE_HUEHCLM2FallbackPolicy))
+// Rückfallstrategie nach Sperre
+#define ParamHUE_HUEHCLM3FallbackPolicy              (knx.paramByte(HUE_HUEHCLM3FallbackPolicy))
+// Rückfallstrategie nach Sperre
+#define ParamHUE_HUEHCLM4FallbackPolicy              (knx.paramByte(HUE_HUEHCLM4FallbackPolicy))
+// Rückfallstrategie nach Sperre
+#define ParamHUE_HUEHCLM5FallbackPolicy              (knx.paramByte(HUE_HUEHCLM5FallbackPolicy))
+// Rückfallstrategie nach Sperre
+#define ParamHUE_HUEHCLM6FallbackPolicy              (knx.paramByte(HUE_HUEHCLM6FallbackPolicy))
+// Rückfallstrategie nach Sperre
+#define ParamHUE_HUEHCLM7FallbackPolicy              (knx.paramByte(HUE_HUEHCLM7FallbackPolicy))
+// Rückfallstrategie nach Sperre
+#define ParamHUE_HUEHCLM8FallbackPolicy              (knx.paramByte(HUE_HUEHCLM8FallbackPolicy))
+// Freie Rückfalldauer
+#define ParamHUE_HUEHCLM1FallbackDurationSec         (knx.paramWord(HUE_HUEHCLM1FallbackDurationSec))
+// Freie Rückfalldauer
+#define ParamHUE_HUEHCLM2FallbackDurationSec         (knx.paramWord(HUE_HUEHCLM2FallbackDurationSec))
+// Freie Rückfalldauer
+#define ParamHUE_HUEHCLM3FallbackDurationSec         (knx.paramWord(HUE_HUEHCLM3FallbackDurationSec))
+// Freie Rückfalldauer
+#define ParamHUE_HUEHCLM4FallbackDurationSec         (knx.paramWord(HUE_HUEHCLM4FallbackDurationSec))
+// Freie Rückfalldauer
+#define ParamHUE_HUEHCLM5FallbackDurationSec         (knx.paramWord(HUE_HUEHCLM5FallbackDurationSec))
+// Freie Rückfalldauer
+#define ParamHUE_HUEHCLM6FallbackDurationSec         (knx.paramWord(HUE_HUEHCLM6FallbackDurationSec))
+// Freie Rückfalldauer
+#define ParamHUE_HUEHCLM7FallbackDurationSec         (knx.paramWord(HUE_HUEHCLM7FallbackDurationSec))
+// Freie Rückfalldauer
+#define ParamHUE_HUEHCLM8FallbackDurationSec         (knx.paramWord(HUE_HUEHCLM8FallbackDurationSec))
+// Rückfall-Uhrzeit
+#define ParamHUE_HUEHCLM1FallbackReleaseTime         (knx.paramData(HUE_HUEHCLM1FallbackReleaseTime))
+#define ParamHUE_HUEHCLM1FallbackReleaseTimeStr      (knx.paramString(HUE_HUEHCLM1FallbackReleaseTime, HUE_HUEHCLM1FallbackReleaseTimeLength))
+// Rückfall-Uhrzeit
+#define ParamHUE_HUEHCLM2FallbackReleaseTime         (knx.paramData(HUE_HUEHCLM2FallbackReleaseTime))
+#define ParamHUE_HUEHCLM2FallbackReleaseTimeStr      (knx.paramString(HUE_HUEHCLM2FallbackReleaseTime, HUE_HUEHCLM2FallbackReleaseTimeLength))
+// Rückfall-Uhrzeit
+#define ParamHUE_HUEHCLM3FallbackReleaseTime         (knx.paramData(HUE_HUEHCLM3FallbackReleaseTime))
+#define ParamHUE_HUEHCLM3FallbackReleaseTimeStr      (knx.paramString(HUE_HUEHCLM3FallbackReleaseTime, HUE_HUEHCLM3FallbackReleaseTimeLength))
+// Rückfall-Uhrzeit
+#define ParamHUE_HUEHCLM4FallbackReleaseTime         (knx.paramData(HUE_HUEHCLM4FallbackReleaseTime))
+#define ParamHUE_HUEHCLM4FallbackReleaseTimeStr      (knx.paramString(HUE_HUEHCLM4FallbackReleaseTime, HUE_HUEHCLM4FallbackReleaseTimeLength))
+// Rückfall-Uhrzeit
+#define ParamHUE_HUEHCLM5FallbackReleaseTime         (knx.paramData(HUE_HUEHCLM5FallbackReleaseTime))
+#define ParamHUE_HUEHCLM5FallbackReleaseTimeStr      (knx.paramString(HUE_HUEHCLM5FallbackReleaseTime, HUE_HUEHCLM5FallbackReleaseTimeLength))
+// Rückfall-Uhrzeit
+#define ParamHUE_HUEHCLM6FallbackReleaseTime         (knx.paramData(HUE_HUEHCLM6FallbackReleaseTime))
+#define ParamHUE_HUEHCLM6FallbackReleaseTimeStr      (knx.paramString(HUE_HUEHCLM6FallbackReleaseTime, HUE_HUEHCLM6FallbackReleaseTimeLength))
+// Rückfall-Uhrzeit
+#define ParamHUE_HUEHCLM7FallbackReleaseTime         (knx.paramData(HUE_HUEHCLM7FallbackReleaseTime))
+#define ParamHUE_HUEHCLM7FallbackReleaseTimeStr      (knx.paramString(HUE_HUEHCLM7FallbackReleaseTime, HUE_HUEHCLM7FallbackReleaseTimeLength))
+// Rückfall-Uhrzeit
+#define ParamHUE_HUEHCLM8FallbackReleaseTime         (knx.paramData(HUE_HUEHCLM8FallbackReleaseTime))
+#define ParamHUE_HUEHCLM8FallbackReleaseTimeStr      (knx.paramString(HUE_HUEHCLM8FallbackReleaseTime, HUE_HUEHCLM8FallbackReleaseTimeLength))
 // Manager 1 Status-KOs verwenden
 #define ParamHUE_HUEHCLM1StatusKoEnable              ((bool)(knx.paramByte(HUE_HUEHCLM1StatusKoEnable) & HUE_HUEHCLM1StatusKoEnableMask))
 // Manager 2 Status-KOs verwenden
@@ -770,14 +889,14 @@
 #define ParamHUE_HUEHCLM3StatusKoEnable              ((bool)(knx.paramByte(HUE_HUEHCLM3StatusKoEnable) & HUE_HUEHCLM3StatusKoEnableMask))
 // Manager 4 Status-KOs verwenden
 #define ParamHUE_HUEHCLM4StatusKoEnable              ((bool)(knx.paramByte(HUE_HUEHCLM4StatusKoEnable) & HUE_HUEHCLM4StatusKoEnableMask))
-// Rückfallzeit nach HCL-Sperre
-#define ParamHUE_HUEHCLM1LockFallback                ((knx.paramByte(HUE_HUEHCLM1LockFallback) & HUE_HUEHCLM1LockFallbackMask) >> HUE_HUEHCLM1LockFallbackShift)
-// Rückfallzeit nach HCL-Sperre
-#define ParamHUE_HUEHCLM2LockFallback                ((knx.paramByte(HUE_HUEHCLM2LockFallback) & HUE_HUEHCLM2LockFallbackMask) >> HUE_HUEHCLM2LockFallbackShift)
-// Rückfallzeit nach HCL-Sperre
-#define ParamHUE_HUEHCLM3LockFallback                ((knx.paramByte(HUE_HUEHCLM3LockFallback) & HUE_HUEHCLM3LockFallbackMask) >> HUE_HUEHCLM3LockFallbackShift)
-// Rückfallzeit nach HCL-Sperre
-#define ParamHUE_HUEHCLM4LockFallback                ((knx.paramByte(HUE_HUEHCLM4LockFallback) & HUE_HUEHCLM4LockFallbackMask) >> HUE_HUEHCLM4LockFallbackShift)
+// Rückfallzeit nach Sperre
+#define ParamHUE_HUEHCLM1LockFallback                (knx.paramByte(HUE_HUEHCLM1LockFallback))
+// Rückfallzeit nach Sperre
+#define ParamHUE_HUEHCLM2LockFallback                (knx.paramByte(HUE_HUEHCLM2LockFallback))
+// Rückfallzeit nach Sperre
+#define ParamHUE_HUEHCLM3LockFallback                (knx.paramByte(HUE_HUEHCLM3LockFallback))
+// Rückfallzeit nach Sperre
+#define ParamHUE_HUEHCLM4LockFallback                (knx.paramByte(HUE_HUEHCLM4LockFallback))
 // Manager 5 Status-KOs verwenden
 #define ParamHUE_HUEHCLM5StatusKoEnable              ((bool)(knx.paramByte(HUE_HUEHCLM5StatusKoEnable) & HUE_HUEHCLM5StatusKoEnableMask))
 // Manager 6 Status-KOs verwenden
@@ -786,284 +905,284 @@
 #define ParamHUE_HUEHCLM7StatusKoEnable              ((bool)(knx.paramByte(HUE_HUEHCLM7StatusKoEnable) & HUE_HUEHCLM7StatusKoEnableMask))
 // Manager 8 Status-KOs verwenden
 #define ParamHUE_HUEHCLM8StatusKoEnable              ((bool)(knx.paramByte(HUE_HUEHCLM8StatusKoEnable) & HUE_HUEHCLM8StatusKoEnableMask))
-// Rückfallzeit nach HCL-Sperre
-#define ParamHUE_HUEHCLM5LockFallback                ((knx.paramByte(HUE_HUEHCLM5LockFallback) & HUE_HUEHCLM5LockFallbackMask) >> HUE_HUEHCLM5LockFallbackShift)
-// Rückfallzeit nach HCL-Sperre
-#define ParamHUE_HUEHCLM6LockFallback                ((knx.paramByte(HUE_HUEHCLM6LockFallback) & HUE_HUEHCLM6LockFallbackMask) >> HUE_HUEHCLM6LockFallbackShift)
-// Rückfallzeit nach HCL-Sperre
-#define ParamHUE_HUEHCLM7LockFallback                ((knx.paramByte(HUE_HUEHCLM7LockFallback) & HUE_HUEHCLM7LockFallbackMask) >> HUE_HUEHCLM7LockFallbackShift)
-// Rückfallzeit nach HCL-Sperre
-#define ParamHUE_HUEHCLM8LockFallback                ((knx.paramByte(HUE_HUEHCLM8LockFallback) & HUE_HUEHCLM8LockFallbackMask) >> HUE_HUEHCLM8LockFallbackShift)
+// Rückfallzeit nach Sperre
+#define ParamHUE_HUEHCLM5LockFallback                (knx.paramByte(HUE_HUEHCLM5LockFallback))
+// Rückfallzeit nach Sperre
+#define ParamHUE_HUEHCLM6LockFallback                (knx.paramByte(HUE_HUEHCLM6LockFallback))
+// Rückfallzeit nach Sperre
+#define ParamHUE_HUEHCLM7LockFallback                (knx.paramByte(HUE_HUEHCLM7LockFallback))
+// Rückfallzeit nach Sperre
+#define ParamHUE_HUEHCLM8LockFallback                (knx.paramByte(HUE_HUEHCLM8LockFallback))
 // M1 SP1 Zeit
 #define ParamHUE_HCLM1SP0Time                        (knx.paramData(HUE_HCLM1SP0Time))
 #define ParamHUE_HCLM1SP0TimeStr                     (knx.paramString(HUE_HCLM1SP0Time, HUE_HCLM1SP0TimeLength))
-// M1 SP1 Kelvin
+// M1 SP1 Farbtemperatur
 #define ParamHUE_HCLM1SP0Kelvin                      (knx.paramWord(HUE_HCLM1SP0Kelvin))
 // M1 SP1 Helligkeit
 #define ParamHUE_HCLM1SP0Brightness                  (knx.paramByte(HUE_HCLM1SP0Brightness))
 // M1 SP2 Zeit
 #define ParamHUE_HCLM1SP1Time                        (knx.paramData(HUE_HCLM1SP1Time))
 #define ParamHUE_HCLM1SP1TimeStr                     (knx.paramString(HUE_HCLM1SP1Time, HUE_HCLM1SP1TimeLength))
-// M1 SP2 Kelvin
+// M1 SP2 Farbtemperatur
 #define ParamHUE_HCLM1SP1Kelvin                      (knx.paramWord(HUE_HCLM1SP1Kelvin))
 // M1 SP2 Helligkeit
 #define ParamHUE_HCLM1SP1Brightness                  (knx.paramByte(HUE_HCLM1SP1Brightness))
 // M1 SP3 Zeit
 #define ParamHUE_HCLM1SP2Time                        (knx.paramData(HUE_HCLM1SP2Time))
 #define ParamHUE_HCLM1SP2TimeStr                     (knx.paramString(HUE_HCLM1SP2Time, HUE_HCLM1SP2TimeLength))
-// M1 SP3 Kelvin
+// M1 SP3 Farbtemperatur
 #define ParamHUE_HCLM1SP2Kelvin                      (knx.paramWord(HUE_HCLM1SP2Kelvin))
 // M1 SP3 Helligkeit
 #define ParamHUE_HCLM1SP2Brightness                  (knx.paramByte(HUE_HCLM1SP2Brightness))
 // M1 SP4 Zeit
 #define ParamHUE_HCLM1SP3Time                        (knx.paramData(HUE_HCLM1SP3Time))
 #define ParamHUE_HCLM1SP3TimeStr                     (knx.paramString(HUE_HCLM1SP3Time, HUE_HCLM1SP3TimeLength))
-// M1 SP4 Kelvin
+// M1 SP4 Farbtemperatur
 #define ParamHUE_HCLM1SP3Kelvin                      (knx.paramWord(HUE_HCLM1SP3Kelvin))
 // M1 SP4 Helligkeit
 #define ParamHUE_HCLM1SP3Brightness                  (knx.paramByte(HUE_HCLM1SP3Brightness))
 // M1 SP5 Zeit
 #define ParamHUE_HCLM1SP4Time                        (knx.paramData(HUE_HCLM1SP4Time))
 #define ParamHUE_HCLM1SP4TimeStr                     (knx.paramString(HUE_HCLM1SP4Time, HUE_HCLM1SP4TimeLength))
-// M1 SP5 Kelvin
+// M1 SP5 Farbtemperatur
 #define ParamHUE_HCLM1SP4Kelvin                      (knx.paramWord(HUE_HCLM1SP4Kelvin))
 // M1 SP5 Helligkeit
 #define ParamHUE_HCLM1SP4Brightness                  (knx.paramByte(HUE_HCLM1SP4Brightness))
 // M1 SP6 Zeit
 #define ParamHUE_HCLM1SP5Time                        (knx.paramData(HUE_HCLM1SP5Time))
 #define ParamHUE_HCLM1SP5TimeStr                     (knx.paramString(HUE_HCLM1SP5Time, HUE_HCLM1SP5TimeLength))
-// M1 SP6 Kelvin
+// M1 SP6 Farbtemperatur
 #define ParamHUE_HCLM1SP5Kelvin                      (knx.paramWord(HUE_HCLM1SP5Kelvin))
 // M1 SP6 Helligkeit
 #define ParamHUE_HCLM1SP5Brightness                  (knx.paramByte(HUE_HCLM1SP5Brightness))
 // M1 SP7 Zeit
 #define ParamHUE_HCLM1SP6Time                        (knx.paramData(HUE_HCLM1SP6Time))
 #define ParamHUE_HCLM1SP6TimeStr                     (knx.paramString(HUE_HCLM1SP6Time, HUE_HCLM1SP6TimeLength))
-// M1 SP7 Kelvin
+// M1 SP7 Farbtemperatur
 #define ParamHUE_HCLM1SP6Kelvin                      (knx.paramWord(HUE_HCLM1SP6Kelvin))
 // M1 SP7 Helligkeit
 #define ParamHUE_HCLM1SP6Brightness                  (knx.paramByte(HUE_HCLM1SP6Brightness))
 // M1 SP8 Zeit
 #define ParamHUE_HCLM1SP7Time                        (knx.paramData(HUE_HCLM1SP7Time))
 #define ParamHUE_HCLM1SP7TimeStr                     (knx.paramString(HUE_HCLM1SP7Time, HUE_HCLM1SP7TimeLength))
-// M1 SP8 Kelvin
+// M1 SP8 Farbtemperatur
 #define ParamHUE_HCLM1SP7Kelvin                      (knx.paramWord(HUE_HCLM1SP7Kelvin))
 // M1 SP8 Helligkeit
 #define ParamHUE_HCLM1SP7Brightness                  (knx.paramByte(HUE_HCLM1SP7Brightness))
 // M1 SP9 Zeit
 #define ParamHUE_HCLM1SP8Time                        (knx.paramData(HUE_HCLM1SP8Time))
 #define ParamHUE_HCLM1SP8TimeStr                     (knx.paramString(HUE_HCLM1SP8Time, HUE_HCLM1SP8TimeLength))
-// M1 SP9 Kelvin
+// M1 SP9 Farbtemperatur
 #define ParamHUE_HCLM1SP8Kelvin                      (knx.paramWord(HUE_HCLM1SP8Kelvin))
 // M1 SP9 Helligkeit
 #define ParamHUE_HCLM1SP8Brightness                  (knx.paramByte(HUE_HCLM1SP8Brightness))
 // M1 SP10 Zeit
 #define ParamHUE_HCLM1SP9Time                        (knx.paramData(HUE_HCLM1SP9Time))
 #define ParamHUE_HCLM1SP9TimeStr                     (knx.paramString(HUE_HCLM1SP9Time, HUE_HCLM1SP9TimeLength))
-// M1 SP10 Kelvin
+// M1 SP10 Farbtemperatur
 #define ParamHUE_HCLM1SP9Kelvin                      (knx.paramWord(HUE_HCLM1SP9Kelvin))
 // M1 SP10 Helligkeit
 #define ParamHUE_HCLM1SP9Brightness                  (knx.paramByte(HUE_HCLM1SP9Brightness))
 // M2 SP1 Zeit
 #define ParamHUE_HCLM2SP0Time                        (knx.paramData(HUE_HCLM2SP0Time))
 #define ParamHUE_HCLM2SP0TimeStr                     (knx.paramString(HUE_HCLM2SP0Time, HUE_HCLM2SP0TimeLength))
-// M2 SP1 Kelvin
+// M2 SP1 Farbtemperatur
 #define ParamHUE_HCLM2SP0Kelvin                      (knx.paramWord(HUE_HCLM2SP0Kelvin))
 // M2 SP1 Helligkeit
 #define ParamHUE_HCLM2SP0Brightness                  (knx.paramByte(HUE_HCLM2SP0Brightness))
 // M2 SP2 Zeit
 #define ParamHUE_HCLM2SP1Time                        (knx.paramData(HUE_HCLM2SP1Time))
 #define ParamHUE_HCLM2SP1TimeStr                     (knx.paramString(HUE_HCLM2SP1Time, HUE_HCLM2SP1TimeLength))
-// M2 SP2 Kelvin
+// M2 SP2 Farbtemperatur
 #define ParamHUE_HCLM2SP1Kelvin                      (knx.paramWord(HUE_HCLM2SP1Kelvin))
 // M2 SP2 Helligkeit
 #define ParamHUE_HCLM2SP1Brightness                  (knx.paramByte(HUE_HCLM2SP1Brightness))
 // M2 SP3 Zeit
 #define ParamHUE_HCLM2SP2Time                        (knx.paramData(HUE_HCLM2SP2Time))
 #define ParamHUE_HCLM2SP2TimeStr                     (knx.paramString(HUE_HCLM2SP2Time, HUE_HCLM2SP2TimeLength))
-// M2 SP3 Kelvin
+// M2 SP3 Farbtemperatur
 #define ParamHUE_HCLM2SP2Kelvin                      (knx.paramWord(HUE_HCLM2SP2Kelvin))
 // M2 SP3 Helligkeit
 #define ParamHUE_HCLM2SP2Brightness                  (knx.paramByte(HUE_HCLM2SP2Brightness))
 // M2 SP4 Zeit
 #define ParamHUE_HCLM2SP3Time                        (knx.paramData(HUE_HCLM2SP3Time))
 #define ParamHUE_HCLM2SP3TimeStr                     (knx.paramString(HUE_HCLM2SP3Time, HUE_HCLM2SP3TimeLength))
-// M2 SP4 Kelvin
+// M2 SP4 Farbtemperatur
 #define ParamHUE_HCLM2SP3Kelvin                      (knx.paramWord(HUE_HCLM2SP3Kelvin))
 // M2 SP4 Helligkeit
 #define ParamHUE_HCLM2SP3Brightness                  (knx.paramByte(HUE_HCLM2SP3Brightness))
 // M2 SP5 Zeit
 #define ParamHUE_HCLM2SP4Time                        (knx.paramData(HUE_HCLM2SP4Time))
 #define ParamHUE_HCLM2SP4TimeStr                     (knx.paramString(HUE_HCLM2SP4Time, HUE_HCLM2SP4TimeLength))
-// M2 SP5 Kelvin
+// M2 SP5 Farbtemperatur
 #define ParamHUE_HCLM2SP4Kelvin                      (knx.paramWord(HUE_HCLM2SP4Kelvin))
 // M2 SP5 Helligkeit
 #define ParamHUE_HCLM2SP4Brightness                  (knx.paramByte(HUE_HCLM2SP4Brightness))
 // M2 SP6 Zeit
 #define ParamHUE_HCLM2SP5Time                        (knx.paramData(HUE_HCLM2SP5Time))
 #define ParamHUE_HCLM2SP5TimeStr                     (knx.paramString(HUE_HCLM2SP5Time, HUE_HCLM2SP5TimeLength))
-// M2 SP6 Kelvin
+// M2 SP6 Farbtemperatur
 #define ParamHUE_HCLM2SP5Kelvin                      (knx.paramWord(HUE_HCLM2SP5Kelvin))
 // M2 SP6 Helligkeit
 #define ParamHUE_HCLM2SP5Brightness                  (knx.paramByte(HUE_HCLM2SP5Brightness))
 // M2 SP7 Zeit
 #define ParamHUE_HCLM2SP6Time                        (knx.paramData(HUE_HCLM2SP6Time))
 #define ParamHUE_HCLM2SP6TimeStr                     (knx.paramString(HUE_HCLM2SP6Time, HUE_HCLM2SP6TimeLength))
-// M2 SP7 Kelvin
+// M2 SP7 Farbtemperatur
 #define ParamHUE_HCLM2SP6Kelvin                      (knx.paramWord(HUE_HCLM2SP6Kelvin))
 // M2 SP7 Helligkeit
 #define ParamHUE_HCLM2SP6Brightness                  (knx.paramByte(HUE_HCLM2SP6Brightness))
 // M2 SP8 Zeit
 #define ParamHUE_HCLM2SP7Time                        (knx.paramData(HUE_HCLM2SP7Time))
 #define ParamHUE_HCLM2SP7TimeStr                     (knx.paramString(HUE_HCLM2SP7Time, HUE_HCLM2SP7TimeLength))
-// M2 SP8 Kelvin
+// M2 SP8 Farbtemperatur
 #define ParamHUE_HCLM2SP7Kelvin                      (knx.paramWord(HUE_HCLM2SP7Kelvin))
 // M2 SP8 Helligkeit
 #define ParamHUE_HCLM2SP7Brightness                  (knx.paramByte(HUE_HCLM2SP7Brightness))
 // M2 SP9 Zeit
 #define ParamHUE_HCLM2SP8Time                        (knx.paramData(HUE_HCLM2SP8Time))
 #define ParamHUE_HCLM2SP8TimeStr                     (knx.paramString(HUE_HCLM2SP8Time, HUE_HCLM2SP8TimeLength))
-// M2 SP9 Kelvin
+// M2 SP9 Farbtemperatur
 #define ParamHUE_HCLM2SP8Kelvin                      (knx.paramWord(HUE_HCLM2SP8Kelvin))
 // M2 SP9 Helligkeit
 #define ParamHUE_HCLM2SP8Brightness                  (knx.paramByte(HUE_HCLM2SP8Brightness))
 // M2 SP10 Zeit
 #define ParamHUE_HCLM2SP9Time                        (knx.paramData(HUE_HCLM2SP9Time))
 #define ParamHUE_HCLM2SP9TimeStr                     (knx.paramString(HUE_HCLM2SP9Time, HUE_HCLM2SP9TimeLength))
-// M2 SP10 Kelvin
+// M2 SP10 Farbtemperatur
 #define ParamHUE_HCLM2SP9Kelvin                      (knx.paramWord(HUE_HCLM2SP9Kelvin))
 // M2 SP10 Helligkeit
 #define ParamHUE_HCLM2SP9Brightness                  (knx.paramByte(HUE_HCLM2SP9Brightness))
 // M3 SP1 Zeit
 #define ParamHUE_HCLM3SP0Time                        (knx.paramData(HUE_HCLM3SP0Time))
 #define ParamHUE_HCLM3SP0TimeStr                     (knx.paramString(HUE_HCLM3SP0Time, HUE_HCLM3SP0TimeLength))
-// M3 SP1 Kelvin
+// M3 SP1 Farbtemperatur
 #define ParamHUE_HCLM3SP0Kelvin                      (knx.paramWord(HUE_HCLM3SP0Kelvin))
 // M3 SP1 Helligkeit
 #define ParamHUE_HCLM3SP0Brightness                  (knx.paramByte(HUE_HCLM3SP0Brightness))
 // M3 SP2 Zeit
 #define ParamHUE_HCLM3SP1Time                        (knx.paramData(HUE_HCLM3SP1Time))
 #define ParamHUE_HCLM3SP1TimeStr                     (knx.paramString(HUE_HCLM3SP1Time, HUE_HCLM3SP1TimeLength))
-// M3 SP2 Kelvin
+// M3 SP2 Farbtemperatur
 #define ParamHUE_HCLM3SP1Kelvin                      (knx.paramWord(HUE_HCLM3SP1Kelvin))
 // M3 SP2 Helligkeit
 #define ParamHUE_HCLM3SP1Brightness                  (knx.paramByte(HUE_HCLM3SP1Brightness))
 // M3 SP3 Zeit
 #define ParamHUE_HCLM3SP2Time                        (knx.paramData(HUE_HCLM3SP2Time))
 #define ParamHUE_HCLM3SP2TimeStr                     (knx.paramString(HUE_HCLM3SP2Time, HUE_HCLM3SP2TimeLength))
-// M3 SP3 Kelvin
+// M3 SP3 Farbtemperatur
 #define ParamHUE_HCLM3SP2Kelvin                      (knx.paramWord(HUE_HCLM3SP2Kelvin))
 // M3 SP3 Helligkeit
 #define ParamHUE_HCLM3SP2Brightness                  (knx.paramByte(HUE_HCLM3SP2Brightness))
 // M3 SP4 Zeit
 #define ParamHUE_HCLM3SP3Time                        (knx.paramData(HUE_HCLM3SP3Time))
 #define ParamHUE_HCLM3SP3TimeStr                     (knx.paramString(HUE_HCLM3SP3Time, HUE_HCLM3SP3TimeLength))
-// M3 SP4 Kelvin
+// M3 SP4 Farbtemperatur
 #define ParamHUE_HCLM3SP3Kelvin                      (knx.paramWord(HUE_HCLM3SP3Kelvin))
 // M3 SP4 Helligkeit
 #define ParamHUE_HCLM3SP3Brightness                  (knx.paramByte(HUE_HCLM3SP3Brightness))
 // M3 SP5 Zeit
 #define ParamHUE_HCLM3SP4Time                        (knx.paramData(HUE_HCLM3SP4Time))
 #define ParamHUE_HCLM3SP4TimeStr                     (knx.paramString(HUE_HCLM3SP4Time, HUE_HCLM3SP4TimeLength))
-// M3 SP5 Kelvin
+// M3 SP5 Farbtemperatur
 #define ParamHUE_HCLM3SP4Kelvin                      (knx.paramWord(HUE_HCLM3SP4Kelvin))
 // M3 SP5 Helligkeit
 #define ParamHUE_HCLM3SP4Brightness                  (knx.paramByte(HUE_HCLM3SP4Brightness))
 // M3 SP6 Zeit
 #define ParamHUE_HCLM3SP5Time                        (knx.paramData(HUE_HCLM3SP5Time))
 #define ParamHUE_HCLM3SP5TimeStr                     (knx.paramString(HUE_HCLM3SP5Time, HUE_HCLM3SP5TimeLength))
-// M3 SP6 Kelvin
+// M3 SP6 Farbtemperatur
 #define ParamHUE_HCLM3SP5Kelvin                      (knx.paramWord(HUE_HCLM3SP5Kelvin))
 // M3 SP6 Helligkeit
 #define ParamHUE_HCLM3SP5Brightness                  (knx.paramByte(HUE_HCLM3SP5Brightness))
 // M3 SP7 Zeit
 #define ParamHUE_HCLM3SP6Time                        (knx.paramData(HUE_HCLM3SP6Time))
 #define ParamHUE_HCLM3SP6TimeStr                     (knx.paramString(HUE_HCLM3SP6Time, HUE_HCLM3SP6TimeLength))
-// M3 SP7 Kelvin
+// M3 SP7 Farbtemperatur
 #define ParamHUE_HCLM3SP6Kelvin                      (knx.paramWord(HUE_HCLM3SP6Kelvin))
 // M3 SP7 Helligkeit
 #define ParamHUE_HCLM3SP6Brightness                  (knx.paramByte(HUE_HCLM3SP6Brightness))
 // M3 SP8 Zeit
 #define ParamHUE_HCLM3SP7Time                        (knx.paramData(HUE_HCLM3SP7Time))
 #define ParamHUE_HCLM3SP7TimeStr                     (knx.paramString(HUE_HCLM3SP7Time, HUE_HCLM3SP7TimeLength))
-// M3 SP8 Kelvin
+// M3 SP8 Farbtemperatur
 #define ParamHUE_HCLM3SP7Kelvin                      (knx.paramWord(HUE_HCLM3SP7Kelvin))
 // M3 SP8 Helligkeit
 #define ParamHUE_HCLM3SP7Brightness                  (knx.paramByte(HUE_HCLM3SP7Brightness))
 // M3 SP9 Zeit
 #define ParamHUE_HCLM3SP8Time                        (knx.paramData(HUE_HCLM3SP8Time))
 #define ParamHUE_HCLM3SP8TimeStr                     (knx.paramString(HUE_HCLM3SP8Time, HUE_HCLM3SP8TimeLength))
-// M3 SP9 Kelvin
+// M3 SP9 Farbtemperatur
 #define ParamHUE_HCLM3SP8Kelvin                      (knx.paramWord(HUE_HCLM3SP8Kelvin))
 // M3 SP9 Helligkeit
 #define ParamHUE_HCLM3SP8Brightness                  (knx.paramByte(HUE_HCLM3SP8Brightness))
 // M3 SP10 Zeit
 #define ParamHUE_HCLM3SP9Time                        (knx.paramData(HUE_HCLM3SP9Time))
 #define ParamHUE_HCLM3SP9TimeStr                     (knx.paramString(HUE_HCLM3SP9Time, HUE_HCLM3SP9TimeLength))
-// M3 SP10 Kelvin
+// M3 SP10 Farbtemperatur
 #define ParamHUE_HCLM3SP9Kelvin                      (knx.paramWord(HUE_HCLM3SP9Kelvin))
 // M3 SP10 Helligkeit
 #define ParamHUE_HCLM3SP9Brightness                  (knx.paramByte(HUE_HCLM3SP9Brightness))
 // M4 SP1 Zeit
 #define ParamHUE_HCLM4SP0Time                        (knx.paramData(HUE_HCLM4SP0Time))
 #define ParamHUE_HCLM4SP0TimeStr                     (knx.paramString(HUE_HCLM4SP0Time, HUE_HCLM4SP0TimeLength))
-// M4 SP1 Kelvin
+// M4 SP1 Farbtemperatur
 #define ParamHUE_HCLM4SP0Kelvin                      (knx.paramWord(HUE_HCLM4SP0Kelvin))
 // M4 SP1 Helligkeit
 #define ParamHUE_HCLM4SP0Brightness                  (knx.paramByte(HUE_HCLM4SP0Brightness))
 // M4 SP2 Zeit
 #define ParamHUE_HCLM4SP1Time                        (knx.paramData(HUE_HCLM4SP1Time))
 #define ParamHUE_HCLM4SP1TimeStr                     (knx.paramString(HUE_HCLM4SP1Time, HUE_HCLM4SP1TimeLength))
-// M4 SP2 Kelvin
+// M4 SP2 Farbtemperatur
 #define ParamHUE_HCLM4SP1Kelvin                      (knx.paramWord(HUE_HCLM4SP1Kelvin))
 // M4 SP2 Helligkeit
 #define ParamHUE_HCLM4SP1Brightness                  (knx.paramByte(HUE_HCLM4SP1Brightness))
 // M4 SP3 Zeit
 #define ParamHUE_HCLM4SP2Time                        (knx.paramData(HUE_HCLM4SP2Time))
 #define ParamHUE_HCLM4SP2TimeStr                     (knx.paramString(HUE_HCLM4SP2Time, HUE_HCLM4SP2TimeLength))
-// M4 SP3 Kelvin
+// M4 SP3 Farbtemperatur
 #define ParamHUE_HCLM4SP2Kelvin                      (knx.paramWord(HUE_HCLM4SP2Kelvin))
 // M4 SP3 Helligkeit
 #define ParamHUE_HCLM4SP2Brightness                  (knx.paramByte(HUE_HCLM4SP2Brightness))
 // M4 SP4 Zeit
 #define ParamHUE_HCLM4SP3Time                        (knx.paramData(HUE_HCLM4SP3Time))
 #define ParamHUE_HCLM4SP3TimeStr                     (knx.paramString(HUE_HCLM4SP3Time, HUE_HCLM4SP3TimeLength))
-// M4 SP4 Kelvin
+// M4 SP4 Farbtemperatur
 #define ParamHUE_HCLM4SP3Kelvin                      (knx.paramWord(HUE_HCLM4SP3Kelvin))
 // M4 SP4 Helligkeit
 #define ParamHUE_HCLM4SP3Brightness                  (knx.paramByte(HUE_HCLM4SP3Brightness))
 // M4 SP5 Zeit
 #define ParamHUE_HCLM4SP4Time                        (knx.paramData(HUE_HCLM4SP4Time))
 #define ParamHUE_HCLM4SP4TimeStr                     (knx.paramString(HUE_HCLM4SP4Time, HUE_HCLM4SP4TimeLength))
-// M4 SP5 Kelvin
+// M4 SP5 Farbtemperatur
 #define ParamHUE_HCLM4SP4Kelvin                      (knx.paramWord(HUE_HCLM4SP4Kelvin))
 // M4 SP5 Helligkeit
 #define ParamHUE_HCLM4SP4Brightness                  (knx.paramByte(HUE_HCLM4SP4Brightness))
 // M4 SP6 Zeit
 #define ParamHUE_HCLM4SP5Time                        (knx.paramData(HUE_HCLM4SP5Time))
 #define ParamHUE_HCLM4SP5TimeStr                     (knx.paramString(HUE_HCLM4SP5Time, HUE_HCLM4SP5TimeLength))
-// M4 SP6 Kelvin
+// M4 SP6 Farbtemperatur
 #define ParamHUE_HCLM4SP5Kelvin                      (knx.paramWord(HUE_HCLM4SP5Kelvin))
 // M4 SP6 Helligkeit
 #define ParamHUE_HCLM4SP5Brightness                  (knx.paramByte(HUE_HCLM4SP5Brightness))
 // M4 SP7 Zeit
 #define ParamHUE_HCLM4SP6Time                        (knx.paramData(HUE_HCLM4SP6Time))
 #define ParamHUE_HCLM4SP6TimeStr                     (knx.paramString(HUE_HCLM4SP6Time, HUE_HCLM4SP6TimeLength))
-// M4 SP7 Kelvin
+// M4 SP7 Farbtemperatur
 #define ParamHUE_HCLM4SP6Kelvin                      (knx.paramWord(HUE_HCLM4SP6Kelvin))
 // M4 SP7 Helligkeit
 #define ParamHUE_HCLM4SP6Brightness                  (knx.paramByte(HUE_HCLM4SP6Brightness))
 // M4 SP8 Zeit
 #define ParamHUE_HCLM4SP7Time                        (knx.paramData(HUE_HCLM4SP7Time))
 #define ParamHUE_HCLM4SP7TimeStr                     (knx.paramString(HUE_HCLM4SP7Time, HUE_HCLM4SP7TimeLength))
-// M4 SP8 Kelvin
+// M4 SP8 Farbtemperatur
 #define ParamHUE_HCLM4SP7Kelvin                      (knx.paramWord(HUE_HCLM4SP7Kelvin))
 // M4 SP8 Helligkeit
 #define ParamHUE_HCLM4SP7Brightness                  (knx.paramByte(HUE_HCLM4SP7Brightness))
 // M4 SP9 Zeit
 #define ParamHUE_HCLM4SP8Time                        (knx.paramData(HUE_HCLM4SP8Time))
 #define ParamHUE_HCLM4SP8TimeStr                     (knx.paramString(HUE_HCLM4SP8Time, HUE_HCLM4SP8TimeLength))
-// M4 SP9 Kelvin
+// M4 SP9 Farbtemperatur
 #define ParamHUE_HCLM4SP8Kelvin                      (knx.paramWord(HUE_HCLM4SP8Kelvin))
 // M4 SP9 Helligkeit
 #define ParamHUE_HCLM4SP8Brightness                  (knx.paramByte(HUE_HCLM4SP8Brightness))
@@ -1084,7 +1203,7 @@
 // M5 SP2 Zeit
 #define ParamHUE_HCLM5SP1Time                        (knx.paramData(HUE_HCLM5SP1Time))
 #define ParamHUE_HCLM5SP1TimeStr                     (knx.paramString(HUE_HCLM5SP1Time, HUE_HCLM5SP1TimeLength))
-// M5 SP2 Kelvin
+// M5 SP2 Farbtemperatur
 #define ParamHUE_HCLM5SP1Kelvin                      (knx.paramWord(HUE_HCLM5SP1Kelvin))
 // M5 SP2 Helligkeit
 #define ParamHUE_HCLM5SP1Brightness                  (knx.paramByte(HUE_HCLM5SP1Brightness))
@@ -1098,77 +1217,77 @@
 // M5 SP4 Zeit
 #define ParamHUE_HCLM5SP3Time                        (knx.paramData(HUE_HCLM5SP3Time))
 #define ParamHUE_HCLM5SP3TimeStr                     (knx.paramString(HUE_HCLM5SP3Time, HUE_HCLM5SP3TimeLength))
-// M5 SP4 Kelvin
+// M5 SP4 Farbtemperatur
 #define ParamHUE_HCLM5SP3Kelvin                      (knx.paramWord(HUE_HCLM5SP3Kelvin))
 // M5 SP4 Helligkeit
 #define ParamHUE_HCLM5SP3Brightness                  (knx.paramByte(HUE_HCLM5SP3Brightness))
 // M5 SP5 Zeit
 #define ParamHUE_HCLM5SP4Time                        (knx.paramData(HUE_HCLM5SP4Time))
 #define ParamHUE_HCLM5SP4TimeStr                     (knx.paramString(HUE_HCLM5SP4Time, HUE_HCLM5SP4TimeLength))
-// M5 SP5 Kelvin
+// M5 SP5 Farbtemperatur
 #define ParamHUE_HCLM5SP4Kelvin                      (knx.paramWord(HUE_HCLM5SP4Kelvin))
 // M5 SP5 Helligkeit
 #define ParamHUE_HCLM5SP4Brightness                  (knx.paramByte(HUE_HCLM5SP4Brightness))
 // M5 SP6 Zeit
 #define ParamHUE_HCLM5SP5Time                        (knx.paramData(HUE_HCLM5SP5Time))
 #define ParamHUE_HCLM5SP5TimeStr                     (knx.paramString(HUE_HCLM5SP5Time, HUE_HCLM5SP5TimeLength))
-// M5 SP6 Kelvin
+// M5 SP6 Farbtemperatur
 #define ParamHUE_HCLM5SP5Kelvin                      (knx.paramWord(HUE_HCLM5SP5Kelvin))
 // M5 SP6 Helligkeit
 #define ParamHUE_HCLM5SP5Brightness                  (knx.paramByte(HUE_HCLM5SP5Brightness))
 // M5 SP7 Zeit
 #define ParamHUE_HCLM5SP6Time                        (knx.paramData(HUE_HCLM5SP6Time))
 #define ParamHUE_HCLM5SP6TimeStr                     (knx.paramString(HUE_HCLM5SP6Time, HUE_HCLM5SP6TimeLength))
-// M5 SP7 Kelvin
+// M5 SP7 Farbtemperatur
 #define ParamHUE_HCLM5SP6Kelvin                      (knx.paramWord(HUE_HCLM5SP6Kelvin))
 // M5 SP7 Helligkeit
 #define ParamHUE_HCLM5SP6Brightness                  (knx.paramByte(HUE_HCLM5SP6Brightness))
 // M5 SP8 Zeit
 #define ParamHUE_HCLM5SP7Time                        (knx.paramData(HUE_HCLM5SP7Time))
 #define ParamHUE_HCLM5SP7TimeStr                     (knx.paramString(HUE_HCLM5SP7Time, HUE_HCLM5SP7TimeLength))
-// M5 SP8 Kelvin
+// M5 SP8 Farbtemperatur
 #define ParamHUE_HCLM5SP7Kelvin                      (knx.paramWord(HUE_HCLM5SP7Kelvin))
 // M5 SP8 Helligkeit
 #define ParamHUE_HCLM5SP7Brightness                  (knx.paramByte(HUE_HCLM5SP7Brightness))
 // M5 SP9 Zeit
 #define ParamHUE_HCLM5SP8Time                        (knx.paramData(HUE_HCLM5SP8Time))
 #define ParamHUE_HCLM5SP8TimeStr                     (knx.paramString(HUE_HCLM5SP8Time, HUE_HCLM5SP8TimeLength))
-// M5 SP9 Kelvin
+// M5 SP9 Farbtemperatur
 #define ParamHUE_HCLM5SP8Kelvin                      (knx.paramWord(HUE_HCLM5SP8Kelvin))
 // M5 SP9 Helligkeit
 #define ParamHUE_HCLM5SP8Brightness                  (knx.paramByte(HUE_HCLM5SP8Brightness))
 // M5 SP10 Zeit
 #define ParamHUE_HCLM5SP9Time                        (knx.paramData(HUE_HCLM5SP9Time))
 #define ParamHUE_HCLM5SP9TimeStr                     (knx.paramString(HUE_HCLM5SP9Time, HUE_HCLM5SP9TimeLength))
-// M5 SP10 Kelvin
+// M5 SP10 Farbtemperatur
 #define ParamHUE_HCLM5SP9Kelvin                      (knx.paramWord(HUE_HCLM5SP9Kelvin))
 // M5 SP10 Helligkeit
 #define ParamHUE_HCLM5SP9Brightness                  (knx.paramByte(HUE_HCLM5SP9Brightness))
 // M6 SP1 Zeit
 #define ParamHUE_HCLM6SP0Time                        (knx.paramData(HUE_HCLM6SP0Time))
 #define ParamHUE_HCLM6SP0TimeStr                     (knx.paramString(HUE_HCLM6SP0Time, HUE_HCLM6SP0TimeLength))
-// M6 SP1 Kelvin
+// M6 SP1 Farbtemperatur
 #define ParamHUE_HCLM6SP0Kelvin                      (knx.paramWord(HUE_HCLM6SP0Kelvin))
 // M6 SP1 Helligkeit
 #define ParamHUE_HCLM6SP0Brightness                  (knx.paramByte(HUE_HCLM6SP0Brightness))
 // M6 SP2 Zeit
 #define ParamHUE_HCLM6SP1Time                        (knx.paramData(HUE_HCLM6SP1Time))
 #define ParamHUE_HCLM6SP1TimeStr                     (knx.paramString(HUE_HCLM6SP1Time, HUE_HCLM6SP1TimeLength))
-// M6 SP2 Kelvin
+// M6 SP2 Farbtemperatur
 #define ParamHUE_HCLM6SP1Kelvin                      (knx.paramWord(HUE_HCLM6SP1Kelvin))
 // M6 SP2 Helligkeit
 #define ParamHUE_HCLM6SP1Brightness                  (knx.paramByte(HUE_HCLM6SP1Brightness))
 // M6 SP3 Zeit
 #define ParamHUE_HCLM6SP2Time                        (knx.paramData(HUE_HCLM6SP2Time))
 #define ParamHUE_HCLM6SP2TimeStr                     (knx.paramString(HUE_HCLM6SP2Time, HUE_HCLM6SP2TimeLength))
-// M6 SP3 Kelvin
+// M6 SP3 Farbtemperatur
 #define ParamHUE_HCLM6SP2Kelvin                      (knx.paramWord(HUE_HCLM6SP2Kelvin))
 // M6 SP3 Helligkeit
 #define ParamHUE_HCLM6SP2Brightness                  (knx.paramByte(HUE_HCLM6SP2Brightness))
 // M6 SP4 Zeit
 #define ParamHUE_HCLM6SP3Time                        (knx.paramData(HUE_HCLM6SP3Time))
 #define ParamHUE_HCLM6SP3TimeStr                     (knx.paramString(HUE_HCLM6SP3Time, HUE_HCLM6SP3TimeLength))
-// M6 SP4 Kelvin
+// M6 SP4 Farbtemperatur
 #define ParamHUE_HCLM6SP3Kelvin                      (knx.paramWord(HUE_HCLM6SP3Kelvin))
 // M6 SP4 Helligkeit
 #define ParamHUE_HCLM6SP3Brightness                  (knx.paramByte(HUE_HCLM6SP3Brightness))
@@ -1189,91 +1308,91 @@
 // M6 SP7 Zeit
 #define ParamHUE_HCLM6SP6Time                        (knx.paramData(HUE_HCLM6SP6Time))
 #define ParamHUE_HCLM6SP6TimeStr                     (knx.paramString(HUE_HCLM6SP6Time, HUE_HCLM6SP6TimeLength))
-// M6 SP7 Kelvin
+// M6 SP7 Farbtemperatur
 #define ParamHUE_HCLM6SP6Kelvin                      (knx.paramWord(HUE_HCLM6SP6Kelvin))
 // M6 SP7 Helligkeit
 #define ParamHUE_HCLM6SP6Brightness                  (knx.paramByte(HUE_HCLM6SP6Brightness))
 // M6 SP8 Zeit
 #define ParamHUE_HCLM6SP7Time                        (knx.paramData(HUE_HCLM6SP7Time))
 #define ParamHUE_HCLM6SP7TimeStr                     (knx.paramString(HUE_HCLM6SP7Time, HUE_HCLM6SP7TimeLength))
-// M6 SP8 Kelvin
+// M6 SP8 Farbtemperatur
 #define ParamHUE_HCLM6SP7Kelvin                      (knx.paramWord(HUE_HCLM6SP7Kelvin))
 // M6 SP8 Helligkeit
 #define ParamHUE_HCLM6SP7Brightness                  (knx.paramByte(HUE_HCLM6SP7Brightness))
 // M6 SP9 Zeit
 #define ParamHUE_HCLM6SP8Time                        (knx.paramData(HUE_HCLM6SP8Time))
 #define ParamHUE_HCLM6SP8TimeStr                     (knx.paramString(HUE_HCLM6SP8Time, HUE_HCLM6SP8TimeLength))
-// M6 SP9 Kelvin
+// M6 SP9 Farbtemperatur
 #define ParamHUE_HCLM6SP8Kelvin                      (knx.paramWord(HUE_HCLM6SP8Kelvin))
 // M6 SP9 Helligkeit
 #define ParamHUE_HCLM6SP8Brightness                  (knx.paramByte(HUE_HCLM6SP8Brightness))
 // M6 SP10 Zeit
 #define ParamHUE_HCLM6SP9Time                        (knx.paramData(HUE_HCLM6SP9Time))
 #define ParamHUE_HCLM6SP9TimeStr                     (knx.paramString(HUE_HCLM6SP9Time, HUE_HCLM6SP9TimeLength))
-// M6 SP10 Kelvin
+// M6 SP10 Farbtemperatur
 #define ParamHUE_HCLM6SP9Kelvin                      (knx.paramWord(HUE_HCLM6SP9Kelvin))
 // M6 SP10 Helligkeit
 #define ParamHUE_HCLM6SP9Brightness                  (knx.paramByte(HUE_HCLM6SP9Brightness))
 // M7 SP1 Zeit
 #define ParamHUE_HCLM7SP0Time                        (knx.paramData(HUE_HCLM7SP0Time))
 #define ParamHUE_HCLM7SP0TimeStr                     (knx.paramString(HUE_HCLM7SP0Time, HUE_HCLM7SP0TimeLength))
-// M7 SP1 Kelvin
+// M7 SP1 Farbtemperatur
 #define ParamHUE_HCLM7SP0Kelvin                      (knx.paramWord(HUE_HCLM7SP0Kelvin))
 // M7 SP1 Helligkeit
 #define ParamHUE_HCLM7SP0Brightness                  (knx.paramByte(HUE_HCLM7SP0Brightness))
 // M7 SP2 Zeit
 #define ParamHUE_HCLM7SP1Time                        (knx.paramData(HUE_HCLM7SP1Time))
 #define ParamHUE_HCLM7SP1TimeStr                     (knx.paramString(HUE_HCLM7SP1Time, HUE_HCLM7SP1TimeLength))
-// M7 SP2 Kelvin
+// M7 SP2 Farbtemperatur
 #define ParamHUE_HCLM7SP1Kelvin                      (knx.paramWord(HUE_HCLM7SP1Kelvin))
 // M7 SP2 Helligkeit
 #define ParamHUE_HCLM7SP1Brightness                  (knx.paramByte(HUE_HCLM7SP1Brightness))
 // M7 SP3 Zeit
 #define ParamHUE_HCLM7SP2Time                        (knx.paramData(HUE_HCLM7SP2Time))
 #define ParamHUE_HCLM7SP2TimeStr                     (knx.paramString(HUE_HCLM7SP2Time, HUE_HCLM7SP2TimeLength))
-// M7 SP3 Kelvin
+// M7 SP3 Farbtemperatur
 #define ParamHUE_HCLM7SP2Kelvin                      (knx.paramWord(HUE_HCLM7SP2Kelvin))
 // M7 SP3 Helligkeit
 #define ParamHUE_HCLM7SP2Brightness                  (knx.paramByte(HUE_HCLM7SP2Brightness))
 // M7 SP4 Zeit
 #define ParamHUE_HCLM7SP3Time                        (knx.paramData(HUE_HCLM7SP3Time))
 #define ParamHUE_HCLM7SP3TimeStr                     (knx.paramString(HUE_HCLM7SP3Time, HUE_HCLM7SP3TimeLength))
-// M7 SP4 Kelvin
+// M7 SP4 Farbtemperatur
 #define ParamHUE_HCLM7SP3Kelvin                      (knx.paramWord(HUE_HCLM7SP3Kelvin))
 // M7 SP4 Helligkeit
 #define ParamHUE_HCLM7SP3Brightness                  (knx.paramByte(HUE_HCLM7SP3Brightness))
 // M7 SP5 Zeit
 #define ParamHUE_HCLM7SP4Time                        (knx.paramData(HUE_HCLM7SP4Time))
 #define ParamHUE_HCLM7SP4TimeStr                     (knx.paramString(HUE_HCLM7SP4Time, HUE_HCLM7SP4TimeLength))
-// M7 SP5 Kelvin
+// M7 SP5 Farbtemperatur
 #define ParamHUE_HCLM7SP4Kelvin                      (knx.paramWord(HUE_HCLM7SP4Kelvin))
 // M7 SP5 Helligkeit
 #define ParamHUE_HCLM7SP4Brightness                  (knx.paramByte(HUE_HCLM7SP4Brightness))
 // M7 SP6 Zeit
 #define ParamHUE_HCLM7SP5Time                        (knx.paramData(HUE_HCLM7SP5Time))
 #define ParamHUE_HCLM7SP5TimeStr                     (knx.paramString(HUE_HCLM7SP5Time, HUE_HCLM7SP5TimeLength))
-// M7 SP6 Kelvin
+// M7 SP6 Farbtemperatur
 #define ParamHUE_HCLM7SP5Kelvin                      (knx.paramWord(HUE_HCLM7SP5Kelvin))
 // M7 SP6 Helligkeit
 #define ParamHUE_HCLM7SP5Brightness                  (knx.paramByte(HUE_HCLM7SP5Brightness))
 // M7 SP7 Zeit
 #define ParamHUE_HCLM7SP6Time                        (knx.paramData(HUE_HCLM7SP6Time))
 #define ParamHUE_HCLM7SP6TimeStr                     (knx.paramString(HUE_HCLM7SP6Time, HUE_HCLM7SP6TimeLength))
-// M7 SP7 Kelvin
+// M7 SP7 Farbtemperatur
 #define ParamHUE_HCLM7SP6Kelvin                      (knx.paramWord(HUE_HCLM7SP6Kelvin))
 // M7 SP7 Helligkeit
 #define ParamHUE_HCLM7SP6Brightness                  (knx.paramByte(HUE_HCLM7SP6Brightness))
 // M7 SP8 Zeit
 #define ParamHUE_HCLM7SP7Time                        (knx.paramData(HUE_HCLM7SP7Time))
 #define ParamHUE_HCLM7SP7TimeStr                     (knx.paramString(HUE_HCLM7SP7Time, HUE_HCLM7SP7TimeLength))
-// M7 SP8 Kelvin
+// M7 SP8 Farbtemperatur
 #define ParamHUE_HCLM7SP7Kelvin                      (knx.paramWord(HUE_HCLM7SP7Kelvin))
 // M7 SP8 Helligkeit
 #define ParamHUE_HCLM7SP7Brightness                  (knx.paramByte(HUE_HCLM7SP7Brightness))
 // M7 SP9 Zeit
 #define ParamHUE_HCLM7SP8Time                        (knx.paramData(HUE_HCLM7SP8Time))
 #define ParamHUE_HCLM7SP8TimeStr                     (knx.paramString(HUE_HCLM7SP8Time, HUE_HCLM7SP8TimeLength))
-// M7 SP9 Kelvin
+// M7 SP9 Farbtemperatur
 #define ParamHUE_HCLM7SP8Kelvin                      (knx.paramWord(HUE_HCLM7SP8Kelvin))
 // M7 SP9 Helligkeit
 #define ParamHUE_HCLM7SP8Brightness                  (knx.paramByte(HUE_HCLM7SP8Brightness))
@@ -1287,7 +1406,7 @@
 // M8 SP1 Zeit
 #define ParamHUE_HCLM8SP0Time                        (knx.paramData(HUE_HCLM8SP0Time))
 #define ParamHUE_HCLM8SP0TimeStr                     (knx.paramString(HUE_HCLM8SP0Time, HUE_HCLM8SP0TimeLength))
-// M8 SP1 Kelvin
+// M8 SP1 Farbtemperatur
 #define ParamHUE_HCLM8SP0Kelvin                      (knx.paramWord(HUE_HCLM8SP0Kelvin))
 // M8 SP1 Helligkeit
 #define ParamHUE_HCLM8SP0Brightness                  (knx.paramByte(HUE_HCLM8SP0Brightness))
@@ -1301,88 +1420,88 @@
 // M8 SP3 Zeit
 #define ParamHUE_HCLM8SP2Time                        (knx.paramData(HUE_HCLM8SP2Time))
 #define ParamHUE_HCLM8SP2TimeStr                     (knx.paramString(HUE_HCLM8SP2Time, HUE_HCLM8SP2TimeLength))
-// M8 SP3 Kelvin
+// M8 SP3 Farbtemperatur
 #define ParamHUE_HCLM8SP2Kelvin                      (knx.paramWord(HUE_HCLM8SP2Kelvin))
 // M8 SP3 Helligkeit
 #define ParamHUE_HCLM8SP2Brightness                  (knx.paramByte(HUE_HCLM8SP2Brightness))
 // M8 SP4 Zeit
 #define ParamHUE_HCLM8SP3Time                        (knx.paramData(HUE_HCLM8SP3Time))
 #define ParamHUE_HCLM8SP3TimeStr                     (knx.paramString(HUE_HCLM8SP3Time, HUE_HCLM8SP3TimeLength))
-// M8 SP4 Kelvin
+// M8 SP4 Farbtemperatur
 #define ParamHUE_HCLM8SP3Kelvin                      (knx.paramWord(HUE_HCLM8SP3Kelvin))
 // M8 SP4 Helligkeit
 #define ParamHUE_HCLM8SP3Brightness                  (knx.paramByte(HUE_HCLM8SP3Brightness))
 // M8 SP5 Zeit
 #define ParamHUE_HCLM8SP4Time                        (knx.paramData(HUE_HCLM8SP4Time))
 #define ParamHUE_HCLM8SP4TimeStr                     (knx.paramString(HUE_HCLM8SP4Time, HUE_HCLM8SP4TimeLength))
-// M8 SP5 Kelvin
+// M8 SP5 Farbtemperatur
 #define ParamHUE_HCLM8SP4Kelvin                      (knx.paramWord(HUE_HCLM8SP4Kelvin))
 // M8 SP5 Helligkeit
 #define ParamHUE_HCLM8SP4Brightness                  (knx.paramByte(HUE_HCLM8SP4Brightness))
 // M8 SP6 Zeit
 #define ParamHUE_HCLM8SP5Time                        (knx.paramData(HUE_HCLM8SP5Time))
 #define ParamHUE_HCLM8SP5TimeStr                     (knx.paramString(HUE_HCLM8SP5Time, HUE_HCLM8SP5TimeLength))
-// M8 SP6 Kelvin
+// M8 SP6 Farbtemperatur
 #define ParamHUE_HCLM8SP5Kelvin                      (knx.paramWord(HUE_HCLM8SP5Kelvin))
 // M8 SP6 Helligkeit
 #define ParamHUE_HCLM8SP5Brightness                  (knx.paramByte(HUE_HCLM8SP5Brightness))
 // M8 SP7 Zeit
 #define ParamHUE_HCLM8SP6Time                        (knx.paramData(HUE_HCLM8SP6Time))
 #define ParamHUE_HCLM8SP6TimeStr                     (knx.paramString(HUE_HCLM8SP6Time, HUE_HCLM8SP6TimeLength))
-// M8 SP7 Kelvin
+// M8 SP7 Farbtemperatur
 #define ParamHUE_HCLM8SP6Kelvin                      (knx.paramWord(HUE_HCLM8SP6Kelvin))
 // M8 SP7 Helligkeit
 #define ParamHUE_HCLM8SP6Brightness                  (knx.paramByte(HUE_HCLM8SP6Brightness))
 // M8 SP8 Zeit
 #define ParamHUE_HCLM8SP7Time                        (knx.paramData(HUE_HCLM8SP7Time))
 #define ParamHUE_HCLM8SP7TimeStr                     (knx.paramString(HUE_HCLM8SP7Time, HUE_HCLM8SP7TimeLength))
-// M8 SP8 Kelvin
+// M8 SP8 Farbtemperatur
 #define ParamHUE_HCLM8SP7Kelvin                      (knx.paramWord(HUE_HCLM8SP7Kelvin))
 // M8 SP8 Helligkeit
 #define ParamHUE_HCLM8SP7Brightness                  (knx.paramByte(HUE_HCLM8SP7Brightness))
 // M8 SP9 Zeit
 #define ParamHUE_HCLM8SP8Time                        (knx.paramData(HUE_HCLM8SP8Time))
 #define ParamHUE_HCLM8SP8TimeStr                     (knx.paramString(HUE_HCLM8SP8Time, HUE_HCLM8SP8TimeLength))
-// M8 SP9 Kelvin
+// M8 SP9 Farbtemperatur
 #define ParamHUE_HCLM8SP8Kelvin                      (knx.paramWord(HUE_HCLM8SP8Kelvin))
 // M8 SP9 Helligkeit
 #define ParamHUE_HCLM8SP8Brightness                  (knx.paramByte(HUE_HCLM8SP8Brightness))
 // M8 SP10 Zeit
 #define ParamHUE_HCLM8SP9Time                        (knx.paramData(HUE_HCLM8SP9Time))
 #define ParamHUE_HCLM8SP9TimeStr                     (knx.paramString(HUE_HCLM8SP9Time, HUE_HCLM8SP9TimeLength))
-// M8 SP10 Kelvin
+// M8 SP10 Farbtemperatur
 #define ParamHUE_HCLM8SP9Kelvin                      (knx.paramWord(HUE_HCLM8SP9Kelvin))
 // M8 SP10 Helligkeit
 #define ParamHUE_HCLM8SP9Brightness                  (knx.paramByte(HUE_HCLM8SP9Brightness))
-// Name HCL Manager 1
+// Name Lichtmanager 1
 #define ParamHUE_HCLM1Name                           (knx.paramData(HUE_HCLM1Name))
 #define ParamHUE_HCLM1NameStr                        (knx.paramString(HUE_HCLM1Name, HUE_HCLM1NameLength))
-// Name HCL Manager 2
+// Name Lichtmanager 2
 #define ParamHUE_HCLM2Name                           (knx.paramData(HUE_HCLM2Name))
 #define ParamHUE_HCLM2NameStr                        (knx.paramString(HUE_HCLM2Name, HUE_HCLM2NameLength))
-// Name HCL Manager 3
+// Name Lichtmanager 3
 #define ParamHUE_HCLM3Name                           (knx.paramData(HUE_HCLM3Name))
 #define ParamHUE_HCLM3NameStr                        (knx.paramString(HUE_HCLM3Name, HUE_HCLM3NameLength))
-// Name HCL Manager 4
+// Name Lichtmanager 4
 #define ParamHUE_HCLM4Name                           (knx.paramData(HUE_HCLM4Name))
 #define ParamHUE_HCLM4NameStr                        (knx.paramString(HUE_HCLM4Name, HUE_HCLM4NameLength))
-// Name HCL Manager 5
+// Name Lichtmanager 5
 #define ParamHUE_HCLM5Name                           (knx.paramData(HUE_HCLM5Name))
 #define ParamHUE_HCLM5NameStr                        (knx.paramString(HUE_HCLM5Name, HUE_HCLM5NameLength))
-// Name HCL Manager 6
+// Name Lichtmanager 6
 #define ParamHUE_HCLM6Name                           (knx.paramData(HUE_HCLM6Name))
 #define ParamHUE_HCLM6NameStr                        (knx.paramString(HUE_HCLM6Name, HUE_HCLM6NameLength))
-// Name HCL Manager 7
+// Name Lichtmanager 7
 #define ParamHUE_HCLM7Name                           (knx.paramData(HUE_HCLM7Name))
 #define ParamHUE_HCLM7NameStr                        (knx.paramString(HUE_HCLM7Name, HUE_HCLM7NameLength))
-// Name HCL Manager 8
+// Name Lichtmanager 8
 #define ParamHUE_HCLM8Name                           (knx.paramData(HUE_HCLM8Name))
 #define ParamHUE_HCLM8NameStr                        (knx.paramString(HUE_HCLM8Name, HUE_HCLM8NameLength))
 // Kurventyp
 #define ParamHUE_HCLM1CurveType                      (knx.paramByte(HUE_HCLM1CurveType))
-// Slew-Rate (K/min)
+// Slew-Rate
 #define ParamHUE_HCLM1SlewRate                       (knx.paramWord(HUE_HCLM1SlewRate))
-// Manual Kelvin
+// Manuelle Farbtemperatur
 #define ParamHUE_HCLM1ManualKelvin                   (knx.paramWord(HUE_HCLM1ManualKelvin))
 // Sunrise (HH:MM)
 #define ParamHUE_HCLM1Sunrise                        (knx.paramData(HUE_HCLM1Sunrise))
@@ -1394,11 +1513,19 @@
 #define ParamHUE_HCLM1SunriseOffset                  ((int16_t)knx.paramWord(HUE_HCLM1SunriseOffset))
 // Sunset Offset (min)
 #define ParamHUE_HCLM1SunsetOffset                   ((int16_t)knx.paramWord(HUE_HCLM1SunsetOffset))
+// Astro Minimum Kelvin
+#define ParamHUE_HCLM1AstroMinKelvin                 (knx.paramWord(HUE_HCLM1AstroMinKelvin))
+// Astro Maximum Kelvin
+#define ParamHUE_HCLM1AstroMaxKelvin                 (knx.paramWord(HUE_HCLM1AstroMaxKelvin))
+// Astro Minimum Helligkeit
+#define ParamHUE_HCLM1AstroMinBrightness             (knx.paramByte(HUE_HCLM1AstroMinBrightness))
+// Astro Maximum Helligkeit
+#define ParamHUE_HCLM1AstroMaxBrightness             (knx.paramByte(HUE_HCLM1AstroMaxBrightness))
 // Kurventyp
 #define ParamHUE_HCLM2CurveType                      (knx.paramByte(HUE_HCLM2CurveType))
-// Slew-Rate (K/min)
+// Slew-Rate
 #define ParamHUE_HCLM2SlewRate                       (knx.paramWord(HUE_HCLM2SlewRate))
-// Manual Kelvin
+// Manuelle Farbtemperatur
 #define ParamHUE_HCLM2ManualKelvin                   (knx.paramWord(HUE_HCLM2ManualKelvin))
 // Sunrise (HH:MM)
 #define ParamHUE_HCLM2Sunrise                        (knx.paramData(HUE_HCLM2Sunrise))
@@ -1410,11 +1537,19 @@
 #define ParamHUE_HCLM2SunriseOffset                  ((int16_t)knx.paramWord(HUE_HCLM2SunriseOffset))
 // Sunset Offset (min)
 #define ParamHUE_HCLM2SunsetOffset                   ((int16_t)knx.paramWord(HUE_HCLM2SunsetOffset))
+// Astro Minimum Kelvin
+#define ParamHUE_HCLM2AstroMinKelvin                 (knx.paramWord(HUE_HCLM2AstroMinKelvin))
+// Astro Maximum Kelvin
+#define ParamHUE_HCLM2AstroMaxKelvin                 (knx.paramWord(HUE_HCLM2AstroMaxKelvin))
+// Astro Minimum Helligkeit
+#define ParamHUE_HCLM2AstroMinBrightness             (knx.paramByte(HUE_HCLM2AstroMinBrightness))
+// Astro Maximum Helligkeit
+#define ParamHUE_HCLM2AstroMaxBrightness             (knx.paramByte(HUE_HCLM2AstroMaxBrightness))
 // Kurventyp
 #define ParamHUE_HCLM3CurveType                      (knx.paramByte(HUE_HCLM3CurveType))
-// Slew-Rate (K/min)
+// Slew-Rate
 #define ParamHUE_HCLM3SlewRate                       (knx.paramWord(HUE_HCLM3SlewRate))
-// Manual Kelvin
+// Manuelle Farbtemperatur
 #define ParamHUE_HCLM3ManualKelvin                   (knx.paramWord(HUE_HCLM3ManualKelvin))
 // Sunrise (HH:MM)
 #define ParamHUE_HCLM3Sunrise                        (knx.paramData(HUE_HCLM3Sunrise))
@@ -1426,11 +1561,19 @@
 #define ParamHUE_HCLM3SunriseOffset                  ((int16_t)knx.paramWord(HUE_HCLM3SunriseOffset))
 // Sunset Offset (min)
 #define ParamHUE_HCLM3SunsetOffset                   ((int16_t)knx.paramWord(HUE_HCLM3SunsetOffset))
+// Astro Minimum Kelvin
+#define ParamHUE_HCLM3AstroMinKelvin                 (knx.paramWord(HUE_HCLM3AstroMinKelvin))
+// Astro Maximum Kelvin
+#define ParamHUE_HCLM3AstroMaxKelvin                 (knx.paramWord(HUE_HCLM3AstroMaxKelvin))
+// Astro Minimum Helligkeit
+#define ParamHUE_HCLM3AstroMinBrightness             (knx.paramByte(HUE_HCLM3AstroMinBrightness))
+// Astro Maximum Helligkeit
+#define ParamHUE_HCLM3AstroMaxBrightness             (knx.paramByte(HUE_HCLM3AstroMaxBrightness))
 // Kurventyp
 #define ParamHUE_HCLM4CurveType                      (knx.paramByte(HUE_HCLM4CurveType))
-// Slew-Rate (K/min)
+// Slew-Rate
 #define ParamHUE_HCLM4SlewRate                       (knx.paramWord(HUE_HCLM4SlewRate))
-// Manual Kelvin
+// Manuelle Farbtemperatur
 #define ParamHUE_HCLM4ManualKelvin                   (knx.paramWord(HUE_HCLM4ManualKelvin))
 // Sunrise (HH:MM)
 #define ParamHUE_HCLM4Sunrise                        (knx.paramData(HUE_HCLM4Sunrise))
@@ -1442,11 +1585,19 @@
 #define ParamHUE_HCLM4SunriseOffset                  ((int16_t)knx.paramWord(HUE_HCLM4SunriseOffset))
 // Sunset Offset (min)
 #define ParamHUE_HCLM4SunsetOffset                   ((int16_t)knx.paramWord(HUE_HCLM4SunsetOffset))
+// Astro Minimum Kelvin
+#define ParamHUE_HCLM4AstroMinKelvin                 (knx.paramWord(HUE_HCLM4AstroMinKelvin))
+// Astro Maximum Kelvin
+#define ParamHUE_HCLM4AstroMaxKelvin                 (knx.paramWord(HUE_HCLM4AstroMaxKelvin))
+// Astro Minimum Helligkeit
+#define ParamHUE_HCLM4AstroMinBrightness             (knx.paramByte(HUE_HCLM4AstroMinBrightness))
+// Astro Maximum Helligkeit
+#define ParamHUE_HCLM4AstroMaxBrightness             (knx.paramByte(HUE_HCLM4AstroMaxBrightness))
 // Kurventyp
 #define ParamHUE_HCLM5CurveType                      (knx.paramByte(HUE_HCLM5CurveType))
-// Slew-Rate (K/min)
+// Slew-Rate
 #define ParamHUE_HCLM5SlewRate                       (knx.paramWord(HUE_HCLM5SlewRate))
-// Manual Kelvin
+// Manuelle Farbtemperatur
 #define ParamHUE_HCLM5ManualKelvin                   (knx.paramWord(HUE_HCLM5ManualKelvin))
 // Sunrise (HH:MM)
 #define ParamHUE_HCLM5Sunrise                        (knx.paramData(HUE_HCLM5Sunrise))
@@ -1458,11 +1609,19 @@
 #define ParamHUE_HCLM5SunriseOffset                  ((int16_t)knx.paramWord(HUE_HCLM5SunriseOffset))
 // Sunset Offset (min)
 #define ParamHUE_HCLM5SunsetOffset                   ((int16_t)knx.paramWord(HUE_HCLM5SunsetOffset))
+// Astro Minimum Kelvin
+#define ParamHUE_HCLM5AstroMinKelvin                 (knx.paramWord(HUE_HCLM5AstroMinKelvin))
+// Astro Maximum Kelvin
+#define ParamHUE_HCLM5AstroMaxKelvin                 (knx.paramWord(HUE_HCLM5AstroMaxKelvin))
+// Astro Minimum Helligkeit
+#define ParamHUE_HCLM5AstroMinBrightness             (knx.paramByte(HUE_HCLM5AstroMinBrightness))
+// Astro Maximum Helligkeit
+#define ParamHUE_HCLM5AstroMaxBrightness             (knx.paramByte(HUE_HCLM5AstroMaxBrightness))
 // Kurventyp
 #define ParamHUE_HCLM6CurveType                      (knx.paramByte(HUE_HCLM6CurveType))
-// Slew-Rate (K/min)
+// Slew-Rate
 #define ParamHUE_HCLM6SlewRate                       (knx.paramWord(HUE_HCLM6SlewRate))
-// Manual Kelvin
+// Manuelle Farbtemperatur
 #define ParamHUE_HCLM6ManualKelvin                   (knx.paramWord(HUE_HCLM6ManualKelvin))
 // Sunrise (HH:MM)
 #define ParamHUE_HCLM6Sunrise                        (knx.paramData(HUE_HCLM6Sunrise))
@@ -1474,11 +1633,19 @@
 #define ParamHUE_HCLM6SunriseOffset                  ((int16_t)knx.paramWord(HUE_HCLM6SunriseOffset))
 // Sunset Offset (min)
 #define ParamHUE_HCLM6SunsetOffset                   ((int16_t)knx.paramWord(HUE_HCLM6SunsetOffset))
+// Astro Minimum Kelvin
+#define ParamHUE_HCLM6AstroMinKelvin                 (knx.paramWord(HUE_HCLM6AstroMinKelvin))
+// Astro Maximum Kelvin
+#define ParamHUE_HCLM6AstroMaxKelvin                 (knx.paramWord(HUE_HCLM6AstroMaxKelvin))
+// Astro Minimum Helligkeit
+#define ParamHUE_HCLM6AstroMinBrightness             (knx.paramByte(HUE_HCLM6AstroMinBrightness))
+// Astro Maximum Helligkeit
+#define ParamHUE_HCLM6AstroMaxBrightness             (knx.paramByte(HUE_HCLM6AstroMaxBrightness))
 // Kurventyp
 #define ParamHUE_HCLM7CurveType                      (knx.paramByte(HUE_HCLM7CurveType))
-// Slew-Rate (K/min)
+// Slew-Rate
 #define ParamHUE_HCLM7SlewRate                       (knx.paramWord(HUE_HCLM7SlewRate))
-// Manual Kelvin
+// Manuelle Farbtemperatur
 #define ParamHUE_HCLM7ManualKelvin                   (knx.paramWord(HUE_HCLM7ManualKelvin))
 // Sunrise (HH:MM)
 #define ParamHUE_HCLM7Sunrise                        (knx.paramData(HUE_HCLM7Sunrise))
@@ -1490,11 +1657,19 @@
 #define ParamHUE_HCLM7SunriseOffset                  ((int16_t)knx.paramWord(HUE_HCLM7SunriseOffset))
 // Sunset Offset (min)
 #define ParamHUE_HCLM7SunsetOffset                   ((int16_t)knx.paramWord(HUE_HCLM7SunsetOffset))
+// Astro Minimum Kelvin
+#define ParamHUE_HCLM7AstroMinKelvin                 (knx.paramWord(HUE_HCLM7AstroMinKelvin))
+// Astro Maximum Kelvin
+#define ParamHUE_HCLM7AstroMaxKelvin                 (knx.paramWord(HUE_HCLM7AstroMaxKelvin))
+// Astro Minimum Helligkeit
+#define ParamHUE_HCLM7AstroMinBrightness             (knx.paramByte(HUE_HCLM7AstroMinBrightness))
+// Astro Maximum Helligkeit
+#define ParamHUE_HCLM7AstroMaxBrightness             (knx.paramByte(HUE_HCLM7AstroMaxBrightness))
 // Kurventyp
 #define ParamHUE_HCLM8CurveType                      (knx.paramByte(HUE_HCLM8CurveType))
-// Slew-Rate (K/min)
+// Slew-Rate
 #define ParamHUE_HCLM8SlewRate                       (knx.paramWord(HUE_HCLM8SlewRate))
-// Manual Kelvin
+// Manuelle Farbtemperatur
 #define ParamHUE_HCLM8ManualKelvin                   (knx.paramWord(HUE_HCLM8ManualKelvin))
 // Sunrise (HH:MM)
 #define ParamHUE_HCLM8Sunrise                        (knx.paramData(HUE_HCLM8Sunrise))
@@ -1506,6 +1681,30 @@
 #define ParamHUE_HCLM8SunriseOffset                  ((int16_t)knx.paramWord(HUE_HCLM8SunriseOffset))
 // Sunset Offset (min)
 #define ParamHUE_HCLM8SunsetOffset                   ((int16_t)knx.paramWord(HUE_HCLM8SunsetOffset))
+// Astro Minimum Kelvin
+#define ParamHUE_HCLM8AstroMinKelvin                 (knx.paramWord(HUE_HCLM8AstroMinKelvin))
+// Astro Maximum Kelvin
+#define ParamHUE_HCLM8AstroMaxKelvin                 (knx.paramWord(HUE_HCLM8AstroMaxKelvin))
+// Astro Minimum Helligkeit
+#define ParamHUE_HCLM8AstroMinBrightness             (knx.paramByte(HUE_HCLM8AstroMinBrightness))
+// Astro Maximum Helligkeit
+#define ParamHUE_HCLM8AstroMaxBrightness             (knx.paramByte(HUE_HCLM8AstroMaxBrightness))
+// Anzahl Stützpunkte
+#define ParamHUE_HCLM1SetpointCount                  (knx.paramByte(HUE_HCLM1SetpointCount))
+// Anzahl Stützpunkte
+#define ParamHUE_HCLM2SetpointCount                  (knx.paramByte(HUE_HCLM2SetpointCount))
+// Anzahl Stützpunkte
+#define ParamHUE_HCLM3SetpointCount                  (knx.paramByte(HUE_HCLM3SetpointCount))
+// Anzahl Stützpunkte
+#define ParamHUE_HCLM4SetpointCount                  (knx.paramByte(HUE_HCLM4SetpointCount))
+// Anzahl Stützpunkte
+#define ParamHUE_HCLM5SetpointCount                  (knx.paramByte(HUE_HCLM5SetpointCount))
+// Anzahl Stützpunkte
+#define ParamHUE_HCLM6SetpointCount                  (knx.paramByte(HUE_HCLM6SetpointCount))
+// Anzahl Stützpunkte
+#define ParamHUE_HCLM7SetpointCount                  (knx.paramByte(HUE_HCLM7SetpointCount))
+// Anzahl Stützpunkte
+#define ParamHUE_HCLM8SetpointCount                  (knx.paramByte(HUE_HCLM8SetpointCount))
 
 #define HUE_KoHUEConnectionStatus 480
 #define HUE_KoHUEPairingTrigger 481
@@ -1543,84 +1742,87 @@
 #define HUE_KoHUEHCLM7LockStatus 513
 #define HUE_KoHUEHCLM8Lock 514
 #define HUE_KoHUEHCLM8LockStatus 515
+#define HUE_KoHUEHCLReleaseTrigger 516
 
 // Bridge Verbindungsstatus
 #define KoHUE_HUEConnectionStatus                 (knx.getGroupObject(HUE_KoHUEConnectionStatus))
 // Pairing Trigger
 #define KoHUE_HUEPairingTrigger                   (knx.getGroupObject(HUE_KoHUEPairingTrigger))
-// HCL Sperre (global)
+// Sperre Lichtmanager (global)
 #define KoHUE_HUEHCLLock                          (knx.getGroupObject(HUE_KoHUEHCLLock))
-// Status HCL Sperre
+// Status Sperre Lichtmanager
 #define KoHUE_HUEHCLLockStatus                    (knx.getGroupObject(HUE_KoHUEHCLLockStatus))
-// HCL M1 Soll Helligkeit
+// Lichtmanager 1 Soll Helligkeit
 #define KoHUE_HUEHCLM1StatusBrightness            (knx.getGroupObject(HUE_KoHUEHCLM1StatusBrightness))
-// HCL M1 Soll Farbtemp.
+// Lichtmanager 1 Soll Farbtemp.
 #define KoHUE_HUEHCLM1StatusColorTemp             (knx.getGroupObject(HUE_KoHUEHCLM1StatusColorTemp))
-// HCL M2 Soll Helligkeit
+// Lichtmanager 2 Soll Helligkeit
 #define KoHUE_HUEHCLM2StatusBrightness            (knx.getGroupObject(HUE_KoHUEHCLM2StatusBrightness))
-// HCL M2 Soll Farbtemp.
+// Lichtmanager 2 Soll Farbtemp.
 #define KoHUE_HUEHCLM2StatusColorTemp             (knx.getGroupObject(HUE_KoHUEHCLM2StatusColorTemp))
-// HCL M3 Soll Helligkeit
+// Lichtmanager 3 Soll Helligkeit
 #define KoHUE_HUEHCLM3StatusBrightness            (knx.getGroupObject(HUE_KoHUEHCLM3StatusBrightness))
-// HCL M3 Soll Farbtemp.
+// Lichtmanager 3 Soll Farbtemp.
 #define KoHUE_HUEHCLM3StatusColorTemp             (knx.getGroupObject(HUE_KoHUEHCLM3StatusColorTemp))
-// HCL M4 Soll Helligkeit
+// Lichtmanager 4 Soll Helligkeit
 #define KoHUE_HUEHCLM4StatusBrightness            (knx.getGroupObject(HUE_KoHUEHCLM4StatusBrightness))
-// HCL M4 Soll Farbtemp.
+// Lichtmanager 4 Soll Farbtemp.
 #define KoHUE_HUEHCLM4StatusColorTemp             (knx.getGroupObject(HUE_KoHUEHCLM4StatusColorTemp))
-// HCL Sperre M1
+// Sperre Lichtmanager 1
 #define KoHUE_HUEHCLM1Lock                        (knx.getGroupObject(HUE_KoHUEHCLM1Lock))
-// Status HCL Sperre M1
+// Status Sperre Lichtmanager 1
 #define KoHUE_HUEHCLM1LockStatus                  (knx.getGroupObject(HUE_KoHUEHCLM1LockStatus))
-// HCL Sperre M2
+// Sperre Lichtmanager 2
 #define KoHUE_HUEHCLM2Lock                        (knx.getGroupObject(HUE_KoHUEHCLM2Lock))
-// Status HCL Sperre M2
+// Status Sperre Lichtmanager 2
 #define KoHUE_HUEHCLM2LockStatus                  (knx.getGroupObject(HUE_KoHUEHCLM2LockStatus))
-// HCL Sperre M3
+// Sperre Lichtmanager 3
 #define KoHUE_HUEHCLM3Lock                        (knx.getGroupObject(HUE_KoHUEHCLM3Lock))
-// Status HCL Sperre M3
+// Status Sperre Lichtmanager 3
 #define KoHUE_HUEHCLM3LockStatus                  (knx.getGroupObject(HUE_KoHUEHCLM3LockStatus))
-// HCL Sperre M4
+// Sperre Lichtmanager 4
 #define KoHUE_HUEHCLM4Lock                        (knx.getGroupObject(HUE_KoHUEHCLM4Lock))
-// Status HCL Sperre M4
+// Status Sperre Lichtmanager 4
 #define KoHUE_HUEHCLM4LockStatus                  (knx.getGroupObject(HUE_KoHUEHCLM4LockStatus))
-// HCL M5 Soll Helligkeit
+// Lichtmanager 5 Soll Helligkeit
 #define KoHUE_HUEHCLM5StatusBrightness            (knx.getGroupObject(HUE_KoHUEHCLM5StatusBrightness))
-// HCL M5 Soll Farbtemp.
+// Lichtmanager 5 Soll Farbtemp.
 #define KoHUE_HUEHCLM5StatusColorTemp             (knx.getGroupObject(HUE_KoHUEHCLM5StatusColorTemp))
-// HCL M6 Soll Helligkeit
+// Lichtmanager 6 Soll Helligkeit
 #define KoHUE_HUEHCLM6StatusBrightness            (knx.getGroupObject(HUE_KoHUEHCLM6StatusBrightness))
-// HCL M6 Soll Farbtemp.
+// Lichtmanager 6 Soll Farbtemp.
 #define KoHUE_HUEHCLM6StatusColorTemp             (knx.getGroupObject(HUE_KoHUEHCLM6StatusColorTemp))
-// HCL M7 Soll Helligkeit
+// Lichtmanager 7 Soll Helligkeit
 #define KoHUE_HUEHCLM7StatusBrightness            (knx.getGroupObject(HUE_KoHUEHCLM7StatusBrightness))
-// HCL M7 Soll Farbtemp.
+// Lichtmanager 7 Soll Farbtemp.
 #define KoHUE_HUEHCLM7StatusColorTemp             (knx.getGroupObject(HUE_KoHUEHCLM7StatusColorTemp))
-// HCL M8 Soll Helligkeit
+// Lichtmanager 8 Soll Helligkeit
 #define KoHUE_HUEHCLM8StatusBrightness            (knx.getGroupObject(HUE_KoHUEHCLM8StatusBrightness))
-// HCL M8 Soll Farbtemp.
+// Lichtmanager 8 Soll Farbtemp.
 #define KoHUE_HUEHCLM8StatusColorTemp             (knx.getGroupObject(HUE_KoHUEHCLM8StatusColorTemp))
-// HCL Sperre M5
+// Sperre Lichtmanager 5
 #define KoHUE_HUEHCLM5Lock                        (knx.getGroupObject(HUE_KoHUEHCLM5Lock))
-// Status HCL Sperre M5
+// Status Sperre Lichtmanager 5
 #define KoHUE_HUEHCLM5LockStatus                  (knx.getGroupObject(HUE_KoHUEHCLM5LockStatus))
-// HCL Sperre M6
+// Sperre Lichtmanager 6
 #define KoHUE_HUEHCLM6Lock                        (knx.getGroupObject(HUE_KoHUEHCLM6Lock))
-// Status HCL Sperre M6
+// Status Sperre Lichtmanager 6
 #define KoHUE_HUEHCLM6LockStatus                  (knx.getGroupObject(HUE_KoHUEHCLM6LockStatus))
-// HCL Sperre M7
+// Sperre Lichtmanager 7
 #define KoHUE_HUEHCLM7Lock                        (knx.getGroupObject(HUE_KoHUEHCLM7Lock))
-// Status HCL Sperre M7
+// Status Sperre Lichtmanager 7
 #define KoHUE_HUEHCLM7LockStatus                  (knx.getGroupObject(HUE_KoHUEHCLM7LockStatus))
-// HCL Sperre M8
+// Sperre Lichtmanager 8
 #define KoHUE_HUEHCLM8Lock                        (knx.getGroupObject(HUE_KoHUEHCLM8Lock))
-// Status HCL Sperre M8
+// Status Sperre Lichtmanager 8
 #define KoHUE_HUEHCLM8LockStatus                  (knx.getGroupObject(HUE_KoHUEHCLM8LockStatus))
+// Lichtmanager Entsperren Trigger
+#define KoHUE_HUEHCLReleaseTrigger                (knx.getGroupObject(HUE_KoHUEHCLReleaseTrigger))
 
 #define HUE_ChannelCount 24
 
 // Parameter per channel
-#define HUE_ParamBlockOffset 1263
+#define HUE_ParamBlockOffset 1618
 #define HUE_ParamBlockSize 87
 #define HUE_ParamCalcIndex(index) (index + HUE_ParamBlockOffset + _channelIndex * HUE_ParamBlockSize)
 
@@ -1629,10 +1831,10 @@
 #define HUE_CHTargetRID                         45      // char*, 40 Byte
 #define     HUE_CHTargetRIDLength 40
 #define HUE_CHHCLMaster                          4      // 8 Bits, Bit 7-0
-#define HUE_CHHCLLockFallback                   86      // 4 Bits, Bit 7-4
-#define     HUE_CHHCLLockFallbackMask 0xF0
-#define     HUE_CHHCLLockFallbackShift 4
-#define HUE_CHLightType                          0      // 8 Bits, Bit 7-0
+#define HUE_CHHCLLockFallback                   86      // 8 Bits, Bit 7-0
+#define HUE_CHLightType                          0      // 2 Bits, Bit 7-6
+#define     HUE_CHLightTypeMask 0xC0
+#define     HUE_CHLightTypeShift 6
 #define HUE_CHDisabled                           1      // 1 Bit, Bit 7
 #define     HUE_CHDisabledMask 0x80
 #define     HUE_CHDisabledShift 7
@@ -1651,12 +1853,12 @@
 // Hue Ziel (Light-/Room-/Zone-ID oder Name)
 #define ParamHUE_CHTargetRID                         (knx.paramData(HUE_ParamCalcIndex(HUE_CHTargetRID)))
 #define ParamHUE_CHTargetRIDStr                      (knx.paramString(HUE_ParamCalcIndex(HUE_CHTargetRID), HUE_CHTargetRIDLength))
-// HCL Master
+// Zuordnung Lichtmanager
 #define ParamHUE_CHHCLMaster                         (knx.paramByte(HUE_ParamCalcIndex(HUE_CHHCLMaster)))
-// Rückfallzeit nach HCL-Sperre
-#define ParamHUE_CHHCLLockFallback                   ((knx.paramByte(HUE_ParamCalcIndex(HUE_CHHCLLockFallback)) & HUE_CHHCLLockFallbackMask) >> HUE_CHHCLLockFallbackShift)
+// Rückfallzeit nach Lichtmanager-Sperre
+#define ParamHUE_CHHCLLockFallback                   (knx.paramByte(HUE_ParamCalcIndex(HUE_CHHCLLockFallback)))
 // Lampentyp
-#define ParamHUE_CHLightType                         (knx.paramByte(HUE_ParamCalcIndex(HUE_CHLightType)))
+#define ParamHUE_CHLightType                         ((knx.paramByte(HUE_ParamCalcIndex(HUE_CHLightType)) & HUE_CHLightTypeMask) >> HUE_CHLightTypeShift)
 // Kanal deaktivieren (zu Testzwecken)
 #define ParamHUE_CHDisabled                          ((bool)(knx.paramByte(HUE_ParamCalcIndex(HUE_CHDisabled)) & HUE_CHDisabledMask))
 // Synchronisationsrichtung
@@ -1709,277 +1911,277 @@
 #define KoHUE_CHColorRGB                          (knx.getGroupObject(HUE_KoCalcNumber(HUE_KoCHColorRGB)))
 // Status RGB
 #define KoHUE_CHStatusColorRGB                    (knx.getGroupObject(HUE_KoCalcNumber(HUE_KoCHStatusColorRGB)))
-// HCL Sperre (spezifisch)
+// Lichtmanager Sperre (Hue-Kanal)
 #define KoHUE_CHHCLLock                           (knx.getGroupObject(HUE_KoCalcNumber(HUE_KoCHHCLLock)))
-// Status HCL Sperre
+// Status Lichtmanager Sperre (Hue-Kanal)
 #define KoHUE_CHHCLLockStatus                     (knx.getGroupObject(HUE_KoCalcNumber(HUE_KoCHHCLLockStatus)))
 
-#define LOG_VisibleChannels                     3351      // uint8_t
-#define LOG_VacationKo                          3352      // 1 Bit, Bit 7
+#define LOG_VisibleChannels                     3706      // uint8_t
+#define LOG_VacationKo                          3707      // 1 Bit, Bit 7
 #define     LOG_VacationKoMask 0x80
 #define     LOG_VacationKoShift 7
-#define LOG_HolidayKo                           3352      // 1 Bit, Bit 6
+#define LOG_HolidayKo                           3707      // 1 Bit, Bit 6
 #define     LOG_HolidayKoMask 0x40
 #define     LOG_HolidayKoShift 6
-#define LOG_VacationRead                        3352      // 1 Bit, Bit 5
+#define LOG_VacationRead                        3707      // 1 Bit, Bit 5
 #define     LOG_VacationReadMask 0x20
 #define     LOG_VacationReadShift 5
-#define LOG_HolidaySend                         3352      // 1 Bit, Bit 4
+#define LOG_HolidaySend                         3707      // 1 Bit, Bit 4
 #define     LOG_HolidaySendMask 0x10
 #define     LOG_HolidaySendShift 4
-#define LOG_Neujahr                             3353      // 1 Bit, Bit 7
+#define LOG_Neujahr                             3708      // 1 Bit, Bit 7
 #define     LOG_NeujahrMask 0x80
 #define     LOG_NeujahrShift 7
-#define LOG_DreiKoenige                         3353      // 1 Bit, Bit 6
+#define LOG_DreiKoenige                         3708      // 1 Bit, Bit 6
 #define     LOG_DreiKoenigeMask 0x40
 #define     LOG_DreiKoenigeShift 6
-#define LOG_Weiberfastnacht                     3353      // 1 Bit, Bit 5
+#define LOG_Weiberfastnacht                     3708      // 1 Bit, Bit 5
 #define     LOG_WeiberfastnachtMask 0x20
 #define     LOG_WeiberfastnachtShift 5
-#define LOG_Rosenmontag                         3353      // 1 Bit, Bit 4
+#define LOG_Rosenmontag                         3708      // 1 Bit, Bit 4
 #define     LOG_RosenmontagMask 0x10
 #define     LOG_RosenmontagShift 4
-#define LOG_Fastnachtsdienstag                  3353      // 1 Bit, Bit 3
+#define LOG_Fastnachtsdienstag                  3708      // 1 Bit, Bit 3
 #define     LOG_FastnachtsdienstagMask 0x08
 #define     LOG_FastnachtsdienstagShift 3
-#define LOG_Aschermittwoch                      3353      // 1 Bit, Bit 2
+#define LOG_Aschermittwoch                      3708      // 1 Bit, Bit 2
 #define     LOG_AschermittwochMask 0x04
 #define     LOG_AschermittwochShift 2
-#define LOG_Frauentag                           3353      // 1 Bit, Bit 1
+#define LOG_Frauentag                           3708      // 1 Bit, Bit 1
 #define     LOG_FrauentagMask 0x02
 #define     LOG_FrauentagShift 1
-#define LOG_Gruendonnerstag                     3353      // 1 Bit, Bit 0
+#define LOG_Gruendonnerstag                     3708      // 1 Bit, Bit 0
 #define     LOG_GruendonnerstagMask 0x01
 #define     LOG_GruendonnerstagShift 0
-#define LOG_Karfreitag                          3354      // 1 Bit, Bit 7
+#define LOG_Karfreitag                          3709      // 1 Bit, Bit 7
 #define     LOG_KarfreitagMask 0x80
 #define     LOG_KarfreitagShift 7
-#define LOG_Ostersonntag                        3354      // 1 Bit, Bit 6
+#define LOG_Ostersonntag                        3709      // 1 Bit, Bit 6
 #define     LOG_OstersonntagMask 0x40
 #define     LOG_OstersonntagShift 6
-#define LOG_Ostermontag                         3354      // 1 Bit, Bit 5
+#define LOG_Ostermontag                         3709      // 1 Bit, Bit 5
 #define     LOG_OstermontagMask 0x20
 #define     LOG_OstermontagShift 5
-#define LOG_TagDerArbeit                        3354      // 1 Bit, Bit 4
+#define LOG_TagDerArbeit                        3709      // 1 Bit, Bit 4
 #define     LOG_TagDerArbeitMask 0x10
 #define     LOG_TagDerArbeitShift 4
-#define LOG_Himmelfahrt                         3354      // 1 Bit, Bit 3
+#define LOG_Himmelfahrt                         3709      // 1 Bit, Bit 3
 #define     LOG_HimmelfahrtMask 0x08
 #define     LOG_HimmelfahrtShift 3
-#define LOG_Pfingstsonntag                      3354      // 1 Bit, Bit 2
+#define LOG_Pfingstsonntag                      3709      // 1 Bit, Bit 2
 #define     LOG_PfingstsonntagMask 0x04
 #define     LOG_PfingstsonntagShift 2
-#define LOG_Pfingstmontag                       3354      // 1 Bit, Bit 1
+#define LOG_Pfingstmontag                       3709      // 1 Bit, Bit 1
 #define     LOG_PfingstmontagMask 0x02
 #define     LOG_PfingstmontagShift 1
-#define LOG_Fronleichnam                        3354      // 1 Bit, Bit 0
+#define LOG_Fronleichnam                        3709      // 1 Bit, Bit 0
 #define     LOG_FronleichnamMask 0x01
 #define     LOG_FronleichnamShift 0
-#define LOG_Friedensfest                        3355      // 1 Bit, Bit 7
+#define LOG_Friedensfest                        3710      // 1 Bit, Bit 7
 #define     LOG_FriedensfestMask 0x80
 #define     LOG_FriedensfestShift 7
-#define LOG_MariaHimmelfahrt                    3355      // 1 Bit, Bit 6
+#define LOG_MariaHimmelfahrt                    3710      // 1 Bit, Bit 6
 #define     LOG_MariaHimmelfahrtMask 0x40
 #define     LOG_MariaHimmelfahrtShift 6
-#define LOG_DeutscheEinheit                     3355      // 1 Bit, Bit 5
+#define LOG_DeutscheEinheit                     3710      // 1 Bit, Bit 5
 #define     LOG_DeutscheEinheitMask 0x20
 #define     LOG_DeutscheEinheitShift 5
-#define LOG_Reformationstag                     3355      // 1 Bit, Bit 4
+#define LOG_Reformationstag                     3710      // 1 Bit, Bit 4
 #define     LOG_ReformationstagMask 0x10
 #define     LOG_ReformationstagShift 4
-#define LOG_Allerheiligen                       3355      // 1 Bit, Bit 3
+#define LOG_Allerheiligen                       3710      // 1 Bit, Bit 3
 #define     LOG_AllerheiligenMask 0x08
 #define     LOG_AllerheiligenShift 3
-#define LOG_BussBettag                          3355      // 1 Bit, Bit 2
+#define LOG_BussBettag                          3710      // 1 Bit, Bit 2
 #define     LOG_BussBettagMask 0x04
 #define     LOG_BussBettagShift 2
-#define LOG_Advent1                             3355      // 1 Bit, Bit 1
+#define LOG_Advent1                             3710      // 1 Bit, Bit 1
 #define     LOG_Advent1Mask 0x02
 #define     LOG_Advent1Shift 1
-#define LOG_Advent2                             3355      // 1 Bit, Bit 0
+#define LOG_Advent2                             3710      // 1 Bit, Bit 0
 #define     LOG_Advent2Mask 0x01
 #define     LOG_Advent2Shift 0
-#define LOG_Advent3                             3356      // 1 Bit, Bit 7
+#define LOG_Advent3                             3711      // 1 Bit, Bit 7
 #define     LOG_Advent3Mask 0x80
 #define     LOG_Advent3Shift 7
-#define LOG_Advent4                             3356      // 1 Bit, Bit 6
+#define LOG_Advent4                             3711      // 1 Bit, Bit 6
 #define     LOG_Advent4Mask 0x40
 #define     LOG_Advent4Shift 6
-#define LOG_Heiligabend                         3356      // 1 Bit, Bit 5
+#define LOG_Heiligabend                         3711      // 1 Bit, Bit 5
 #define     LOG_HeiligabendMask 0x20
 #define     LOG_HeiligabendShift 5
-#define LOG_Weihnachtstag1                      3356      // 1 Bit, Bit 4
+#define LOG_Weihnachtstag1                      3711      // 1 Bit, Bit 4
 #define     LOG_Weihnachtstag1Mask 0x10
 #define     LOG_Weihnachtstag1Shift 4
-#define LOG_Weihnachtstag2                      3356      // 1 Bit, Bit 3
+#define LOG_Weihnachtstag2                      3711      // 1 Bit, Bit 3
 #define     LOG_Weihnachtstag2Mask 0x08
 #define     LOG_Weihnachtstag2Shift 3
-#define LOG_Silvester                           3356      // 1 Bit, Bit 2
+#define LOG_Silvester                           3711      // 1 Bit, Bit 2
 #define     LOG_SilvesterMask 0x04
 #define     LOG_SilvesterShift 2
-#define LOG_Nationalfeiertag                    3356      // 1 Bit, Bit 1
+#define LOG_Nationalfeiertag                    3711      // 1 Bit, Bit 1
 #define     LOG_NationalfeiertagMask 0x02
 #define     LOG_NationalfeiertagShift 1
-#define LOG_MariaEmpfaengnis                    3356      // 1 Bit, Bit 0
+#define LOG_MariaEmpfaengnis                    3711      // 1 Bit, Bit 0
 #define     LOG_MariaEmpfaengnisMask 0x01
 #define     LOG_MariaEmpfaengnisShift 0
-#define LOG_NationalfeiertagSchweiz             3357      // 1 Bit, Bit 7
+#define LOG_NationalfeiertagSchweiz             3712      // 1 Bit, Bit 7
 #define     LOG_NationalfeiertagSchweizMask 0x80
 #define     LOG_NationalfeiertagSchweizShift 7
-#define LOG_Totensonntag                        3357      // 1 Bit, Bit 6
+#define LOG_Totensonntag                        3712      // 1 Bit, Bit 6
 #define     LOG_TotensonntagMask 0x40
 #define     LOG_TotensonntagShift 6
-#define LOG_Weltkindertag                       3357      // 1 Bit, Bit 5
+#define LOG_Weltkindertag                       3712      // 1 Bit, Bit 5
 #define     LOG_WeltkindertagMask 0x20
 #define     LOG_WeltkindertagShift 5
-#define LOG_UserFormula1                        3358      // char*, 99 Byte
+#define LOG_UserFormula1                        3713      // char*, 99 Byte
 #define     LOG_UserFormula1Length 99
-#define LOG_UserFormula1Active                  3457      // 1 Bit, Bit 7
+#define LOG_UserFormula1Active                  3812      // 1 Bit, Bit 7
 #define     LOG_UserFormula1ActiveMask 0x80
 #define     LOG_UserFormula1ActiveShift 7
-#define LOG_UserFormula2                        3458      // char*, 99 Byte
+#define LOG_UserFormula2                        3813      // char*, 99 Byte
 #define     LOG_UserFormula2Length 99
-#define LOG_UserFormula2Active                  3557      // 1 Bit, Bit 7
+#define LOG_UserFormula2Active                  3912      // 1 Bit, Bit 7
 #define     LOG_UserFormula2ActiveMask 0x80
 #define     LOG_UserFormula2ActiveShift 7
-#define LOG_UserFormula3                        3558      // char*, 99 Byte
+#define LOG_UserFormula3                        3913      // char*, 99 Byte
 #define     LOG_UserFormula3Length 99
-#define LOG_UserFormula3Active                  3657      // 1 Bit, Bit 7
+#define LOG_UserFormula3Active                  4012      // 1 Bit, Bit 7
 #define     LOG_UserFormula3ActiveMask 0x80
 #define     LOG_UserFormula3ActiveShift 7
-#define LOG_UserFormula4                        3658      // char*, 99 Byte
+#define LOG_UserFormula4                        4013      // char*, 99 Byte
 #define     LOG_UserFormula4Length 99
-#define LOG_UserFormula4Active                  3757      // 1 Bit, Bit 7
+#define LOG_UserFormula4Active                  4112      // 1 Bit, Bit 7
 #define     LOG_UserFormula4ActiveMask 0x80
 #define     LOG_UserFormula4ActiveShift 7
-#define LOG_UserFormula5                        3758      // char*, 99 Byte
+#define LOG_UserFormula5                        4113      // char*, 99 Byte
 #define     LOG_UserFormula5Length 99
-#define LOG_UserFormula5Active                  3857      // 1 Bit, Bit 7
+#define LOG_UserFormula5Active                  4212      // 1 Bit, Bit 7
 #define     LOG_UserFormula5ActiveMask 0x80
 #define     LOG_UserFormula5ActiveShift 7
-#define LOG_UserFormula6                        3858      // char*, 99 Byte
+#define LOG_UserFormula6                        4213      // char*, 99 Byte
 #define     LOG_UserFormula6Length 99
-#define LOG_UserFormula6Active                  3957      // 1 Bit, Bit 7
+#define LOG_UserFormula6Active                  4312      // 1 Bit, Bit 7
 #define     LOG_UserFormula6ActiveMask 0x80
 #define     LOG_UserFormula6ActiveShift 7
-#define LOG_UserFormula7                        3958      // char*, 99 Byte
+#define LOG_UserFormula7                        4313      // char*, 99 Byte
 #define     LOG_UserFormula7Length 99
-#define LOG_UserFormula7Active                  4057      // 1 Bit, Bit 7
+#define LOG_UserFormula7Active                  4412      // 1 Bit, Bit 7
 #define     LOG_UserFormula7ActiveMask 0x80
 #define     LOG_UserFormula7ActiveShift 7
-#define LOG_UserFormula8                        4058      // char*, 99 Byte
+#define LOG_UserFormula8                        4413      // char*, 99 Byte
 #define     LOG_UserFormula8Length 99
-#define LOG_UserFormula8Active                  4157      // 1 Bit, Bit 7
+#define LOG_UserFormula8Active                  4512      // 1 Bit, Bit 7
 #define     LOG_UserFormula8ActiveMask 0x80
 #define     LOG_UserFormula8ActiveShift 7
-#define LOG_UserFormula9                        4158      // char*, 99 Byte
+#define LOG_UserFormula9                        4513      // char*, 99 Byte
 #define     LOG_UserFormula9Length 99
-#define LOG_UserFormula9Active                  4257      // 1 Bit, Bit 7
+#define LOG_UserFormula9Active                  4612      // 1 Bit, Bit 7
 #define     LOG_UserFormula9ActiveMask 0x80
 #define     LOG_UserFormula9ActiveShift 7
-#define LOG_UserFormula10                       4258      // char*, 99 Byte
+#define LOG_UserFormula10                       4613      // char*, 99 Byte
 #define     LOG_UserFormula10Length 99
-#define LOG_UserFormula10Active                 4357      // 1 Bit, Bit 7
+#define LOG_UserFormula10Active                 4712      // 1 Bit, Bit 7
 #define     LOG_UserFormula10ActiveMask 0x80
 #define     LOG_UserFormula10ActiveShift 7
-#define LOG_UserFormula11                       4358      // char*, 99 Byte
+#define LOG_UserFormula11                       4713      // char*, 99 Byte
 #define     LOG_UserFormula11Length 99
-#define LOG_UserFormula11Active                 4457      // 1 Bit, Bit 7
+#define LOG_UserFormula11Active                 4812      // 1 Bit, Bit 7
 #define     LOG_UserFormula11ActiveMask 0x80
 #define     LOG_UserFormula11ActiveShift 7
-#define LOG_UserFormula12                       4458      // char*, 99 Byte
+#define LOG_UserFormula12                       4813      // char*, 99 Byte
 #define     LOG_UserFormula12Length 99
-#define LOG_UserFormula12Active                 4557      // 1 Bit, Bit 7
+#define LOG_UserFormula12Active                 4912      // 1 Bit, Bit 7
 #define     LOG_UserFormula12ActiveMask 0x80
 #define     LOG_UserFormula12ActiveShift 7
-#define LOG_UserFormula13                       4558      // char*, 99 Byte
+#define LOG_UserFormula13                       4913      // char*, 99 Byte
 #define     LOG_UserFormula13Length 99
-#define LOG_UserFormula13Active                 4657      // 1 Bit, Bit 7
+#define LOG_UserFormula13Active                 5012      // 1 Bit, Bit 7
 #define     LOG_UserFormula13ActiveMask 0x80
 #define     LOG_UserFormula13ActiveShift 7
-#define LOG_UserFormula14                       4658      // char*, 99 Byte
+#define LOG_UserFormula14                       5013      // char*, 99 Byte
 #define     LOG_UserFormula14Length 99
-#define LOG_UserFormula14Active                 4757      // 1 Bit, Bit 7
+#define LOG_UserFormula14Active                 5112      // 1 Bit, Bit 7
 #define     LOG_UserFormula14ActiveMask 0x80
 #define     LOG_UserFormula14ActiveShift 7
-#define LOG_UserFormula15                       4758      // char*, 99 Byte
+#define LOG_UserFormula15                       5113      // char*, 99 Byte
 #define     LOG_UserFormula15Length 99
-#define LOG_UserFormula15Active                 4857      // 1 Bit, Bit 7
+#define LOG_UserFormula15Active                 5212      // 1 Bit, Bit 7
 #define     LOG_UserFormula15ActiveMask 0x80
 #define     LOG_UserFormula15ActiveShift 7
-#define LOG_UserFormula16                       4858      // char*, 99 Byte
+#define LOG_UserFormula16                       5213      // char*, 99 Byte
 #define     LOG_UserFormula16Length 99
-#define LOG_UserFormula16Active                 4957      // 1 Bit, Bit 7
+#define LOG_UserFormula16Active                 5312      // 1 Bit, Bit 7
 #define     LOG_UserFormula16ActiveMask 0x80
 #define     LOG_UserFormula16ActiveShift 7
-#define LOG_UserFormula17                       4958      // char*, 99 Byte
+#define LOG_UserFormula17                       5313      // char*, 99 Byte
 #define     LOG_UserFormula17Length 99
-#define LOG_UserFormula17Active                 5057      // 1 Bit, Bit 7
+#define LOG_UserFormula17Active                 5412      // 1 Bit, Bit 7
 #define     LOG_UserFormula17ActiveMask 0x80
 #define     LOG_UserFormula17ActiveShift 7
-#define LOG_UserFormula18                       5058      // char*, 99 Byte
+#define LOG_UserFormula18                       5413      // char*, 99 Byte
 #define     LOG_UserFormula18Length 99
-#define LOG_UserFormula18Active                 5157      // 1 Bit, Bit 7
+#define LOG_UserFormula18Active                 5512      // 1 Bit, Bit 7
 #define     LOG_UserFormula18ActiveMask 0x80
 #define     LOG_UserFormula18ActiveShift 7
-#define LOG_UserFormula19                       5158      // char*, 99 Byte
+#define LOG_UserFormula19                       5513      // char*, 99 Byte
 #define     LOG_UserFormula19Length 99
-#define LOG_UserFormula19Active                 5257      // 1 Bit, Bit 7
+#define LOG_UserFormula19Active                 5612      // 1 Bit, Bit 7
 #define     LOG_UserFormula19ActiveMask 0x80
 #define     LOG_UserFormula19ActiveShift 7
-#define LOG_UserFormula20                       5258      // char*, 99 Byte
+#define LOG_UserFormula20                       5613      // char*, 99 Byte
 #define     LOG_UserFormula20Length 99
-#define LOG_UserFormula20Active                 5357      // 1 Bit, Bit 7
+#define LOG_UserFormula20Active                 5712      // 1 Bit, Bit 7
 #define     LOG_UserFormula20ActiveMask 0x80
 #define     LOG_UserFormula20ActiveShift 7
-#define LOG_UserFormula21                       5358      // char*, 99 Byte
+#define LOG_UserFormula21                       5713      // char*, 99 Byte
 #define     LOG_UserFormula21Length 99
-#define LOG_UserFormula21Active                 5457      // 1 Bit, Bit 7
+#define LOG_UserFormula21Active                 5812      // 1 Bit, Bit 7
 #define     LOG_UserFormula21ActiveMask 0x80
 #define     LOG_UserFormula21ActiveShift 7
-#define LOG_UserFormula22                       5458      // char*, 99 Byte
+#define LOG_UserFormula22                       5813      // char*, 99 Byte
 #define     LOG_UserFormula22Length 99
-#define LOG_UserFormula22Active                 5557      // 1 Bit, Bit 7
+#define LOG_UserFormula22Active                 5912      // 1 Bit, Bit 7
 #define     LOG_UserFormula22ActiveMask 0x80
 #define     LOG_UserFormula22ActiveShift 7
-#define LOG_UserFormula23                       5558      // char*, 99 Byte
+#define LOG_UserFormula23                       5913      // char*, 99 Byte
 #define     LOG_UserFormula23Length 99
-#define LOG_UserFormula23Active                 5657      // 1 Bit, Bit 7
+#define LOG_UserFormula23Active                 6012      // 1 Bit, Bit 7
 #define     LOG_UserFormula23ActiveMask 0x80
 #define     LOG_UserFormula23ActiveShift 7
-#define LOG_UserFormula24                       5658      // char*, 99 Byte
+#define LOG_UserFormula24                       6013      // char*, 99 Byte
 #define     LOG_UserFormula24Length 99
-#define LOG_UserFormula24Active                 5757      // 1 Bit, Bit 7
+#define LOG_UserFormula24Active                 6112      // 1 Bit, Bit 7
 #define     LOG_UserFormula24ActiveMask 0x80
 #define     LOG_UserFormula24ActiveShift 7
-#define LOG_UserFormula25                       5758      // char*, 99 Byte
+#define LOG_UserFormula25                       6113      // char*, 99 Byte
 #define     LOG_UserFormula25Length 99
-#define LOG_UserFormula25Active                 5857      // 1 Bit, Bit 7
+#define LOG_UserFormula25Active                 6212      // 1 Bit, Bit 7
 #define     LOG_UserFormula25ActiveMask 0x80
 #define     LOG_UserFormula25ActiveShift 7
-#define LOG_UserFormula26                       5858      // char*, 99 Byte
+#define LOG_UserFormula26                       6213      // char*, 99 Byte
 #define     LOG_UserFormula26Length 99
-#define LOG_UserFormula26Active                 5957      // 1 Bit, Bit 7
+#define LOG_UserFormula26Active                 6312      // 1 Bit, Bit 7
 #define     LOG_UserFormula26ActiveMask 0x80
 #define     LOG_UserFormula26ActiveShift 7
-#define LOG_UserFormula27                       5958      // char*, 99 Byte
+#define LOG_UserFormula27                       6313      // char*, 99 Byte
 #define     LOG_UserFormula27Length 99
-#define LOG_UserFormula27Active                 6057      // 1 Bit, Bit 7
+#define LOG_UserFormula27Active                 6412      // 1 Bit, Bit 7
 #define     LOG_UserFormula27ActiveMask 0x80
 #define     LOG_UserFormula27ActiveShift 7
-#define LOG_UserFormula28                       6058      // char*, 99 Byte
+#define LOG_UserFormula28                       6413      // char*, 99 Byte
 #define     LOG_UserFormula28Length 99
-#define LOG_UserFormula28Active                 6157      // 1 Bit, Bit 7
+#define LOG_UserFormula28Active                 6512      // 1 Bit, Bit 7
 #define     LOG_UserFormula28ActiveMask 0x80
 #define     LOG_UserFormula28ActiveShift 7
-#define LOG_UserFormula29                       6158      // char*, 99 Byte
+#define LOG_UserFormula29                       6513      // char*, 99 Byte
 #define     LOG_UserFormula29Length 99
-#define LOG_UserFormula29Active                 6257      // 1 Bit, Bit 7
+#define LOG_UserFormula29Active                 6612      // 1 Bit, Bit 7
 #define     LOG_UserFormula29ActiveMask 0x80
 #define     LOG_UserFormula29ActiveShift 7
-#define LOG_UserFormula30                       6258      // char*, 99 Byte
+#define LOG_UserFormula30                       6613      // char*, 99 Byte
 #define     LOG_UserFormula30Length 99
-#define LOG_UserFormula30Active                 6357      // 1 Bit, Bit 7
+#define LOG_UserFormula30Active                 6712      // 1 Bit, Bit 7
 #define     LOG_UserFormula30ActiveMask 0x80
 #define     LOG_UserFormula30ActiveShift 7
 
@@ -2228,7 +2430,7 @@
 #define LOG_ChannelCount 50
 
 // Parameter per channel
-#define LOG_ParamBlockOffset 6358
+#define LOG_ParamBlockOffset 6713
 #define LOG_ParamBlockSize 87
 #define LOG_ParamCalcIndex(index) (index + LOG_ParamBlockOffset + _channelIndex * LOG_ParamBlockSize)
 
@@ -4102,7 +4304,7 @@
 // Ausgang
 #define KoLOG_KOfO                                (knx.getGroupObject(LOG_KoCalcNumber(LOG_KoKOfO)))
 
-#define FCB_VisibleChannels                     10708      // uint8_t
+#define FCB_VisibleChannels                     11063      // uint8_t
 
 // Verfügbare Kanäle
 #define ParamFCB_VisibleChannels                     (knx.paramByte(FCB_VisibleChannels))
@@ -4110,7 +4312,7 @@
 #define FCB_ChannelCount 15
 
 // Parameter per channel
-#define FCB_ParamBlockOffset 10709
+#define FCB_ParamBlockOffset 11064
 #define FCB_ParamBlockSize 81
 #define FCB_ParamCalcIndex(index) (index + FCB_ParamBlockOffset + _channelIndex * FCB_ParamBlockSize)
 
@@ -5182,7 +5384,7 @@
 #define BASE_KommentarModuleModuleParamSize 0
 #define BASE_KommentarModuleSubmodulesParamSize 0
 #define BASE_KommentarModuleParamSize 0
-#define BASE_KommentarModuleParamOffset 11924
+#define BASE_KommentarModuleParamOffset 12279
 #define BASE_KommentarModuleCalcIndex(index, m1) (index + BASE_KommentarModuleParamOffset + _channelIndex * BASE_KommentarModuleCount * BASE_KommentarModuleParamSize + m1 * BASE_KommentarModuleParamSize)
 
 
