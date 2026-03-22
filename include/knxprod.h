@@ -1751,7 +1751,7 @@
 #define ParamHUE_HUEHueScene8RIDStr                  (knx.paramString(HUE_HUEHueScene8RID, HUE_HUEHueScene8RIDLength))
 // Hue Szenen aktivieren
 #define ParamHUE_HUEScenesEnable                     ((bool)(knx.paramByte(HUE_HUEScenesEnable) & HUE_HUEScenesEnableMask))
-// Dimmwiederholzeit
+// Dimmgeschwindigkeit
 #define ParamHUE_HUERelDimRepeatMs                   (knx.paramWord(HUE_HUERelDimRepeatMs))
 
 #define HUE_KoHUEConnectionStatus 480
