@@ -7,8 +7,8 @@
   <op:ETS
     OpenKnxId="0xAF"
     ApplicationNumber="0x29" 
-    ApplicationVersion="0.3.5"
-    ReplacesVersions="0.3.4 0.3.3 0.3.2 0.3.1 0.2.0 0.1.0"
+    ApplicationVersion="0.3.7"
+    ReplacesVersions="0.3.6 0.3.5 0.3.4 0.3.3 0.3.2 0.3.1 0.2.0 0.1.0"
     ApplicationRevision="0"
     ProductName="Hue Gateway"
     BusCurrent="10"
@@ -35,9 +35,9 @@
   <op:define prefix="HUE" ModuleType="14"
     share="../lib/OFM-HueGatewayModule/src/HueGatewayModule.share.xml"
     template="../lib/OFM-HueGatewayModule/src/HueGatewayModule.templ.xml"
-    NumChannels="24"
+    NumChannels="32"
     KoOffset="517"
-    KoBlockSize="9"
+    KoBlockSize="11"
     KoSingleOffset="480">
     <op:verify File="../lib/OFM-HueGatewayModule/library.json" ModuleVersion="%HUE_VerifyVersion%" />
   </op:define>
