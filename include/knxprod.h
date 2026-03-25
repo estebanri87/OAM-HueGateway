@@ -1792,79 +1792,79 @@
 #define HUE_KoHUEHCLM8LockStatus 515
 #define HUE_KoHUEHCLReleaseTrigger 516
 
-// Bridge Verbindungsstatus
+// Hue-Bridge: Verbindungsstatus
 #define KoHUE_HUEConnectionStatus                 (knx.getGroupObject(HUE_KoHUEConnectionStatus))
-// Pairing Trigger
+// Pairing-Trigger
 #define KoHUE_HUEPairingTrigger                   (knx.getGroupObject(HUE_KoHUEPairingTrigger))
-// Sperre Lichtmanager (global)
+// Lichtmanager: Sperre (global)
 #define KoHUE_HUEHCLLock                          (knx.getGroupObject(HUE_KoHUEHCLLock))
-// Status Sperre Lichtmanager
+// Lichtmanager: Status Sperre (global)
 #define KoHUE_HUEHCLLockStatus                    (knx.getGroupObject(HUE_KoHUEHCLLockStatus))
-// Lichtmanager 1 Soll Helligkeit
+// Lichtmanager 1: Soll-Helligkeit
 #define KoHUE_HUEHCLM1StatusBrightness            (knx.getGroupObject(HUE_KoHUEHCLM1StatusBrightness))
-// Lichtmanager 1 Soll Farbtemp.
+// Lichtmanager 1: Soll-Farbtemperatur
 #define KoHUE_HUEHCLM1StatusColorTemp             (knx.getGroupObject(HUE_KoHUEHCLM1StatusColorTemp))
-// Lichtmanager 2 Soll Helligkeit
+// Lichtmanager 2: Soll-Helligkeit
 #define KoHUE_HUEHCLM2StatusBrightness            (knx.getGroupObject(HUE_KoHUEHCLM2StatusBrightness))
-// Lichtmanager 2 Soll Farbtemp.
+// Lichtmanager 2: Soll-Farbtemperatur
 #define KoHUE_HUEHCLM2StatusColorTemp             (knx.getGroupObject(HUE_KoHUEHCLM2StatusColorTemp))
-// Lichtmanager 3 Soll Helligkeit
+// Lichtmanager 3: Soll-Helligkeit
 #define KoHUE_HUEHCLM3StatusBrightness            (knx.getGroupObject(HUE_KoHUEHCLM3StatusBrightness))
-// Lichtmanager 3 Soll Farbtemp.
+// Lichtmanager 3: Soll-Farbtemperatur
 #define KoHUE_HUEHCLM3StatusColorTemp             (knx.getGroupObject(HUE_KoHUEHCLM3StatusColorTemp))
-// Lichtmanager 4 Soll Helligkeit
+// Lichtmanager 4: Soll-Helligkeit
 #define KoHUE_HUEHCLM4StatusBrightness            (knx.getGroupObject(HUE_KoHUEHCLM4StatusBrightness))
-// Lichtmanager 4 Soll Farbtemp.
+// Lichtmanager 4: Soll-Farbtemperatur
 #define KoHUE_HUEHCLM4StatusColorTemp             (knx.getGroupObject(HUE_KoHUEHCLM4StatusColorTemp))
-// Sperre Lichtmanager 1
+// Lichtmanager 1: Sperre
 #define KoHUE_HUEHCLM1Lock                        (knx.getGroupObject(HUE_KoHUEHCLM1Lock))
-// Status Sperre Lichtmanager 1
+// Lichtmanager 1: Status Sperre
 #define KoHUE_HUEHCLM1LockStatus                  (knx.getGroupObject(HUE_KoHUEHCLM1LockStatus))
-// Sperre Lichtmanager 2
+// Lichtmanager 2: Sperre
 #define KoHUE_HUEHCLM2Lock                        (knx.getGroupObject(HUE_KoHUEHCLM2Lock))
-// Status Sperre Lichtmanager 2
+// Lichtmanager 2: Status Sperre
 #define KoHUE_HUEHCLM2LockStatus                  (knx.getGroupObject(HUE_KoHUEHCLM2LockStatus))
-// Sperre Lichtmanager 3
+// Lichtmanager 3: Sperre
 #define KoHUE_HUEHCLM3Lock                        (knx.getGroupObject(HUE_KoHUEHCLM3Lock))
-// Status Sperre Lichtmanager 3
+// Lichtmanager 3: Status Sperre
 #define KoHUE_HUEHCLM3LockStatus                  (knx.getGroupObject(HUE_KoHUEHCLM3LockStatus))
-// Sperre Lichtmanager 4
+// Lichtmanager 4: Sperre
 #define KoHUE_HUEHCLM4Lock                        (knx.getGroupObject(HUE_KoHUEHCLM4Lock))
-// Status Sperre Lichtmanager 4
+// Lichtmanager 4: Status Sperre
 #define KoHUE_HUEHCLM4LockStatus                  (knx.getGroupObject(HUE_KoHUEHCLM4LockStatus))
-// Lichtmanager 5 Soll Helligkeit
+// Lichtmanager 5: Soll-Helligkeit
 #define KoHUE_HUEHCLM5StatusBrightness            (knx.getGroupObject(HUE_KoHUEHCLM5StatusBrightness))
-// Lichtmanager 5 Soll Farbtemp.
+// Lichtmanager 5: Soll-Farbtemperatur
 #define KoHUE_HUEHCLM5StatusColorTemp             (knx.getGroupObject(HUE_KoHUEHCLM5StatusColorTemp))
-// Lichtmanager 6 Soll Helligkeit
+// Lichtmanager 6: Soll-Helligkeit
 #define KoHUE_HUEHCLM6StatusBrightness            (knx.getGroupObject(HUE_KoHUEHCLM6StatusBrightness))
-// Lichtmanager 6 Soll Farbtemp.
+// Lichtmanager 6: Soll-Farbtemperatur
 #define KoHUE_HUEHCLM6StatusColorTemp             (knx.getGroupObject(HUE_KoHUEHCLM6StatusColorTemp))
-// Lichtmanager 7 Soll Helligkeit
+// Lichtmanager 7: Soll-Helligkeit
 #define KoHUE_HUEHCLM7StatusBrightness            (knx.getGroupObject(HUE_KoHUEHCLM7StatusBrightness))
-// Lichtmanager 7 Soll Farbtemp.
+// Lichtmanager 7: Soll-Farbtemperatur
 #define KoHUE_HUEHCLM7StatusColorTemp             (knx.getGroupObject(HUE_KoHUEHCLM7StatusColorTemp))
-// Lichtmanager 8 Soll Helligkeit
+// Lichtmanager 8: Soll-Helligkeit
 #define KoHUE_HUEHCLM8StatusBrightness            (knx.getGroupObject(HUE_KoHUEHCLM8StatusBrightness))
-// Lichtmanager 8 Soll Farbtemp.
+// Lichtmanager 8: Soll-Farbtemperatur
 #define KoHUE_HUEHCLM8StatusColorTemp             (knx.getGroupObject(HUE_KoHUEHCLM8StatusColorTemp))
-// Sperre Lichtmanager 5
+// Lichtmanager 5: Sperre
 #define KoHUE_HUEHCLM5Lock                        (knx.getGroupObject(HUE_KoHUEHCLM5Lock))
-// Status Sperre Lichtmanager 5
+// Lichtmanager 5: Status Sperre
 #define KoHUE_HUEHCLM5LockStatus                  (knx.getGroupObject(HUE_KoHUEHCLM5LockStatus))
-// Sperre Lichtmanager 6
+// Lichtmanager 6: Sperre
 #define KoHUE_HUEHCLM6Lock                        (knx.getGroupObject(HUE_KoHUEHCLM6Lock))
-// Status Sperre Lichtmanager 6
+// Lichtmanager 6: Status Sperre
 #define KoHUE_HUEHCLM6LockStatus                  (knx.getGroupObject(HUE_KoHUEHCLM6LockStatus))
-// Sperre Lichtmanager 7
+// Lichtmanager 7: Sperre
 #define KoHUE_HUEHCLM7Lock                        (knx.getGroupObject(HUE_KoHUEHCLM7Lock))
-// Status Sperre Lichtmanager 7
+// Lichtmanager 7: Status Sperre
 #define KoHUE_HUEHCLM7LockStatus                  (knx.getGroupObject(HUE_KoHUEHCLM7LockStatus))
-// Sperre Lichtmanager 8
+// Lichtmanager 8: Sperre
 #define KoHUE_HUEHCLM8Lock                        (knx.getGroupObject(HUE_KoHUEHCLM8Lock))
-// Status Sperre Lichtmanager 8
+// Lichtmanager 8: Status Sperre
 #define KoHUE_HUEHCLM8LockStatus                  (knx.getGroupObject(HUE_KoHUEHCLM8LockStatus))
-// Lichtmanager Entsperren Trigger
+// Lichtmanager: Entsperr-Trigger
 #define KoHUE_HUEHCLReleaseTrigger                (knx.getGroupObject(HUE_KoHUEHCLReleaseTrigger))
 
 #define HUE_ChannelCount 32
@@ -2472,15 +2472,15 @@
 #define KoHUE_CHStatusBrightness                  (knx.getGroupObject(HUE_KoCalcNumber(HUE_KoCHStatusBrightness)))
 // Farbtemperatur
 #define KoHUE_CHColorTemp                         (knx.getGroupObject(HUE_KoCalcNumber(HUE_KoCHColorTemp)))
-// Status Farbtemp.
+// Status Farbtemperatur
 #define KoHUE_CHStatusColorTemp                   (knx.getGroupObject(HUE_KoCalcNumber(HUE_KoCHStatusColorTemp)))
 // Farbe RGB
 #define KoHUE_CHColorRGB                          (knx.getGroupObject(HUE_KoCalcNumber(HUE_KoCHColorRGB)))
 // Status RGB
 #define KoHUE_CHStatusColorRGB                    (knx.getGroupObject(HUE_KoCalcNumber(HUE_KoCHStatusColorRGB)))
-// Lichtmanager Sperre (Hue-Kanal)
+// Sperre Lichtmanager
 #define KoHUE_CHHCLLock                           (knx.getGroupObject(HUE_KoCalcNumber(HUE_KoCHHCLLock)))
-// Status Lichtmanager Sperre (Hue-Kanal)
+// Status Sperre Lichtmanager
 #define KoHUE_CHHCLLockStatus                     (knx.getGroupObject(HUE_KoCalcNumber(HUE_KoCHHCLLockStatus)))
 // Szene
 #define KoHUE_CHScene                             (knx.getGroupObject(HUE_KoCalcNumber(HUE_KoCHScene)))
