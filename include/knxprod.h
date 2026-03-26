@@ -2032,6 +2032,9 @@
 #define HUE_CHBtn1MedienKurz                    161      // 3 Bits, Bit 5-3
 #define     HUE_CHBtn1MedienKurzMask 0x38
 #define     HUE_CHBtn1MedienKurzShift 3
+#define HUE_CHBtn1GenerischKurz                 161      // 1 Bit, Bit 5
+#define     HUE_CHBtn1GenerischKurzMask 0x20
+#define     HUE_CHBtn1GenerischKurzShift 5
 #define HUE_CHBtn1LichtLang                     161      // 2 Bits, Bit 2-1
 #define     HUE_CHBtn1LichtLangMask 0x06
 #define     HUE_CHBtn1LichtLangShift 1
@@ -2056,6 +2059,9 @@
 #define HUE_CHBtn2MedienKurz                    162      // 3 Bits, Bit 5-3
 #define     HUE_CHBtn2MedienKurzMask 0x38
 #define     HUE_CHBtn2MedienKurzShift 3
+#define HUE_CHBtn2GenerischKurz                 162      // 1 Bit, Bit 5
+#define     HUE_CHBtn2GenerischKurzMask 0x20
+#define     HUE_CHBtn2GenerischKurzShift 5
 #define HUE_CHBtn2LichtLang                     162      // 2 Bits, Bit 2-1
 #define     HUE_CHBtn2LichtLangMask 0x06
 #define     HUE_CHBtn2LichtLangShift 1
@@ -2080,6 +2086,9 @@
 #define HUE_CHBtn3MedienKurz                    163      // 3 Bits, Bit 5-3
 #define     HUE_CHBtn3MedienKurzMask 0x38
 #define     HUE_CHBtn3MedienKurzShift 3
+#define HUE_CHBtn3GenerischKurz                 163      // 1 Bit, Bit 5
+#define     HUE_CHBtn3GenerischKurzMask 0x20
+#define     HUE_CHBtn3GenerischKurzShift 5
 #define HUE_CHBtn3LichtLang                     163      // 2 Bits, Bit 2-1
 #define     HUE_CHBtn3LichtLangMask 0x06
 #define     HUE_CHBtn3LichtLangShift 1
@@ -2104,6 +2113,9 @@
 #define HUE_CHBtn4MedienKurz                    164      // 3 Bits, Bit 5-3
 #define     HUE_CHBtn4MedienKurzMask 0x38
 #define     HUE_CHBtn4MedienKurzShift 3
+#define HUE_CHBtn4GenerischKurz                 164      // 1 Bit, Bit 5
+#define     HUE_CHBtn4GenerischKurzMask 0x20
+#define     HUE_CHBtn4GenerischKurzShift 5
 #define HUE_CHBtn4LichtLang                     164      // 2 Bits, Bit 2-1
 #define     HUE_CHBtn4LichtLangMask 0x06
 #define     HUE_CHBtn4LichtLangShift 1
@@ -2395,6 +2407,8 @@
 #define ParamHUE_CHBtn1JalousieKurz                  ((knx.paramByte(HUE_ParamCalcIndex(HUE_CHBtn1JalousieKurz)) & HUE_CHBtn1JalousieKurzMask) >> HUE_CHBtn1JalousieKurzShift)
 // Taste 1 Kurzdruck
 #define ParamHUE_CHBtn1MedienKurz                    ((knx.paramByte(HUE_ParamCalcIndex(HUE_CHBtn1MedienKurz)) & HUE_CHBtn1MedienKurzMask) >> HUE_CHBtn1MedienKurzShift)
+// Taste 1 Kurzdruck
+#define ParamHUE_CHBtn1GenerischKurz                 ((bool)(knx.paramByte(HUE_ParamCalcIndex(HUE_CHBtn1GenerischKurz)) & HUE_CHBtn1GenerischKurzMask))
 // Taste 1 Langdruck
 #define ParamHUE_CHBtn1LichtLang                     ((knx.paramByte(HUE_ParamCalcIndex(HUE_CHBtn1LichtLang)) & HUE_CHBtn1LichtLangMask) >> HUE_CHBtn1LichtLangShift)
 // Taste 1 Langdruck
@@ -2411,6 +2425,8 @@
 #define ParamHUE_CHBtn2JalousieKurz                  ((knx.paramByte(HUE_ParamCalcIndex(HUE_CHBtn2JalousieKurz)) & HUE_CHBtn2JalousieKurzMask) >> HUE_CHBtn2JalousieKurzShift)
 // Taste 2 Kurzdruck
 #define ParamHUE_CHBtn2MedienKurz                    ((knx.paramByte(HUE_ParamCalcIndex(HUE_CHBtn2MedienKurz)) & HUE_CHBtn2MedienKurzMask) >> HUE_CHBtn2MedienKurzShift)
+// Taste 2 Kurzdruck
+#define ParamHUE_CHBtn2GenerischKurz                 ((bool)(knx.paramByte(HUE_ParamCalcIndex(HUE_CHBtn2GenerischKurz)) & HUE_CHBtn2GenerischKurzMask))
 // Taste 2 Langdruck
 #define ParamHUE_CHBtn2LichtLang                     ((knx.paramByte(HUE_ParamCalcIndex(HUE_CHBtn2LichtLang)) & HUE_CHBtn2LichtLangMask) >> HUE_CHBtn2LichtLangShift)
 // Taste 2 Langdruck
@@ -2427,6 +2443,8 @@
 #define ParamHUE_CHBtn3JalousieKurz                  ((knx.paramByte(HUE_ParamCalcIndex(HUE_CHBtn3JalousieKurz)) & HUE_CHBtn3JalousieKurzMask) >> HUE_CHBtn3JalousieKurzShift)
 // Taste 3 Kurzdruck
 #define ParamHUE_CHBtn3MedienKurz                    ((knx.paramByte(HUE_ParamCalcIndex(HUE_CHBtn3MedienKurz)) & HUE_CHBtn3MedienKurzMask) >> HUE_CHBtn3MedienKurzShift)
+// Taste 3 Kurzdruck
+#define ParamHUE_CHBtn3GenerischKurz                 ((bool)(knx.paramByte(HUE_ParamCalcIndex(HUE_CHBtn3GenerischKurz)) & HUE_CHBtn3GenerischKurzMask))
 // Taste 3 Langdruck
 #define ParamHUE_CHBtn3LichtLang                     ((knx.paramByte(HUE_ParamCalcIndex(HUE_CHBtn3LichtLang)) & HUE_CHBtn3LichtLangMask) >> HUE_CHBtn3LichtLangShift)
 // Taste 3 Langdruck
@@ -2443,6 +2461,8 @@
 #define ParamHUE_CHBtn4JalousieKurz                  ((knx.paramByte(HUE_ParamCalcIndex(HUE_CHBtn4JalousieKurz)) & HUE_CHBtn4JalousieKurzMask) >> HUE_CHBtn4JalousieKurzShift)
 // Taste 4 Kurzdruck
 #define ParamHUE_CHBtn4MedienKurz                    ((knx.paramByte(HUE_ParamCalcIndex(HUE_CHBtn4MedienKurz)) & HUE_CHBtn4MedienKurzMask) >> HUE_CHBtn4MedienKurzShift)
+// Taste 4 Kurzdruck
+#define ParamHUE_CHBtn4GenerischKurz                 ((bool)(knx.paramByte(HUE_ParamCalcIndex(HUE_CHBtn4GenerischKurz)) & HUE_CHBtn4GenerischKurzMask))
 // Taste 4 Langdruck
 #define ParamHUE_CHBtn4LichtLang                     ((knx.paramByte(HUE_ParamCalcIndex(HUE_CHBtn4LichtLang)) & HUE_CHBtn4LichtLangMask) >> HUE_CHBtn4LichtLangShift)
 // Taste 4 Langdruck
@@ -2467,7 +2487,7 @@
 #define ParamHUE_CHBtn3LichtDimStep                  ((knx.paramByte(HUE_ParamCalcIndex(HUE_CHBtn3LichtDimStep)) & HUE_CHBtn3LichtDimStepMask) >> HUE_CHBtn3LichtDimStepShift)
 // Taste 4 Dimm-Schrittweite
 #define ParamHUE_CHBtn4LichtDimStep                  ((knx.paramByte(HUE_ParamCalcIndex(HUE_CHBtn4LichtDimStep)) & HUE_CHBtn4LichtDimStepMask) >> HUE_CHBtn4LichtDimStepShift)
-// Drehregler vorhanden
+// Drehregler vorhanden (Beta)
 #define ParamHUE_CHHasRotary                         ((bool)(knx.paramByte(HUE_ParamCalcIndex(HUE_CHHasRotary)) & HUE_CHHasRotaryMask))
 // Drehregler Funktion
 #define ParamHUE_CHRotaryFunction                    ((knx.paramByte(HUE_ParamCalcIndex(HUE_CHRotaryFunction)) & HUE_CHRotaryFunctionMask) >> HUE_CHRotaryFunctionShift)
