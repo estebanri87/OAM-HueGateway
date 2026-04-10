@@ -17,3 +17,6 @@ data/
 Archiv_Build/
 doc/Hue-Runtime-Checkplan.md
 To-Do.md
+doc/__pycache__/create_presentation.cpython-313.pyc
+doc/OAM-HueGateway-Praesentation.pptx
+doc/create_presentation.py
