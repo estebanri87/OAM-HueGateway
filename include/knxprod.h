@@ -20,8 +20,8 @@
 #define MAIN_ApplicationNumber 42
 #define MAIN_ApplicationVersion 4
 #define MAIN_ApplicationEncoding iso-8859-15
-#define MAIN_ParameterSize 16402
-#define MAIN_MaxKoNumber 900
+#define MAIN_ParameterSize 16706
+#define MAIN_MaxKoNumber 908
 #define MAIN_OrderNumber "OpenKNX-SR-HUE"
 #define BASE_ModuleVersion 23
 #define NET_ModuleVersion 5
@@ -811,6 +811,454 @@
 #define     HUE_HUEScenesEnableMask 0x80
 #define     HUE_HUEScenesEnableShift 7
 #define HUE_HUERelDimRepeatMs                   1939      // uint16_t
+#define HUE_HCLM1SeasonMode                     1941      // 8 Bits, Bit 7-0
+#define HUE_HCLM1DSTOffsetDays                  1942      // int8_t
+#define HUE_HCLM1SummerStartMonth               1943      // uint8_t
+#define HUE_HCLM1SummerStartDay                 1944      // uint8_t
+#define HUE_HCLM1SummerEndMonth                 1945      // uint8_t
+#define HUE_HCLM1SummerEndDay                   1946      // uint8_t
+#define HUE_HCLM1SP0Active                      1947      // 1 Bit, Bit 7
+#define     HUE_HCLM1SP0ActiveMask 0x80
+#define     HUE_HCLM1SP0ActiveShift 7
+#define HUE_HCLM1SP1Active                      1947      // 1 Bit, Bit 6
+#define     HUE_HCLM1SP1ActiveMask 0x40
+#define     HUE_HCLM1SP1ActiveShift 6
+#define HUE_HCLM1SP2Active                      1947      // 1 Bit, Bit 5
+#define     HUE_HCLM1SP2ActiveMask 0x20
+#define     HUE_HCLM1SP2ActiveShift 5
+#define HUE_HCLM1SP3Active                      1947      // 1 Bit, Bit 4
+#define     HUE_HCLM1SP3ActiveMask 0x10
+#define     HUE_HCLM1SP3ActiveShift 4
+#define HUE_HCLM1SP4Active                      1947      // 1 Bit, Bit 3
+#define     HUE_HCLM1SP4ActiveMask 0x08
+#define     HUE_HCLM1SP4ActiveShift 3
+#define HUE_HCLM1SP5Active                      1947      // 1 Bit, Bit 2
+#define     HUE_HCLM1SP5ActiveMask 0x04
+#define     HUE_HCLM1SP5ActiveShift 2
+#define HUE_HCLM1SP6Active                      1947      // 1 Bit, Bit 1
+#define     HUE_HCLM1SP6ActiveMask 0x02
+#define     HUE_HCLM1SP6ActiveShift 1
+#define HUE_HCLM1SP7Active                      1947      // 1 Bit, Bit 0
+#define     HUE_HCLM1SP7ActiveMask 0x01
+#define     HUE_HCLM1SP7ActiveShift 0
+#define HUE_HCLM1SP8Active                      1948      // 1 Bit, Bit 7
+#define     HUE_HCLM1SP8ActiveMask 0x80
+#define     HUE_HCLM1SP8ActiveShift 7
+#define HUE_HCLM1SP9Active                      1948      // 1 Bit, Bit 6
+#define     HUE_HCLM1SP9ActiveMask 0x40
+#define     HUE_HCLM1SP9ActiveShift 6
+#define HUE_HCLM1SP0SummerKelvin                1949      // uint16_t
+#define HUE_HCLM1SP1SummerKelvin                1951      // uint16_t
+#define HUE_HCLM1SP2SummerKelvin                1953      // uint16_t
+#define HUE_HCLM1SP3SummerKelvin                1955      // uint16_t
+#define HUE_HCLM1SP4SummerKelvin                1957      // uint16_t
+#define HUE_HCLM1SP5SummerKelvin                1959      // uint16_t
+#define HUE_HCLM1SP6SummerKelvin                1961      // uint16_t
+#define HUE_HCLM1SP7SummerKelvin                1963      // uint16_t
+#define HUE_HCLM1SP8SummerKelvin                1965      // uint16_t
+#define HUE_HCLM1SP9SummerKelvin                1967      // uint16_t
+#define HUE_HCLM1SP0SummerBrightness            1969      // uint8_t
+#define HUE_HCLM1SP1SummerBrightness            1970      // uint8_t
+#define HUE_HCLM1SP2SummerBrightness            1971      // uint8_t
+#define HUE_HCLM1SP3SummerBrightness            1972      // uint8_t
+#define HUE_HCLM1SP4SummerBrightness            1973      // uint8_t
+#define HUE_HCLM1SP5SummerBrightness            1974      // uint8_t
+#define HUE_HCLM1SP6SummerBrightness            1975      // uint8_t
+#define HUE_HCLM1SP7SummerBrightness            1976      // uint8_t
+#define HUE_HCLM1SP8SummerBrightness            1977      // uint8_t
+#define HUE_HCLM1SP9SummerBrightness            1978      // uint8_t
+#define HUE_HCLM2SeasonMode                     1979      // 8 Bits, Bit 7-0
+#define HUE_HCLM2DSTOffsetDays                  1980      // int8_t
+#define HUE_HCLM2SummerStartMonth               1981      // uint8_t
+#define HUE_HCLM2SummerStartDay                 1982      // uint8_t
+#define HUE_HCLM2SummerEndMonth                 1983      // uint8_t
+#define HUE_HCLM2SummerEndDay                   1984      // uint8_t
+#define HUE_HCLM2SP0Active                      1985      // 1 Bit, Bit 7
+#define     HUE_HCLM2SP0ActiveMask 0x80
+#define     HUE_HCLM2SP0ActiveShift 7
+#define HUE_HCLM2SP1Active                      1985      // 1 Bit, Bit 6
+#define     HUE_HCLM2SP1ActiveMask 0x40
+#define     HUE_HCLM2SP1ActiveShift 6
+#define HUE_HCLM2SP2Active                      1985      // 1 Bit, Bit 5
+#define     HUE_HCLM2SP2ActiveMask 0x20
+#define     HUE_HCLM2SP2ActiveShift 5
+#define HUE_HCLM2SP3Active                      1985      // 1 Bit, Bit 4
+#define     HUE_HCLM2SP3ActiveMask 0x10
+#define     HUE_HCLM2SP3ActiveShift 4
+#define HUE_HCLM2SP4Active                      1985      // 1 Bit, Bit 3
+#define     HUE_HCLM2SP4ActiveMask 0x08
+#define     HUE_HCLM2SP4ActiveShift 3
+#define HUE_HCLM2SP5Active                      1985      // 1 Bit, Bit 2
+#define     HUE_HCLM2SP5ActiveMask 0x04
+#define     HUE_HCLM2SP5ActiveShift 2
+#define HUE_HCLM2SP6Active                      1985      // 1 Bit, Bit 1
+#define     HUE_HCLM2SP6ActiveMask 0x02
+#define     HUE_HCLM2SP6ActiveShift 1
+#define HUE_HCLM2SP7Active                      1985      // 1 Bit, Bit 0
+#define     HUE_HCLM2SP7ActiveMask 0x01
+#define     HUE_HCLM2SP7ActiveShift 0
+#define HUE_HCLM2SP8Active                      1986      // 1 Bit, Bit 7
+#define     HUE_HCLM2SP8ActiveMask 0x80
+#define     HUE_HCLM2SP8ActiveShift 7
+#define HUE_HCLM2SP9Active                      1986      // 1 Bit, Bit 6
+#define     HUE_HCLM2SP9ActiveMask 0x40
+#define     HUE_HCLM2SP9ActiveShift 6
+#define HUE_HCLM2SP0SummerKelvin                1987      // uint16_t
+#define HUE_HCLM2SP1SummerKelvin                1989      // uint16_t
+#define HUE_HCLM2SP2SummerKelvin                1991      // uint16_t
+#define HUE_HCLM2SP3SummerKelvin                1993      // uint16_t
+#define HUE_HCLM2SP4SummerKelvin                1995      // uint16_t
+#define HUE_HCLM2SP5SummerKelvin                1997      // uint16_t
+#define HUE_HCLM2SP6SummerKelvin                1999      // uint16_t
+#define HUE_HCLM2SP7SummerKelvin                2001      // uint16_t
+#define HUE_HCLM2SP8SummerKelvin                2003      // uint16_t
+#define HUE_HCLM2SP9SummerKelvin                2005      // uint16_t
+#define HUE_HCLM2SP0SummerBrightness            2007      // uint8_t
+#define HUE_HCLM2SP1SummerBrightness            2008      // uint8_t
+#define HUE_HCLM2SP2SummerBrightness            2009      // uint8_t
+#define HUE_HCLM2SP3SummerBrightness            2010      // uint8_t
+#define HUE_HCLM2SP4SummerBrightness            2011      // uint8_t
+#define HUE_HCLM2SP5SummerBrightness            2012      // uint8_t
+#define HUE_HCLM2SP6SummerBrightness            2013      // uint8_t
+#define HUE_HCLM2SP7SummerBrightness            2014      // uint8_t
+#define HUE_HCLM2SP8SummerBrightness            2015      // uint8_t
+#define HUE_HCLM2SP9SummerBrightness            2016      // uint8_t
+#define HUE_HCLM3SeasonMode                     2017      // 8 Bits, Bit 7-0
+#define HUE_HCLM3DSTOffsetDays                  2018      // int8_t
+#define HUE_HCLM3SummerStartMonth               2019      // uint8_t
+#define HUE_HCLM3SummerStartDay                 2020      // uint8_t
+#define HUE_HCLM3SummerEndMonth                 2021      // uint8_t
+#define HUE_HCLM3SummerEndDay                   2022      // uint8_t
+#define HUE_HCLM3SP0Active                      2023      // 1 Bit, Bit 7
+#define     HUE_HCLM3SP0ActiveMask 0x80
+#define     HUE_HCLM3SP0ActiveShift 7
+#define HUE_HCLM3SP1Active                      2023      // 1 Bit, Bit 6
+#define     HUE_HCLM3SP1ActiveMask 0x40
+#define     HUE_HCLM3SP1ActiveShift 6
+#define HUE_HCLM3SP2Active                      2023      // 1 Bit, Bit 5
+#define     HUE_HCLM3SP2ActiveMask 0x20
+#define     HUE_HCLM3SP2ActiveShift 5
+#define HUE_HCLM3SP3Active                      2023      // 1 Bit, Bit 4
+#define     HUE_HCLM3SP3ActiveMask 0x10
+#define     HUE_HCLM3SP3ActiveShift 4
+#define HUE_HCLM3SP4Active                      2023      // 1 Bit, Bit 3
+#define     HUE_HCLM3SP4ActiveMask 0x08
+#define     HUE_HCLM3SP4ActiveShift 3
+#define HUE_HCLM3SP5Active                      2023      // 1 Bit, Bit 2
+#define     HUE_HCLM3SP5ActiveMask 0x04
+#define     HUE_HCLM3SP5ActiveShift 2
+#define HUE_HCLM3SP6Active                      2023      // 1 Bit, Bit 1
+#define     HUE_HCLM3SP6ActiveMask 0x02
+#define     HUE_HCLM3SP6ActiveShift 1
+#define HUE_HCLM3SP7Active                      2023      // 1 Bit, Bit 0
+#define     HUE_HCLM3SP7ActiveMask 0x01
+#define     HUE_HCLM3SP7ActiveShift 0
+#define HUE_HCLM3SP8Active                      2024      // 1 Bit, Bit 7
+#define     HUE_HCLM3SP8ActiveMask 0x80
+#define     HUE_HCLM3SP8ActiveShift 7
+#define HUE_HCLM3SP9Active                      2024      // 1 Bit, Bit 6
+#define     HUE_HCLM3SP9ActiveMask 0x40
+#define     HUE_HCLM3SP9ActiveShift 6
+#define HUE_HCLM3SP0SummerKelvin                2025      // uint16_t
+#define HUE_HCLM3SP1SummerKelvin                2027      // uint16_t
+#define HUE_HCLM3SP2SummerKelvin                2029      // uint16_t
+#define HUE_HCLM3SP3SummerKelvin                2031      // uint16_t
+#define HUE_HCLM3SP4SummerKelvin                2033      // uint16_t
+#define HUE_HCLM3SP5SummerKelvin                2035      // uint16_t
+#define HUE_HCLM3SP6SummerKelvin                2037      // uint16_t
+#define HUE_HCLM3SP7SummerKelvin                2039      // uint16_t
+#define HUE_HCLM3SP8SummerKelvin                2041      // uint16_t
+#define HUE_HCLM3SP9SummerKelvin                2043      // uint16_t
+#define HUE_HCLM3SP0SummerBrightness            2045      // uint8_t
+#define HUE_HCLM3SP1SummerBrightness            2046      // uint8_t
+#define HUE_HCLM3SP2SummerBrightness            2047      // uint8_t
+#define HUE_HCLM3SP3SummerBrightness            2048      // uint8_t
+#define HUE_HCLM3SP4SummerBrightness            2049      // uint8_t
+#define HUE_HCLM3SP5SummerBrightness            2050      // uint8_t
+#define HUE_HCLM3SP6SummerBrightness            2051      // uint8_t
+#define HUE_HCLM3SP7SummerBrightness            2052      // uint8_t
+#define HUE_HCLM3SP8SummerBrightness            2053      // uint8_t
+#define HUE_HCLM3SP9SummerBrightness            2054      // uint8_t
+#define HUE_HCLM4SeasonMode                     2055      // 8 Bits, Bit 7-0
+#define HUE_HCLM4DSTOffsetDays                  2056      // int8_t
+#define HUE_HCLM4SummerStartMonth               2057      // uint8_t
+#define HUE_HCLM4SummerStartDay                 2058      // uint8_t
+#define HUE_HCLM4SummerEndMonth                 2059      // uint8_t
+#define HUE_HCLM4SummerEndDay                   2060      // uint8_t
+#define HUE_HCLM4SP0Active                      2061      // 1 Bit, Bit 7
+#define     HUE_HCLM4SP0ActiveMask 0x80
+#define     HUE_HCLM4SP0ActiveShift 7
+#define HUE_HCLM4SP1Active                      2061      // 1 Bit, Bit 6
+#define     HUE_HCLM4SP1ActiveMask 0x40
+#define     HUE_HCLM4SP1ActiveShift 6
+#define HUE_HCLM4SP2Active                      2061      // 1 Bit, Bit 5
+#define     HUE_HCLM4SP2ActiveMask 0x20
+#define     HUE_HCLM4SP2ActiveShift 5
+#define HUE_HCLM4SP3Active                      2061      // 1 Bit, Bit 4
+#define     HUE_HCLM4SP3ActiveMask 0x10
+#define     HUE_HCLM4SP3ActiveShift 4
+#define HUE_HCLM4SP4Active                      2061      // 1 Bit, Bit 3
+#define     HUE_HCLM4SP4ActiveMask 0x08
+#define     HUE_HCLM4SP4ActiveShift 3
+#define HUE_HCLM4SP5Active                      2061      // 1 Bit, Bit 2
+#define     HUE_HCLM4SP5ActiveMask 0x04
+#define     HUE_HCLM4SP5ActiveShift 2
+#define HUE_HCLM4SP6Active                      2061      // 1 Bit, Bit 1
+#define     HUE_HCLM4SP6ActiveMask 0x02
+#define     HUE_HCLM4SP6ActiveShift 1
+#define HUE_HCLM4SP7Active                      2061      // 1 Bit, Bit 0
+#define     HUE_HCLM4SP7ActiveMask 0x01
+#define     HUE_HCLM4SP7ActiveShift 0
+#define HUE_HCLM4SP8Active                      2062      // 1 Bit, Bit 7
+#define     HUE_HCLM4SP8ActiveMask 0x80
+#define     HUE_HCLM4SP8ActiveShift 7
+#define HUE_HCLM4SP9Active                      2062      // 1 Bit, Bit 6
+#define     HUE_HCLM4SP9ActiveMask 0x40
+#define     HUE_HCLM4SP9ActiveShift 6
+#define HUE_HCLM4SP0SummerKelvin                2063      // uint16_t
+#define HUE_HCLM4SP1SummerKelvin                2065      // uint16_t
+#define HUE_HCLM4SP2SummerKelvin                2067      // uint16_t
+#define HUE_HCLM4SP3SummerKelvin                2069      // uint16_t
+#define HUE_HCLM4SP4SummerKelvin                2071      // uint16_t
+#define HUE_HCLM4SP5SummerKelvin                2073      // uint16_t
+#define HUE_HCLM4SP6SummerKelvin                2075      // uint16_t
+#define HUE_HCLM4SP7SummerKelvin                2077      // uint16_t
+#define HUE_HCLM4SP8SummerKelvin                2079      // uint16_t
+#define HUE_HCLM4SP9SummerKelvin                2081      // uint16_t
+#define HUE_HCLM4SP0SummerBrightness            2083      // uint8_t
+#define HUE_HCLM4SP1SummerBrightness            2084      // uint8_t
+#define HUE_HCLM4SP2SummerBrightness            2085      // uint8_t
+#define HUE_HCLM4SP3SummerBrightness            2086      // uint8_t
+#define HUE_HCLM4SP4SummerBrightness            2087      // uint8_t
+#define HUE_HCLM4SP5SummerBrightness            2088      // uint8_t
+#define HUE_HCLM4SP6SummerBrightness            2089      // uint8_t
+#define HUE_HCLM4SP7SummerBrightness            2090      // uint8_t
+#define HUE_HCLM4SP8SummerBrightness            2091      // uint8_t
+#define HUE_HCLM4SP9SummerBrightness            2092      // uint8_t
+#define HUE_HCLM5SeasonMode                     2093      // 8 Bits, Bit 7-0
+#define HUE_HCLM5DSTOffsetDays                  2094      // int8_t
+#define HUE_HCLM5SummerStartMonth               2095      // uint8_t
+#define HUE_HCLM5SummerStartDay                 2096      // uint8_t
+#define HUE_HCLM5SummerEndMonth                 2097      // uint8_t
+#define HUE_HCLM5SummerEndDay                   2098      // uint8_t
+#define HUE_HCLM5SP0Active                      2099      // 1 Bit, Bit 7
+#define     HUE_HCLM5SP0ActiveMask 0x80
+#define     HUE_HCLM5SP0ActiveShift 7
+#define HUE_HCLM5SP1Active                      2099      // 1 Bit, Bit 6
+#define     HUE_HCLM5SP1ActiveMask 0x40
+#define     HUE_HCLM5SP1ActiveShift 6
+#define HUE_HCLM5SP2Active                      2099      // 1 Bit, Bit 5
+#define     HUE_HCLM5SP2ActiveMask 0x20
+#define     HUE_HCLM5SP2ActiveShift 5
+#define HUE_HCLM5SP3Active                      2099      // 1 Bit, Bit 4
+#define     HUE_HCLM5SP3ActiveMask 0x10
+#define     HUE_HCLM5SP3ActiveShift 4
+#define HUE_HCLM5SP4Active                      2099      // 1 Bit, Bit 3
+#define     HUE_HCLM5SP4ActiveMask 0x08
+#define     HUE_HCLM5SP4ActiveShift 3
+#define HUE_HCLM5SP5Active                      2099      // 1 Bit, Bit 2
+#define     HUE_HCLM5SP5ActiveMask 0x04
+#define     HUE_HCLM5SP5ActiveShift 2
+#define HUE_HCLM5SP6Active                      2099      // 1 Bit, Bit 1
+#define     HUE_HCLM5SP6ActiveMask 0x02
+#define     HUE_HCLM5SP6ActiveShift 1
+#define HUE_HCLM5SP7Active                      2099      // 1 Bit, Bit 0
+#define     HUE_HCLM5SP7ActiveMask 0x01
+#define     HUE_HCLM5SP7ActiveShift 0
+#define HUE_HCLM5SP8Active                      2100      // 1 Bit, Bit 7
+#define     HUE_HCLM5SP8ActiveMask 0x80
+#define     HUE_HCLM5SP8ActiveShift 7
+#define HUE_HCLM5SP9Active                      2100      // 1 Bit, Bit 6
+#define     HUE_HCLM5SP9ActiveMask 0x40
+#define     HUE_HCLM5SP9ActiveShift 6
+#define HUE_HCLM5SP0SummerKelvin                2101      // uint16_t
+#define HUE_HCLM5SP1SummerKelvin                2103      // uint16_t
+#define HUE_HCLM5SP2SummerKelvin                2105      // uint16_t
+#define HUE_HCLM5SP3SummerKelvin                2107      // uint16_t
+#define HUE_HCLM5SP4SummerKelvin                2109      // uint16_t
+#define HUE_HCLM5SP5SummerKelvin                2111      // uint16_t
+#define HUE_HCLM5SP6SummerKelvin                2113      // uint16_t
+#define HUE_HCLM5SP7SummerKelvin                2115      // uint16_t
+#define HUE_HCLM5SP8SummerKelvin                2117      // uint16_t
+#define HUE_HCLM5SP9SummerKelvin                2119      // uint16_t
+#define HUE_HCLM5SP0SummerBrightness            2121      // uint8_t
+#define HUE_HCLM5SP1SummerBrightness            2122      // uint8_t
+#define HUE_HCLM5SP2SummerBrightness            2123      // uint8_t
+#define HUE_HCLM5SP3SummerBrightness            2124      // uint8_t
+#define HUE_HCLM5SP4SummerBrightness            2125      // uint8_t
+#define HUE_HCLM5SP5SummerBrightness            2126      // uint8_t
+#define HUE_HCLM5SP6SummerBrightness            2127      // uint8_t
+#define HUE_HCLM5SP7SummerBrightness            2128      // uint8_t
+#define HUE_HCLM5SP8SummerBrightness            2129      // uint8_t
+#define HUE_HCLM5SP9SummerBrightness            2130      // uint8_t
+#define HUE_HCLM6SeasonMode                     2131      // 8 Bits, Bit 7-0
+#define HUE_HCLM6DSTOffsetDays                  2132      // int8_t
+#define HUE_HCLM6SummerStartMonth               2133      // uint8_t
+#define HUE_HCLM6SummerStartDay                 2134      // uint8_t
+#define HUE_HCLM6SummerEndMonth                 2135      // uint8_t
+#define HUE_HCLM6SummerEndDay                   2136      // uint8_t
+#define HUE_HCLM6SP0Active                      2137      // 1 Bit, Bit 7
+#define     HUE_HCLM6SP0ActiveMask 0x80
+#define     HUE_HCLM6SP0ActiveShift 7
+#define HUE_HCLM6SP1Active                      2137      // 1 Bit, Bit 6
+#define     HUE_HCLM6SP1ActiveMask 0x40
+#define     HUE_HCLM6SP1ActiveShift 6
+#define HUE_HCLM6SP2Active                      2137      // 1 Bit, Bit 5
+#define     HUE_HCLM6SP2ActiveMask 0x20
+#define     HUE_HCLM6SP2ActiveShift 5
+#define HUE_HCLM6SP3Active                      2137      // 1 Bit, Bit 4
+#define     HUE_HCLM6SP3ActiveMask 0x10
+#define     HUE_HCLM6SP3ActiveShift 4
+#define HUE_HCLM6SP4Active                      2137      // 1 Bit, Bit 3
+#define     HUE_HCLM6SP4ActiveMask 0x08
+#define     HUE_HCLM6SP4ActiveShift 3
+#define HUE_HCLM6SP5Active                      2137      // 1 Bit, Bit 2
+#define     HUE_HCLM6SP5ActiveMask 0x04
+#define     HUE_HCLM6SP5ActiveShift 2
+#define HUE_HCLM6SP6Active                      2137      // 1 Bit, Bit 1
+#define     HUE_HCLM6SP6ActiveMask 0x02
+#define     HUE_HCLM6SP6ActiveShift 1
+#define HUE_HCLM6SP7Active                      2137      // 1 Bit, Bit 0
+#define     HUE_HCLM6SP7ActiveMask 0x01
+#define     HUE_HCLM6SP7ActiveShift 0
+#define HUE_HCLM6SP8Active                      2138      // 1 Bit, Bit 7
+#define     HUE_HCLM6SP8ActiveMask 0x80
+#define     HUE_HCLM6SP8ActiveShift 7
+#define HUE_HCLM6SP9Active                      2138      // 1 Bit, Bit 6
+#define     HUE_HCLM6SP9ActiveMask 0x40
+#define     HUE_HCLM6SP9ActiveShift 6
+#define HUE_HCLM6SP0SummerKelvin                2139      // uint16_t
+#define HUE_HCLM6SP1SummerKelvin                2141      // uint16_t
+#define HUE_HCLM6SP2SummerKelvin                2143      // uint16_t
+#define HUE_HCLM6SP3SummerKelvin                2145      // uint16_t
+#define HUE_HCLM6SP4SummerKelvin                2147      // uint16_t
+#define HUE_HCLM6SP5SummerKelvin                2149      // uint16_t
+#define HUE_HCLM6SP6SummerKelvin                2151      // uint16_t
+#define HUE_HCLM6SP7SummerKelvin                2153      // uint16_t
+#define HUE_HCLM6SP8SummerKelvin                2155      // uint16_t
+#define HUE_HCLM6SP9SummerKelvin                2157      // uint16_t
+#define HUE_HCLM6SP0SummerBrightness            2159      // uint8_t
+#define HUE_HCLM6SP1SummerBrightness            2160      // uint8_t
+#define HUE_HCLM6SP2SummerBrightness            2161      // uint8_t
+#define HUE_HCLM6SP3SummerBrightness            2162      // uint8_t
+#define HUE_HCLM6SP4SummerBrightness            2163      // uint8_t
+#define HUE_HCLM6SP5SummerBrightness            2164      // uint8_t
+#define HUE_HCLM6SP6SummerBrightness            2165      // uint8_t
+#define HUE_HCLM6SP7SummerBrightness            2166      // uint8_t
+#define HUE_HCLM6SP8SummerBrightness            2167      // uint8_t
+#define HUE_HCLM6SP9SummerBrightness            2168      // uint8_t
+#define HUE_HCLM7SeasonMode                     2169      // 8 Bits, Bit 7-0
+#define HUE_HCLM7DSTOffsetDays                  2170      // int8_t
+#define HUE_HCLM7SummerStartMonth               2171      // uint8_t
+#define HUE_HCLM7SummerStartDay                 2172      // uint8_t
+#define HUE_HCLM7SummerEndMonth                 2173      // uint8_t
+#define HUE_HCLM7SummerEndDay                   2174      // uint8_t
+#define HUE_HCLM7SP0Active                      2175      // 1 Bit, Bit 7
+#define     HUE_HCLM7SP0ActiveMask 0x80
+#define     HUE_HCLM7SP0ActiveShift 7
+#define HUE_HCLM7SP1Active                      2175      // 1 Bit, Bit 6
+#define     HUE_HCLM7SP1ActiveMask 0x40
+#define     HUE_HCLM7SP1ActiveShift 6
+#define HUE_HCLM7SP2Active                      2175      // 1 Bit, Bit 5
+#define     HUE_HCLM7SP2ActiveMask 0x20
+#define     HUE_HCLM7SP2ActiveShift 5
+#define HUE_HCLM7SP3Active                      2175      // 1 Bit, Bit 4
+#define     HUE_HCLM7SP3ActiveMask 0x10
+#define     HUE_HCLM7SP3ActiveShift 4
+#define HUE_HCLM7SP4Active                      2175      // 1 Bit, Bit 3
+#define     HUE_HCLM7SP4ActiveMask 0x08
+#define     HUE_HCLM7SP4ActiveShift 3
+#define HUE_HCLM7SP5Active                      2175      // 1 Bit, Bit 2
+#define     HUE_HCLM7SP5ActiveMask 0x04
+#define     HUE_HCLM7SP5ActiveShift 2
+#define HUE_HCLM7SP6Active                      2175      // 1 Bit, Bit 1
+#define     HUE_HCLM7SP6ActiveMask 0x02
+#define     HUE_HCLM7SP6ActiveShift 1
+#define HUE_HCLM7SP7Active                      2175      // 1 Bit, Bit 0
+#define     HUE_HCLM7SP7ActiveMask 0x01
+#define     HUE_HCLM7SP7ActiveShift 0
+#define HUE_HCLM7SP8Active                      2176      // 1 Bit, Bit 7
+#define     HUE_HCLM7SP8ActiveMask 0x80
+#define     HUE_HCLM7SP8ActiveShift 7
+#define HUE_HCLM7SP9Active                      2176      // 1 Bit, Bit 6
+#define     HUE_HCLM7SP9ActiveMask 0x40
+#define     HUE_HCLM7SP9ActiveShift 6
+#define HUE_HCLM7SP0SummerKelvin                2177      // uint16_t
+#define HUE_HCLM7SP1SummerKelvin                2179      // uint16_t
+#define HUE_HCLM7SP2SummerKelvin                2181      // uint16_t
+#define HUE_HCLM7SP3SummerKelvin                2183      // uint16_t
+#define HUE_HCLM7SP4SummerKelvin                2185      // uint16_t
+#define HUE_HCLM7SP5SummerKelvin                2187      // uint16_t
+#define HUE_HCLM7SP6SummerKelvin                2189      // uint16_t
+#define HUE_HCLM7SP7SummerKelvin                2191      // uint16_t
+#define HUE_HCLM7SP8SummerKelvin                2193      // uint16_t
+#define HUE_HCLM7SP9SummerKelvin                2195      // uint16_t
+#define HUE_HCLM7SP0SummerBrightness            2197      // uint8_t
+#define HUE_HCLM7SP1SummerBrightness            2198      // uint8_t
+#define HUE_HCLM7SP2SummerBrightness            2199      // uint8_t
+#define HUE_HCLM7SP3SummerBrightness            2200      // uint8_t
+#define HUE_HCLM7SP4SummerBrightness            2201      // uint8_t
+#define HUE_HCLM7SP5SummerBrightness            2202      // uint8_t
+#define HUE_HCLM7SP6SummerBrightness            2203      // uint8_t
+#define HUE_HCLM7SP7SummerBrightness            2204      // uint8_t
+#define HUE_HCLM7SP8SummerBrightness            2205      // uint8_t
+#define HUE_HCLM7SP9SummerBrightness            2206      // uint8_t
+#define HUE_HCLM8SeasonMode                     2207      // 8 Bits, Bit 7-0
+#define HUE_HCLM8DSTOffsetDays                  2208      // int8_t
+#define HUE_HCLM8SummerStartMonth               2209      // uint8_t
+#define HUE_HCLM8SummerStartDay                 2210      // uint8_t
+#define HUE_HCLM8SummerEndMonth                 2211      // uint8_t
+#define HUE_HCLM8SummerEndDay                   2212      // uint8_t
+#define HUE_HCLM8SP0Active                      2213      // 1 Bit, Bit 7
+#define     HUE_HCLM8SP0ActiveMask 0x80
+#define     HUE_HCLM8SP0ActiveShift 7
+#define HUE_HCLM8SP1Active                      2213      // 1 Bit, Bit 6
+#define     HUE_HCLM8SP1ActiveMask 0x40
+#define     HUE_HCLM8SP1ActiveShift 6
+#define HUE_HCLM8SP2Active                      2213      // 1 Bit, Bit 5
+#define     HUE_HCLM8SP2ActiveMask 0x20
+#define     HUE_HCLM8SP2ActiveShift 5
+#define HUE_HCLM8SP3Active                      2213      // 1 Bit, Bit 4
+#define     HUE_HCLM8SP3ActiveMask 0x10
+#define     HUE_HCLM8SP3ActiveShift 4
+#define HUE_HCLM8SP4Active                      2213      // 1 Bit, Bit 3
+#define     HUE_HCLM8SP4ActiveMask 0x08
+#define     HUE_HCLM8SP4ActiveShift 3
+#define HUE_HCLM8SP5Active                      2213      // 1 Bit, Bit 2
+#define     HUE_HCLM8SP5ActiveMask 0x04
+#define     HUE_HCLM8SP5ActiveShift 2
+#define HUE_HCLM8SP6Active                      2213      // 1 Bit, Bit 1
+#define     HUE_HCLM8SP6ActiveMask 0x02
+#define     HUE_HCLM8SP6ActiveShift 1
+#define HUE_HCLM8SP7Active                      2213      // 1 Bit, Bit 0
+#define     HUE_HCLM8SP7ActiveMask 0x01
+#define     HUE_HCLM8SP7ActiveShift 0
+#define HUE_HCLM8SP8Active                      2214      // 1 Bit, Bit 7
+#define     HUE_HCLM8SP8ActiveMask 0x80
+#define     HUE_HCLM8SP8ActiveShift 7
+#define HUE_HCLM8SP9Active                      2214      // 1 Bit, Bit 6
+#define     HUE_HCLM8SP9ActiveMask 0x40
+#define     HUE_HCLM8SP9ActiveShift 6
+#define HUE_HCLM8SP0SummerKelvin                2215      // uint16_t
+#define HUE_HCLM8SP1SummerKelvin                2217      // uint16_t
+#define HUE_HCLM8SP2SummerKelvin                2219      // uint16_t
+#define HUE_HCLM8SP3SummerKelvin                2221      // uint16_t
+#define HUE_HCLM8SP4SummerKelvin                2223      // uint16_t
+#define HUE_HCLM8SP5SummerKelvin                2225      // uint16_t
+#define HUE_HCLM8SP6SummerKelvin                2227      // uint16_t
+#define HUE_HCLM8SP7SummerKelvin                2229      // uint16_t
+#define HUE_HCLM8SP8SummerKelvin                2231      // uint16_t
+#define HUE_HCLM8SP9SummerKelvin                2233      // uint16_t
+#define HUE_HCLM8SP0SummerBrightness            2235      // uint8_t
+#define HUE_HCLM8SP1SummerBrightness            2236      // uint8_t
+#define HUE_HCLM8SP2SummerBrightness            2237      // uint8_t
+#define HUE_HCLM8SP3SummerBrightness            2238      // uint8_t
+#define HUE_HCLM8SP4SummerBrightness            2239      // uint8_t
+#define HUE_HCLM8SP5SummerBrightness            2240      // uint8_t
+#define HUE_HCLM8SP6SummerBrightness            2241      // uint8_t
+#define HUE_HCLM8SP7SummerBrightness            2242      // uint8_t
+#define HUE_HCLM8SP8SummerBrightness            2243      // uint8_t
+#define HUE_HCLM8SP9SummerBrightness            2244      // uint8_t
 
 // Bridge Erkennung
 #define ParamHUE_HUEBridgeMode                       (knx.paramByte(HUE_HUEBridgeMode))
@@ -1753,6 +2201,582 @@
 #define ParamHUE_HUEScenesEnable                     ((bool)(knx.paramByte(HUE_HUEScenesEnable) & HUE_HUEScenesEnableMask))
 // Dimmgeschwindigkeit
 #define ParamHUE_HUERelDimRepeatMs                   (knx.paramWord(HUE_HUERelDimRepeatMs))
+// Saison-Profil
+#define ParamHUE_HCLM1SeasonMode                     (knx.paramByte(HUE_HCLM1SeasonMode))
+// DST-Offset (Tage)
+#define ParamHUE_HCLM1DSTOffsetDays                  ((int8_t)knx.paramByte(HUE_HCLM1DSTOffsetDays))
+// Sommerstart Monat
+#define ParamHUE_HCLM1SummerStartMonth               (knx.paramByte(HUE_HCLM1SummerStartMonth))
+// Sommerstart Tag
+#define ParamHUE_HCLM1SummerStartDay                 (knx.paramByte(HUE_HCLM1SummerStartDay))
+// Sommerende Monat
+#define ParamHUE_HCLM1SummerEndMonth                 (knx.paramByte(HUE_HCLM1SummerEndMonth))
+// Sommerende Tag
+#define ParamHUE_HCLM1SummerEndDay                   (knx.paramByte(HUE_HCLM1SummerEndDay))
+// St.punkt 0 aktiv
+#define ParamHUE_HCLM1SP0Active                      ((bool)(knx.paramByte(HUE_HCLM1SP0Active) & HUE_HCLM1SP0ActiveMask))
+// St.punkt 1 aktiv
+#define ParamHUE_HCLM1SP1Active                      ((bool)(knx.paramByte(HUE_HCLM1SP1Active) & HUE_HCLM1SP1ActiveMask))
+// St.punkt 2 aktiv
+#define ParamHUE_HCLM1SP2Active                      ((bool)(knx.paramByte(HUE_HCLM1SP2Active) & HUE_HCLM1SP2ActiveMask))
+// St.punkt 3 aktiv
+#define ParamHUE_HCLM1SP3Active                      ((bool)(knx.paramByte(HUE_HCLM1SP3Active) & HUE_HCLM1SP3ActiveMask))
+// St.punkt 4 aktiv
+#define ParamHUE_HCLM1SP4Active                      ((bool)(knx.paramByte(HUE_HCLM1SP4Active) & HUE_HCLM1SP4ActiveMask))
+// St.punkt 5 aktiv
+#define ParamHUE_HCLM1SP5Active                      ((bool)(knx.paramByte(HUE_HCLM1SP5Active) & HUE_HCLM1SP5ActiveMask))
+// St.punkt 6 aktiv
+#define ParamHUE_HCLM1SP6Active                      ((bool)(knx.paramByte(HUE_HCLM1SP6Active) & HUE_HCLM1SP6ActiveMask))
+// St.punkt 7 aktiv
+#define ParamHUE_HCLM1SP7Active                      ((bool)(knx.paramByte(HUE_HCLM1SP7Active) & HUE_HCLM1SP7ActiveMask))
+// St.punkt 8 aktiv
+#define ParamHUE_HCLM1SP8Active                      ((bool)(knx.paramByte(HUE_HCLM1SP8Active) & HUE_HCLM1SP8ActiveMask))
+// St.punkt 9 aktiv
+#define ParamHUE_HCLM1SP9Active                      ((bool)(knx.paramByte(HUE_HCLM1SP9Active) & HUE_HCLM1SP9ActiveMask))
+// SP0 Sommer-Kelvin
+#define ParamHUE_HCLM1SP0SummerKelvin                (knx.paramWord(HUE_HCLM1SP0SummerKelvin))
+// SP1 Sommer-Kelvin
+#define ParamHUE_HCLM1SP1SummerKelvin                (knx.paramWord(HUE_HCLM1SP1SummerKelvin))
+// SP2 Sommer-Kelvin
+#define ParamHUE_HCLM1SP2SummerKelvin                (knx.paramWord(HUE_HCLM1SP2SummerKelvin))
+// SP3 Sommer-Kelvin
+#define ParamHUE_HCLM1SP3SummerKelvin                (knx.paramWord(HUE_HCLM1SP3SummerKelvin))
+// SP4 Sommer-Kelvin
+#define ParamHUE_HCLM1SP4SummerKelvin                (knx.paramWord(HUE_HCLM1SP4SummerKelvin))
+// SP5 Sommer-Kelvin
+#define ParamHUE_HCLM1SP5SummerKelvin                (knx.paramWord(HUE_HCLM1SP5SummerKelvin))
+// SP6 Sommer-Kelvin
+#define ParamHUE_HCLM1SP6SummerKelvin                (knx.paramWord(HUE_HCLM1SP6SummerKelvin))
+// SP7 Sommer-Kelvin
+#define ParamHUE_HCLM1SP7SummerKelvin                (knx.paramWord(HUE_HCLM1SP7SummerKelvin))
+// SP8 Sommer-Kelvin
+#define ParamHUE_HCLM1SP8SummerKelvin                (knx.paramWord(HUE_HCLM1SP8SummerKelvin))
+// SP9 Sommer-Kelvin
+#define ParamHUE_HCLM1SP9SummerKelvin                (knx.paramWord(HUE_HCLM1SP9SummerKelvin))
+// SP0 Sommer-Helligkeit
+#define ParamHUE_HCLM1SP0SummerBrightness            (knx.paramByte(HUE_HCLM1SP0SummerBrightness))
+// SP1 Sommer-Helligkeit
+#define ParamHUE_HCLM1SP1SummerBrightness            (knx.paramByte(HUE_HCLM1SP1SummerBrightness))
+// SP2 Sommer-Helligkeit
+#define ParamHUE_HCLM1SP2SummerBrightness            (knx.paramByte(HUE_HCLM1SP2SummerBrightness))
+// SP3 Sommer-Helligkeit
+#define ParamHUE_HCLM1SP3SummerBrightness            (knx.paramByte(HUE_HCLM1SP3SummerBrightness))
+// SP4 Sommer-Helligkeit
+#define ParamHUE_HCLM1SP4SummerBrightness            (knx.paramByte(HUE_HCLM1SP4SummerBrightness))
+// SP5 Sommer-Helligkeit
+#define ParamHUE_HCLM1SP5SummerBrightness            (knx.paramByte(HUE_HCLM1SP5SummerBrightness))
+// SP6 Sommer-Helligkeit
+#define ParamHUE_HCLM1SP6SummerBrightness            (knx.paramByte(HUE_HCLM1SP6SummerBrightness))
+// SP7 Sommer-Helligkeit
+#define ParamHUE_HCLM1SP7SummerBrightness            (knx.paramByte(HUE_HCLM1SP7SummerBrightness))
+// SP8 Sommer-Helligkeit
+#define ParamHUE_HCLM1SP8SummerBrightness            (knx.paramByte(HUE_HCLM1SP8SummerBrightness))
+// SP9 Sommer-Helligkeit
+#define ParamHUE_HCLM1SP9SummerBrightness            (knx.paramByte(HUE_HCLM1SP9SummerBrightness))
+// Saison-Profil
+#define ParamHUE_HCLM2SeasonMode                     (knx.paramByte(HUE_HCLM2SeasonMode))
+// DST-Offset (Tage)
+#define ParamHUE_HCLM2DSTOffsetDays                  ((int8_t)knx.paramByte(HUE_HCLM2DSTOffsetDays))
+// Sommerstart Monat
+#define ParamHUE_HCLM2SummerStartMonth               (knx.paramByte(HUE_HCLM2SummerStartMonth))
+// Sommerstart Tag
+#define ParamHUE_HCLM2SummerStartDay                 (knx.paramByte(HUE_HCLM2SummerStartDay))
+// Sommerende Monat
+#define ParamHUE_HCLM2SummerEndMonth                 (knx.paramByte(HUE_HCLM2SummerEndMonth))
+// Sommerende Tag
+#define ParamHUE_HCLM2SummerEndDay                   (knx.paramByte(HUE_HCLM2SummerEndDay))
+// St.punkt 0 aktiv
+#define ParamHUE_HCLM2SP0Active                      ((bool)(knx.paramByte(HUE_HCLM2SP0Active) & HUE_HCLM2SP0ActiveMask))
+// St.punkt 1 aktiv
+#define ParamHUE_HCLM2SP1Active                      ((bool)(knx.paramByte(HUE_HCLM2SP1Active) & HUE_HCLM2SP1ActiveMask))
+// St.punkt 2 aktiv
+#define ParamHUE_HCLM2SP2Active                      ((bool)(knx.paramByte(HUE_HCLM2SP2Active) & HUE_HCLM2SP2ActiveMask))
+// St.punkt 3 aktiv
+#define ParamHUE_HCLM2SP3Active                      ((bool)(knx.paramByte(HUE_HCLM2SP3Active) & HUE_HCLM2SP3ActiveMask))
+// St.punkt 4 aktiv
+#define ParamHUE_HCLM2SP4Active                      ((bool)(knx.paramByte(HUE_HCLM2SP4Active) & HUE_HCLM2SP4ActiveMask))
+// St.punkt 5 aktiv
+#define ParamHUE_HCLM2SP5Active                      ((bool)(knx.paramByte(HUE_HCLM2SP5Active) & HUE_HCLM2SP5ActiveMask))
+// St.punkt 6 aktiv
+#define ParamHUE_HCLM2SP6Active                      ((bool)(knx.paramByte(HUE_HCLM2SP6Active) & HUE_HCLM2SP6ActiveMask))
+// St.punkt 7 aktiv
+#define ParamHUE_HCLM2SP7Active                      ((bool)(knx.paramByte(HUE_HCLM2SP7Active) & HUE_HCLM2SP7ActiveMask))
+// St.punkt 8 aktiv
+#define ParamHUE_HCLM2SP8Active                      ((bool)(knx.paramByte(HUE_HCLM2SP8Active) & HUE_HCLM2SP8ActiveMask))
+// St.punkt 9 aktiv
+#define ParamHUE_HCLM2SP9Active                      ((bool)(knx.paramByte(HUE_HCLM2SP9Active) & HUE_HCLM2SP9ActiveMask))
+// SP0 Sommer-Kelvin
+#define ParamHUE_HCLM2SP0SummerKelvin                (knx.paramWord(HUE_HCLM2SP0SummerKelvin))
+// SP1 Sommer-Kelvin
+#define ParamHUE_HCLM2SP1SummerKelvin                (knx.paramWord(HUE_HCLM2SP1SummerKelvin))
+// SP2 Sommer-Kelvin
+#define ParamHUE_HCLM2SP2SummerKelvin                (knx.paramWord(HUE_HCLM2SP2SummerKelvin))
+// SP3 Sommer-Kelvin
+#define ParamHUE_HCLM2SP3SummerKelvin                (knx.paramWord(HUE_HCLM2SP3SummerKelvin))
+// SP4 Sommer-Kelvin
+#define ParamHUE_HCLM2SP4SummerKelvin                (knx.paramWord(HUE_HCLM2SP4SummerKelvin))
+// SP5 Sommer-Kelvin
+#define ParamHUE_HCLM2SP5SummerKelvin                (knx.paramWord(HUE_HCLM2SP5SummerKelvin))
+// SP6 Sommer-Kelvin
+#define ParamHUE_HCLM2SP6SummerKelvin                (knx.paramWord(HUE_HCLM2SP6SummerKelvin))
+// SP7 Sommer-Kelvin
+#define ParamHUE_HCLM2SP7SummerKelvin                (knx.paramWord(HUE_HCLM2SP7SummerKelvin))
+// SP8 Sommer-Kelvin
+#define ParamHUE_HCLM2SP8SummerKelvin                (knx.paramWord(HUE_HCLM2SP8SummerKelvin))
+// SP9 Sommer-Kelvin
+#define ParamHUE_HCLM2SP9SummerKelvin                (knx.paramWord(HUE_HCLM2SP9SummerKelvin))
+// SP0 Sommer-Helligkeit
+#define ParamHUE_HCLM2SP0SummerBrightness            (knx.paramByte(HUE_HCLM2SP0SummerBrightness))
+// SP1 Sommer-Helligkeit
+#define ParamHUE_HCLM2SP1SummerBrightness            (knx.paramByte(HUE_HCLM2SP1SummerBrightness))
+// SP2 Sommer-Helligkeit
+#define ParamHUE_HCLM2SP2SummerBrightness            (knx.paramByte(HUE_HCLM2SP2SummerBrightness))
+// SP3 Sommer-Helligkeit
+#define ParamHUE_HCLM2SP3SummerBrightness            (knx.paramByte(HUE_HCLM2SP3SummerBrightness))
+// SP4 Sommer-Helligkeit
+#define ParamHUE_HCLM2SP4SummerBrightness            (knx.paramByte(HUE_HCLM2SP4SummerBrightness))
+// SP5 Sommer-Helligkeit
+#define ParamHUE_HCLM2SP5SummerBrightness            (knx.paramByte(HUE_HCLM2SP5SummerBrightness))
+// SP6 Sommer-Helligkeit
+#define ParamHUE_HCLM2SP6SummerBrightness            (knx.paramByte(HUE_HCLM2SP6SummerBrightness))
+// SP7 Sommer-Helligkeit
+#define ParamHUE_HCLM2SP7SummerBrightness            (knx.paramByte(HUE_HCLM2SP7SummerBrightness))
+// SP8 Sommer-Helligkeit
+#define ParamHUE_HCLM2SP8SummerBrightness            (knx.paramByte(HUE_HCLM2SP8SummerBrightness))
+// SP9 Sommer-Helligkeit
+#define ParamHUE_HCLM2SP9SummerBrightness            (knx.paramByte(HUE_HCLM2SP9SummerBrightness))
+// Saison-Profil
+#define ParamHUE_HCLM3SeasonMode                     (knx.paramByte(HUE_HCLM3SeasonMode))
+// DST-Offset (Tage)
+#define ParamHUE_HCLM3DSTOffsetDays                  ((int8_t)knx.paramByte(HUE_HCLM3DSTOffsetDays))
+// Sommerstart Monat
+#define ParamHUE_HCLM3SummerStartMonth               (knx.paramByte(HUE_HCLM3SummerStartMonth))
+// Sommerstart Tag
+#define ParamHUE_HCLM3SummerStartDay                 (knx.paramByte(HUE_HCLM3SummerStartDay))
+// Sommerende Monat
+#define ParamHUE_HCLM3SummerEndMonth                 (knx.paramByte(HUE_HCLM3SummerEndMonth))
+// Sommerende Tag
+#define ParamHUE_HCLM3SummerEndDay                   (knx.paramByte(HUE_HCLM3SummerEndDay))
+// St.punkt 0 aktiv
+#define ParamHUE_HCLM3SP0Active                      ((bool)(knx.paramByte(HUE_HCLM3SP0Active) & HUE_HCLM3SP0ActiveMask))
+// St.punkt 1 aktiv
+#define ParamHUE_HCLM3SP1Active                      ((bool)(knx.paramByte(HUE_HCLM3SP1Active) & HUE_HCLM3SP1ActiveMask))
+// St.punkt 2 aktiv
+#define ParamHUE_HCLM3SP2Active                      ((bool)(knx.paramByte(HUE_HCLM3SP2Active) & HUE_HCLM3SP2ActiveMask))
+// St.punkt 3 aktiv
+#define ParamHUE_HCLM3SP3Active                      ((bool)(knx.paramByte(HUE_HCLM3SP3Active) & HUE_HCLM3SP3ActiveMask))
+// St.punkt 4 aktiv
+#define ParamHUE_HCLM3SP4Active                      ((bool)(knx.paramByte(HUE_HCLM3SP4Active) & HUE_HCLM3SP4ActiveMask))
+// St.punkt 5 aktiv
+#define ParamHUE_HCLM3SP5Active                      ((bool)(knx.paramByte(HUE_HCLM3SP5Active) & HUE_HCLM3SP5ActiveMask))
+// St.punkt 6 aktiv
+#define ParamHUE_HCLM3SP6Active                      ((bool)(knx.paramByte(HUE_HCLM3SP6Active) & HUE_HCLM3SP6ActiveMask))
+// St.punkt 7 aktiv
+#define ParamHUE_HCLM3SP7Active                      ((bool)(knx.paramByte(HUE_HCLM3SP7Active) & HUE_HCLM3SP7ActiveMask))
+// St.punkt 8 aktiv
+#define ParamHUE_HCLM3SP8Active                      ((bool)(knx.paramByte(HUE_HCLM3SP8Active) & HUE_HCLM3SP8ActiveMask))
+// St.punkt 9 aktiv
+#define ParamHUE_HCLM3SP9Active                      ((bool)(knx.paramByte(HUE_HCLM3SP9Active) & HUE_HCLM3SP9ActiveMask))
+// SP0 Sommer-Kelvin
+#define ParamHUE_HCLM3SP0SummerKelvin                (knx.paramWord(HUE_HCLM3SP0SummerKelvin))
+// SP1 Sommer-Kelvin
+#define ParamHUE_HCLM3SP1SummerKelvin                (knx.paramWord(HUE_HCLM3SP1SummerKelvin))
+// SP2 Sommer-Kelvin
+#define ParamHUE_HCLM3SP2SummerKelvin                (knx.paramWord(HUE_HCLM3SP2SummerKelvin))
+// SP3 Sommer-Kelvin
+#define ParamHUE_HCLM3SP3SummerKelvin                (knx.paramWord(HUE_HCLM3SP3SummerKelvin))
+// SP4 Sommer-Kelvin
+#define ParamHUE_HCLM3SP4SummerKelvin                (knx.paramWord(HUE_HCLM3SP4SummerKelvin))
+// SP5 Sommer-Kelvin
+#define ParamHUE_HCLM3SP5SummerKelvin                (knx.paramWord(HUE_HCLM3SP5SummerKelvin))
+// SP6 Sommer-Kelvin
+#define ParamHUE_HCLM3SP6SummerKelvin                (knx.paramWord(HUE_HCLM3SP6SummerKelvin))
+// SP7 Sommer-Kelvin
+#define ParamHUE_HCLM3SP7SummerKelvin                (knx.paramWord(HUE_HCLM3SP7SummerKelvin))
+// SP8 Sommer-Kelvin
+#define ParamHUE_HCLM3SP8SummerKelvin                (knx.paramWord(HUE_HCLM3SP8SummerKelvin))
+// SP9 Sommer-Kelvin
+#define ParamHUE_HCLM3SP9SummerKelvin                (knx.paramWord(HUE_HCLM3SP9SummerKelvin))
+// SP0 Sommer-Helligkeit
+#define ParamHUE_HCLM3SP0SummerBrightness            (knx.paramByte(HUE_HCLM3SP0SummerBrightness))
+// SP1 Sommer-Helligkeit
+#define ParamHUE_HCLM3SP1SummerBrightness            (knx.paramByte(HUE_HCLM3SP1SummerBrightness))
+// SP2 Sommer-Helligkeit
+#define ParamHUE_HCLM3SP2SummerBrightness            (knx.paramByte(HUE_HCLM3SP2SummerBrightness))
+// SP3 Sommer-Helligkeit
+#define ParamHUE_HCLM3SP3SummerBrightness            (knx.paramByte(HUE_HCLM3SP3SummerBrightness))
+// SP4 Sommer-Helligkeit
+#define ParamHUE_HCLM3SP4SummerBrightness            (knx.paramByte(HUE_HCLM3SP4SummerBrightness))
+// SP5 Sommer-Helligkeit
+#define ParamHUE_HCLM3SP5SummerBrightness            (knx.paramByte(HUE_HCLM3SP5SummerBrightness))
+// SP6 Sommer-Helligkeit
+#define ParamHUE_HCLM3SP6SummerBrightness            (knx.paramByte(HUE_HCLM3SP6SummerBrightness))
+// SP7 Sommer-Helligkeit
+#define ParamHUE_HCLM3SP7SummerBrightness            (knx.paramByte(HUE_HCLM3SP7SummerBrightness))
+// SP8 Sommer-Helligkeit
+#define ParamHUE_HCLM3SP8SummerBrightness            (knx.paramByte(HUE_HCLM3SP8SummerBrightness))
+// SP9 Sommer-Helligkeit
+#define ParamHUE_HCLM3SP9SummerBrightness            (knx.paramByte(HUE_HCLM3SP9SummerBrightness))
+// Saison-Profil
+#define ParamHUE_HCLM4SeasonMode                     (knx.paramByte(HUE_HCLM4SeasonMode))
+// DST-Offset (Tage)
+#define ParamHUE_HCLM4DSTOffsetDays                  ((int8_t)knx.paramByte(HUE_HCLM4DSTOffsetDays))
+// Sommerstart Monat
+#define ParamHUE_HCLM4SummerStartMonth               (knx.paramByte(HUE_HCLM4SummerStartMonth))
+// Sommerstart Tag
+#define ParamHUE_HCLM4SummerStartDay                 (knx.paramByte(HUE_HCLM4SummerStartDay))
+// Sommerende Monat
+#define ParamHUE_HCLM4SummerEndMonth                 (knx.paramByte(HUE_HCLM4SummerEndMonth))
+// Sommerende Tag
+#define ParamHUE_HCLM4SummerEndDay                   (knx.paramByte(HUE_HCLM4SummerEndDay))
+// St.punkt 0 aktiv
+#define ParamHUE_HCLM4SP0Active                      ((bool)(knx.paramByte(HUE_HCLM4SP0Active) & HUE_HCLM4SP0ActiveMask))
+// St.punkt 1 aktiv
+#define ParamHUE_HCLM4SP1Active                      ((bool)(knx.paramByte(HUE_HCLM4SP1Active) & HUE_HCLM4SP1ActiveMask))
+// St.punkt 2 aktiv
+#define ParamHUE_HCLM4SP2Active                      ((bool)(knx.paramByte(HUE_HCLM4SP2Active) & HUE_HCLM4SP2ActiveMask))
+// St.punkt 3 aktiv
+#define ParamHUE_HCLM4SP3Active                      ((bool)(knx.paramByte(HUE_HCLM4SP3Active) & HUE_HCLM4SP3ActiveMask))
+// St.punkt 4 aktiv
+#define ParamHUE_HCLM4SP4Active                      ((bool)(knx.paramByte(HUE_HCLM4SP4Active) & HUE_HCLM4SP4ActiveMask))
+// St.punkt 5 aktiv
+#define ParamHUE_HCLM4SP5Active                      ((bool)(knx.paramByte(HUE_HCLM4SP5Active) & HUE_HCLM4SP5ActiveMask))
+// St.punkt 6 aktiv
+#define ParamHUE_HCLM4SP6Active                      ((bool)(knx.paramByte(HUE_HCLM4SP6Active) & HUE_HCLM4SP6ActiveMask))
+// St.punkt 7 aktiv
+#define ParamHUE_HCLM4SP7Active                      ((bool)(knx.paramByte(HUE_HCLM4SP7Active) & HUE_HCLM4SP7ActiveMask))
+// St.punkt 8 aktiv
+#define ParamHUE_HCLM4SP8Active                      ((bool)(knx.paramByte(HUE_HCLM4SP8Active) & HUE_HCLM4SP8ActiveMask))
+// St.punkt 9 aktiv
+#define ParamHUE_HCLM4SP9Active                      ((bool)(knx.paramByte(HUE_HCLM4SP9Active) & HUE_HCLM4SP9ActiveMask))
+// SP0 Sommer-Kelvin
+#define ParamHUE_HCLM4SP0SummerKelvin                (knx.paramWord(HUE_HCLM4SP0SummerKelvin))
+// SP1 Sommer-Kelvin
+#define ParamHUE_HCLM4SP1SummerKelvin                (knx.paramWord(HUE_HCLM4SP1SummerKelvin))
+// SP2 Sommer-Kelvin
+#define ParamHUE_HCLM4SP2SummerKelvin                (knx.paramWord(HUE_HCLM4SP2SummerKelvin))
+// SP3 Sommer-Kelvin
+#define ParamHUE_HCLM4SP3SummerKelvin                (knx.paramWord(HUE_HCLM4SP3SummerKelvin))
+// SP4 Sommer-Kelvin
+#define ParamHUE_HCLM4SP4SummerKelvin                (knx.paramWord(HUE_HCLM4SP4SummerKelvin))
+// SP5 Sommer-Kelvin
+#define ParamHUE_HCLM4SP5SummerKelvin                (knx.paramWord(HUE_HCLM4SP5SummerKelvin))
+// SP6 Sommer-Kelvin
+#define ParamHUE_HCLM4SP6SummerKelvin                (knx.paramWord(HUE_HCLM4SP6SummerKelvin))
+// SP7 Sommer-Kelvin
+#define ParamHUE_HCLM4SP7SummerKelvin                (knx.paramWord(HUE_HCLM4SP7SummerKelvin))
+// SP8 Sommer-Kelvin
+#define ParamHUE_HCLM4SP8SummerKelvin                (knx.paramWord(HUE_HCLM4SP8SummerKelvin))
+// SP9 Sommer-Kelvin
+#define ParamHUE_HCLM4SP9SummerKelvin                (knx.paramWord(HUE_HCLM4SP9SummerKelvin))
+// SP0 Sommer-Helligkeit
+#define ParamHUE_HCLM4SP0SummerBrightness            (knx.paramByte(HUE_HCLM4SP0SummerBrightness))
+// SP1 Sommer-Helligkeit
+#define ParamHUE_HCLM4SP1SummerBrightness            (knx.paramByte(HUE_HCLM4SP1SummerBrightness))
+// SP2 Sommer-Helligkeit
+#define ParamHUE_HCLM4SP2SummerBrightness            (knx.paramByte(HUE_HCLM4SP2SummerBrightness))
+// SP3 Sommer-Helligkeit
+#define ParamHUE_HCLM4SP3SummerBrightness            (knx.paramByte(HUE_HCLM4SP3SummerBrightness))
+// SP4 Sommer-Helligkeit
+#define ParamHUE_HCLM4SP4SummerBrightness            (knx.paramByte(HUE_HCLM4SP4SummerBrightness))
+// SP5 Sommer-Helligkeit
+#define ParamHUE_HCLM4SP5SummerBrightness            (knx.paramByte(HUE_HCLM4SP5SummerBrightness))
+// SP6 Sommer-Helligkeit
+#define ParamHUE_HCLM4SP6SummerBrightness            (knx.paramByte(HUE_HCLM4SP6SummerBrightness))
+// SP7 Sommer-Helligkeit
+#define ParamHUE_HCLM4SP7SummerBrightness            (knx.paramByte(HUE_HCLM4SP7SummerBrightness))
+// SP8 Sommer-Helligkeit
+#define ParamHUE_HCLM4SP8SummerBrightness            (knx.paramByte(HUE_HCLM4SP8SummerBrightness))
+// SP9 Sommer-Helligkeit
+#define ParamHUE_HCLM4SP9SummerBrightness            (knx.paramByte(HUE_HCLM4SP9SummerBrightness))
+// Saison-Profil
+#define ParamHUE_HCLM5SeasonMode                     (knx.paramByte(HUE_HCLM5SeasonMode))
+// DST-Offset (Tage)
+#define ParamHUE_HCLM5DSTOffsetDays                  ((int8_t)knx.paramByte(HUE_HCLM5DSTOffsetDays))
+// Sommerstart Monat
+#define ParamHUE_HCLM5SummerStartMonth               (knx.paramByte(HUE_HCLM5SummerStartMonth))
+// Sommerstart Tag
+#define ParamHUE_HCLM5SummerStartDay                 (knx.paramByte(HUE_HCLM5SummerStartDay))
+// Sommerende Monat
+#define ParamHUE_HCLM5SummerEndMonth                 (knx.paramByte(HUE_HCLM5SummerEndMonth))
+// Sommerende Tag
+#define ParamHUE_HCLM5SummerEndDay                   (knx.paramByte(HUE_HCLM5SummerEndDay))
+// St.punkt 0 aktiv
+#define ParamHUE_HCLM5SP0Active                      ((bool)(knx.paramByte(HUE_HCLM5SP0Active) & HUE_HCLM5SP0ActiveMask))
+// St.punkt 1 aktiv
+#define ParamHUE_HCLM5SP1Active                      ((bool)(knx.paramByte(HUE_HCLM5SP1Active) & HUE_HCLM5SP1ActiveMask))
+// St.punkt 2 aktiv
+#define ParamHUE_HCLM5SP2Active                      ((bool)(knx.paramByte(HUE_HCLM5SP2Active) & HUE_HCLM5SP2ActiveMask))
+// St.punkt 3 aktiv
+#define ParamHUE_HCLM5SP3Active                      ((bool)(knx.paramByte(HUE_HCLM5SP3Active) & HUE_HCLM5SP3ActiveMask))
+// St.punkt 4 aktiv
+#define ParamHUE_HCLM5SP4Active                      ((bool)(knx.paramByte(HUE_HCLM5SP4Active) & HUE_HCLM5SP4ActiveMask))
+// St.punkt 5 aktiv
+#define ParamHUE_HCLM5SP5Active                      ((bool)(knx.paramByte(HUE_HCLM5SP5Active) & HUE_HCLM5SP5ActiveMask))
+// St.punkt 6 aktiv
+#define ParamHUE_HCLM5SP6Active                      ((bool)(knx.paramByte(HUE_HCLM5SP6Active) & HUE_HCLM5SP6ActiveMask))
+// St.punkt 7 aktiv
+#define ParamHUE_HCLM5SP7Active                      ((bool)(knx.paramByte(HUE_HCLM5SP7Active) & HUE_HCLM5SP7ActiveMask))
+// St.punkt 8 aktiv
+#define ParamHUE_HCLM5SP8Active                      ((bool)(knx.paramByte(HUE_HCLM5SP8Active) & HUE_HCLM5SP8ActiveMask))
+// St.punkt 9 aktiv
+#define ParamHUE_HCLM5SP9Active                      ((bool)(knx.paramByte(HUE_HCLM5SP9Active) & HUE_HCLM5SP9ActiveMask))
+// SP0 Sommer-Kelvin
+#define ParamHUE_HCLM5SP0SummerKelvin                (knx.paramWord(HUE_HCLM5SP0SummerKelvin))
+// SP1 Sommer-Kelvin
+#define ParamHUE_HCLM5SP1SummerKelvin                (knx.paramWord(HUE_HCLM5SP1SummerKelvin))
+// SP2 Sommer-Kelvin
+#define ParamHUE_HCLM5SP2SummerKelvin                (knx.paramWord(HUE_HCLM5SP2SummerKelvin))
+// SP3 Sommer-Kelvin
+#define ParamHUE_HCLM5SP3SummerKelvin                (knx.paramWord(HUE_HCLM5SP3SummerKelvin))
+// SP4 Sommer-Kelvin
+#define ParamHUE_HCLM5SP4SummerKelvin                (knx.paramWord(HUE_HCLM5SP4SummerKelvin))
+// SP5 Sommer-Kelvin
+#define ParamHUE_HCLM5SP5SummerKelvin                (knx.paramWord(HUE_HCLM5SP5SummerKelvin))
+// SP6 Sommer-Kelvin
+#define ParamHUE_HCLM5SP6SummerKelvin                (knx.paramWord(HUE_HCLM5SP6SummerKelvin))
+// SP7 Sommer-Kelvin
+#define ParamHUE_HCLM5SP7SummerKelvin                (knx.paramWord(HUE_HCLM5SP7SummerKelvin))
+// SP8 Sommer-Kelvin
+#define ParamHUE_HCLM5SP8SummerKelvin                (knx.paramWord(HUE_HCLM5SP8SummerKelvin))
+// SP9 Sommer-Kelvin
+#define ParamHUE_HCLM5SP9SummerKelvin                (knx.paramWord(HUE_HCLM5SP9SummerKelvin))
+// SP0 Sommer-Helligkeit
+#define ParamHUE_HCLM5SP0SummerBrightness            (knx.paramByte(HUE_HCLM5SP0SummerBrightness))
+// SP1 Sommer-Helligkeit
+#define ParamHUE_HCLM5SP1SummerBrightness            (knx.paramByte(HUE_HCLM5SP1SummerBrightness))
+// SP2 Sommer-Helligkeit
+#define ParamHUE_HCLM5SP2SummerBrightness            (knx.paramByte(HUE_HCLM5SP2SummerBrightness))
+// SP3 Sommer-Helligkeit
+#define ParamHUE_HCLM5SP3SummerBrightness            (knx.paramByte(HUE_HCLM5SP3SummerBrightness))
+// SP4 Sommer-Helligkeit
+#define ParamHUE_HCLM5SP4SummerBrightness            (knx.paramByte(HUE_HCLM5SP4SummerBrightness))
+// SP5 Sommer-Helligkeit
+#define ParamHUE_HCLM5SP5SummerBrightness            (knx.paramByte(HUE_HCLM5SP5SummerBrightness))
+// SP6 Sommer-Helligkeit
+#define ParamHUE_HCLM5SP6SummerBrightness            (knx.paramByte(HUE_HCLM5SP6SummerBrightness))
+// SP7 Sommer-Helligkeit
+#define ParamHUE_HCLM5SP7SummerBrightness            (knx.paramByte(HUE_HCLM5SP7SummerBrightness))
+// SP8 Sommer-Helligkeit
+#define ParamHUE_HCLM5SP8SummerBrightness            (knx.paramByte(HUE_HCLM5SP8SummerBrightness))
+// SP9 Sommer-Helligkeit
+#define ParamHUE_HCLM5SP9SummerBrightness            (knx.paramByte(HUE_HCLM5SP9SummerBrightness))
+// Saison-Profil
+#define ParamHUE_HCLM6SeasonMode                     (knx.paramByte(HUE_HCLM6SeasonMode))
+// DST-Offset (Tage)
+#define ParamHUE_HCLM6DSTOffsetDays                  ((int8_t)knx.paramByte(HUE_HCLM6DSTOffsetDays))
+// Sommerstart Monat
+#define ParamHUE_HCLM6SummerStartMonth               (knx.paramByte(HUE_HCLM6SummerStartMonth))
+// Sommerstart Tag
+#define ParamHUE_HCLM6SummerStartDay                 (knx.paramByte(HUE_HCLM6SummerStartDay))
+// Sommerende Monat
+#define ParamHUE_HCLM6SummerEndMonth                 (knx.paramByte(HUE_HCLM6SummerEndMonth))
+// Sommerende Tag
+#define ParamHUE_HCLM6SummerEndDay                   (knx.paramByte(HUE_HCLM6SummerEndDay))
+// St.punkt 0 aktiv
+#define ParamHUE_HCLM6SP0Active                      ((bool)(knx.paramByte(HUE_HCLM6SP0Active) & HUE_HCLM6SP0ActiveMask))
+// St.punkt 1 aktiv
+#define ParamHUE_HCLM6SP1Active                      ((bool)(knx.paramByte(HUE_HCLM6SP1Active) & HUE_HCLM6SP1ActiveMask))
+// St.punkt 2 aktiv
+#define ParamHUE_HCLM6SP2Active                      ((bool)(knx.paramByte(HUE_HCLM6SP2Active) & HUE_HCLM6SP2ActiveMask))
+// St.punkt 3 aktiv
+#define ParamHUE_HCLM6SP3Active                      ((bool)(knx.paramByte(HUE_HCLM6SP3Active) & HUE_HCLM6SP3ActiveMask))
+// St.punkt 4 aktiv
+#define ParamHUE_HCLM6SP4Active                      ((bool)(knx.paramByte(HUE_HCLM6SP4Active) & HUE_HCLM6SP4ActiveMask))
+// St.punkt 5 aktiv
+#define ParamHUE_HCLM6SP5Active                      ((bool)(knx.paramByte(HUE_HCLM6SP5Active) & HUE_HCLM6SP5ActiveMask))
+// St.punkt 6 aktiv
+#define ParamHUE_HCLM6SP6Active                      ((bool)(knx.paramByte(HUE_HCLM6SP6Active) & HUE_HCLM6SP6ActiveMask))
+// St.punkt 7 aktiv
+#define ParamHUE_HCLM6SP7Active                      ((bool)(knx.paramByte(HUE_HCLM6SP7Active) & HUE_HCLM6SP7ActiveMask))
+// St.punkt 8 aktiv
+#define ParamHUE_HCLM6SP8Active                      ((bool)(knx.paramByte(HUE_HCLM6SP8Active) & HUE_HCLM6SP8ActiveMask))
+// St.punkt 9 aktiv
+#define ParamHUE_HCLM6SP9Active                      ((bool)(knx.paramByte(HUE_HCLM6SP9Active) & HUE_HCLM6SP9ActiveMask))
+// SP0 Sommer-Kelvin
+#define ParamHUE_HCLM6SP0SummerKelvin                (knx.paramWord(HUE_HCLM6SP0SummerKelvin))
+// SP1 Sommer-Kelvin
+#define ParamHUE_HCLM6SP1SummerKelvin                (knx.paramWord(HUE_HCLM6SP1SummerKelvin))
+// SP2 Sommer-Kelvin
+#define ParamHUE_HCLM6SP2SummerKelvin                (knx.paramWord(HUE_HCLM6SP2SummerKelvin))
+// SP3 Sommer-Kelvin
+#define ParamHUE_HCLM6SP3SummerKelvin                (knx.paramWord(HUE_HCLM6SP3SummerKelvin))
+// SP4 Sommer-Kelvin
+#define ParamHUE_HCLM6SP4SummerKelvin                (knx.paramWord(HUE_HCLM6SP4SummerKelvin))
+// SP5 Sommer-Kelvin
+#define ParamHUE_HCLM6SP5SummerKelvin                (knx.paramWord(HUE_HCLM6SP5SummerKelvin))
+// SP6 Sommer-Kelvin
+#define ParamHUE_HCLM6SP6SummerKelvin                (knx.paramWord(HUE_HCLM6SP6SummerKelvin))
+// SP7 Sommer-Kelvin
+#define ParamHUE_HCLM6SP7SummerKelvin                (knx.paramWord(HUE_HCLM6SP7SummerKelvin))
+// SP8 Sommer-Kelvin
+#define ParamHUE_HCLM6SP8SummerKelvin                (knx.paramWord(HUE_HCLM6SP8SummerKelvin))
+// SP9 Sommer-Kelvin
+#define ParamHUE_HCLM6SP9SummerKelvin                (knx.paramWord(HUE_HCLM6SP9SummerKelvin))
+// SP0 Sommer-Helligkeit
+#define ParamHUE_HCLM6SP0SummerBrightness            (knx.paramByte(HUE_HCLM6SP0SummerBrightness))
+// SP1 Sommer-Helligkeit
+#define ParamHUE_HCLM6SP1SummerBrightness            (knx.paramByte(HUE_HCLM6SP1SummerBrightness))
+// SP2 Sommer-Helligkeit
+#define ParamHUE_HCLM6SP2SummerBrightness            (knx.paramByte(HUE_HCLM6SP2SummerBrightness))
+// SP3 Sommer-Helligkeit
+#define ParamHUE_HCLM6SP3SummerBrightness            (knx.paramByte(HUE_HCLM6SP3SummerBrightness))
+// SP4 Sommer-Helligkeit
+#define ParamHUE_HCLM6SP4SummerBrightness            (knx.paramByte(HUE_HCLM6SP4SummerBrightness))
+// SP5 Sommer-Helligkeit
+#define ParamHUE_HCLM6SP5SummerBrightness            (knx.paramByte(HUE_HCLM6SP5SummerBrightness))
+// SP6 Sommer-Helligkeit
+#define ParamHUE_HCLM6SP6SummerBrightness            (knx.paramByte(HUE_HCLM6SP6SummerBrightness))
+// SP7 Sommer-Helligkeit
+#define ParamHUE_HCLM6SP7SummerBrightness            (knx.paramByte(HUE_HCLM6SP7SummerBrightness))
+// SP8 Sommer-Helligkeit
+#define ParamHUE_HCLM6SP8SummerBrightness            (knx.paramByte(HUE_HCLM6SP8SummerBrightness))
+// SP9 Sommer-Helligkeit
+#define ParamHUE_HCLM6SP9SummerBrightness            (knx.paramByte(HUE_HCLM6SP9SummerBrightness))
+// Saison-Profil
+#define ParamHUE_HCLM7SeasonMode                     (knx.paramByte(HUE_HCLM7SeasonMode))
+// DST-Offset (Tage)
+#define ParamHUE_HCLM7DSTOffsetDays                  ((int8_t)knx.paramByte(HUE_HCLM7DSTOffsetDays))
+// Sommerstart Monat
+#define ParamHUE_HCLM7SummerStartMonth               (knx.paramByte(HUE_HCLM7SummerStartMonth))
+// Sommerstart Tag
+#define ParamHUE_HCLM7SummerStartDay                 (knx.paramByte(HUE_HCLM7SummerStartDay))
+// Sommerende Monat
+#define ParamHUE_HCLM7SummerEndMonth                 (knx.paramByte(HUE_HCLM7SummerEndMonth))
+// Sommerende Tag
+#define ParamHUE_HCLM7SummerEndDay                   (knx.paramByte(HUE_HCLM7SummerEndDay))
+// St.punkt 0 aktiv
+#define ParamHUE_HCLM7SP0Active                      ((bool)(knx.paramByte(HUE_HCLM7SP0Active) & HUE_HCLM7SP0ActiveMask))
+// St.punkt 1 aktiv
+#define ParamHUE_HCLM7SP1Active                      ((bool)(knx.paramByte(HUE_HCLM7SP1Active) & HUE_HCLM7SP1ActiveMask))
+// St.punkt 2 aktiv
+#define ParamHUE_HCLM7SP2Active                      ((bool)(knx.paramByte(HUE_HCLM7SP2Active) & HUE_HCLM7SP2ActiveMask))
+// St.punkt 3 aktiv
+#define ParamHUE_HCLM7SP3Active                      ((bool)(knx.paramByte(HUE_HCLM7SP3Active) & HUE_HCLM7SP3ActiveMask))
+// St.punkt 4 aktiv
+#define ParamHUE_HCLM7SP4Active                      ((bool)(knx.paramByte(HUE_HCLM7SP4Active) & HUE_HCLM7SP4ActiveMask))
+// St.punkt 5 aktiv
+#define ParamHUE_HCLM7SP5Active                      ((bool)(knx.paramByte(HUE_HCLM7SP5Active) & HUE_HCLM7SP5ActiveMask))
+// St.punkt 6 aktiv
+#define ParamHUE_HCLM7SP6Active                      ((bool)(knx.paramByte(HUE_HCLM7SP6Active) & HUE_HCLM7SP6ActiveMask))
+// St.punkt 7 aktiv
+#define ParamHUE_HCLM7SP7Active                      ((bool)(knx.paramByte(HUE_HCLM7SP7Active) & HUE_HCLM7SP7ActiveMask))
+// St.punkt 8 aktiv
+#define ParamHUE_HCLM7SP8Active                      ((bool)(knx.paramByte(HUE_HCLM7SP8Active) & HUE_HCLM7SP8ActiveMask))
+// St.punkt 9 aktiv
+#define ParamHUE_HCLM7SP9Active                      ((bool)(knx.paramByte(HUE_HCLM7SP9Active) & HUE_HCLM7SP9ActiveMask))
+// SP0 Sommer-Kelvin
+#define ParamHUE_HCLM7SP0SummerKelvin                (knx.paramWord(HUE_HCLM7SP0SummerKelvin))
+// SP1 Sommer-Kelvin
+#define ParamHUE_HCLM7SP1SummerKelvin                (knx.paramWord(HUE_HCLM7SP1SummerKelvin))
+// SP2 Sommer-Kelvin
+#define ParamHUE_HCLM7SP2SummerKelvin                (knx.paramWord(HUE_HCLM7SP2SummerKelvin))
+// SP3 Sommer-Kelvin
+#define ParamHUE_HCLM7SP3SummerKelvin                (knx.paramWord(HUE_HCLM7SP3SummerKelvin))
+// SP4 Sommer-Kelvin
+#define ParamHUE_HCLM7SP4SummerKelvin                (knx.paramWord(HUE_HCLM7SP4SummerKelvin))
+// SP5 Sommer-Kelvin
+#define ParamHUE_HCLM7SP5SummerKelvin                (knx.paramWord(HUE_HCLM7SP5SummerKelvin))
+// SP6 Sommer-Kelvin
+#define ParamHUE_HCLM7SP6SummerKelvin                (knx.paramWord(HUE_HCLM7SP6SummerKelvin))
+// SP7 Sommer-Kelvin
+#define ParamHUE_HCLM7SP7SummerKelvin                (knx.paramWord(HUE_HCLM7SP7SummerKelvin))
+// SP8 Sommer-Kelvin
+#define ParamHUE_HCLM7SP8SummerKelvin                (knx.paramWord(HUE_HCLM7SP8SummerKelvin))
+// SP9 Sommer-Kelvin
+#define ParamHUE_HCLM7SP9SummerKelvin                (knx.paramWord(HUE_HCLM7SP9SummerKelvin))
+// SP0 Sommer-Helligkeit
+#define ParamHUE_HCLM7SP0SummerBrightness            (knx.paramByte(HUE_HCLM7SP0SummerBrightness))
+// SP1 Sommer-Helligkeit
+#define ParamHUE_HCLM7SP1SummerBrightness            (knx.paramByte(HUE_HCLM7SP1SummerBrightness))
+// SP2 Sommer-Helligkeit
+#define ParamHUE_HCLM7SP2SummerBrightness            (knx.paramByte(HUE_HCLM7SP2SummerBrightness))
+// SP3 Sommer-Helligkeit
+#define ParamHUE_HCLM7SP3SummerBrightness            (knx.paramByte(HUE_HCLM7SP3SummerBrightness))
+// SP4 Sommer-Helligkeit
+#define ParamHUE_HCLM7SP4SummerBrightness            (knx.paramByte(HUE_HCLM7SP4SummerBrightness))
+// SP5 Sommer-Helligkeit
+#define ParamHUE_HCLM7SP5SummerBrightness            (knx.paramByte(HUE_HCLM7SP5SummerBrightness))
+// SP6 Sommer-Helligkeit
+#define ParamHUE_HCLM7SP6SummerBrightness            (knx.paramByte(HUE_HCLM7SP6SummerBrightness))
+// SP7 Sommer-Helligkeit
+#define ParamHUE_HCLM7SP7SummerBrightness            (knx.paramByte(HUE_HCLM7SP7SummerBrightness))
+// SP8 Sommer-Helligkeit
+#define ParamHUE_HCLM7SP8SummerBrightness            (knx.paramByte(HUE_HCLM7SP8SummerBrightness))
+// SP9 Sommer-Helligkeit
+#define ParamHUE_HCLM7SP9SummerBrightness            (knx.paramByte(HUE_HCLM7SP9SummerBrightness))
+// Saison-Profil
+#define ParamHUE_HCLM8SeasonMode                     (knx.paramByte(HUE_HCLM8SeasonMode))
+// DST-Offset (Tage)
+#define ParamHUE_HCLM8DSTOffsetDays                  ((int8_t)knx.paramByte(HUE_HCLM8DSTOffsetDays))
+// Sommerstart Monat
+#define ParamHUE_HCLM8SummerStartMonth               (knx.paramByte(HUE_HCLM8SummerStartMonth))
+// Sommerstart Tag
+#define ParamHUE_HCLM8SummerStartDay                 (knx.paramByte(HUE_HCLM8SummerStartDay))
+// Sommerende Monat
+#define ParamHUE_HCLM8SummerEndMonth                 (knx.paramByte(HUE_HCLM8SummerEndMonth))
+// Sommerende Tag
+#define ParamHUE_HCLM8SummerEndDay                   (knx.paramByte(HUE_HCLM8SummerEndDay))
+// St.punkt 0 aktiv
+#define ParamHUE_HCLM8SP0Active                      ((bool)(knx.paramByte(HUE_HCLM8SP0Active) & HUE_HCLM8SP0ActiveMask))
+// St.punkt 1 aktiv
+#define ParamHUE_HCLM8SP1Active                      ((bool)(knx.paramByte(HUE_HCLM8SP1Active) & HUE_HCLM8SP1ActiveMask))
+// St.punkt 2 aktiv
+#define ParamHUE_HCLM8SP2Active                      ((bool)(knx.paramByte(HUE_HCLM8SP2Active) & HUE_HCLM8SP2ActiveMask))
+// St.punkt 3 aktiv
+#define ParamHUE_HCLM8SP3Active                      ((bool)(knx.paramByte(HUE_HCLM8SP3Active) & HUE_HCLM8SP3ActiveMask))
+// St.punkt 4 aktiv
+#define ParamHUE_HCLM8SP4Active                      ((bool)(knx.paramByte(HUE_HCLM8SP4Active) & HUE_HCLM8SP4ActiveMask))
+// St.punkt 5 aktiv
+#define ParamHUE_HCLM8SP5Active                      ((bool)(knx.paramByte(HUE_HCLM8SP5Active) & HUE_HCLM8SP5ActiveMask))
+// St.punkt 6 aktiv
+#define ParamHUE_HCLM8SP6Active                      ((bool)(knx.paramByte(HUE_HCLM8SP6Active) & HUE_HCLM8SP6ActiveMask))
+// St.punkt 7 aktiv
+#define ParamHUE_HCLM8SP7Active                      ((bool)(knx.paramByte(HUE_HCLM8SP7Active) & HUE_HCLM8SP7ActiveMask))
+// St.punkt 8 aktiv
+#define ParamHUE_HCLM8SP8Active                      ((bool)(knx.paramByte(HUE_HCLM8SP8Active) & HUE_HCLM8SP8ActiveMask))
+// St.punkt 9 aktiv
+#define ParamHUE_HCLM8SP9Active                      ((bool)(knx.paramByte(HUE_HCLM8SP9Active) & HUE_HCLM8SP9ActiveMask))
+// SP0 Sommer-Kelvin
+#define ParamHUE_HCLM8SP0SummerKelvin                (knx.paramWord(HUE_HCLM8SP0SummerKelvin))
+// SP1 Sommer-Kelvin
+#define ParamHUE_HCLM8SP1SummerKelvin                (knx.paramWord(HUE_HCLM8SP1SummerKelvin))
+// SP2 Sommer-Kelvin
+#define ParamHUE_HCLM8SP2SummerKelvin                (knx.paramWord(HUE_HCLM8SP2SummerKelvin))
+// SP3 Sommer-Kelvin
+#define ParamHUE_HCLM8SP3SummerKelvin                (knx.paramWord(HUE_HCLM8SP3SummerKelvin))
+// SP4 Sommer-Kelvin
+#define ParamHUE_HCLM8SP4SummerKelvin                (knx.paramWord(HUE_HCLM8SP4SummerKelvin))
+// SP5 Sommer-Kelvin
+#define ParamHUE_HCLM8SP5SummerKelvin                (knx.paramWord(HUE_HCLM8SP5SummerKelvin))
+// SP6 Sommer-Kelvin
+#define ParamHUE_HCLM8SP6SummerKelvin                (knx.paramWord(HUE_HCLM8SP6SummerKelvin))
+// SP7 Sommer-Kelvin
+#define ParamHUE_HCLM8SP7SummerKelvin                (knx.paramWord(HUE_HCLM8SP7SummerKelvin))
+// SP8 Sommer-Kelvin
+#define ParamHUE_HCLM8SP8SummerKelvin                (knx.paramWord(HUE_HCLM8SP8SummerKelvin))
+// SP9 Sommer-Kelvin
+#define ParamHUE_HCLM8SP9SummerKelvin                (knx.paramWord(HUE_HCLM8SP9SummerKelvin))
+// SP0 Sommer-Helligkeit
+#define ParamHUE_HCLM8SP0SummerBrightness            (knx.paramByte(HUE_HCLM8SP0SummerBrightness))
+// SP1 Sommer-Helligkeit
+#define ParamHUE_HCLM8SP1SummerBrightness            (knx.paramByte(HUE_HCLM8SP1SummerBrightness))
+// SP2 Sommer-Helligkeit
+#define ParamHUE_HCLM8SP2SummerBrightness            (knx.paramByte(HUE_HCLM8SP2SummerBrightness))
+// SP3 Sommer-Helligkeit
+#define ParamHUE_HCLM8SP3SummerBrightness            (knx.paramByte(HUE_HCLM8SP3SummerBrightness))
+// SP4 Sommer-Helligkeit
+#define ParamHUE_HCLM8SP4SummerBrightness            (knx.paramByte(HUE_HCLM8SP4SummerBrightness))
+// SP5 Sommer-Helligkeit
+#define ParamHUE_HCLM8SP5SummerBrightness            (knx.paramByte(HUE_HCLM8SP5SummerBrightness))
+// SP6 Sommer-Helligkeit
+#define ParamHUE_HCLM8SP6SummerBrightness            (knx.paramByte(HUE_HCLM8SP6SummerBrightness))
+// SP7 Sommer-Helligkeit
+#define ParamHUE_HCLM8SP7SummerBrightness            (knx.paramByte(HUE_HCLM8SP7SummerBrightness))
+// SP8 Sommer-Helligkeit
+#define ParamHUE_HCLM8SP8SummerBrightness            (knx.paramByte(HUE_HCLM8SP8SummerBrightness))
+// SP9 Sommer-Helligkeit
+#define ParamHUE_HCLM8SP9SummerBrightness            (knx.paramByte(HUE_HCLM8SP9SummerBrightness))
 
 #define HUE_KoHUEConnectionStatus 480
 #define HUE_KoHUEPairingTrigger 481
@@ -1791,6 +2815,14 @@
 #define HUE_KoHUEHCLM8Lock 514
 #define HUE_KoHUEHCLM8LockStatus 515
 #define HUE_KoHUEHCLReleaseTrigger 516
+#define HUE_KoHUEHCLM1SummerActive 517
+#define HUE_KoHUEHCLM2SummerActive 518
+#define HUE_KoHUEHCLM3SummerActive 519
+#define HUE_KoHUEHCLM4SummerActive 520
+#define HUE_KoHUEHCLM5SummerActive 521
+#define HUE_KoHUEHCLM6SummerActive 522
+#define HUE_KoHUEHCLM7SummerActive 523
+#define HUE_KoHUEHCLM8SummerActive 524
 
 // Hue-Bridge: Verbindungsstatus
 #define KoHUE_HUEConnectionStatus                 (knx.getGroupObject(HUE_KoHUEConnectionStatus))
@@ -1866,11 +2898,27 @@
 #define KoHUE_HUEHCLM8LockStatus                  (knx.getGroupObject(HUE_KoHUEHCLM8LockStatus))
 // LM: Entsperr-Trigger (global)
 #define KoHUE_HUEHCLReleaseTrigger                (knx.getGroupObject(HUE_KoHUEHCLReleaseTrigger))
+// LM 1: Sommer aktiv
+#define KoHUE_HUEHCLM1SummerActive                (knx.getGroupObject(HUE_KoHUEHCLM1SummerActive))
+// LM 2: Sommer aktiv
+#define KoHUE_HUEHCLM2SummerActive                (knx.getGroupObject(HUE_KoHUEHCLM2SummerActive))
+// LM 3: Sommer aktiv
+#define KoHUE_HUEHCLM3SummerActive                (knx.getGroupObject(HUE_KoHUEHCLM3SummerActive))
+// LM 4: Sommer aktiv
+#define KoHUE_HUEHCLM4SummerActive                (knx.getGroupObject(HUE_KoHUEHCLM4SummerActive))
+// LM 5: Sommer aktiv
+#define KoHUE_HUEHCLM5SummerActive                (knx.getGroupObject(HUE_KoHUEHCLM5SummerActive))
+// LM 6: Sommer aktiv
+#define KoHUE_HUEHCLM6SummerActive                (knx.getGroupObject(HUE_KoHUEHCLM6SummerActive))
+// LM 7: Sommer aktiv
+#define KoHUE_HUEHCLM7SummerActive                (knx.getGroupObject(HUE_KoHUEHCLM7SummerActive))
+// LM 8: Sommer aktiv
+#define KoHUE_HUEHCLM8SummerActive                (knx.getGroupObject(HUE_KoHUEHCLM8SummerActive))
 
 #define HUE_ChannelCount 32
 
 // Parameter per channel
-#define HUE_ParamBlockOffset 1941
+#define HUE_ParamBlockOffset 2245
 #define HUE_ParamBlockSize 184
 #define HUE_ParamCalcIndex(index) (index + HUE_ParamBlockOffset + _channelIndex * HUE_ParamBlockSize)
 
@@ -2608,10 +3656,10 @@
 #define ParamHUE_CHNativeHueAction                   ((bool)(knx.paramByte(HUE_ParamCalcIndex(HUE_CHNativeHueAction)) & HUE_CHNativeHueActionMask))
 
 // deprecated
-#define HUE_KoOffset 517
+#define HUE_KoOffset 525
 
 // Communication objects per channel (multiple occurrence)
-#define HUE_KoBlockOffset 517
+#define HUE_KoBlockOffset 525
 #define HUE_KoBlockSize 12
 
 #define HUE_KoCalcNumber(index) (index + HUE_KoBlockOffset + _channelIndex * HUE_KoBlockSize)
@@ -2656,272 +3704,272 @@
 // Szene
 #define KoHUE_CHScene                             (knx.getGroupObject(HUE_KoCalcNumber(HUE_KoCHScene)))
 
-#define LOG_VisibleChannels                     7829      // uint8_t
-#define LOG_VacationKo                          7830      // 1 Bit, Bit 7
+#define LOG_VisibleChannels                     8133      // uint8_t
+#define LOG_VacationKo                          8134      // 1 Bit, Bit 7
 #define     LOG_VacationKoMask 0x80
 #define     LOG_VacationKoShift 7
-#define LOG_HolidayKo                           7830      // 1 Bit, Bit 6
+#define LOG_HolidayKo                           8134      // 1 Bit, Bit 6
 #define     LOG_HolidayKoMask 0x40
 #define     LOG_HolidayKoShift 6
-#define LOG_VacationRead                        7830      // 1 Bit, Bit 5
+#define LOG_VacationRead                        8134      // 1 Bit, Bit 5
 #define     LOG_VacationReadMask 0x20
 #define     LOG_VacationReadShift 5
-#define LOG_HolidaySend                         7830      // 1 Bit, Bit 4
+#define LOG_HolidaySend                         8134      // 1 Bit, Bit 4
 #define     LOG_HolidaySendMask 0x10
 #define     LOG_HolidaySendShift 4
-#define LOG_Neujahr                             7831      // 1 Bit, Bit 7
+#define LOG_Neujahr                             8135      // 1 Bit, Bit 7
 #define     LOG_NeujahrMask 0x80
 #define     LOG_NeujahrShift 7
-#define LOG_DreiKoenige                         7831      // 1 Bit, Bit 6
+#define LOG_DreiKoenige                         8135      // 1 Bit, Bit 6
 #define     LOG_DreiKoenigeMask 0x40
 #define     LOG_DreiKoenigeShift 6
-#define LOG_Weiberfastnacht                     7831      // 1 Bit, Bit 5
+#define LOG_Weiberfastnacht                     8135      // 1 Bit, Bit 5
 #define     LOG_WeiberfastnachtMask 0x20
 #define     LOG_WeiberfastnachtShift 5
-#define LOG_Rosenmontag                         7831      // 1 Bit, Bit 4
+#define LOG_Rosenmontag                         8135      // 1 Bit, Bit 4
 #define     LOG_RosenmontagMask 0x10
 #define     LOG_RosenmontagShift 4
-#define LOG_Fastnachtsdienstag                  7831      // 1 Bit, Bit 3
+#define LOG_Fastnachtsdienstag                  8135      // 1 Bit, Bit 3
 #define     LOG_FastnachtsdienstagMask 0x08
 #define     LOG_FastnachtsdienstagShift 3
-#define LOG_Aschermittwoch                      7831      // 1 Bit, Bit 2
+#define LOG_Aschermittwoch                      8135      // 1 Bit, Bit 2
 #define     LOG_AschermittwochMask 0x04
 #define     LOG_AschermittwochShift 2
-#define LOG_Frauentag                           7831      // 1 Bit, Bit 1
+#define LOG_Frauentag                           8135      // 1 Bit, Bit 1
 #define     LOG_FrauentagMask 0x02
 #define     LOG_FrauentagShift 1
-#define LOG_Gruendonnerstag                     7831      // 1 Bit, Bit 0
+#define LOG_Gruendonnerstag                     8135      // 1 Bit, Bit 0
 #define     LOG_GruendonnerstagMask 0x01
 #define     LOG_GruendonnerstagShift 0
-#define LOG_Karfreitag                          7832      // 1 Bit, Bit 7
+#define LOG_Karfreitag                          8136      // 1 Bit, Bit 7
 #define     LOG_KarfreitagMask 0x80
 #define     LOG_KarfreitagShift 7
-#define LOG_Ostersonntag                        7832      // 1 Bit, Bit 6
+#define LOG_Ostersonntag                        8136      // 1 Bit, Bit 6
 #define     LOG_OstersonntagMask 0x40
 #define     LOG_OstersonntagShift 6
-#define LOG_Ostermontag                         7832      // 1 Bit, Bit 5
+#define LOG_Ostermontag                         8136      // 1 Bit, Bit 5
 #define     LOG_OstermontagMask 0x20
 #define     LOG_OstermontagShift 5
-#define LOG_TagDerArbeit                        7832      // 1 Bit, Bit 4
+#define LOG_TagDerArbeit                        8136      // 1 Bit, Bit 4
 #define     LOG_TagDerArbeitMask 0x10
 #define     LOG_TagDerArbeitShift 4
-#define LOG_Himmelfahrt                         7832      // 1 Bit, Bit 3
+#define LOG_Himmelfahrt                         8136      // 1 Bit, Bit 3
 #define     LOG_HimmelfahrtMask 0x08
 #define     LOG_HimmelfahrtShift 3
-#define LOG_Pfingstsonntag                      7832      // 1 Bit, Bit 2
+#define LOG_Pfingstsonntag                      8136      // 1 Bit, Bit 2
 #define     LOG_PfingstsonntagMask 0x04
 #define     LOG_PfingstsonntagShift 2
-#define LOG_Pfingstmontag                       7832      // 1 Bit, Bit 1
+#define LOG_Pfingstmontag                       8136      // 1 Bit, Bit 1
 #define     LOG_PfingstmontagMask 0x02
 #define     LOG_PfingstmontagShift 1
-#define LOG_Fronleichnam                        7832      // 1 Bit, Bit 0
+#define LOG_Fronleichnam                        8136      // 1 Bit, Bit 0
 #define     LOG_FronleichnamMask 0x01
 #define     LOG_FronleichnamShift 0
-#define LOG_Friedensfest                        7833      // 1 Bit, Bit 7
+#define LOG_Friedensfest                        8137      // 1 Bit, Bit 7
 #define     LOG_FriedensfestMask 0x80
 #define     LOG_FriedensfestShift 7
-#define LOG_MariaHimmelfahrt                    7833      // 1 Bit, Bit 6
+#define LOG_MariaHimmelfahrt                    8137      // 1 Bit, Bit 6
 #define     LOG_MariaHimmelfahrtMask 0x40
 #define     LOG_MariaHimmelfahrtShift 6
-#define LOG_DeutscheEinheit                     7833      // 1 Bit, Bit 5
+#define LOG_DeutscheEinheit                     8137      // 1 Bit, Bit 5
 #define     LOG_DeutscheEinheitMask 0x20
 #define     LOG_DeutscheEinheitShift 5
-#define LOG_Reformationstag                     7833      // 1 Bit, Bit 4
+#define LOG_Reformationstag                     8137      // 1 Bit, Bit 4
 #define     LOG_ReformationstagMask 0x10
 #define     LOG_ReformationstagShift 4
-#define LOG_Allerheiligen                       7833      // 1 Bit, Bit 3
+#define LOG_Allerheiligen                       8137      // 1 Bit, Bit 3
 #define     LOG_AllerheiligenMask 0x08
 #define     LOG_AllerheiligenShift 3
-#define LOG_BussBettag                          7833      // 1 Bit, Bit 2
+#define LOG_BussBettag                          8137      // 1 Bit, Bit 2
 #define     LOG_BussBettagMask 0x04
 #define     LOG_BussBettagShift 2
-#define LOG_Advent1                             7833      // 1 Bit, Bit 1
+#define LOG_Advent1                             8137      // 1 Bit, Bit 1
 #define     LOG_Advent1Mask 0x02
 #define     LOG_Advent1Shift 1
-#define LOG_Advent2                             7833      // 1 Bit, Bit 0
+#define LOG_Advent2                             8137      // 1 Bit, Bit 0
 #define     LOG_Advent2Mask 0x01
 #define     LOG_Advent2Shift 0
-#define LOG_Advent3                             7834      // 1 Bit, Bit 7
+#define LOG_Advent3                             8138      // 1 Bit, Bit 7
 #define     LOG_Advent3Mask 0x80
 #define     LOG_Advent3Shift 7
-#define LOG_Advent4                             7834      // 1 Bit, Bit 6
+#define LOG_Advent4                             8138      // 1 Bit, Bit 6
 #define     LOG_Advent4Mask 0x40
 #define     LOG_Advent4Shift 6
-#define LOG_Heiligabend                         7834      // 1 Bit, Bit 5
+#define LOG_Heiligabend                         8138      // 1 Bit, Bit 5
 #define     LOG_HeiligabendMask 0x20
 #define     LOG_HeiligabendShift 5
-#define LOG_Weihnachtstag1                      7834      // 1 Bit, Bit 4
+#define LOG_Weihnachtstag1                      8138      // 1 Bit, Bit 4
 #define     LOG_Weihnachtstag1Mask 0x10
 #define     LOG_Weihnachtstag1Shift 4
-#define LOG_Weihnachtstag2                      7834      // 1 Bit, Bit 3
+#define LOG_Weihnachtstag2                      8138      // 1 Bit, Bit 3
 #define     LOG_Weihnachtstag2Mask 0x08
 #define     LOG_Weihnachtstag2Shift 3
-#define LOG_Silvester                           7834      // 1 Bit, Bit 2
+#define LOG_Silvester                           8138      // 1 Bit, Bit 2
 #define     LOG_SilvesterMask 0x04
 #define     LOG_SilvesterShift 2
-#define LOG_Nationalfeiertag                    7834      // 1 Bit, Bit 1
+#define LOG_Nationalfeiertag                    8138      // 1 Bit, Bit 1
 #define     LOG_NationalfeiertagMask 0x02
 #define     LOG_NationalfeiertagShift 1
-#define LOG_MariaEmpfaengnis                    7834      // 1 Bit, Bit 0
+#define LOG_MariaEmpfaengnis                    8138      // 1 Bit, Bit 0
 #define     LOG_MariaEmpfaengnisMask 0x01
 #define     LOG_MariaEmpfaengnisShift 0
-#define LOG_NationalfeiertagSchweiz             7835      // 1 Bit, Bit 7
+#define LOG_NationalfeiertagSchweiz             8139      // 1 Bit, Bit 7
 #define     LOG_NationalfeiertagSchweizMask 0x80
 #define     LOG_NationalfeiertagSchweizShift 7
-#define LOG_Totensonntag                        7835      // 1 Bit, Bit 6
+#define LOG_Totensonntag                        8139      // 1 Bit, Bit 6
 #define     LOG_TotensonntagMask 0x40
 #define     LOG_TotensonntagShift 6
-#define LOG_Weltkindertag                       7835      // 1 Bit, Bit 5
+#define LOG_Weltkindertag                       8139      // 1 Bit, Bit 5
 #define     LOG_WeltkindertagMask 0x20
 #define     LOG_WeltkindertagShift 5
-#define LOG_UserFormula1                        7836      // char*, 99 Byte
+#define LOG_UserFormula1                        8140      // char*, 99 Byte
 #define     LOG_UserFormula1Length 99
-#define LOG_UserFormula1Active                  7935      // 1 Bit, Bit 7
+#define LOG_UserFormula1Active                  8239      // 1 Bit, Bit 7
 #define     LOG_UserFormula1ActiveMask 0x80
 #define     LOG_UserFormula1ActiveShift 7
-#define LOG_UserFormula2                        7936      // char*, 99 Byte
+#define LOG_UserFormula2                        8240      // char*, 99 Byte
 #define     LOG_UserFormula2Length 99
-#define LOG_UserFormula2Active                  8035      // 1 Bit, Bit 7
+#define LOG_UserFormula2Active                  8339      // 1 Bit, Bit 7
 #define     LOG_UserFormula2ActiveMask 0x80
 #define     LOG_UserFormula2ActiveShift 7
-#define LOG_UserFormula3                        8036      // char*, 99 Byte
+#define LOG_UserFormula3                        8340      // char*, 99 Byte
 #define     LOG_UserFormula3Length 99
-#define LOG_UserFormula3Active                  8135      // 1 Bit, Bit 7
+#define LOG_UserFormula3Active                  8439      // 1 Bit, Bit 7
 #define     LOG_UserFormula3ActiveMask 0x80
 #define     LOG_UserFormula3ActiveShift 7
-#define LOG_UserFormula4                        8136      // char*, 99 Byte
+#define LOG_UserFormula4                        8440      // char*, 99 Byte
 #define     LOG_UserFormula4Length 99
-#define LOG_UserFormula4Active                  8235      // 1 Bit, Bit 7
+#define LOG_UserFormula4Active                  8539      // 1 Bit, Bit 7
 #define     LOG_UserFormula4ActiveMask 0x80
 #define     LOG_UserFormula4ActiveShift 7
-#define LOG_UserFormula5                        8236      // char*, 99 Byte
+#define LOG_UserFormula5                        8540      // char*, 99 Byte
 #define     LOG_UserFormula5Length 99
-#define LOG_UserFormula5Active                  8335      // 1 Bit, Bit 7
+#define LOG_UserFormula5Active                  8639      // 1 Bit, Bit 7
 #define     LOG_UserFormula5ActiveMask 0x80
 #define     LOG_UserFormula5ActiveShift 7
-#define LOG_UserFormula6                        8336      // char*, 99 Byte
+#define LOG_UserFormula6                        8640      // char*, 99 Byte
 #define     LOG_UserFormula6Length 99
-#define LOG_UserFormula6Active                  8435      // 1 Bit, Bit 7
+#define LOG_UserFormula6Active                  8739      // 1 Bit, Bit 7
 #define     LOG_UserFormula6ActiveMask 0x80
 #define     LOG_UserFormula6ActiveShift 7
-#define LOG_UserFormula7                        8436      // char*, 99 Byte
+#define LOG_UserFormula7                        8740      // char*, 99 Byte
 #define     LOG_UserFormula7Length 99
-#define LOG_UserFormula7Active                  8535      // 1 Bit, Bit 7
+#define LOG_UserFormula7Active                  8839      // 1 Bit, Bit 7
 #define     LOG_UserFormula7ActiveMask 0x80
 #define     LOG_UserFormula7ActiveShift 7
-#define LOG_UserFormula8                        8536      // char*, 99 Byte
+#define LOG_UserFormula8                        8840      // char*, 99 Byte
 #define     LOG_UserFormula8Length 99
-#define LOG_UserFormula8Active                  8635      // 1 Bit, Bit 7
+#define LOG_UserFormula8Active                  8939      // 1 Bit, Bit 7
 #define     LOG_UserFormula8ActiveMask 0x80
 #define     LOG_UserFormula8ActiveShift 7
-#define LOG_UserFormula9                        8636      // char*, 99 Byte
+#define LOG_UserFormula9                        8940      // char*, 99 Byte
 #define     LOG_UserFormula9Length 99
-#define LOG_UserFormula9Active                  8735      // 1 Bit, Bit 7
+#define LOG_UserFormula9Active                  9039      // 1 Bit, Bit 7
 #define     LOG_UserFormula9ActiveMask 0x80
 #define     LOG_UserFormula9ActiveShift 7
-#define LOG_UserFormula10                       8736      // char*, 99 Byte
+#define LOG_UserFormula10                       9040      // char*, 99 Byte
 #define     LOG_UserFormula10Length 99
-#define LOG_UserFormula10Active                 8835      // 1 Bit, Bit 7
+#define LOG_UserFormula10Active                 9139      // 1 Bit, Bit 7
 #define     LOG_UserFormula10ActiveMask 0x80
 #define     LOG_UserFormula10ActiveShift 7
-#define LOG_UserFormula11                       8836      // char*, 99 Byte
+#define LOG_UserFormula11                       9140      // char*, 99 Byte
 #define     LOG_UserFormula11Length 99
-#define LOG_UserFormula11Active                 8935      // 1 Bit, Bit 7
+#define LOG_UserFormula11Active                 9239      // 1 Bit, Bit 7
 #define     LOG_UserFormula11ActiveMask 0x80
 #define     LOG_UserFormula11ActiveShift 7
-#define LOG_UserFormula12                       8936      // char*, 99 Byte
+#define LOG_UserFormula12                       9240      // char*, 99 Byte
 #define     LOG_UserFormula12Length 99
-#define LOG_UserFormula12Active                 9035      // 1 Bit, Bit 7
+#define LOG_UserFormula12Active                 9339      // 1 Bit, Bit 7
 #define     LOG_UserFormula12ActiveMask 0x80
 #define     LOG_UserFormula12ActiveShift 7
-#define LOG_UserFormula13                       9036      // char*, 99 Byte
+#define LOG_UserFormula13                       9340      // char*, 99 Byte
 #define     LOG_UserFormula13Length 99
-#define LOG_UserFormula13Active                 9135      // 1 Bit, Bit 7
+#define LOG_UserFormula13Active                 9439      // 1 Bit, Bit 7
 #define     LOG_UserFormula13ActiveMask 0x80
 #define     LOG_UserFormula13ActiveShift 7
-#define LOG_UserFormula14                       9136      // char*, 99 Byte
+#define LOG_UserFormula14                       9440      // char*, 99 Byte
 #define     LOG_UserFormula14Length 99
-#define LOG_UserFormula14Active                 9235      // 1 Bit, Bit 7
+#define LOG_UserFormula14Active                 9539      // 1 Bit, Bit 7
 #define     LOG_UserFormula14ActiveMask 0x80
 #define     LOG_UserFormula14ActiveShift 7
-#define LOG_UserFormula15                       9236      // char*, 99 Byte
+#define LOG_UserFormula15                       9540      // char*, 99 Byte
 #define     LOG_UserFormula15Length 99
-#define LOG_UserFormula15Active                 9335      // 1 Bit, Bit 7
+#define LOG_UserFormula15Active                 9639      // 1 Bit, Bit 7
 #define     LOG_UserFormula15ActiveMask 0x80
 #define     LOG_UserFormula15ActiveShift 7
-#define LOG_UserFormula16                       9336      // char*, 99 Byte
+#define LOG_UserFormula16                       9640      // char*, 99 Byte
 #define     LOG_UserFormula16Length 99
-#define LOG_UserFormula16Active                 9435      // 1 Bit, Bit 7
+#define LOG_UserFormula16Active                 9739      // 1 Bit, Bit 7
 #define     LOG_UserFormula16ActiveMask 0x80
 #define     LOG_UserFormula16ActiveShift 7
-#define LOG_UserFormula17                       9436      // char*, 99 Byte
+#define LOG_UserFormula17                       9740      // char*, 99 Byte
 #define     LOG_UserFormula17Length 99
-#define LOG_UserFormula17Active                 9535      // 1 Bit, Bit 7
+#define LOG_UserFormula17Active                 9839      // 1 Bit, Bit 7
 #define     LOG_UserFormula17ActiveMask 0x80
 #define     LOG_UserFormula17ActiveShift 7
-#define LOG_UserFormula18                       9536      // char*, 99 Byte
+#define LOG_UserFormula18                       9840      // char*, 99 Byte
 #define     LOG_UserFormula18Length 99
-#define LOG_UserFormula18Active                 9635      // 1 Bit, Bit 7
+#define LOG_UserFormula18Active                 9939      // 1 Bit, Bit 7
 #define     LOG_UserFormula18ActiveMask 0x80
 #define     LOG_UserFormula18ActiveShift 7
-#define LOG_UserFormula19                       9636      // char*, 99 Byte
+#define LOG_UserFormula19                       9940      // char*, 99 Byte
 #define     LOG_UserFormula19Length 99
-#define LOG_UserFormula19Active                 9735      // 1 Bit, Bit 7
+#define LOG_UserFormula19Active                 10039      // 1 Bit, Bit 7
 #define     LOG_UserFormula19ActiveMask 0x80
 #define     LOG_UserFormula19ActiveShift 7
-#define LOG_UserFormula20                       9736      // char*, 99 Byte
+#define LOG_UserFormula20                       10040      // char*, 99 Byte
 #define     LOG_UserFormula20Length 99
-#define LOG_UserFormula20Active                 9835      // 1 Bit, Bit 7
+#define LOG_UserFormula20Active                 10139      // 1 Bit, Bit 7
 #define     LOG_UserFormula20ActiveMask 0x80
 #define     LOG_UserFormula20ActiveShift 7
-#define LOG_UserFormula21                       9836      // char*, 99 Byte
+#define LOG_UserFormula21                       10140      // char*, 99 Byte
 #define     LOG_UserFormula21Length 99
-#define LOG_UserFormula21Active                 9935      // 1 Bit, Bit 7
+#define LOG_UserFormula21Active                 10239      // 1 Bit, Bit 7
 #define     LOG_UserFormula21ActiveMask 0x80
 #define     LOG_UserFormula21ActiveShift 7
-#define LOG_UserFormula22                       9936      // char*, 99 Byte
+#define LOG_UserFormula22                       10240      // char*, 99 Byte
 #define     LOG_UserFormula22Length 99
-#define LOG_UserFormula22Active                 10035      // 1 Bit, Bit 7
+#define LOG_UserFormula22Active                 10339      // 1 Bit, Bit 7
 #define     LOG_UserFormula22ActiveMask 0x80
 #define     LOG_UserFormula22ActiveShift 7
-#define LOG_UserFormula23                       10036      // char*, 99 Byte
+#define LOG_UserFormula23                       10340      // char*, 99 Byte
 #define     LOG_UserFormula23Length 99
-#define LOG_UserFormula23Active                 10135      // 1 Bit, Bit 7
+#define LOG_UserFormula23Active                 10439      // 1 Bit, Bit 7
 #define     LOG_UserFormula23ActiveMask 0x80
 #define     LOG_UserFormula23ActiveShift 7
-#define LOG_UserFormula24                       10136      // char*, 99 Byte
+#define LOG_UserFormula24                       10440      // char*, 99 Byte
 #define     LOG_UserFormula24Length 99
-#define LOG_UserFormula24Active                 10235      // 1 Bit, Bit 7
+#define LOG_UserFormula24Active                 10539      // 1 Bit, Bit 7
 #define     LOG_UserFormula24ActiveMask 0x80
 #define     LOG_UserFormula24ActiveShift 7
-#define LOG_UserFormula25                       10236      // char*, 99 Byte
+#define LOG_UserFormula25                       10540      // char*, 99 Byte
 #define     LOG_UserFormula25Length 99
-#define LOG_UserFormula25Active                 10335      // 1 Bit, Bit 7
+#define LOG_UserFormula25Active                 10639      // 1 Bit, Bit 7
 #define     LOG_UserFormula25ActiveMask 0x80
 #define     LOG_UserFormula25ActiveShift 7
-#define LOG_UserFormula26                       10336      // char*, 99 Byte
+#define LOG_UserFormula26                       10640      // char*, 99 Byte
 #define     LOG_UserFormula26Length 99
-#define LOG_UserFormula26Active                 10435      // 1 Bit, Bit 7
+#define LOG_UserFormula26Active                 10739      // 1 Bit, Bit 7
 #define     LOG_UserFormula26ActiveMask 0x80
 #define     LOG_UserFormula26ActiveShift 7
-#define LOG_UserFormula27                       10436      // char*, 99 Byte
+#define LOG_UserFormula27                       10740      // char*, 99 Byte
 #define     LOG_UserFormula27Length 99
-#define LOG_UserFormula27Active                 10535      // 1 Bit, Bit 7
+#define LOG_UserFormula27Active                 10839      // 1 Bit, Bit 7
 #define     LOG_UserFormula27ActiveMask 0x80
 #define     LOG_UserFormula27ActiveShift 7
-#define LOG_UserFormula28                       10536      // char*, 99 Byte
+#define LOG_UserFormula28                       10840      // char*, 99 Byte
 #define     LOG_UserFormula28Length 99
-#define LOG_UserFormula28Active                 10635      // 1 Bit, Bit 7
+#define LOG_UserFormula28Active                 10939      // 1 Bit, Bit 7
 #define     LOG_UserFormula28ActiveMask 0x80
 #define     LOG_UserFormula28ActiveShift 7
-#define LOG_UserFormula29                       10636      // char*, 99 Byte
+#define LOG_UserFormula29                       10940      // char*, 99 Byte
 #define     LOG_UserFormula29Length 99
-#define LOG_UserFormula29Active                 10735      // 1 Bit, Bit 7
+#define LOG_UserFormula29Active                 11039      // 1 Bit, Bit 7
 #define     LOG_UserFormula29ActiveMask 0x80
 #define     LOG_UserFormula29ActiveShift 7
-#define LOG_UserFormula30                       10736      // char*, 99 Byte
+#define LOG_UserFormula30                       11040      // char*, 99 Byte
 #define     LOG_UserFormula30Length 99
-#define LOG_UserFormula30Active                 10835      // 1 Bit, Bit 7
+#define LOG_UserFormula30Active                 11139      // 1 Bit, Bit 7
 #define     LOG_UserFormula30ActiveMask 0x80
 #define     LOG_UserFormula30ActiveShift 7
 
@@ -3170,7 +4218,7 @@
 #define LOG_ChannelCount 50
 
 // Parameter per channel
-#define LOG_ParamBlockOffset 10836
+#define LOG_ParamBlockOffset 11140
 #define LOG_ParamBlockSize 87
 #define LOG_ParamCalcIndex(index) (index + LOG_ParamBlockOffset + _channelIndex * LOG_ParamBlockSize)
 
@@ -5044,7 +6092,7 @@
 // Ausgang
 #define KoLOG_KOfO                                (knx.getGroupObject(LOG_KoCalcNumber(LOG_KoKOfO)))
 
-#define FCB_VisibleChannels                     15186      // uint8_t
+#define FCB_VisibleChannels                     15490      // uint8_t
 
 // Verfügbare Kanäle
 #define ParamFCB_VisibleChannels                     (knx.paramByte(FCB_VisibleChannels))
@@ -5052,7 +6100,7 @@
 #define FCB_ChannelCount 15
 
 // Parameter per channel
-#define FCB_ParamBlockOffset 15187
+#define FCB_ParamBlockOffset 15491
 #define FCB_ParamBlockSize 81
 #define FCB_ParamCalcIndex(index) (index + FCB_ParamBlockOffset + _channelIndex * FCB_ParamBlockSize)
 
@@ -6124,7 +7172,7 @@
 #define BASE_KommentarModuleModuleParamSize 0
 #define BASE_KommentarModuleSubmodulesParamSize 0
 #define BASE_KommentarModuleParamSize 0
-#define BASE_KommentarModuleParamOffset 16402
+#define BASE_KommentarModuleParamOffset 16706
 #define BASE_KommentarModuleCalcIndex(index, m1) (index + BASE_KommentarModuleParamOffset + _channelIndex * BASE_KommentarModuleCount * BASE_KommentarModuleParamSize + m1 * BASE_KommentarModuleParamSize)
 
 
