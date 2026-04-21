@@ -5,8 +5,8 @@
   <op:config href="HueGateway.conf.xml" />
   
   <op:ETS
-    OpenKnxId="0xAF"
-    ApplicationNumber="0x2A" 
+    OpenKnxId="0xAD"
+    ApplicationNumber="0x02" 
     ApplicationVersion="%ReleaseApplicationVersion%"
     ReplacesVersions="%ReleaseReplacesVersions%"
     ApplicationRevision="0"
@@ -41,8 +41,6 @@
     KoSingleOffset="480">
     <op:verify File="../lib/OFM-HueGatewayModule/library.json" ModuleVersion="%HUE_VerifyVersion%" />
   </op:define>
-
-  <!-- The bridge uses more than 100 channels. Do not use ModuleType 20 and 29 --> 
 
   <op:define prefix="LOG" ModuleType="10" 
   share="../lib/OFM-LogicModule/src/Logikmodul.share.xml" 

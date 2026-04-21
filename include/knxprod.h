@@ -16,8 +16,8 @@
 #define ETS_ModuleId_LOG 5
 #define ETS_ModuleId_FCB 6
 #define MAIN_FirmwareName "Hue Gateway (Beta)"
-#define MAIN_OpenKnxId 0xAF
-#define MAIN_ApplicationNumber 42
+#define MAIN_OpenKnxId 0xAD
+#define MAIN_ApplicationNumber 2
 #define MAIN_ApplicationVersion 4
 #define MAIN_ApplicationEncoding iso-8859-15
 #define MAIN_ParameterSize 16706

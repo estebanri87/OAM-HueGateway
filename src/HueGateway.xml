@@ -5,8 +5,8 @@
   <op:config href="HueGateway.conf.xml" />
   
   <op:ETS
-    OpenKnxId="0xAF"
-    ApplicationNumber="0x2A" 
+    OpenKnxId="0xAD"
+    ApplicationNumber="0x02" 
     ApplicationVersion="%ReleaseApplicationVersion%"
     ReplacesVersions="%ReleaseReplacesVersions%"
     ApplicationRevision="0"
