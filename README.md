@@ -11,7 +11,7 @@ Das OpenKNX Hue Gateway integriert Philips Hue Geräte über die Hue API v2 in d
 - **Taster/Schalter**: bis zu 4 Tasten je Kanal; Kurz- und Langdruck frei belegbar (DPT-Typ wählbar: Schalten, Dimmen, Szenennummer, Schritt/Stop, Prozentwert, Temperatur, Byte, Word); Drehregler-Unterstützung (Beta)
 - WebUI zum Laden der Hue ID´s.
 - mDNS-Service (`openknx-bridge.local`)
-- Konfigurierbar über ETS 6
+- Konfigurierbar über ETS
 
 ### Unterstützte Gerätetypen
 
