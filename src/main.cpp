@@ -4,6 +4,7 @@
 #include "Logic.h"
 #include "FunctionBlocksModule.h"
 #include "HueGatewayModule.h"
+#include "LightManagerModule.h"
 #include "WebUI.h"
 #include "pins_arduino.h"
 
@@ -60,7 +61,7 @@ OpenKNX::Led::GPIO *led2 = nullptr;
 OpenKNX::Led::GPIO *led3 = nullptr;
 #endif
 
-const uint8_t firmwareRevision = 2;
+const uint8_t firmwareRevision = 0;
 
 void setup()
 {
@@ -96,6 +97,7 @@ void setup()
 #endif
   openknx.addModule(8, openknxFunctionBlocksModule);
   openknx.addModule(7, openknxWebUI);
+  openknx.addModule(4, openknxLightManagerModule);  // HCL LightManager
   openknx.addModule(9, openknxHueGatewayModule);  // Philips Hue Integration
   openknx.setup();
 

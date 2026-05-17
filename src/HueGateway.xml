@@ -5,8 +5,8 @@
   <op:config href="HueGateway.conf.xml" />
   
   <op:ETS
-    OpenKnxId="0xAD"
-    ApplicationNumber="0x02" 
+    OpenKnxId="0xAF"
+    ApplicationNumber="0x2A" 
     ApplicationVersion="%ReleaseApplicationVersion%"
     ReplacesVersions="%ReleaseReplacesVersions%"
     ApplicationRevision="0"
@@ -36,10 +36,16 @@
     share="../lib/OFM-HueGatewayModule/src/HueGatewayModule.share.xml"
     template="../lib/OFM-HueGatewayModule/src/HueGatewayModule.templ.xml"
     NumChannels="32"
-    KoOffset="549"
+    KoOffset="533"
     KoBlockSize="11"
-    KoSingleOffset="480">
+    KoSingleOffset="531">
     <op:verify File="../lib/OFM-HueGatewayModule/library.json" ModuleVersion="%HUE_VerifyVersion%" />
+  </op:define>
+  
+  <op:define prefix="LMG" ModuleType="15"
+    share="../lib/OFM-LightManager/src/LightManagerModule.share.xml"
+    KoSingleOffset="398">
+    <op:verify File="../lib/OFM-LightManager/library.json" ModuleVersion="%LMG_VerifyVersion%" />
   </op:define>
 
   <op:define prefix="LOG" ModuleType="10" 

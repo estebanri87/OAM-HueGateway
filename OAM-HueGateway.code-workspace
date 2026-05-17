@@ -32,6 +32,9 @@
         },
         {
             "path": "../OFM-WebUI"
+        },
+        {
+            "path": "../OFM-LightManager"
         }
     ],
     "settings": {
