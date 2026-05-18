@@ -32,6 +32,16 @@
   <op:verify File="../lib/OFM-ConfigTransfer/library.json" ModuleVersion="%UCT_VerifyVersion%" />
   </op:define>
 
+  <op:define prefix="LMG" ModuleType="15"
+    share="../lib/OFM-LightManager/src/LightManagerModule.share.xml"
+    template="../lib/OFM-LightManager/src/LightManagerModule.templ.xml"
+    NumChannels="16"
+    KoOffset="403"
+    KoBlockSize="8"
+    KoSingleOffset="398">
+    <op:verify File="../lib/OFM-LightManager/library.json" ModuleVersion="%LMG_VerifyVersion%" />
+  </op:define>
+
   <op:define prefix="HUE" ModuleType="14"
     share="../lib/OFM-HueGatewayModule/src/HueGatewayModule.share.xml"
     template="../lib/OFM-HueGatewayModule/src/HueGatewayModule.templ.xml"
@@ -40,12 +50,6 @@
     KoBlockSize="11"
     KoSingleOffset="531">
     <op:verify File="../lib/OFM-HueGatewayModule/library.json" ModuleVersion="%HUE_VerifyVersion%" />
-  </op:define>
-  
-  <op:define prefix="LMG" ModuleType="15"
-    share="../lib/OFM-LightManager/src/LightManagerModule.share.xml"
-    KoSingleOffset="398">
-    <op:verify File="../lib/OFM-LightManager/library.json" ModuleVersion="%LMG_VerifyVersion%" />
   </op:define>
 
   <op:define prefix="LOG" ModuleType="10" 
