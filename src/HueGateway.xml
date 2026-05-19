@@ -37,7 +37,6 @@
     template="../lib/OFM-LightManager/src/LightManagerModule.templ.xml"
     NumChannels="16"
     KoOffset="403"
-    KoBlockSize="8"
     KoSingleOffset="398">
     <op:verify File="../lib/OFM-LightManager/library.json" ModuleVersion="%LMG_VerifyVersion%" />
   </op:define>
@@ -47,7 +46,6 @@
     template="../lib/OFM-HueGatewayModule/src/HueGatewayModule.templ.xml"
     NumChannels="32"
     KoOffset="533"
-    KoBlockSize="11"
     KoSingleOffset="531">
     <op:verify File="../lib/OFM-HueGatewayModule/library.json" ModuleVersion="%HUE_VerifyVersion%" />
   </op:define>
