@@ -45,8 +45,8 @@
     share="../lib/OFM-HueGatewayModule/src/HueGatewayModule.share.xml"
     template="../lib/OFM-HueGatewayModule/src/HueGatewayModule.templ.xml"
     NumChannels="32"
-    KoOffset="533"
-    KoSingleOffset="531">
+    KoOffset="760"
+    KoSingleOffset="758">
     <op:verify File="../lib/OFM-HueGatewayModule/library.json" ModuleVersion="%HUE_VerifyVersion%" />
   </op:define>
 

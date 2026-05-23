@@ -17,18 +17,18 @@
 #define ETS_ModuleId_LOG 6
 #define ETS_ModuleId_FCB 7
 #define MAIN_FirmwareName "Hue Gateway (Beta)"
-#define MAIN_OpenKnxId 0xAF
-#define MAIN_ApplicationNumber 42
-#define MAIN_ApplicationVersion 5
+#define MAIN_OpenKnxId 0xAD
+#define MAIN_ApplicationNumber 2
+#define MAIN_ApplicationVersion 7
 #define MAIN_ApplicationEncoding iso-8859-15
-#define MAIN_ParameterSize 20779
-#define MAIN_MaxKoNumber 916
+#define MAIN_ParameterSize 31613
+#define MAIN_MaxKoNumber 1143
 #define MAIN_OrderNumber "OpenKNX-SR-HUE"
 #define BASE_ModuleVersion 24
 #define NET_ModuleVersion 6
 #define UCT_ModuleVersion 5
-#define LMG_ModuleVersion 1
-#define HUE_ModuleVersion 5
+#define LMG_ModuleVersion 3
+#define HUE_ModuleVersion 7
 #define LOG_ModuleVersion 67
 #define FCB_ModuleVersion 10
 // Parameter with single occurrence
@@ -273,14 +273,18 @@
 #define LMG_LMGHCLFallbackPolicy                1263      // 8 Bits, Bit 7-0
 #define LMG_LMGHCLFallbackDurationSec           1264      // uint16_t
 #define LMG_LMGHCLFallbackReleaseTime           1268      // 16 Bits, Bit 15-0
+#define LMG_LMGSummerActiveInit                 1270      // 8 Bits, Bit 7-0
+#define LMG_LMGSummerActiveSavePower            1271      // 1 Bit, Bit 7
+#define     LMG_LMGSummerActiveSavePowerMask 0x80
+#define     LMG_LMGSummerActiveSavePowerShift 7
 
 // Lichtmanager
 #define ParamLMG_LMGHCLEnable                        (knx.paramByte(LMG_LMGHCLEnable))
 // Verfügbare Kanäle
 #define ParamLMG_LMGHCLMasterCount                   (knx.paramByte(LMG_LMGHCLMasterCount))
-// Aktualisierungsintervall
+// Aktualisierungsintervall (legacy)
 #define ParamLMG_LMGHCLUpdateInterval                (knx.paramWord(LMG_LMGHCLUpdateInterval))
-// Überblendzeit
+// Überblendzeit (legacy)
 #define ParamLMG_LMGHCLFadeDuration                  (knx.paramByte(LMG_LMGHCLFadeDuration))
 // Rückfallzeit nach Sperre
 #define ParamLMG_LMGHCLLockFallback                  (knx.paramByte(LMG_LMGHCLLockFallback))
@@ -290,6 +294,10 @@
 #define ParamLMG_LMGHCLFallbackDurationSec           (knx.paramWord(LMG_LMGHCLFallbackDurationSec))
 // Rückfall-Uhrzeit
 #define ParamLMG_LMGHCLFallbackReleaseTime           (knx.paramWord(LMG_LMGHCLFallbackReleaseTime))
+// Sommer-Init beim Start
+#define ParamLMG_LMGSummerActiveInit                 (knx.paramByte(LMG_LMGSummerActiveInit))
+// Letzten Sommer-Zustand speichern
+#define ParamLMG_LMGSummerActiveSavePower            ((bool)(knx.paramByte(LMG_LMGSummerActiveSavePower) & LMG_LMGSummerActiveSavePowerMask))
 
 #define LMG_KoLMGHCLLock 400
 #define LMG_KoLMGHCLLockStatus 401
@@ -305,8 +313,8 @@
 #define LMG_ChannelCount 16
 
 // Parameter per channel
-#define LMG_ParamBlockOffset 1270
-#define LMG_ParamBlockSize 202
+#define LMG_ParamBlockOffset 1272
+#define LMG_ParamBlockSize 879
 #define LMG_ParamCalcIndex(index) (index + LMG_ParamBlockOffset + _channelIndex * LMG_ParamBlockSize)
 
 #define LMG_CHAdaptiveActiveMode                170      // 8 Bits, Bit 7-0
@@ -322,113 +330,752 @@
 #define LMG_CHAdaptiveSensorTimeout             185      // uint8_t
 #define LMG_CHAdaptiveStartTime                 186      // 16 Bits, Bit 15-0
 #define LMG_CHAdaptiveStrength                  191      // uint8_t
-#define LMG_CHAstroMaxBrightness                50      // uint8_t
-#define LMG_CHAstroMaxKelvin                    47      // uint16_t
-#define LMG_CHAstroMinBrightness                49      // uint8_t
-#define LMG_CHAstroMinKelvin                    45      // uint16_t
-#define LMG_CHCurveType                         25      // 8 Bits, Bit 7-0
 #define LMG_CHDSTOffsetDays                     51      // int8_t
 #define LMG_CHFallbackDurationSec               194      // uint16_t
 #define LMG_CHFallbackPolicy                    193      // 8 Bits, Bit 7-0
 #define LMG_CHFallbackReleaseTime               196      // 16 Bits, Bit 15-0
 #define LMG_CHLockFallback                      192      // 8 Bits, Bit 7-0
-#define LMG_CHManualKelvin                      28      // uint16_t
 #define LMG_CHName                               0      // char*, 25 Byte
 #define     LMG_CHNameLength 25
-#define LMG_CHSeasonMode                        52      // 8 Bits, Bit 7-0
-#define LMG_CHSetpointCount                     30      // 8 Bits, Bit 7-0
-#define LMG_CHSlewRate                          26      // uint16_t
-#define LMG_CHSP0Active                         57      // 1 Bit, Bit 7
-#define     LMG_CHSP0ActiveMask 0x80
-#define     LMG_CHSP0ActiveShift 7
-#define LMG_CHSP0Brightness                     129      // uint8_t
-#define LMG_CHSP0Kelvin                         109      // uint16_t
-#define LMG_CHSP0SummerBrightness               159      // uint8_t
-#define LMG_CHSP0SummerKelvin                   139      // uint16_t
-#define LMG_CHSP0Time                           59      // 16 Bits, Bit 15-0
-#define LMG_CHSP1Active                         57      // 1 Bit, Bit 6
-#define     LMG_CHSP1ActiveMask 0x40
-#define     LMG_CHSP1ActiveShift 6
-#define LMG_CHSP1Brightness                     130      // uint8_t
-#define LMG_CHSP1Kelvin                         111      // uint16_t
-#define LMG_CHSP1SummerBrightness               160      // uint8_t
-#define LMG_CHSP1SummerKelvin                   141      // uint16_t
-#define LMG_CHSP1Time                           64      // 16 Bits, Bit 15-0
-#define LMG_CHSP2Active                         57      // 1 Bit, Bit 5
-#define     LMG_CHSP2ActiveMask 0x20
-#define     LMG_CHSP2ActiveShift 5
-#define LMG_CHSP2Brightness                     131      // uint8_t
-#define LMG_CHSP2Kelvin                         113      // uint16_t
-#define LMG_CHSP2SummerBrightness               161      // uint8_t
-#define LMG_CHSP2SummerKelvin                   143      // uint16_t
-#define LMG_CHSP2Time                           69      // 16 Bits, Bit 15-0
-#define LMG_CHSP3Active                         57      // 1 Bit, Bit 4
-#define     LMG_CHSP3ActiveMask 0x10
-#define     LMG_CHSP3ActiveShift 4
-#define LMG_CHSP3Brightness                     132      // uint8_t
-#define LMG_CHSP3Kelvin                         115      // uint16_t
-#define LMG_CHSP3SummerBrightness               162      // uint8_t
-#define LMG_CHSP3SummerKelvin                   145      // uint16_t
-#define LMG_CHSP3Time                           74      // 16 Bits, Bit 15-0
-#define LMG_CHSP4Active                         57      // 1 Bit, Bit 3
-#define     LMG_CHSP4ActiveMask 0x08
-#define     LMG_CHSP4ActiveShift 3
-#define LMG_CHSP4Brightness                     133      // uint8_t
-#define LMG_CHSP4Kelvin                         117      // uint16_t
-#define LMG_CHSP4SummerBrightness               163      // uint8_t
-#define LMG_CHSP4SummerKelvin                   147      // uint16_t
-#define LMG_CHSP4Time                           79      // 16 Bits, Bit 15-0
-#define LMG_CHSP5Active                         57      // 1 Bit, Bit 2
-#define     LMG_CHSP5ActiveMask 0x04
-#define     LMG_CHSP5ActiveShift 2
-#define LMG_CHSP5Brightness                     134      // uint8_t
-#define LMG_CHSP5Kelvin                         119      // uint16_t
-#define LMG_CHSP5SummerBrightness               164      // uint8_t
-#define LMG_CHSP5SummerKelvin                   149      // uint16_t
-#define LMG_CHSP5Time                           84      // 16 Bits, Bit 15-0
-#define LMG_CHSP6Active                         57      // 1 Bit, Bit 1
-#define     LMG_CHSP6ActiveMask 0x02
-#define     LMG_CHSP6ActiveShift 1
-#define LMG_CHSP6Brightness                     135      // uint8_t
-#define LMG_CHSP6Kelvin                         121      // uint16_t
-#define LMG_CHSP6SummerBrightness               165      // uint8_t
-#define LMG_CHSP6SummerKelvin                   151      // uint16_t
-#define LMG_CHSP6Time                           89      // 16 Bits, Bit 15-0
-#define LMG_CHSP7Active                         57      // 1 Bit, Bit 0
-#define     LMG_CHSP7ActiveMask 0x01
-#define     LMG_CHSP7ActiveShift 0
-#define LMG_CHSP7Brightness                     136      // uint8_t
-#define LMG_CHSP7Kelvin                         123      // uint16_t
-#define LMG_CHSP7SummerBrightness               166      // uint8_t
-#define LMG_CHSP7SummerKelvin                   153      // uint16_t
-#define LMG_CHSP7Time                           94      // 16 Bits, Bit 15-0
-#define LMG_CHSP8Active                         58      // 1 Bit, Bit 7
-#define     LMG_CHSP8ActiveMask 0x80
-#define     LMG_CHSP8ActiveShift 7
-#define LMG_CHSP8Brightness                     137      // uint8_t
-#define LMG_CHSP8Kelvin                         125      // uint16_t
-#define LMG_CHSP8SummerBrightness               167      // uint8_t
-#define LMG_CHSP8SummerKelvin                   155      // uint16_t
-#define LMG_CHSP8Time                           99      // 16 Bits, Bit 15-0
-#define LMG_CHSP9Active                         58      // 1 Bit, Bit 6
-#define     LMG_CHSP9ActiveMask 0x40
-#define     LMG_CHSP9ActiveShift 6
-#define LMG_CHSP9Brightness                     138      // uint8_t
-#define LMG_CHSP9Kelvin                         127      // uint16_t
-#define LMG_CHSP9SummerBrightness               168      // uint8_t
-#define LMG_CHSP9SummerKelvin                   157      // uint16_t
-#define LMG_CHSP9Time                           104      // 16 Bits, Bit 15-0
-#define LMG_CHStatusKoEnable                    201      // 2 Bits, Bit 7-6
-#define     LMG_CHStatusKoEnableMask 0xC0
-#define     LMG_CHStatusKoEnableShift 6
-#define LMG_CHSummerEndDay                      56      // uint8_t
-#define LMG_CHSummerEndMonth                    55      // uint8_t
-#define LMG_CHSummerStartDay                    54      // uint8_t
-#define LMG_CHSummerStartMonth                  53      // uint8_t
+#define LMG_CHIntegrationMode                   201      // 2 Bits, Bit 7-6
+#define     LMG_CHIntegrationModeMask 0xC0
+#define     LMG_CHIntegrationModeShift 6
+#define LMG_CHBusStatusEnable                   201      // 1 Bit, Bit 5
+#define     LMG_CHBusStatusEnableMask 0x20
+#define     LMG_CHBusStatusEnableShift 5
+#define LMG_CHStatusKoOutput                    201      // 3 Bits, Bit 4-2
+#define     LMG_CHStatusKoOutputMask 0x1C
+#define     LMG_CHStatusKoOutputShift 2
+#define LMG_CHUpdateInterval                    198      // uint16_t
+#define LMG_CHFadeDuration                      200      // uint8_t
 #define LMG_CHSunrise                           31      // 16 Bits, Bit 15-0
-#define LMG_CHSunriseOffset                     36      // int16_t
 #define LMG_CHSunset                            38      // 16 Bits, Bit 15-0
-#define LMG_CHSunsetOffset                      43      // int16_t
+#define LMG_CHHclAxes                           205      // 8 Bits, Bit 7-0
+#define LMG_CHHclTimeWindow                     206      // 8 Bits, Bit 7-0
+#define LMG_CHPreviewEnable                     207      // 1 Bit, Bit 7
+#define     LMG_CHPreviewEnableMask 0x80
+#define     LMG_CHPreviewEnableShift 7
+#define LMG_CHLookAheadMinutes                  208      // uint8_t
+#define LMG_CHProgressEnable                    209      // 1 Bit, Bit 7
+#define     LMG_CHProgressEnableMask 0x80
+#define     LMG_CHProgressEnableShift 7
+#define LMG_CHProfileCount                      210      // 8 Bits, Bit 7-0
+#define LMG_CHUseLock                           211      // 8 Bits, Bit 7-0
+#define LMG_CHUseAdaptive                       212      // 1 Bit, Bit 7
+#define     LMG_CHUseAdaptiveMask 0x80
+#define     LMG_CHUseAdaptiveShift 7
+#define LMG_CHDayNightSource                    213      // 8 Bits, Bit 7-0
+#define LMG_CHExtColorTempSource                214      // 8 Bits, Bit 7-0
+#define LMG_CHExtColorTempDpt                   215      // 8 Bits, Bit 7-0
+#define LMG_CHExtBrightnessSource               216      // 8 Bits, Bit 7-0
+#define LMG_CHExtBrightnessDpt                  217      // 8 Bits, Bit 7-0
+#define LMG_CHExtFallbackTimeoutSec             218      // uint16_t
+#define LMG_CHExtKelvinMin                      220      // uint16_t
+#define LMG_CHExtKelvinMax                      222      // uint16_t
+#define LMG_CHExtLuxMax                         224      // uint16_t
+#define LMG_CHSeasonSource                      226      // 8 Bits, Bit 7-0
+#define LMG_CHSeasonOffsetDays                  227      // int8_t
+#define LMG_CHSummerStart                       228      // uint16_t
+#define LMG_CHSummerEnd                         230      // uint16_t
+#define LMG_CHUseDayNightSlew                   232      // 1 Bit, Bit 7
+#define     LMG_CHUseDayNightSlewMask 0x80
+#define     LMG_CHUseDayNightSlewShift 7
+#define LMG_CHSlewRateDay                       233      // uint16_t
+#define LMG_CHSlewRateNight                     235      // uint16_t
+#define LMG_CHAstroSource                       237      // 8 Bits, Bit 7-0
+#define LMG_CHSlewRateBrightness                238      // uint8_t
+#define LMG_CHP1_Active                         239      // 1 Bit, Bit 7
+#define     LMG_CHP1_ActiveMask 0x80
+#define     LMG_CHP1_ActiveShift 7
+#define LMG_CHP1_Name                           240      // char*, 16 Byte
+#define     LMG_CHP1_NameLength 16
+#define LMG_CHP1_DayMo                          256      // 1 Bit, Bit 7
+#define     LMG_CHP1_DayMoMask 0x80
+#define     LMG_CHP1_DayMoShift 7
+#define LMG_CHP1_DayDi                          256      // 1 Bit, Bit 6
+#define     LMG_CHP1_DayDiMask 0x40
+#define     LMG_CHP1_DayDiShift 6
+#define LMG_CHP1_DayMi                          256      // 1 Bit, Bit 5
+#define     LMG_CHP1_DayMiMask 0x20
+#define     LMG_CHP1_DayMiShift 5
+#define LMG_CHP1_DayDo                          256      // 1 Bit, Bit 4
+#define     LMG_CHP1_DayDoMask 0x10
+#define     LMG_CHP1_DayDoShift 4
+#define LMG_CHP1_DayFr                          256      // 1 Bit, Bit 3
+#define     LMG_CHP1_DayFrMask 0x08
+#define     LMG_CHP1_DayFrShift 3
+#define LMG_CHP1_DaySa                          256      // 1 Bit, Bit 2
+#define     LMG_CHP1_DaySaMask 0x04
+#define     LMG_CHP1_DaySaShift 2
+#define LMG_CHP1_DaySo                          256      // 1 Bit, Bit 1
+#define     LMG_CHP1_DaySoMask 0x02
+#define     LMG_CHP1_DaySoShift 1
+#define LMG_CHP1_DayUrl                         256      // 1 Bit, Bit 0
+#define     LMG_CHP1_DayUrlMask 0x01
+#define     LMG_CHP1_DayUrlShift 0
+#define LMG_CHP1_DayFei                         257      // 1 Bit, Bit 7
+#define     LMG_CHP1_DayFeiMask 0x80
+#define     LMG_CHP1_DayFeiShift 7
+#define LMG_CHP1_SPCount                        258      // 8 Bits, Bit 7-0
+#define LMG_CHP2_Active                         259      // 1 Bit, Bit 7
+#define     LMG_CHP2_ActiveMask 0x80
+#define     LMG_CHP2_ActiveShift 7
+#define LMG_CHP2_Name                           260      // char*, 16 Byte
+#define     LMG_CHP2_NameLength 16
+#define LMG_CHP2_DayMo                          276      // 1 Bit, Bit 7
+#define     LMG_CHP2_DayMoMask 0x80
+#define     LMG_CHP2_DayMoShift 7
+#define LMG_CHP2_DayDi                          276      // 1 Bit, Bit 6
+#define     LMG_CHP2_DayDiMask 0x40
+#define     LMG_CHP2_DayDiShift 6
+#define LMG_CHP2_DayMi                          276      // 1 Bit, Bit 5
+#define     LMG_CHP2_DayMiMask 0x20
+#define     LMG_CHP2_DayMiShift 5
+#define LMG_CHP2_DayDo                          276      // 1 Bit, Bit 4
+#define     LMG_CHP2_DayDoMask 0x10
+#define     LMG_CHP2_DayDoShift 4
+#define LMG_CHP2_DayFr                          276      // 1 Bit, Bit 3
+#define     LMG_CHP2_DayFrMask 0x08
+#define     LMG_CHP2_DayFrShift 3
+#define LMG_CHP2_DaySa                          276      // 1 Bit, Bit 2
+#define     LMG_CHP2_DaySaMask 0x04
+#define     LMG_CHP2_DaySaShift 2
+#define LMG_CHP2_DaySo                          276      // 1 Bit, Bit 1
+#define     LMG_CHP2_DaySoMask 0x02
+#define     LMG_CHP2_DaySoShift 1
+#define LMG_CHP2_DayUrl                         276      // 1 Bit, Bit 0
+#define     LMG_CHP2_DayUrlMask 0x01
+#define     LMG_CHP2_DayUrlShift 0
+#define LMG_CHP2_DayFei                         277      // 1 Bit, Bit 7
+#define     LMG_CHP2_DayFeiMask 0x80
+#define     LMG_CHP2_DayFeiShift 7
+#define LMG_CHP2_SPCount                        278      // 8 Bits, Bit 7-0
+#define LMG_CHP3_Active                         279      // 1 Bit, Bit 7
+#define     LMG_CHP3_ActiveMask 0x80
+#define     LMG_CHP3_ActiveShift 7
+#define LMG_CHP3_Name                           280      // char*, 16 Byte
+#define     LMG_CHP3_NameLength 16
+#define LMG_CHP3_DayMo                          296      // 1 Bit, Bit 7
+#define     LMG_CHP3_DayMoMask 0x80
+#define     LMG_CHP3_DayMoShift 7
+#define LMG_CHP3_DayDi                          296      // 1 Bit, Bit 6
+#define     LMG_CHP3_DayDiMask 0x40
+#define     LMG_CHP3_DayDiShift 6
+#define LMG_CHP3_DayMi                          296      // 1 Bit, Bit 5
+#define     LMG_CHP3_DayMiMask 0x20
+#define     LMG_CHP3_DayMiShift 5
+#define LMG_CHP3_DayDo                          296      // 1 Bit, Bit 4
+#define     LMG_CHP3_DayDoMask 0x10
+#define     LMG_CHP3_DayDoShift 4
+#define LMG_CHP3_DayFr                          296      // 1 Bit, Bit 3
+#define     LMG_CHP3_DayFrMask 0x08
+#define     LMG_CHP3_DayFrShift 3
+#define LMG_CHP3_DaySa                          296      // 1 Bit, Bit 2
+#define     LMG_CHP3_DaySaMask 0x04
+#define     LMG_CHP3_DaySaShift 2
+#define LMG_CHP3_DaySo                          296      // 1 Bit, Bit 1
+#define     LMG_CHP3_DaySoMask 0x02
+#define     LMG_CHP3_DaySoShift 1
+#define LMG_CHP3_DayUrl                         296      // 1 Bit, Bit 0
+#define     LMG_CHP3_DayUrlMask 0x01
+#define     LMG_CHP3_DayUrlShift 0
+#define LMG_CHP3_DayFei                         297      // 1 Bit, Bit 7
+#define     LMG_CHP3_DayFeiMask 0x80
+#define     LMG_CHP3_DayFeiShift 7
+#define LMG_CHP3_SPCount                        298      // 8 Bits, Bit 7-0
+#define LMG_CHP4_Active                         299      // 1 Bit, Bit 7
+#define     LMG_CHP4_ActiveMask 0x80
+#define     LMG_CHP4_ActiveShift 7
+#define LMG_CHP4_Name                           300      // char*, 16 Byte
+#define     LMG_CHP4_NameLength 16
+#define LMG_CHP4_DayMo                          316      // 1 Bit, Bit 7
+#define     LMG_CHP4_DayMoMask 0x80
+#define     LMG_CHP4_DayMoShift 7
+#define LMG_CHP4_DayDi                          316      // 1 Bit, Bit 6
+#define     LMG_CHP4_DayDiMask 0x40
+#define     LMG_CHP4_DayDiShift 6
+#define LMG_CHP4_DayMi                          316      // 1 Bit, Bit 5
+#define     LMG_CHP4_DayMiMask 0x20
+#define     LMG_CHP4_DayMiShift 5
+#define LMG_CHP4_DayDo                          316      // 1 Bit, Bit 4
+#define     LMG_CHP4_DayDoMask 0x10
+#define     LMG_CHP4_DayDoShift 4
+#define LMG_CHP4_DayFr                          316      // 1 Bit, Bit 3
+#define     LMG_CHP4_DayFrMask 0x08
+#define     LMG_CHP4_DayFrShift 3
+#define LMG_CHP4_DaySa                          316      // 1 Bit, Bit 2
+#define     LMG_CHP4_DaySaMask 0x04
+#define     LMG_CHP4_DaySaShift 2
+#define LMG_CHP4_DaySo                          316      // 1 Bit, Bit 1
+#define     LMG_CHP4_DaySoMask 0x02
+#define     LMG_CHP4_DaySoShift 1
+#define LMG_CHP4_DayUrl                         316      // 1 Bit, Bit 0
+#define     LMG_CHP4_DayUrlMask 0x01
+#define     LMG_CHP4_DayUrlShift 0
+#define LMG_CHP4_DayFei                         317      // 1 Bit, Bit 7
+#define     LMG_CHP4_DayFeiMask 0x80
+#define     LMG_CHP4_DayFeiShift 7
+#define LMG_CHP4_SPCount                        318      // 8 Bits, Bit 7-0
+#define LMG_CHP1_SP1_Active                     319      // 1 Bit, Bit 7
+#define     LMG_CHP1_SP1_ActiveMask 0x80
+#define     LMG_CHP1_SP1_ActiveShift 7
+#define LMG_CHP1_SP1_AnchorType                 320      // 8 Bits, Bit 7-0
+#define LMG_CHP1_SP1_Hour                       321      // uint8_t
+#define LMG_CHP1_SP1_Minute                     322      // uint8_t
+#define LMG_CHP1_SP1_OffsetMinutes              323      // int16_t
+#define LMG_CHP1_SP1_ClampMode                  325      // 8 Bits, Bit 7-0
+#define LMG_CHP1_SP1_ClampHour                  326      // uint8_t
+#define LMG_CHP1_SP1_ClampMinute                327      // uint8_t
+#define LMG_CHP1_SP1_Kelvin                     328      // uint16_t
+#define LMG_CHP1_SP1_Brightness                 330      // uint8_t
+#define LMG_CHP1_SP1_ExtColorTempMode           331      // 8 Bits, Bit 7-0
+#define LMG_CHP1_SP1_ExtMixPercent              332      // uint8_t
+#define LMG_CHP1_SP2_Active                     333      // 1 Bit, Bit 7
+#define     LMG_CHP1_SP2_ActiveMask 0x80
+#define     LMG_CHP1_SP2_ActiveShift 7
+#define LMG_CHP1_SP2_AnchorType                 334      // 8 Bits, Bit 7-0
+#define LMG_CHP1_SP2_Hour                       335      // uint8_t
+#define LMG_CHP1_SP2_Minute                     336      // uint8_t
+#define LMG_CHP1_SP2_OffsetMinutes              337      // int16_t
+#define LMG_CHP1_SP2_ClampMode                  339      // 8 Bits, Bit 7-0
+#define LMG_CHP1_SP2_ClampHour                  340      // uint8_t
+#define LMG_CHP1_SP2_ClampMinute                341      // uint8_t
+#define LMG_CHP1_SP2_Kelvin                     342      // uint16_t
+#define LMG_CHP1_SP2_Brightness                 344      // uint8_t
+#define LMG_CHP1_SP2_ExtColorTempMode           345      // 8 Bits, Bit 7-0
+#define LMG_CHP1_SP2_ExtMixPercent              346      // uint8_t
+#define LMG_CHP1_SP3_Active                     347      // 1 Bit, Bit 7
+#define     LMG_CHP1_SP3_ActiveMask 0x80
+#define     LMG_CHP1_SP3_ActiveShift 7
+#define LMG_CHP1_SP3_AnchorType                 348      // 8 Bits, Bit 7-0
+#define LMG_CHP1_SP3_Hour                       349      // uint8_t
+#define LMG_CHP1_SP3_Minute                     350      // uint8_t
+#define LMG_CHP1_SP3_OffsetMinutes              351      // int16_t
+#define LMG_CHP1_SP3_ClampMode                  353      // 8 Bits, Bit 7-0
+#define LMG_CHP1_SP3_ClampHour                  354      // uint8_t
+#define LMG_CHP1_SP3_ClampMinute                355      // uint8_t
+#define LMG_CHP1_SP3_Kelvin                     356      // uint16_t
+#define LMG_CHP1_SP3_Brightness                 358      // uint8_t
+#define LMG_CHP1_SP3_ExtColorTempMode           359      // 8 Bits, Bit 7-0
+#define LMG_CHP1_SP3_ExtMixPercent              360      // uint8_t
+#define LMG_CHP1_SP4_Active                     361      // 1 Bit, Bit 7
+#define     LMG_CHP1_SP4_ActiveMask 0x80
+#define     LMG_CHP1_SP4_ActiveShift 7
+#define LMG_CHP1_SP4_AnchorType                 362      // 8 Bits, Bit 7-0
+#define LMG_CHP1_SP4_Hour                       363      // uint8_t
+#define LMG_CHP1_SP4_Minute                     364      // uint8_t
+#define LMG_CHP1_SP4_OffsetMinutes              365      // int16_t
+#define LMG_CHP1_SP4_ClampMode                  367      // 8 Bits, Bit 7-0
+#define LMG_CHP1_SP4_ClampHour                  368      // uint8_t
+#define LMG_CHP1_SP4_ClampMinute                369      // uint8_t
+#define LMG_CHP1_SP4_Kelvin                     370      // uint16_t
+#define LMG_CHP1_SP4_Brightness                 372      // uint8_t
+#define LMG_CHP1_SP4_ExtColorTempMode           373      // 8 Bits, Bit 7-0
+#define LMG_CHP1_SP4_ExtMixPercent              374      // uint8_t
+#define LMG_CHP1_SP5_Active                     375      // 1 Bit, Bit 7
+#define     LMG_CHP1_SP5_ActiveMask 0x80
+#define     LMG_CHP1_SP5_ActiveShift 7
+#define LMG_CHP1_SP5_AnchorType                 376      // 8 Bits, Bit 7-0
+#define LMG_CHP1_SP5_Hour                       377      // uint8_t
+#define LMG_CHP1_SP5_Minute                     378      // uint8_t
+#define LMG_CHP1_SP5_OffsetMinutes              379      // int16_t
+#define LMG_CHP1_SP5_ClampMode                  381      // 8 Bits, Bit 7-0
+#define LMG_CHP1_SP5_ClampHour                  382      // uint8_t
+#define LMG_CHP1_SP5_ClampMinute                383      // uint8_t
+#define LMG_CHP1_SP5_Kelvin                     384      // uint16_t
+#define LMG_CHP1_SP5_Brightness                 386      // uint8_t
+#define LMG_CHP1_SP5_ExtColorTempMode           387      // 8 Bits, Bit 7-0
+#define LMG_CHP1_SP5_ExtMixPercent              388      // uint8_t
+#define LMG_CHP1_SP6_Active                     389      // 1 Bit, Bit 7
+#define     LMG_CHP1_SP6_ActiveMask 0x80
+#define     LMG_CHP1_SP6_ActiveShift 7
+#define LMG_CHP1_SP6_AnchorType                 390      // 8 Bits, Bit 7-0
+#define LMG_CHP1_SP6_Hour                       391      // uint8_t
+#define LMG_CHP1_SP6_Minute                     392      // uint8_t
+#define LMG_CHP1_SP6_OffsetMinutes              393      // int16_t
+#define LMG_CHP1_SP6_ClampMode                  395      // 8 Bits, Bit 7-0
+#define LMG_CHP1_SP6_ClampHour                  396      // uint8_t
+#define LMG_CHP1_SP6_ClampMinute                397      // uint8_t
+#define LMG_CHP1_SP6_Kelvin                     398      // uint16_t
+#define LMG_CHP1_SP6_Brightness                 400      // uint8_t
+#define LMG_CHP1_SP6_ExtColorTempMode           401      // 8 Bits, Bit 7-0
+#define LMG_CHP1_SP6_ExtMixPercent              402      // uint8_t
+#define LMG_CHP1_SP7_Active                     403      // 1 Bit, Bit 7
+#define     LMG_CHP1_SP7_ActiveMask 0x80
+#define     LMG_CHP1_SP7_ActiveShift 7
+#define LMG_CHP1_SP7_AnchorType                 404      // 8 Bits, Bit 7-0
+#define LMG_CHP1_SP7_Hour                       405      // uint8_t
+#define LMG_CHP1_SP7_Minute                     406      // uint8_t
+#define LMG_CHP1_SP7_OffsetMinutes              407      // int16_t
+#define LMG_CHP1_SP7_ClampMode                  409      // 8 Bits, Bit 7-0
+#define LMG_CHP1_SP7_ClampHour                  410      // uint8_t
+#define LMG_CHP1_SP7_ClampMinute                411      // uint8_t
+#define LMG_CHP1_SP7_Kelvin                     412      // uint16_t
+#define LMG_CHP1_SP7_Brightness                 414      // uint8_t
+#define LMG_CHP1_SP7_ExtColorTempMode           415      // 8 Bits, Bit 7-0
+#define LMG_CHP1_SP7_ExtMixPercent              416      // uint8_t
+#define LMG_CHP1_SP8_Active                     417      // 1 Bit, Bit 7
+#define     LMG_CHP1_SP8_ActiveMask 0x80
+#define     LMG_CHP1_SP8_ActiveShift 7
+#define LMG_CHP1_SP8_AnchorType                 418      // 8 Bits, Bit 7-0
+#define LMG_CHP1_SP8_Hour                       419      // uint8_t
+#define LMG_CHP1_SP8_Minute                     420      // uint8_t
+#define LMG_CHP1_SP8_OffsetMinutes              421      // int16_t
+#define LMG_CHP1_SP8_ClampMode                  423      // 8 Bits, Bit 7-0
+#define LMG_CHP1_SP8_ClampHour                  424      // uint8_t
+#define LMG_CHP1_SP8_ClampMinute                425      // uint8_t
+#define LMG_CHP1_SP8_Kelvin                     426      // uint16_t
+#define LMG_CHP1_SP8_Brightness                 428      // uint8_t
+#define LMG_CHP1_SP8_ExtColorTempMode           429      // 8 Bits, Bit 7-0
+#define LMG_CHP1_SP8_ExtMixPercent              430      // uint8_t
+#define LMG_CHP1_SP9_Active                     431      // 1 Bit, Bit 7
+#define     LMG_CHP1_SP9_ActiveMask 0x80
+#define     LMG_CHP1_SP9_ActiveShift 7
+#define LMG_CHP1_SP9_AnchorType                 432      // 8 Bits, Bit 7-0
+#define LMG_CHP1_SP9_Hour                       433      // uint8_t
+#define LMG_CHP1_SP9_Minute                     434      // uint8_t
+#define LMG_CHP1_SP9_OffsetMinutes              435      // int16_t
+#define LMG_CHP1_SP9_ClampMode                  437      // 8 Bits, Bit 7-0
+#define LMG_CHP1_SP9_ClampHour                  438      // uint8_t
+#define LMG_CHP1_SP9_ClampMinute                439      // uint8_t
+#define LMG_CHP1_SP9_Kelvin                     440      // uint16_t
+#define LMG_CHP1_SP9_Brightness                 442      // uint8_t
+#define LMG_CHP1_SP9_ExtColorTempMode           443      // 8 Bits, Bit 7-0
+#define LMG_CHP1_SP9_ExtMixPercent              444      // uint8_t
+#define LMG_CHP1_SP10_Active                    445      // 1 Bit, Bit 7
+#define     LMG_CHP1_SP10_ActiveMask 0x80
+#define     LMG_CHP1_SP10_ActiveShift 7
+#define LMG_CHP1_SP10_AnchorType                446      // 8 Bits, Bit 7-0
+#define LMG_CHP1_SP10_Hour                      447      // uint8_t
+#define LMG_CHP1_SP10_Minute                    448      // uint8_t
+#define LMG_CHP1_SP10_OffsetMinutes             449      // int16_t
+#define LMG_CHP1_SP10_ClampMode                 451      // 8 Bits, Bit 7-0
+#define LMG_CHP1_SP10_ClampHour                 452      // uint8_t
+#define LMG_CHP1_SP10_ClampMinute               453      // uint8_t
+#define LMG_CHP1_SP10_Kelvin                    454      // uint16_t
+#define LMG_CHP1_SP10_Brightness                456      // uint8_t
+#define LMG_CHP1_SP10_ExtColorTempMode          457      // 8 Bits, Bit 7-0
+#define LMG_CHP1_SP10_ExtMixPercent             458      // uint8_t
+#define LMG_CHP2_SP1_Active                     459      // 1 Bit, Bit 7
+#define     LMG_CHP2_SP1_ActiveMask 0x80
+#define     LMG_CHP2_SP1_ActiveShift 7
+#define LMG_CHP2_SP1_AnchorType                 460      // 8 Bits, Bit 7-0
+#define LMG_CHP2_SP1_Hour                       461      // uint8_t
+#define LMG_CHP2_SP1_Minute                     462      // uint8_t
+#define LMG_CHP2_SP1_OffsetMinutes              463      // int16_t
+#define LMG_CHP2_SP1_ClampMode                  465      // 8 Bits, Bit 7-0
+#define LMG_CHP2_SP1_ClampHour                  466      // uint8_t
+#define LMG_CHP2_SP1_ClampMinute                467      // uint8_t
+#define LMG_CHP2_SP1_Kelvin                     468      // uint16_t
+#define LMG_CHP2_SP1_Brightness                 470      // uint8_t
+#define LMG_CHP2_SP1_ExtColorTempMode           471      // 8 Bits, Bit 7-0
+#define LMG_CHP2_SP1_ExtMixPercent              472      // uint8_t
+#define LMG_CHP2_SP2_Active                     473      // 1 Bit, Bit 7
+#define     LMG_CHP2_SP2_ActiveMask 0x80
+#define     LMG_CHP2_SP2_ActiveShift 7
+#define LMG_CHP2_SP2_AnchorType                 474      // 8 Bits, Bit 7-0
+#define LMG_CHP2_SP2_Hour                       475      // uint8_t
+#define LMG_CHP2_SP2_Minute                     476      // uint8_t
+#define LMG_CHP2_SP2_OffsetMinutes              477      // int16_t
+#define LMG_CHP2_SP2_ClampMode                  479      // 8 Bits, Bit 7-0
+#define LMG_CHP2_SP2_ClampHour                  480      // uint8_t
+#define LMG_CHP2_SP2_ClampMinute                481      // uint8_t
+#define LMG_CHP2_SP2_Kelvin                     482      // uint16_t
+#define LMG_CHP2_SP2_Brightness                 484      // uint8_t
+#define LMG_CHP2_SP2_ExtColorTempMode           485      // 8 Bits, Bit 7-0
+#define LMG_CHP2_SP2_ExtMixPercent              486      // uint8_t
+#define LMG_CHP2_SP3_Active                     487      // 1 Bit, Bit 7
+#define     LMG_CHP2_SP3_ActiveMask 0x80
+#define     LMG_CHP2_SP3_ActiveShift 7
+#define LMG_CHP2_SP3_AnchorType                 488      // 8 Bits, Bit 7-0
+#define LMG_CHP2_SP3_Hour                       489      // uint8_t
+#define LMG_CHP2_SP3_Minute                     490      // uint8_t
+#define LMG_CHP2_SP3_OffsetMinutes              491      // int16_t
+#define LMG_CHP2_SP3_ClampMode                  493      // 8 Bits, Bit 7-0
+#define LMG_CHP2_SP3_ClampHour                  494      // uint8_t
+#define LMG_CHP2_SP3_ClampMinute                495      // uint8_t
+#define LMG_CHP2_SP3_Kelvin                     496      // uint16_t
+#define LMG_CHP2_SP3_Brightness                 498      // uint8_t
+#define LMG_CHP2_SP3_ExtColorTempMode           499      // 8 Bits, Bit 7-0
+#define LMG_CHP2_SP3_ExtMixPercent              500      // uint8_t
+#define LMG_CHP2_SP4_Active                     501      // 1 Bit, Bit 7
+#define     LMG_CHP2_SP4_ActiveMask 0x80
+#define     LMG_CHP2_SP4_ActiveShift 7
+#define LMG_CHP2_SP4_AnchorType                 502      // 8 Bits, Bit 7-0
+#define LMG_CHP2_SP4_Hour                       503      // uint8_t
+#define LMG_CHP2_SP4_Minute                     504      // uint8_t
+#define LMG_CHP2_SP4_OffsetMinutes              505      // int16_t
+#define LMG_CHP2_SP4_ClampMode                  507      // 8 Bits, Bit 7-0
+#define LMG_CHP2_SP4_ClampHour                  508      // uint8_t
+#define LMG_CHP2_SP4_ClampMinute                509      // uint8_t
+#define LMG_CHP2_SP4_Kelvin                     510      // uint16_t
+#define LMG_CHP2_SP4_Brightness                 512      // uint8_t
+#define LMG_CHP2_SP4_ExtColorTempMode           513      // 8 Bits, Bit 7-0
+#define LMG_CHP2_SP4_ExtMixPercent              514      // uint8_t
+#define LMG_CHP2_SP5_Active                     515      // 1 Bit, Bit 7
+#define     LMG_CHP2_SP5_ActiveMask 0x80
+#define     LMG_CHP2_SP5_ActiveShift 7
+#define LMG_CHP2_SP5_AnchorType                 516      // 8 Bits, Bit 7-0
+#define LMG_CHP2_SP5_Hour                       517      // uint8_t
+#define LMG_CHP2_SP5_Minute                     518      // uint8_t
+#define LMG_CHP2_SP5_OffsetMinutes              519      // int16_t
+#define LMG_CHP2_SP5_ClampMode                  521      // 8 Bits, Bit 7-0
+#define LMG_CHP2_SP5_ClampHour                  522      // uint8_t
+#define LMG_CHP2_SP5_ClampMinute                523      // uint8_t
+#define LMG_CHP2_SP5_Kelvin                     524      // uint16_t
+#define LMG_CHP2_SP5_Brightness                 526      // uint8_t
+#define LMG_CHP2_SP5_ExtColorTempMode           527      // 8 Bits, Bit 7-0
+#define LMG_CHP2_SP5_ExtMixPercent              528      // uint8_t
+#define LMG_CHP2_SP6_Active                     529      // 1 Bit, Bit 7
+#define     LMG_CHP2_SP6_ActiveMask 0x80
+#define     LMG_CHP2_SP6_ActiveShift 7
+#define LMG_CHP2_SP6_AnchorType                 530      // 8 Bits, Bit 7-0
+#define LMG_CHP2_SP6_Hour                       531      // uint8_t
+#define LMG_CHP2_SP6_Minute                     532      // uint8_t
+#define LMG_CHP2_SP6_OffsetMinutes              533      // int16_t
+#define LMG_CHP2_SP6_ClampMode                  535      // 8 Bits, Bit 7-0
+#define LMG_CHP2_SP6_ClampHour                  536      // uint8_t
+#define LMG_CHP2_SP6_ClampMinute                537      // uint8_t
+#define LMG_CHP2_SP6_Kelvin                     538      // uint16_t
+#define LMG_CHP2_SP6_Brightness                 540      // uint8_t
+#define LMG_CHP2_SP6_ExtColorTempMode           541      // 8 Bits, Bit 7-0
+#define LMG_CHP2_SP6_ExtMixPercent              542      // uint8_t
+#define LMG_CHP2_SP7_Active                     543      // 1 Bit, Bit 7
+#define     LMG_CHP2_SP7_ActiveMask 0x80
+#define     LMG_CHP2_SP7_ActiveShift 7
+#define LMG_CHP2_SP7_AnchorType                 544      // 8 Bits, Bit 7-0
+#define LMG_CHP2_SP7_Hour                       545      // uint8_t
+#define LMG_CHP2_SP7_Minute                     546      // uint8_t
+#define LMG_CHP2_SP7_OffsetMinutes              547      // int16_t
+#define LMG_CHP2_SP7_ClampMode                  549      // 8 Bits, Bit 7-0
+#define LMG_CHP2_SP7_ClampHour                  550      // uint8_t
+#define LMG_CHP2_SP7_ClampMinute                551      // uint8_t
+#define LMG_CHP2_SP7_Kelvin                     552      // uint16_t
+#define LMG_CHP2_SP7_Brightness                 554      // uint8_t
+#define LMG_CHP2_SP7_ExtColorTempMode           555      // 8 Bits, Bit 7-0
+#define LMG_CHP2_SP7_ExtMixPercent              556      // uint8_t
+#define LMG_CHP2_SP8_Active                     557      // 1 Bit, Bit 7
+#define     LMG_CHP2_SP8_ActiveMask 0x80
+#define     LMG_CHP2_SP8_ActiveShift 7
+#define LMG_CHP2_SP8_AnchorType                 558      // 8 Bits, Bit 7-0
+#define LMG_CHP2_SP8_Hour                       559      // uint8_t
+#define LMG_CHP2_SP8_Minute                     560      // uint8_t
+#define LMG_CHP2_SP8_OffsetMinutes              561      // int16_t
+#define LMG_CHP2_SP8_ClampMode                  563      // 8 Bits, Bit 7-0
+#define LMG_CHP2_SP8_ClampHour                  564      // uint8_t
+#define LMG_CHP2_SP8_ClampMinute                565      // uint8_t
+#define LMG_CHP2_SP8_Kelvin                     566      // uint16_t
+#define LMG_CHP2_SP8_Brightness                 568      // uint8_t
+#define LMG_CHP2_SP8_ExtColorTempMode           569      // 8 Bits, Bit 7-0
+#define LMG_CHP2_SP8_ExtMixPercent              570      // uint8_t
+#define LMG_CHP2_SP9_Active                     571      // 1 Bit, Bit 7
+#define     LMG_CHP2_SP9_ActiveMask 0x80
+#define     LMG_CHP2_SP9_ActiveShift 7
+#define LMG_CHP2_SP9_AnchorType                 572      // 8 Bits, Bit 7-0
+#define LMG_CHP2_SP9_Hour                       573      // uint8_t
+#define LMG_CHP2_SP9_Minute                     574      // uint8_t
+#define LMG_CHP2_SP9_OffsetMinutes              575      // int16_t
+#define LMG_CHP2_SP9_ClampMode                  577      // 8 Bits, Bit 7-0
+#define LMG_CHP2_SP9_ClampHour                  578      // uint8_t
+#define LMG_CHP2_SP9_ClampMinute                579      // uint8_t
+#define LMG_CHP2_SP9_Kelvin                     580      // uint16_t
+#define LMG_CHP2_SP9_Brightness                 582      // uint8_t
+#define LMG_CHP2_SP9_ExtColorTempMode           583      // 8 Bits, Bit 7-0
+#define LMG_CHP2_SP9_ExtMixPercent              584      // uint8_t
+#define LMG_CHP2_SP10_Active                    585      // 1 Bit, Bit 7
+#define     LMG_CHP2_SP10_ActiveMask 0x80
+#define     LMG_CHP2_SP10_ActiveShift 7
+#define LMG_CHP2_SP10_AnchorType                586      // 8 Bits, Bit 7-0
+#define LMG_CHP2_SP10_Hour                      587      // uint8_t
+#define LMG_CHP2_SP10_Minute                    588      // uint8_t
+#define LMG_CHP2_SP10_OffsetMinutes             589      // int16_t
+#define LMG_CHP2_SP10_ClampMode                 591      // 8 Bits, Bit 7-0
+#define LMG_CHP2_SP10_ClampHour                 592      // uint8_t
+#define LMG_CHP2_SP10_ClampMinute               593      // uint8_t
+#define LMG_CHP2_SP10_Kelvin                    594      // uint16_t
+#define LMG_CHP2_SP10_Brightness                596      // uint8_t
+#define LMG_CHP2_SP10_ExtColorTempMode          597      // 8 Bits, Bit 7-0
+#define LMG_CHP2_SP10_ExtMixPercent             598      // uint8_t
+#define LMG_CHP3_SP1_Active                     599      // 1 Bit, Bit 7
+#define     LMG_CHP3_SP1_ActiveMask 0x80
+#define     LMG_CHP3_SP1_ActiveShift 7
+#define LMG_CHP3_SP1_AnchorType                 600      // 8 Bits, Bit 7-0
+#define LMG_CHP3_SP1_Hour                       601      // uint8_t
+#define LMG_CHP3_SP1_Minute                     602      // uint8_t
+#define LMG_CHP3_SP1_OffsetMinutes              603      // int16_t
+#define LMG_CHP3_SP1_ClampMode                  605      // 8 Bits, Bit 7-0
+#define LMG_CHP3_SP1_ClampHour                  606      // uint8_t
+#define LMG_CHP3_SP1_ClampMinute                607      // uint8_t
+#define LMG_CHP3_SP1_Kelvin                     608      // uint16_t
+#define LMG_CHP3_SP1_Brightness                 610      // uint8_t
+#define LMG_CHP3_SP1_ExtColorTempMode           611      // 8 Bits, Bit 7-0
+#define LMG_CHP3_SP1_ExtMixPercent              612      // uint8_t
+#define LMG_CHP3_SP2_Active                     613      // 1 Bit, Bit 7
+#define     LMG_CHP3_SP2_ActiveMask 0x80
+#define     LMG_CHP3_SP2_ActiveShift 7
+#define LMG_CHP3_SP2_AnchorType                 614      // 8 Bits, Bit 7-0
+#define LMG_CHP3_SP2_Hour                       615      // uint8_t
+#define LMG_CHP3_SP2_Minute                     616      // uint8_t
+#define LMG_CHP3_SP2_OffsetMinutes              617      // int16_t
+#define LMG_CHP3_SP2_ClampMode                  619      // 8 Bits, Bit 7-0
+#define LMG_CHP3_SP2_ClampHour                  620      // uint8_t
+#define LMG_CHP3_SP2_ClampMinute                621      // uint8_t
+#define LMG_CHP3_SP2_Kelvin                     622      // uint16_t
+#define LMG_CHP3_SP2_Brightness                 624      // uint8_t
+#define LMG_CHP3_SP2_ExtColorTempMode           625      // 8 Bits, Bit 7-0
+#define LMG_CHP3_SP2_ExtMixPercent              626      // uint8_t
+#define LMG_CHP3_SP3_Active                     627      // 1 Bit, Bit 7
+#define     LMG_CHP3_SP3_ActiveMask 0x80
+#define     LMG_CHP3_SP3_ActiveShift 7
+#define LMG_CHP3_SP3_AnchorType                 628      // 8 Bits, Bit 7-0
+#define LMG_CHP3_SP3_Hour                       629      // uint8_t
+#define LMG_CHP3_SP3_Minute                     630      // uint8_t
+#define LMG_CHP3_SP3_OffsetMinutes              631      // int16_t
+#define LMG_CHP3_SP3_ClampMode                  633      // 8 Bits, Bit 7-0
+#define LMG_CHP3_SP3_ClampHour                  634      // uint8_t
+#define LMG_CHP3_SP3_ClampMinute                635      // uint8_t
+#define LMG_CHP3_SP3_Kelvin                     636      // uint16_t
+#define LMG_CHP3_SP3_Brightness                 638      // uint8_t
+#define LMG_CHP3_SP3_ExtColorTempMode           639      // 8 Bits, Bit 7-0
+#define LMG_CHP3_SP3_ExtMixPercent              640      // uint8_t
+#define LMG_CHP3_SP4_Active                     641      // 1 Bit, Bit 7
+#define     LMG_CHP3_SP4_ActiveMask 0x80
+#define     LMG_CHP3_SP4_ActiveShift 7
+#define LMG_CHP3_SP4_AnchorType                 642      // 8 Bits, Bit 7-0
+#define LMG_CHP3_SP4_Hour                       643      // uint8_t
+#define LMG_CHP3_SP4_Minute                     644      // uint8_t
+#define LMG_CHP3_SP4_OffsetMinutes              645      // int16_t
+#define LMG_CHP3_SP4_ClampMode                  647      // 8 Bits, Bit 7-0
+#define LMG_CHP3_SP4_ClampHour                  648      // uint8_t
+#define LMG_CHP3_SP4_ClampMinute                649      // uint8_t
+#define LMG_CHP3_SP4_Kelvin                     650      // uint16_t
+#define LMG_CHP3_SP4_Brightness                 652      // uint8_t
+#define LMG_CHP3_SP4_ExtColorTempMode           653      // 8 Bits, Bit 7-0
+#define LMG_CHP3_SP4_ExtMixPercent              654      // uint8_t
+#define LMG_CHP3_SP5_Active                     655      // 1 Bit, Bit 7
+#define     LMG_CHP3_SP5_ActiveMask 0x80
+#define     LMG_CHP3_SP5_ActiveShift 7
+#define LMG_CHP3_SP5_AnchorType                 656      // 8 Bits, Bit 7-0
+#define LMG_CHP3_SP5_Hour                       657      // uint8_t
+#define LMG_CHP3_SP5_Minute                     658      // uint8_t
+#define LMG_CHP3_SP5_OffsetMinutes              659      // int16_t
+#define LMG_CHP3_SP5_ClampMode                  661      // 8 Bits, Bit 7-0
+#define LMG_CHP3_SP5_ClampHour                  662      // uint8_t
+#define LMG_CHP3_SP5_ClampMinute                663      // uint8_t
+#define LMG_CHP3_SP5_Kelvin                     664      // uint16_t
+#define LMG_CHP3_SP5_Brightness                 666      // uint8_t
+#define LMG_CHP3_SP5_ExtColorTempMode           667      // 8 Bits, Bit 7-0
+#define LMG_CHP3_SP5_ExtMixPercent              668      // uint8_t
+#define LMG_CHP3_SP6_Active                     669      // 1 Bit, Bit 7
+#define     LMG_CHP3_SP6_ActiveMask 0x80
+#define     LMG_CHP3_SP6_ActiveShift 7
+#define LMG_CHP3_SP6_AnchorType                 670      // 8 Bits, Bit 7-0
+#define LMG_CHP3_SP6_Hour                       671      // uint8_t
+#define LMG_CHP3_SP6_Minute                     672      // uint8_t
+#define LMG_CHP3_SP6_OffsetMinutes              673      // int16_t
+#define LMG_CHP3_SP6_ClampMode                  675      // 8 Bits, Bit 7-0
+#define LMG_CHP3_SP6_ClampHour                  676      // uint8_t
+#define LMG_CHP3_SP6_ClampMinute                677      // uint8_t
+#define LMG_CHP3_SP6_Kelvin                     678      // uint16_t
+#define LMG_CHP3_SP6_Brightness                 680      // uint8_t
+#define LMG_CHP3_SP6_ExtColorTempMode           681      // 8 Bits, Bit 7-0
+#define LMG_CHP3_SP6_ExtMixPercent              682      // uint8_t
+#define LMG_CHP3_SP7_Active                     683      // 1 Bit, Bit 7
+#define     LMG_CHP3_SP7_ActiveMask 0x80
+#define     LMG_CHP3_SP7_ActiveShift 7
+#define LMG_CHP3_SP7_AnchorType                 684      // 8 Bits, Bit 7-0
+#define LMG_CHP3_SP7_Hour                       685      // uint8_t
+#define LMG_CHP3_SP7_Minute                     686      // uint8_t
+#define LMG_CHP3_SP7_OffsetMinutes              687      // int16_t
+#define LMG_CHP3_SP7_ClampMode                  689      // 8 Bits, Bit 7-0
+#define LMG_CHP3_SP7_ClampHour                  690      // uint8_t
+#define LMG_CHP3_SP7_ClampMinute                691      // uint8_t
+#define LMG_CHP3_SP7_Kelvin                     692      // uint16_t
+#define LMG_CHP3_SP7_Brightness                 694      // uint8_t
+#define LMG_CHP3_SP7_ExtColorTempMode           695      // 8 Bits, Bit 7-0
+#define LMG_CHP3_SP7_ExtMixPercent              696      // uint8_t
+#define LMG_CHP3_SP8_Active                     697      // 1 Bit, Bit 7
+#define     LMG_CHP3_SP8_ActiveMask 0x80
+#define     LMG_CHP3_SP8_ActiveShift 7
+#define LMG_CHP3_SP8_AnchorType                 698      // 8 Bits, Bit 7-0
+#define LMG_CHP3_SP8_Hour                       699      // uint8_t
+#define LMG_CHP3_SP8_Minute                     700      // uint8_t
+#define LMG_CHP3_SP8_OffsetMinutes              701      // int16_t
+#define LMG_CHP3_SP8_ClampMode                  703      // 8 Bits, Bit 7-0
+#define LMG_CHP3_SP8_ClampHour                  704      // uint8_t
+#define LMG_CHP3_SP8_ClampMinute                705      // uint8_t
+#define LMG_CHP3_SP8_Kelvin                     706      // uint16_t
+#define LMG_CHP3_SP8_Brightness                 708      // uint8_t
+#define LMG_CHP3_SP8_ExtColorTempMode           709      // 8 Bits, Bit 7-0
+#define LMG_CHP3_SP8_ExtMixPercent              710      // uint8_t
+#define LMG_CHP3_SP9_Active                     711      // 1 Bit, Bit 7
+#define     LMG_CHP3_SP9_ActiveMask 0x80
+#define     LMG_CHP3_SP9_ActiveShift 7
+#define LMG_CHP3_SP9_AnchorType                 712      // 8 Bits, Bit 7-0
+#define LMG_CHP3_SP9_Hour                       713      // uint8_t
+#define LMG_CHP3_SP9_Minute                     714      // uint8_t
+#define LMG_CHP3_SP9_OffsetMinutes              715      // int16_t
+#define LMG_CHP3_SP9_ClampMode                  717      // 8 Bits, Bit 7-0
+#define LMG_CHP3_SP9_ClampHour                  718      // uint8_t
+#define LMG_CHP3_SP9_ClampMinute                719      // uint8_t
+#define LMG_CHP3_SP9_Kelvin                     720      // uint16_t
+#define LMG_CHP3_SP9_Brightness                 722      // uint8_t
+#define LMG_CHP3_SP9_ExtColorTempMode           723      // 8 Bits, Bit 7-0
+#define LMG_CHP3_SP9_ExtMixPercent              724      // uint8_t
+#define LMG_CHP3_SP10_Active                    725      // 1 Bit, Bit 7
+#define     LMG_CHP3_SP10_ActiveMask 0x80
+#define     LMG_CHP3_SP10_ActiveShift 7
+#define LMG_CHP3_SP10_AnchorType                726      // 8 Bits, Bit 7-0
+#define LMG_CHP3_SP10_Hour                      727      // uint8_t
+#define LMG_CHP3_SP10_Minute                    728      // uint8_t
+#define LMG_CHP3_SP10_OffsetMinutes             729      // int16_t
+#define LMG_CHP3_SP10_ClampMode                 731      // 8 Bits, Bit 7-0
+#define LMG_CHP3_SP10_ClampHour                 732      // uint8_t
+#define LMG_CHP3_SP10_ClampMinute               733      // uint8_t
+#define LMG_CHP3_SP10_Kelvin                    734      // uint16_t
+#define LMG_CHP3_SP10_Brightness                736      // uint8_t
+#define LMG_CHP3_SP10_ExtColorTempMode          737      // 8 Bits, Bit 7-0
+#define LMG_CHP3_SP10_ExtMixPercent             738      // uint8_t
+#define LMG_CHP4_SP1_Active                     739      // 1 Bit, Bit 7
+#define     LMG_CHP4_SP1_ActiveMask 0x80
+#define     LMG_CHP4_SP1_ActiveShift 7
+#define LMG_CHP4_SP1_AnchorType                 740      // 8 Bits, Bit 7-0
+#define LMG_CHP4_SP1_Hour                       741      // uint8_t
+#define LMG_CHP4_SP1_Minute                     742      // uint8_t
+#define LMG_CHP4_SP1_OffsetMinutes              743      // int16_t
+#define LMG_CHP4_SP1_ClampMode                  745      // 8 Bits, Bit 7-0
+#define LMG_CHP4_SP1_ClampHour                  746      // uint8_t
+#define LMG_CHP4_SP1_ClampMinute                747      // uint8_t
+#define LMG_CHP4_SP1_Kelvin                     748      // uint16_t
+#define LMG_CHP4_SP1_Brightness                 750      // uint8_t
+#define LMG_CHP4_SP1_ExtColorTempMode           751      // 8 Bits, Bit 7-0
+#define LMG_CHP4_SP1_ExtMixPercent              752      // uint8_t
+#define LMG_CHP4_SP2_Active                     753      // 1 Bit, Bit 7
+#define     LMG_CHP4_SP2_ActiveMask 0x80
+#define     LMG_CHP4_SP2_ActiveShift 7
+#define LMG_CHP4_SP2_AnchorType                 754      // 8 Bits, Bit 7-0
+#define LMG_CHP4_SP2_Hour                       755      // uint8_t
+#define LMG_CHP4_SP2_Minute                     756      // uint8_t
+#define LMG_CHP4_SP2_OffsetMinutes              757      // int16_t
+#define LMG_CHP4_SP2_ClampMode                  759      // 8 Bits, Bit 7-0
+#define LMG_CHP4_SP2_ClampHour                  760      // uint8_t
+#define LMG_CHP4_SP2_ClampMinute                761      // uint8_t
+#define LMG_CHP4_SP2_Kelvin                     762      // uint16_t
+#define LMG_CHP4_SP2_Brightness                 764      // uint8_t
+#define LMG_CHP4_SP2_ExtColorTempMode           765      // 8 Bits, Bit 7-0
+#define LMG_CHP4_SP2_ExtMixPercent              766      // uint8_t
+#define LMG_CHP4_SP3_Active                     767      // 1 Bit, Bit 7
+#define     LMG_CHP4_SP3_ActiveMask 0x80
+#define     LMG_CHP4_SP3_ActiveShift 7
+#define LMG_CHP4_SP3_AnchorType                 768      // 8 Bits, Bit 7-0
+#define LMG_CHP4_SP3_Hour                       769      // uint8_t
+#define LMG_CHP4_SP3_Minute                     770      // uint8_t
+#define LMG_CHP4_SP3_OffsetMinutes              771      // int16_t
+#define LMG_CHP4_SP3_ClampMode                  773      // 8 Bits, Bit 7-0
+#define LMG_CHP4_SP3_ClampHour                  774      // uint8_t
+#define LMG_CHP4_SP3_ClampMinute                775      // uint8_t
+#define LMG_CHP4_SP3_Kelvin                     776      // uint16_t
+#define LMG_CHP4_SP3_Brightness                 778      // uint8_t
+#define LMG_CHP4_SP3_ExtColorTempMode           779      // 8 Bits, Bit 7-0
+#define LMG_CHP4_SP3_ExtMixPercent              780      // uint8_t
+#define LMG_CHP4_SP4_Active                     781      // 1 Bit, Bit 7
+#define     LMG_CHP4_SP4_ActiveMask 0x80
+#define     LMG_CHP4_SP4_ActiveShift 7
+#define LMG_CHP4_SP4_AnchorType                 782      // 8 Bits, Bit 7-0
+#define LMG_CHP4_SP4_Hour                       783      // uint8_t
+#define LMG_CHP4_SP4_Minute                     784      // uint8_t
+#define LMG_CHP4_SP4_OffsetMinutes              785      // int16_t
+#define LMG_CHP4_SP4_ClampMode                  787      // 8 Bits, Bit 7-0
+#define LMG_CHP4_SP4_ClampHour                  788      // uint8_t
+#define LMG_CHP4_SP4_ClampMinute                789      // uint8_t
+#define LMG_CHP4_SP4_Kelvin                     790      // uint16_t
+#define LMG_CHP4_SP4_Brightness                 792      // uint8_t
+#define LMG_CHP4_SP4_ExtColorTempMode           793      // 8 Bits, Bit 7-0
+#define LMG_CHP4_SP4_ExtMixPercent              794      // uint8_t
+#define LMG_CHP4_SP5_Active                     795      // 1 Bit, Bit 7
+#define     LMG_CHP4_SP5_ActiveMask 0x80
+#define     LMG_CHP4_SP5_ActiveShift 7
+#define LMG_CHP4_SP5_AnchorType                 796      // 8 Bits, Bit 7-0
+#define LMG_CHP4_SP5_Hour                       797      // uint8_t
+#define LMG_CHP4_SP5_Minute                     798      // uint8_t
+#define LMG_CHP4_SP5_OffsetMinutes              799      // int16_t
+#define LMG_CHP4_SP5_ClampMode                  801      // 8 Bits, Bit 7-0
+#define LMG_CHP4_SP5_ClampHour                  802      // uint8_t
+#define LMG_CHP4_SP5_ClampMinute                803      // uint8_t
+#define LMG_CHP4_SP5_Kelvin                     804      // uint16_t
+#define LMG_CHP4_SP5_Brightness                 806      // uint8_t
+#define LMG_CHP4_SP5_ExtColorTempMode           807      // 8 Bits, Bit 7-0
+#define LMG_CHP4_SP5_ExtMixPercent              808      // uint8_t
+#define LMG_CHP4_SP6_Active                     809      // 1 Bit, Bit 7
+#define     LMG_CHP4_SP6_ActiveMask 0x80
+#define     LMG_CHP4_SP6_ActiveShift 7
+#define LMG_CHP4_SP6_AnchorType                 810      // 8 Bits, Bit 7-0
+#define LMG_CHP4_SP6_Hour                       811      // uint8_t
+#define LMG_CHP4_SP6_Minute                     812      // uint8_t
+#define LMG_CHP4_SP6_OffsetMinutes              813      // int16_t
+#define LMG_CHP4_SP6_ClampMode                  815      // 8 Bits, Bit 7-0
+#define LMG_CHP4_SP6_ClampHour                  816      // uint8_t
+#define LMG_CHP4_SP6_ClampMinute                817      // uint8_t
+#define LMG_CHP4_SP6_Kelvin                     818      // uint16_t
+#define LMG_CHP4_SP6_Brightness                 820      // uint8_t
+#define LMG_CHP4_SP6_ExtColorTempMode           821      // 8 Bits, Bit 7-0
+#define LMG_CHP4_SP6_ExtMixPercent              822      // uint8_t
+#define LMG_CHP4_SP7_Active                     823      // 1 Bit, Bit 7
+#define     LMG_CHP4_SP7_ActiveMask 0x80
+#define     LMG_CHP4_SP7_ActiveShift 7
+#define LMG_CHP4_SP7_AnchorType                 824      // 8 Bits, Bit 7-0
+#define LMG_CHP4_SP7_Hour                       825      // uint8_t
+#define LMG_CHP4_SP7_Minute                     826      // uint8_t
+#define LMG_CHP4_SP7_OffsetMinutes              827      // int16_t
+#define LMG_CHP4_SP7_ClampMode                  829      // 8 Bits, Bit 7-0
+#define LMG_CHP4_SP7_ClampHour                  830      // uint8_t
+#define LMG_CHP4_SP7_ClampMinute                831      // uint8_t
+#define LMG_CHP4_SP7_Kelvin                     832      // uint16_t
+#define LMG_CHP4_SP7_Brightness                 834      // uint8_t
+#define LMG_CHP4_SP7_ExtColorTempMode           835      // 8 Bits, Bit 7-0
+#define LMG_CHP4_SP7_ExtMixPercent              836      // uint8_t
+#define LMG_CHP4_SP8_Active                     837      // 1 Bit, Bit 7
+#define     LMG_CHP4_SP8_ActiveMask 0x80
+#define     LMG_CHP4_SP8_ActiveShift 7
+#define LMG_CHP4_SP8_AnchorType                 838      // 8 Bits, Bit 7-0
+#define LMG_CHP4_SP8_Hour                       839      // uint8_t
+#define LMG_CHP4_SP8_Minute                     840      // uint8_t
+#define LMG_CHP4_SP8_OffsetMinutes              841      // int16_t
+#define LMG_CHP4_SP8_ClampMode                  843      // 8 Bits, Bit 7-0
+#define LMG_CHP4_SP8_ClampHour                  844      // uint8_t
+#define LMG_CHP4_SP8_ClampMinute                845      // uint8_t
+#define LMG_CHP4_SP8_Kelvin                     846      // uint16_t
+#define LMG_CHP4_SP8_Brightness                 848      // uint8_t
+#define LMG_CHP4_SP8_ExtColorTempMode           849      // 8 Bits, Bit 7-0
+#define LMG_CHP4_SP8_ExtMixPercent              850      // uint8_t
+#define LMG_CHP4_SP9_Active                     851      // 1 Bit, Bit 7
+#define     LMG_CHP4_SP9_ActiveMask 0x80
+#define     LMG_CHP4_SP9_ActiveShift 7
+#define LMG_CHP4_SP9_AnchorType                 852      // 8 Bits, Bit 7-0
+#define LMG_CHP4_SP9_Hour                       853      // uint8_t
+#define LMG_CHP4_SP9_Minute                     854      // uint8_t
+#define LMG_CHP4_SP9_OffsetMinutes              855      // int16_t
+#define LMG_CHP4_SP9_ClampMode                  857      // 8 Bits, Bit 7-0
+#define LMG_CHP4_SP9_ClampHour                  858      // uint8_t
+#define LMG_CHP4_SP9_ClampMinute                859      // uint8_t
+#define LMG_CHP4_SP9_Kelvin                     860      // uint16_t
+#define LMG_CHP4_SP9_Brightness                 862      // uint8_t
+#define LMG_CHP4_SP9_ExtColorTempMode           863      // 8 Bits, Bit 7-0
+#define LMG_CHP4_SP9_ExtMixPercent              864      // uint8_t
+#define LMG_CHP4_SP10_Active                    865      // 1 Bit, Bit 7
+#define     LMG_CHP4_SP10_ActiveMask 0x80
+#define     LMG_CHP4_SP10_ActiveShift 7
+#define LMG_CHP4_SP10_AnchorType                866      // 8 Bits, Bit 7-0
+#define LMG_CHP4_SP10_Hour                      867      // uint8_t
+#define LMG_CHP4_SP10_Minute                    868      // uint8_t
+#define LMG_CHP4_SP10_OffsetMinutes             869      // int16_t
+#define LMG_CHP4_SP10_ClampMode                 871      // 8 Bits, Bit 7-0
+#define LMG_CHP4_SP10_ClampHour                 872      // uint8_t
+#define LMG_CHP4_SP10_ClampMinute               873      // uint8_t
+#define LMG_CHP4_SP10_Kelvin                    874      // uint16_t
+#define LMG_CHP4_SP10_Brightness                876      // uint8_t
+#define LMG_CHP4_SP10_ExtColorTempMode          877      // 8 Bits, Bit 7-0
+#define LMG_CHP4_SP10_ExtMixPercent             878      // uint8_t
 
 // Aktivierung
 #define ParamLMG_CHAdaptiveActiveMode                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHAdaptiveActiveMode)))
@@ -456,16 +1103,6 @@
 #define ParamLMG_CHAdaptiveStartTime                 (knx.paramWord(LMG_ParamCalcIndex(LMG_CHAdaptiveStartTime)))
 // Kompensationsstärke
 #define ParamLMG_CHAdaptiveStrength                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHAdaptiveStrength)))
-// Astro Maximum Helligkeit
-#define ParamLMG_CHAstroMaxBrightness                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHAstroMaxBrightness)))
-// Astro Maximum Kelvin
-#define ParamLMG_CHAstroMaxKelvin                    (knx.paramWord(LMG_ParamCalcIndex(LMG_CHAstroMaxKelvin)))
-// Astro Minimum Helligkeit
-#define ParamLMG_CHAstroMinBrightness                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHAstroMinBrightness)))
-// Astro Minimum Kelvin
-#define ParamLMG_CHAstroMinKelvin                    (knx.paramWord(LMG_ParamCalcIndex(LMG_CHAstroMinKelvin)))
-// Kurventyp
-#define ParamLMG_CHCurveType                         (knx.paramByte(LMG_ParamCalcIndex(LMG_CHCurveType)))
 // DST-Offset (Tage)
 #define ParamLMG_CHDSTOffsetDays                     ((int8_t)knx.paramByte(LMG_ParamCalcIndex(LMG_CHDSTOffsetDays)))
 // Freie Rückfalldauer
@@ -476,162 +1113,1142 @@
 #define ParamLMG_CHFallbackReleaseTime               (knx.paramWord(LMG_ParamCalcIndex(LMG_CHFallbackReleaseTime)))
 // Rückfallzeit nach Sperre
 #define ParamLMG_CHLockFallback                      (knx.paramByte(LMG_ParamCalcIndex(LMG_CHLockFallback)))
-// Manuelle Farbtemperatur
-#define ParamLMG_CHManualKelvin                      (knx.paramWord(LMG_ParamCalcIndex(LMG_CHManualKelvin)))
 // Name Lichtmanager %C%
 #define ParamLMG_CHName                              (knx.paramData(LMG_ParamCalcIndex(LMG_CHName)))
 #define ParamLMG_CHNameStr                           (knx.paramString(LMG_ParamCalcIndex(LMG_CHName), LMG_CHNameLength))
-// Saison-Profil
-#define ParamLMG_CHSeasonMode                        (knx.paramByte(LMG_ParamCalcIndex(LMG_CHSeasonMode)))
-// Anzahl Stützpunkte
-#define ParamLMG_CHSetpointCount                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHSetpointCount)))
-// Slew-Rate
-#define ParamLMG_CHSlewRate                          (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSlewRate)))
-// St.punkt 0 aktiv
-#define ParamLMG_CHSP0Active                         ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHSP0Active)) & LMG_CHSP0ActiveMask))
-// SP1 Helligkeit
-#define ParamLMG_CHSP0Brightness                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHSP0Brightness)))
-// SP1 Farbtemperatur
-#define ParamLMG_CHSP0Kelvin                         (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSP0Kelvin)))
-// SP0 Sommer-Helligkeit
-#define ParamLMG_CHSP0SummerBrightness               (knx.paramByte(LMG_ParamCalcIndex(LMG_CHSP0SummerBrightness)))
-// SP0 Sommer-Kelvin
-#define ParamLMG_CHSP0SummerKelvin                   (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSP0SummerKelvin)))
-// SP1 Zeit
-#define ParamLMG_CHSP0Time                           (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSP0Time)))
-// St.punkt 1 aktiv
-#define ParamLMG_CHSP1Active                         ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHSP1Active)) & LMG_CHSP1ActiveMask))
-// SP2 Helligkeit
-#define ParamLMG_CHSP1Brightness                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHSP1Brightness)))
-// SP2 Farbtemperatur
-#define ParamLMG_CHSP1Kelvin                         (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSP1Kelvin)))
-// SP1 Sommer-Helligkeit
-#define ParamLMG_CHSP1SummerBrightness               (knx.paramByte(LMG_ParamCalcIndex(LMG_CHSP1SummerBrightness)))
-// SP1 Sommer-Kelvin
-#define ParamLMG_CHSP1SummerKelvin                   (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSP1SummerKelvin)))
-// SP2 Zeit
-#define ParamLMG_CHSP1Time                           (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSP1Time)))
-// St.punkt 2 aktiv
-#define ParamLMG_CHSP2Active                         ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHSP2Active)) & LMG_CHSP2ActiveMask))
-// SP3 Helligkeit
-#define ParamLMG_CHSP2Brightness                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHSP2Brightness)))
-// SP3 Farbtemperatur
-#define ParamLMG_CHSP2Kelvin                         (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSP2Kelvin)))
-// SP2 Sommer-Helligkeit
-#define ParamLMG_CHSP2SummerBrightness               (knx.paramByte(LMG_ParamCalcIndex(LMG_CHSP2SummerBrightness)))
-// SP2 Sommer-Kelvin
-#define ParamLMG_CHSP2SummerKelvin                   (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSP2SummerKelvin)))
-// SP3 Zeit
-#define ParamLMG_CHSP2Time                           (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSP2Time)))
-// St.punkt 3 aktiv
-#define ParamLMG_CHSP3Active                         ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHSP3Active)) & LMG_CHSP3ActiveMask))
-// SP4 Helligkeit
-#define ParamLMG_CHSP3Brightness                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHSP3Brightness)))
-// SP4 Farbtemperatur
-#define ParamLMG_CHSP3Kelvin                         (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSP3Kelvin)))
-// SP3 Sommer-Helligkeit
-#define ParamLMG_CHSP3SummerBrightness               (knx.paramByte(LMG_ParamCalcIndex(LMG_CHSP3SummerBrightness)))
-// SP3 Sommer-Kelvin
-#define ParamLMG_CHSP3SummerKelvin                   (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSP3SummerKelvin)))
-// SP4 Zeit
-#define ParamLMG_CHSP3Time                           (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSP3Time)))
-// St.punkt 4 aktiv
-#define ParamLMG_CHSP4Active                         ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHSP4Active)) & LMG_CHSP4ActiveMask))
-// SP5 Helligkeit
-#define ParamLMG_CHSP4Brightness                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHSP4Brightness)))
-// SP5 Farbtemperatur
-#define ParamLMG_CHSP4Kelvin                         (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSP4Kelvin)))
-// SP4 Sommer-Helligkeit
-#define ParamLMG_CHSP4SummerBrightness               (knx.paramByte(LMG_ParamCalcIndex(LMG_CHSP4SummerBrightness)))
-// SP4 Sommer-Kelvin
-#define ParamLMG_CHSP4SummerKelvin                   (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSP4SummerKelvin)))
-// SP5 Zeit
-#define ParamLMG_CHSP4Time                           (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSP4Time)))
-// St.punkt 5 aktiv
-#define ParamLMG_CHSP5Active                         ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHSP5Active)) & LMG_CHSP5ActiveMask))
-// SP6 Helligkeit
-#define ParamLMG_CHSP5Brightness                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHSP5Brightness)))
-// SP6 Farbtemperatur
-#define ParamLMG_CHSP5Kelvin                         (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSP5Kelvin)))
-// SP5 Sommer-Helligkeit
-#define ParamLMG_CHSP5SummerBrightness               (knx.paramByte(LMG_ParamCalcIndex(LMG_CHSP5SummerBrightness)))
-// SP5 Sommer-Kelvin
-#define ParamLMG_CHSP5SummerKelvin                   (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSP5SummerKelvin)))
-// SP6 Zeit
-#define ParamLMG_CHSP5Time                           (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSP5Time)))
-// St.punkt 6 aktiv
-#define ParamLMG_CHSP6Active                         ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHSP6Active)) & LMG_CHSP6ActiveMask))
-// SP7 Helligkeit
-#define ParamLMG_CHSP6Brightness                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHSP6Brightness)))
-// SP7 Farbtemperatur
-#define ParamLMG_CHSP6Kelvin                         (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSP6Kelvin)))
-// SP6 Sommer-Helligkeit
-#define ParamLMG_CHSP6SummerBrightness               (knx.paramByte(LMG_ParamCalcIndex(LMG_CHSP6SummerBrightness)))
-// SP6 Sommer-Kelvin
-#define ParamLMG_CHSP6SummerKelvin                   (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSP6SummerKelvin)))
-// SP7 Zeit
-#define ParamLMG_CHSP6Time                           (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSP6Time)))
-// St.punkt 7 aktiv
-#define ParamLMG_CHSP7Active                         ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHSP7Active)) & LMG_CHSP7ActiveMask))
-// SP8 Helligkeit
-#define ParamLMG_CHSP7Brightness                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHSP7Brightness)))
-// SP8 Farbtemperatur
-#define ParamLMG_CHSP7Kelvin                         (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSP7Kelvin)))
-// SP7 Sommer-Helligkeit
-#define ParamLMG_CHSP7SummerBrightness               (knx.paramByte(LMG_ParamCalcIndex(LMG_CHSP7SummerBrightness)))
-// SP7 Sommer-Kelvin
-#define ParamLMG_CHSP7SummerKelvin                   (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSP7SummerKelvin)))
-// SP8 Zeit
-#define ParamLMG_CHSP7Time                           (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSP7Time)))
-// St.punkt 8 aktiv
-#define ParamLMG_CHSP8Active                         ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHSP8Active)) & LMG_CHSP8ActiveMask))
-// SP9 Helligkeit
-#define ParamLMG_CHSP8Brightness                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHSP8Brightness)))
-// SP9 Farbtemperatur
-#define ParamLMG_CHSP8Kelvin                         (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSP8Kelvin)))
-// SP8 Sommer-Helligkeit
-#define ParamLMG_CHSP8SummerBrightness               (knx.paramByte(LMG_ParamCalcIndex(LMG_CHSP8SummerBrightness)))
-// SP8 Sommer-Kelvin
-#define ParamLMG_CHSP8SummerKelvin                   (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSP8SummerKelvin)))
-// SP9 Zeit
-#define ParamLMG_CHSP8Time                           (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSP8Time)))
-// St.punkt 9 aktiv
-#define ParamLMG_CHSP9Active                         ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHSP9Active)) & LMG_CHSP9ActiveMask))
-// SP10 Helligkeit
-#define ParamLMG_CHSP9Brightness                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHSP9Brightness)))
-// SP10 Farbtemperatur
-#define ParamLMG_CHSP9Kelvin                         (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSP9Kelvin)))
-// SP9 Sommer-Helligkeit
-#define ParamLMG_CHSP9SummerBrightness               (knx.paramByte(LMG_ParamCalcIndex(LMG_CHSP9SummerBrightness)))
-// SP9 Sommer-Kelvin
-#define ParamLMG_CHSP9SummerKelvin                   (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSP9SummerKelvin)))
-// SP10 Zeit
-#define ParamLMG_CHSP9Time                           (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSP9Time)))
 // Bereitstellung der Lichtmanager-Sollwerte
-#define ParamLMG_CHStatusKoEnable                    ((knx.paramByte(LMG_ParamCalcIndex(LMG_CHStatusKoEnable)) & LMG_CHStatusKoEnableMask) >> LMG_CHStatusKoEnableShift)
-// Sommerende Tag
-#define ParamLMG_CHSummerEndDay                      (knx.paramByte(LMG_ParamCalcIndex(LMG_CHSummerEndDay)))
-// Sommerende Monat
-#define ParamLMG_CHSummerEndMonth                    (knx.paramByte(LMG_ParamCalcIndex(LMG_CHSummerEndMonth)))
-// Sommerstart Tag
-#define ParamLMG_CHSummerStartDay                    (knx.paramByte(LMG_ParamCalcIndex(LMG_CHSummerStartDay)))
-// Sommerstart Monat
-#define ParamLMG_CHSummerStartMonth                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHSummerStartMonth)))
+#define ParamLMG_CHIntegrationMode                   ((knx.paramByte(LMG_ParamCalcIndex(LMG_CHIntegrationMode)) & LMG_CHIntegrationModeMask) >> LMG_CHIntegrationModeShift)
+// Status auf KNX-Bus senden
+#define ParamLMG_CHBusStatusEnable                   ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHBusStatusEnable)) & LMG_CHBusStatusEnableMask))
+// Status-KO-Ausgabe
+#define ParamLMG_CHStatusKoOutput                    ((knx.paramByte(LMG_ParamCalcIndex(LMG_CHStatusKoOutput)) & LMG_CHStatusKoOutputMask) >> LMG_CHStatusKoOutputShift)
+// Aktualisierungsintervall
+#define ParamLMG_CHUpdateInterval                    (knx.paramWord(LMG_ParamCalcIndex(LMG_CHUpdateInterval)))
+// Überblendzeit
+#define ParamLMG_CHFadeDuration                      (knx.paramByte(LMG_ParamCalcIndex(LMG_CHFadeDuration)))
 // Sonnenaufgang
 #define ParamLMG_CHSunrise                           (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSunrise)))
-// Sonnenaufgang Offset
-#define ParamLMG_CHSunriseOffset                     ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHSunriseOffset)))
 // Sonnenuntergang
 #define ParamLMG_CHSunset                            (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSunset)))
-// Sonnenuntergang Offset
-#define ParamLMG_CHSunsetOffset                      ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHSunsetOffset)))
+// HCL-Achsen
+#define ParamLMG_CHHclAxes                           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHHclAxes)))
+// HCL-Zeitfenster
+#define ParamLMG_CHHclTimeWindow                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHHclTimeWindow)))
+// Vorausschau-KOs senden
+#define ParamLMG_CHPreviewEnable                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHPreviewEnable)) & LMG_CHPreviewEnableMask))
+// Vorausschau-Horizont
+#define ParamLMG_CHLookAheadMinutes                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHLookAheadMinutes)))
+// Tages-Fortschritt senden
+#define ParamLMG_CHProgressEnable                    ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHProgressEnable)) & LMG_CHProgressEnableMask))
+// Anzahl Profile
+#define ParamLMG_CHProfileCount                      (knx.paramByte(LMG_ParamCalcIndex(LMG_CHProfileCount)))
+// Sperr-Verhalten
+#define ParamLMG_CHUseLock                           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHUseLock)))
+// Adaptive Helligkeit verwenden
+#define ParamLMG_CHUseAdaptive                       ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHUseAdaptive)) & LMG_CHUseAdaptiveMask))
+// Tag/Nacht-Quelle
+#define ParamLMG_CHDayNightSource                    (knx.paramByte(LMG_ParamCalcIndex(LMG_CHDayNightSource)))
+// Externe Farbtemperatur-Quelle
+#define ParamLMG_CHExtColorTempSource                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHExtColorTempSource)))
+// Externe Farbtemperatur-DPT
+#define ParamLMG_CHExtColorTempDpt                   (knx.paramByte(LMG_ParamCalcIndex(LMG_CHExtColorTempDpt)))
+// Externe Helligkeits-Quelle
+#define ParamLMG_CHExtBrightnessSource               (knx.paramByte(LMG_ParamCalcIndex(LMG_CHExtBrightnessSource)))
+// Externe Helligkeits-DPT
+#define ParamLMG_CHExtBrightnessDpt                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHExtBrightnessDpt)))
+// Externe Quellen Fallback-Timeout
+#define ParamLMG_CHExtFallbackTimeoutSec             (knx.paramWord(LMG_ParamCalcIndex(LMG_CHExtFallbackTimeoutSec)))
+// Skalar 0 = Kelvin (warm)
+#define ParamLMG_CHExtKelvinMin                      (knx.paramWord(LMG_ParamCalcIndex(LMG_CHExtKelvinMin)))
+// Skalar 255 = Kelvin (kalt)
+#define ParamLMG_CHExtKelvinMax                      (knx.paramWord(LMG_ParamCalcIndex(LMG_CHExtKelvinMax)))
+// Lux bei 100 % Helligkeit
+#define ParamLMG_CHExtLuxMax                         (knx.paramWord(LMG_ParamCalcIndex(LMG_CHExtLuxMax)))
+// Saison-Quelle
+#define ParamLMG_CHSeasonSource                      (knx.paramByte(LMG_ParamCalcIndex(LMG_CHSeasonSource)))
+// Saison-Offset
+#define ParamLMG_CHSeasonOffsetDays                  ((int8_t)knx.paramByte(LMG_ParamCalcIndex(LMG_CHSeasonOffsetDays)))
+// Sommer-Beginn (MM/TT)
+#define ParamLMG_CHSummerStart                       (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSummerStart)))
+// Sommer-Ende (MM/TT)
+#define ParamLMG_CHSummerEnd                         (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSummerEnd)))
+// Tag/Nacht-Slew verwenden
+#define ParamLMG_CHUseDayNightSlew                   ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHUseDayNightSlew)) & LMG_CHUseDayNightSlewMask))
+// Slew Rate Tag
+#define ParamLMG_CHSlewRateDay                       (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSlewRateDay)))
+// Slew Rate Nacht
+#define ParamLMG_CHSlewRateNight                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHSlewRateNight)))
+// Astro-Quelle
+#define ParamLMG_CHAstroSource                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHAstroSource)))
+// Slew-Rate Helligkeit
+#define ParamLMG_CHSlewRateBrightness                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHSlewRateBrightness)))
+// Profil 1 aktiv
+#define ParamLMG_CHP1_Active                         ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_Active)) & LMG_CHP1_ActiveMask))
+// Profil 1 Name
+#define ParamLMG_CHP1_Name                           (knx.paramData(LMG_ParamCalcIndex(LMG_CHP1_Name)))
+#define ParamLMG_CHP1_NameStr                        (knx.paramString(LMG_ParamCalcIndex(LMG_CHP1_Name), LMG_CHP1_NameLength))
+// Mo
+#define ParamLMG_CHP1_DayMo                          ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_DayMo)) & LMG_CHP1_DayMoMask))
+// Di
+#define ParamLMG_CHP1_DayDi                          ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_DayDi)) & LMG_CHP1_DayDiMask))
+// Mi
+#define ParamLMG_CHP1_DayMi                          ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_DayMi)) & LMG_CHP1_DayMiMask))
+// Do
+#define ParamLMG_CHP1_DayDo                          ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_DayDo)) & LMG_CHP1_DayDoMask))
+// Fr
+#define ParamLMG_CHP1_DayFr                          ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_DayFr)) & LMG_CHP1_DayFrMask))
+// Sa
+#define ParamLMG_CHP1_DaySa                          ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_DaySa)) & LMG_CHP1_DaySaMask))
+// So
+#define ParamLMG_CHP1_DaySo                          ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_DaySo)) & LMG_CHP1_DaySoMask))
+// Urlaub
+#define ParamLMG_CHP1_DayUrl                         ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_DayUrl)) & LMG_CHP1_DayUrlMask))
+// Feiertag
+#define ParamLMG_CHP1_DayFei                         ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_DayFei)) & LMG_CHP1_DayFeiMask))
+// Profil 1 Stützpunkte
+#define ParamLMG_CHP1_SPCount                        (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SPCount)))
+// Profil 2 aktiv
+#define ParamLMG_CHP2_Active                         ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_Active)) & LMG_CHP2_ActiveMask))
+// Profil 2 Name
+#define ParamLMG_CHP2_Name                           (knx.paramData(LMG_ParamCalcIndex(LMG_CHP2_Name)))
+#define ParamLMG_CHP2_NameStr                        (knx.paramString(LMG_ParamCalcIndex(LMG_CHP2_Name), LMG_CHP2_NameLength))
+// Mo
+#define ParamLMG_CHP2_DayMo                          ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_DayMo)) & LMG_CHP2_DayMoMask))
+// Di
+#define ParamLMG_CHP2_DayDi                          ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_DayDi)) & LMG_CHP2_DayDiMask))
+// Mi
+#define ParamLMG_CHP2_DayMi                          ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_DayMi)) & LMG_CHP2_DayMiMask))
+// Do
+#define ParamLMG_CHP2_DayDo                          ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_DayDo)) & LMG_CHP2_DayDoMask))
+// Fr
+#define ParamLMG_CHP2_DayFr                          ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_DayFr)) & LMG_CHP2_DayFrMask))
+// Sa
+#define ParamLMG_CHP2_DaySa                          ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_DaySa)) & LMG_CHP2_DaySaMask))
+// So
+#define ParamLMG_CHP2_DaySo                          ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_DaySo)) & LMG_CHP2_DaySoMask))
+// Urlaub
+#define ParamLMG_CHP2_DayUrl                         ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_DayUrl)) & LMG_CHP2_DayUrlMask))
+// Feiertag
+#define ParamLMG_CHP2_DayFei                         ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_DayFei)) & LMG_CHP2_DayFeiMask))
+// Profil 2 Stützpunkte
+#define ParamLMG_CHP2_SPCount                        (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SPCount)))
+// Profil 3 aktiv
+#define ParamLMG_CHP3_Active                         ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_Active)) & LMG_CHP3_ActiveMask))
+// Profil 3 Name
+#define ParamLMG_CHP3_Name                           (knx.paramData(LMG_ParamCalcIndex(LMG_CHP3_Name)))
+#define ParamLMG_CHP3_NameStr                        (knx.paramString(LMG_ParamCalcIndex(LMG_CHP3_Name), LMG_CHP3_NameLength))
+// Mo
+#define ParamLMG_CHP3_DayMo                          ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_DayMo)) & LMG_CHP3_DayMoMask))
+// Di
+#define ParamLMG_CHP3_DayDi                          ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_DayDi)) & LMG_CHP3_DayDiMask))
+// Mi
+#define ParamLMG_CHP3_DayMi                          ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_DayMi)) & LMG_CHP3_DayMiMask))
+// Do
+#define ParamLMG_CHP3_DayDo                          ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_DayDo)) & LMG_CHP3_DayDoMask))
+// Fr
+#define ParamLMG_CHP3_DayFr                          ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_DayFr)) & LMG_CHP3_DayFrMask))
+// Sa
+#define ParamLMG_CHP3_DaySa                          ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_DaySa)) & LMG_CHP3_DaySaMask))
+// So
+#define ParamLMG_CHP3_DaySo                          ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_DaySo)) & LMG_CHP3_DaySoMask))
+// Urlaub
+#define ParamLMG_CHP3_DayUrl                         ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_DayUrl)) & LMG_CHP3_DayUrlMask))
+// Feiertag
+#define ParamLMG_CHP3_DayFei                         ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_DayFei)) & LMG_CHP3_DayFeiMask))
+// Profil 3 Stützpunkte
+#define ParamLMG_CHP3_SPCount                        (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SPCount)))
+// Profil 4 aktiv
+#define ParamLMG_CHP4_Active                         ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_Active)) & LMG_CHP4_ActiveMask))
+// Profil 4 Name
+#define ParamLMG_CHP4_Name                           (knx.paramData(LMG_ParamCalcIndex(LMG_CHP4_Name)))
+#define ParamLMG_CHP4_NameStr                        (knx.paramString(LMG_ParamCalcIndex(LMG_CHP4_Name), LMG_CHP4_NameLength))
+// Mo
+#define ParamLMG_CHP4_DayMo                          ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_DayMo)) & LMG_CHP4_DayMoMask))
+// Di
+#define ParamLMG_CHP4_DayDi                          ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_DayDi)) & LMG_CHP4_DayDiMask))
+// Mi
+#define ParamLMG_CHP4_DayMi                          ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_DayMi)) & LMG_CHP4_DayMiMask))
+// Do
+#define ParamLMG_CHP4_DayDo                          ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_DayDo)) & LMG_CHP4_DayDoMask))
+// Fr
+#define ParamLMG_CHP4_DayFr                          ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_DayFr)) & LMG_CHP4_DayFrMask))
+// Sa
+#define ParamLMG_CHP4_DaySa                          ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_DaySa)) & LMG_CHP4_DaySaMask))
+// So
+#define ParamLMG_CHP4_DaySo                          ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_DaySo)) & LMG_CHP4_DaySoMask))
+// Urlaub
+#define ParamLMG_CHP4_DayUrl                         ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_DayUrl)) & LMG_CHP4_DayUrlMask))
+// Feiertag
+#define ParamLMG_CHP4_DayFei                         ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_DayFei)) & LMG_CHP4_DayFeiMask))
+// Profil 4 Stützpunkte
+#define ParamLMG_CHP4_SPCount                        (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SPCount)))
+// Profil 1 SP1 Active
+#define ParamLMG_CHP1_SP1_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP1_Active)) & LMG_CHP1_SP1_ActiveMask))
+// Profil 1 SP1 AnchorType
+#define ParamLMG_CHP1_SP1_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP1_AnchorType)))
+// Profil 1 SP1 Hour
+#define ParamLMG_CHP1_SP1_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP1_Hour)))
+// Profil 1 SP1 Minute
+#define ParamLMG_CHP1_SP1_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP1_Minute)))
+// Profil 1 SP1 OffsetMinutes
+#define ParamLMG_CHP1_SP1_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP1_SP1_OffsetMinutes)))
+// Profil 1 SP1 ClampMode
+#define ParamLMG_CHP1_SP1_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP1_ClampMode)))
+// Profil 1 SP1 ClampHour
+#define ParamLMG_CHP1_SP1_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP1_ClampHour)))
+// Profil 1 SP1 ClampMinute
+#define ParamLMG_CHP1_SP1_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP1_ClampMinute)))
+// Profil 1 SP1 Kelvin
+#define ParamLMG_CHP1_SP1_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP1_SP1_Kelvin)))
+// Profil 1 SP1 Brightness
+#define ParamLMG_CHP1_SP1_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP1_Brightness)))
+// Profil 1 SP1 ExtColorTempMode
+#define ParamLMG_CHP1_SP1_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP1_ExtColorTempMode)))
+// Profil 1 SP1 ExtMixPercent
+#define ParamLMG_CHP1_SP1_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP1_ExtMixPercent)))
+// Profil 1 SP2 Active
+#define ParamLMG_CHP1_SP2_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP2_Active)) & LMG_CHP1_SP2_ActiveMask))
+// Profil 1 SP2 AnchorType
+#define ParamLMG_CHP1_SP2_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP2_AnchorType)))
+// Profil 1 SP2 Hour
+#define ParamLMG_CHP1_SP2_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP2_Hour)))
+// Profil 1 SP2 Minute
+#define ParamLMG_CHP1_SP2_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP2_Minute)))
+// Profil 1 SP2 OffsetMinutes
+#define ParamLMG_CHP1_SP2_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP1_SP2_OffsetMinutes)))
+// Profil 1 SP2 ClampMode
+#define ParamLMG_CHP1_SP2_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP2_ClampMode)))
+// Profil 1 SP2 ClampHour
+#define ParamLMG_CHP1_SP2_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP2_ClampHour)))
+// Profil 1 SP2 ClampMinute
+#define ParamLMG_CHP1_SP2_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP2_ClampMinute)))
+// Profil 1 SP2 Kelvin
+#define ParamLMG_CHP1_SP2_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP1_SP2_Kelvin)))
+// Profil 1 SP2 Brightness
+#define ParamLMG_CHP1_SP2_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP2_Brightness)))
+// Profil 1 SP2 ExtColorTempMode
+#define ParamLMG_CHP1_SP2_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP2_ExtColorTempMode)))
+// Profil 1 SP2 ExtMixPercent
+#define ParamLMG_CHP1_SP2_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP2_ExtMixPercent)))
+// Profil 1 SP3 Active
+#define ParamLMG_CHP1_SP3_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP3_Active)) & LMG_CHP1_SP3_ActiveMask))
+// Profil 1 SP3 AnchorType
+#define ParamLMG_CHP1_SP3_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP3_AnchorType)))
+// Profil 1 SP3 Hour
+#define ParamLMG_CHP1_SP3_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP3_Hour)))
+// Profil 1 SP3 Minute
+#define ParamLMG_CHP1_SP3_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP3_Minute)))
+// Profil 1 SP3 OffsetMinutes
+#define ParamLMG_CHP1_SP3_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP1_SP3_OffsetMinutes)))
+// Profil 1 SP3 ClampMode
+#define ParamLMG_CHP1_SP3_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP3_ClampMode)))
+// Profil 1 SP3 ClampHour
+#define ParamLMG_CHP1_SP3_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP3_ClampHour)))
+// Profil 1 SP3 ClampMinute
+#define ParamLMG_CHP1_SP3_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP3_ClampMinute)))
+// Profil 1 SP3 Kelvin
+#define ParamLMG_CHP1_SP3_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP1_SP3_Kelvin)))
+// Profil 1 SP3 Brightness
+#define ParamLMG_CHP1_SP3_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP3_Brightness)))
+// Profil 1 SP3 ExtColorTempMode
+#define ParamLMG_CHP1_SP3_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP3_ExtColorTempMode)))
+// Profil 1 SP3 ExtMixPercent
+#define ParamLMG_CHP1_SP3_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP3_ExtMixPercent)))
+// Profil 1 SP4 Active
+#define ParamLMG_CHP1_SP4_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP4_Active)) & LMG_CHP1_SP4_ActiveMask))
+// Profil 1 SP4 AnchorType
+#define ParamLMG_CHP1_SP4_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP4_AnchorType)))
+// Profil 1 SP4 Hour
+#define ParamLMG_CHP1_SP4_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP4_Hour)))
+// Profil 1 SP4 Minute
+#define ParamLMG_CHP1_SP4_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP4_Minute)))
+// Profil 1 SP4 OffsetMinutes
+#define ParamLMG_CHP1_SP4_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP1_SP4_OffsetMinutes)))
+// Profil 1 SP4 ClampMode
+#define ParamLMG_CHP1_SP4_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP4_ClampMode)))
+// Profil 1 SP4 ClampHour
+#define ParamLMG_CHP1_SP4_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP4_ClampHour)))
+// Profil 1 SP4 ClampMinute
+#define ParamLMG_CHP1_SP4_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP4_ClampMinute)))
+// Profil 1 SP4 Kelvin
+#define ParamLMG_CHP1_SP4_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP1_SP4_Kelvin)))
+// Profil 1 SP4 Brightness
+#define ParamLMG_CHP1_SP4_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP4_Brightness)))
+// Profil 1 SP4 ExtColorTempMode
+#define ParamLMG_CHP1_SP4_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP4_ExtColorTempMode)))
+// Profil 1 SP4 ExtMixPercent
+#define ParamLMG_CHP1_SP4_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP4_ExtMixPercent)))
+// Profil 1 SP5 Active
+#define ParamLMG_CHP1_SP5_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP5_Active)) & LMG_CHP1_SP5_ActiveMask))
+// Profil 1 SP5 AnchorType
+#define ParamLMG_CHP1_SP5_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP5_AnchorType)))
+// Profil 1 SP5 Hour
+#define ParamLMG_CHP1_SP5_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP5_Hour)))
+// Profil 1 SP5 Minute
+#define ParamLMG_CHP1_SP5_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP5_Minute)))
+// Profil 1 SP5 OffsetMinutes
+#define ParamLMG_CHP1_SP5_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP1_SP5_OffsetMinutes)))
+// Profil 1 SP5 ClampMode
+#define ParamLMG_CHP1_SP5_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP5_ClampMode)))
+// Profil 1 SP5 ClampHour
+#define ParamLMG_CHP1_SP5_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP5_ClampHour)))
+// Profil 1 SP5 ClampMinute
+#define ParamLMG_CHP1_SP5_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP5_ClampMinute)))
+// Profil 1 SP5 Kelvin
+#define ParamLMG_CHP1_SP5_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP1_SP5_Kelvin)))
+// Profil 1 SP5 Brightness
+#define ParamLMG_CHP1_SP5_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP5_Brightness)))
+// Profil 1 SP5 ExtColorTempMode
+#define ParamLMG_CHP1_SP5_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP5_ExtColorTempMode)))
+// Profil 1 SP5 ExtMixPercent
+#define ParamLMG_CHP1_SP5_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP5_ExtMixPercent)))
+// Profil 1 SP6 Active
+#define ParamLMG_CHP1_SP6_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP6_Active)) & LMG_CHP1_SP6_ActiveMask))
+// Profil 1 SP6 AnchorType
+#define ParamLMG_CHP1_SP6_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP6_AnchorType)))
+// Profil 1 SP6 Hour
+#define ParamLMG_CHP1_SP6_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP6_Hour)))
+// Profil 1 SP6 Minute
+#define ParamLMG_CHP1_SP6_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP6_Minute)))
+// Profil 1 SP6 OffsetMinutes
+#define ParamLMG_CHP1_SP6_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP1_SP6_OffsetMinutes)))
+// Profil 1 SP6 ClampMode
+#define ParamLMG_CHP1_SP6_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP6_ClampMode)))
+// Profil 1 SP6 ClampHour
+#define ParamLMG_CHP1_SP6_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP6_ClampHour)))
+// Profil 1 SP6 ClampMinute
+#define ParamLMG_CHP1_SP6_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP6_ClampMinute)))
+// Profil 1 SP6 Kelvin
+#define ParamLMG_CHP1_SP6_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP1_SP6_Kelvin)))
+// Profil 1 SP6 Brightness
+#define ParamLMG_CHP1_SP6_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP6_Brightness)))
+// Profil 1 SP6 ExtColorTempMode
+#define ParamLMG_CHP1_SP6_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP6_ExtColorTempMode)))
+// Profil 1 SP6 ExtMixPercent
+#define ParamLMG_CHP1_SP6_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP6_ExtMixPercent)))
+// Profil 1 SP7 Active
+#define ParamLMG_CHP1_SP7_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP7_Active)) & LMG_CHP1_SP7_ActiveMask))
+// Profil 1 SP7 AnchorType
+#define ParamLMG_CHP1_SP7_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP7_AnchorType)))
+// Profil 1 SP7 Hour
+#define ParamLMG_CHP1_SP7_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP7_Hour)))
+// Profil 1 SP7 Minute
+#define ParamLMG_CHP1_SP7_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP7_Minute)))
+// Profil 1 SP7 OffsetMinutes
+#define ParamLMG_CHP1_SP7_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP1_SP7_OffsetMinutes)))
+// Profil 1 SP7 ClampMode
+#define ParamLMG_CHP1_SP7_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP7_ClampMode)))
+// Profil 1 SP7 ClampHour
+#define ParamLMG_CHP1_SP7_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP7_ClampHour)))
+// Profil 1 SP7 ClampMinute
+#define ParamLMG_CHP1_SP7_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP7_ClampMinute)))
+// Profil 1 SP7 Kelvin
+#define ParamLMG_CHP1_SP7_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP1_SP7_Kelvin)))
+// Profil 1 SP7 Brightness
+#define ParamLMG_CHP1_SP7_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP7_Brightness)))
+// Profil 1 SP7 ExtColorTempMode
+#define ParamLMG_CHP1_SP7_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP7_ExtColorTempMode)))
+// Profil 1 SP7 ExtMixPercent
+#define ParamLMG_CHP1_SP7_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP7_ExtMixPercent)))
+// Profil 1 SP8 Active
+#define ParamLMG_CHP1_SP8_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP8_Active)) & LMG_CHP1_SP8_ActiveMask))
+// Profil 1 SP8 AnchorType
+#define ParamLMG_CHP1_SP8_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP8_AnchorType)))
+// Profil 1 SP8 Hour
+#define ParamLMG_CHP1_SP8_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP8_Hour)))
+// Profil 1 SP8 Minute
+#define ParamLMG_CHP1_SP8_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP8_Minute)))
+// Profil 1 SP8 OffsetMinutes
+#define ParamLMG_CHP1_SP8_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP1_SP8_OffsetMinutes)))
+// Profil 1 SP8 ClampMode
+#define ParamLMG_CHP1_SP8_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP8_ClampMode)))
+// Profil 1 SP8 ClampHour
+#define ParamLMG_CHP1_SP8_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP8_ClampHour)))
+// Profil 1 SP8 ClampMinute
+#define ParamLMG_CHP1_SP8_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP8_ClampMinute)))
+// Profil 1 SP8 Kelvin
+#define ParamLMG_CHP1_SP8_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP1_SP8_Kelvin)))
+// Profil 1 SP8 Brightness
+#define ParamLMG_CHP1_SP8_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP8_Brightness)))
+// Profil 1 SP8 ExtColorTempMode
+#define ParamLMG_CHP1_SP8_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP8_ExtColorTempMode)))
+// Profil 1 SP8 ExtMixPercent
+#define ParamLMG_CHP1_SP8_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP8_ExtMixPercent)))
+// Profil 1 SP9 Active
+#define ParamLMG_CHP1_SP9_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP9_Active)) & LMG_CHP1_SP9_ActiveMask))
+// Profil 1 SP9 AnchorType
+#define ParamLMG_CHP1_SP9_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP9_AnchorType)))
+// Profil 1 SP9 Hour
+#define ParamLMG_CHP1_SP9_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP9_Hour)))
+// Profil 1 SP9 Minute
+#define ParamLMG_CHP1_SP9_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP9_Minute)))
+// Profil 1 SP9 OffsetMinutes
+#define ParamLMG_CHP1_SP9_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP1_SP9_OffsetMinutes)))
+// Profil 1 SP9 ClampMode
+#define ParamLMG_CHP1_SP9_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP9_ClampMode)))
+// Profil 1 SP9 ClampHour
+#define ParamLMG_CHP1_SP9_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP9_ClampHour)))
+// Profil 1 SP9 ClampMinute
+#define ParamLMG_CHP1_SP9_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP9_ClampMinute)))
+// Profil 1 SP9 Kelvin
+#define ParamLMG_CHP1_SP9_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP1_SP9_Kelvin)))
+// Profil 1 SP9 Brightness
+#define ParamLMG_CHP1_SP9_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP9_Brightness)))
+// Profil 1 SP9 ExtColorTempMode
+#define ParamLMG_CHP1_SP9_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP9_ExtColorTempMode)))
+// Profil 1 SP9 ExtMixPercent
+#define ParamLMG_CHP1_SP9_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP9_ExtMixPercent)))
+// Profil 1 SP10 Active
+#define ParamLMG_CHP1_SP10_Active                    ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP10_Active)) & LMG_CHP1_SP10_ActiveMask))
+// Profil 1 SP10 AnchorType
+#define ParamLMG_CHP1_SP10_AnchorType                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP10_AnchorType)))
+// Profil 1 SP10 Hour
+#define ParamLMG_CHP1_SP10_Hour                      (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP10_Hour)))
+// Profil 1 SP10 Minute
+#define ParamLMG_CHP1_SP10_Minute                    (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP10_Minute)))
+// Profil 1 SP10 OffsetMinutes
+#define ParamLMG_CHP1_SP10_OffsetMinutes             ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP1_SP10_OffsetMinutes)))
+// Profil 1 SP10 ClampMode
+#define ParamLMG_CHP1_SP10_ClampMode                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP10_ClampMode)))
+// Profil 1 SP10 ClampHour
+#define ParamLMG_CHP1_SP10_ClampHour                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP10_ClampHour)))
+// Profil 1 SP10 ClampMinute
+#define ParamLMG_CHP1_SP10_ClampMinute               (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP10_ClampMinute)))
+// Profil 1 SP10 Kelvin
+#define ParamLMG_CHP1_SP10_Kelvin                    (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP1_SP10_Kelvin)))
+// Profil 1 SP10 Brightness
+#define ParamLMG_CHP1_SP10_Brightness                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP10_Brightness)))
+// Profil 1 SP10 ExtColorTempMode
+#define ParamLMG_CHP1_SP10_ExtColorTempMode          (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP10_ExtColorTempMode)))
+// Profil 1 SP10 ExtMixPercent
+#define ParamLMG_CHP1_SP10_ExtMixPercent             (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP1_SP10_ExtMixPercent)))
+// Profil 2 SP1 Active
+#define ParamLMG_CHP2_SP1_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP1_Active)) & LMG_CHP2_SP1_ActiveMask))
+// Profil 2 SP1 AnchorType
+#define ParamLMG_CHP2_SP1_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP1_AnchorType)))
+// Profil 2 SP1 Hour
+#define ParamLMG_CHP2_SP1_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP1_Hour)))
+// Profil 2 SP1 Minute
+#define ParamLMG_CHP2_SP1_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP1_Minute)))
+// Profil 2 SP1 OffsetMinutes
+#define ParamLMG_CHP2_SP1_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP2_SP1_OffsetMinutes)))
+// Profil 2 SP1 ClampMode
+#define ParamLMG_CHP2_SP1_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP1_ClampMode)))
+// Profil 2 SP1 ClampHour
+#define ParamLMG_CHP2_SP1_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP1_ClampHour)))
+// Profil 2 SP1 ClampMinute
+#define ParamLMG_CHP2_SP1_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP1_ClampMinute)))
+// Profil 2 SP1 Kelvin
+#define ParamLMG_CHP2_SP1_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP2_SP1_Kelvin)))
+// Profil 2 SP1 Brightness
+#define ParamLMG_CHP2_SP1_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP1_Brightness)))
+// Profil 2 SP1 ExtColorTempMode
+#define ParamLMG_CHP2_SP1_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP1_ExtColorTempMode)))
+// Profil 2 SP1 ExtMixPercent
+#define ParamLMG_CHP2_SP1_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP1_ExtMixPercent)))
+// Profil 2 SP2 Active
+#define ParamLMG_CHP2_SP2_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP2_Active)) & LMG_CHP2_SP2_ActiveMask))
+// Profil 2 SP2 AnchorType
+#define ParamLMG_CHP2_SP2_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP2_AnchorType)))
+// Profil 2 SP2 Hour
+#define ParamLMG_CHP2_SP2_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP2_Hour)))
+// Profil 2 SP2 Minute
+#define ParamLMG_CHP2_SP2_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP2_Minute)))
+// Profil 2 SP2 OffsetMinutes
+#define ParamLMG_CHP2_SP2_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP2_SP2_OffsetMinutes)))
+// Profil 2 SP2 ClampMode
+#define ParamLMG_CHP2_SP2_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP2_ClampMode)))
+// Profil 2 SP2 ClampHour
+#define ParamLMG_CHP2_SP2_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP2_ClampHour)))
+// Profil 2 SP2 ClampMinute
+#define ParamLMG_CHP2_SP2_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP2_ClampMinute)))
+// Profil 2 SP2 Kelvin
+#define ParamLMG_CHP2_SP2_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP2_SP2_Kelvin)))
+// Profil 2 SP2 Brightness
+#define ParamLMG_CHP2_SP2_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP2_Brightness)))
+// Profil 2 SP2 ExtColorTempMode
+#define ParamLMG_CHP2_SP2_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP2_ExtColorTempMode)))
+// Profil 2 SP2 ExtMixPercent
+#define ParamLMG_CHP2_SP2_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP2_ExtMixPercent)))
+// Profil 2 SP3 Active
+#define ParamLMG_CHP2_SP3_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP3_Active)) & LMG_CHP2_SP3_ActiveMask))
+// Profil 2 SP3 AnchorType
+#define ParamLMG_CHP2_SP3_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP3_AnchorType)))
+// Profil 2 SP3 Hour
+#define ParamLMG_CHP2_SP3_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP3_Hour)))
+// Profil 2 SP3 Minute
+#define ParamLMG_CHP2_SP3_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP3_Minute)))
+// Profil 2 SP3 OffsetMinutes
+#define ParamLMG_CHP2_SP3_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP2_SP3_OffsetMinutes)))
+// Profil 2 SP3 ClampMode
+#define ParamLMG_CHP2_SP3_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP3_ClampMode)))
+// Profil 2 SP3 ClampHour
+#define ParamLMG_CHP2_SP3_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP3_ClampHour)))
+// Profil 2 SP3 ClampMinute
+#define ParamLMG_CHP2_SP3_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP3_ClampMinute)))
+// Profil 2 SP3 Kelvin
+#define ParamLMG_CHP2_SP3_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP2_SP3_Kelvin)))
+// Profil 2 SP3 Brightness
+#define ParamLMG_CHP2_SP3_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP3_Brightness)))
+// Profil 2 SP3 ExtColorTempMode
+#define ParamLMG_CHP2_SP3_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP3_ExtColorTempMode)))
+// Profil 2 SP3 ExtMixPercent
+#define ParamLMG_CHP2_SP3_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP3_ExtMixPercent)))
+// Profil 2 SP4 Active
+#define ParamLMG_CHP2_SP4_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP4_Active)) & LMG_CHP2_SP4_ActiveMask))
+// Profil 2 SP4 AnchorType
+#define ParamLMG_CHP2_SP4_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP4_AnchorType)))
+// Profil 2 SP4 Hour
+#define ParamLMG_CHP2_SP4_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP4_Hour)))
+// Profil 2 SP4 Minute
+#define ParamLMG_CHP2_SP4_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP4_Minute)))
+// Profil 2 SP4 OffsetMinutes
+#define ParamLMG_CHP2_SP4_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP2_SP4_OffsetMinutes)))
+// Profil 2 SP4 ClampMode
+#define ParamLMG_CHP2_SP4_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP4_ClampMode)))
+// Profil 2 SP4 ClampHour
+#define ParamLMG_CHP2_SP4_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP4_ClampHour)))
+// Profil 2 SP4 ClampMinute
+#define ParamLMG_CHP2_SP4_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP4_ClampMinute)))
+// Profil 2 SP4 Kelvin
+#define ParamLMG_CHP2_SP4_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP2_SP4_Kelvin)))
+// Profil 2 SP4 Brightness
+#define ParamLMG_CHP2_SP4_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP4_Brightness)))
+// Profil 2 SP4 ExtColorTempMode
+#define ParamLMG_CHP2_SP4_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP4_ExtColorTempMode)))
+// Profil 2 SP4 ExtMixPercent
+#define ParamLMG_CHP2_SP4_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP4_ExtMixPercent)))
+// Profil 2 SP5 Active
+#define ParamLMG_CHP2_SP5_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP5_Active)) & LMG_CHP2_SP5_ActiveMask))
+// Profil 2 SP5 AnchorType
+#define ParamLMG_CHP2_SP5_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP5_AnchorType)))
+// Profil 2 SP5 Hour
+#define ParamLMG_CHP2_SP5_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP5_Hour)))
+// Profil 2 SP5 Minute
+#define ParamLMG_CHP2_SP5_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP5_Minute)))
+// Profil 2 SP5 OffsetMinutes
+#define ParamLMG_CHP2_SP5_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP2_SP5_OffsetMinutes)))
+// Profil 2 SP5 ClampMode
+#define ParamLMG_CHP2_SP5_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP5_ClampMode)))
+// Profil 2 SP5 ClampHour
+#define ParamLMG_CHP2_SP5_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP5_ClampHour)))
+// Profil 2 SP5 ClampMinute
+#define ParamLMG_CHP2_SP5_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP5_ClampMinute)))
+// Profil 2 SP5 Kelvin
+#define ParamLMG_CHP2_SP5_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP2_SP5_Kelvin)))
+// Profil 2 SP5 Brightness
+#define ParamLMG_CHP2_SP5_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP5_Brightness)))
+// Profil 2 SP5 ExtColorTempMode
+#define ParamLMG_CHP2_SP5_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP5_ExtColorTempMode)))
+// Profil 2 SP5 ExtMixPercent
+#define ParamLMG_CHP2_SP5_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP5_ExtMixPercent)))
+// Profil 2 SP6 Active
+#define ParamLMG_CHP2_SP6_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP6_Active)) & LMG_CHP2_SP6_ActiveMask))
+// Profil 2 SP6 AnchorType
+#define ParamLMG_CHP2_SP6_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP6_AnchorType)))
+// Profil 2 SP6 Hour
+#define ParamLMG_CHP2_SP6_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP6_Hour)))
+// Profil 2 SP6 Minute
+#define ParamLMG_CHP2_SP6_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP6_Minute)))
+// Profil 2 SP6 OffsetMinutes
+#define ParamLMG_CHP2_SP6_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP2_SP6_OffsetMinutes)))
+// Profil 2 SP6 ClampMode
+#define ParamLMG_CHP2_SP6_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP6_ClampMode)))
+// Profil 2 SP6 ClampHour
+#define ParamLMG_CHP2_SP6_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP6_ClampHour)))
+// Profil 2 SP6 ClampMinute
+#define ParamLMG_CHP2_SP6_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP6_ClampMinute)))
+// Profil 2 SP6 Kelvin
+#define ParamLMG_CHP2_SP6_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP2_SP6_Kelvin)))
+// Profil 2 SP6 Brightness
+#define ParamLMG_CHP2_SP6_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP6_Brightness)))
+// Profil 2 SP6 ExtColorTempMode
+#define ParamLMG_CHP2_SP6_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP6_ExtColorTempMode)))
+// Profil 2 SP6 ExtMixPercent
+#define ParamLMG_CHP2_SP6_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP6_ExtMixPercent)))
+// Profil 2 SP7 Active
+#define ParamLMG_CHP2_SP7_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP7_Active)) & LMG_CHP2_SP7_ActiveMask))
+// Profil 2 SP7 AnchorType
+#define ParamLMG_CHP2_SP7_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP7_AnchorType)))
+// Profil 2 SP7 Hour
+#define ParamLMG_CHP2_SP7_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP7_Hour)))
+// Profil 2 SP7 Minute
+#define ParamLMG_CHP2_SP7_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP7_Minute)))
+// Profil 2 SP7 OffsetMinutes
+#define ParamLMG_CHP2_SP7_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP2_SP7_OffsetMinutes)))
+// Profil 2 SP7 ClampMode
+#define ParamLMG_CHP2_SP7_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP7_ClampMode)))
+// Profil 2 SP7 ClampHour
+#define ParamLMG_CHP2_SP7_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP7_ClampHour)))
+// Profil 2 SP7 ClampMinute
+#define ParamLMG_CHP2_SP7_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP7_ClampMinute)))
+// Profil 2 SP7 Kelvin
+#define ParamLMG_CHP2_SP7_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP2_SP7_Kelvin)))
+// Profil 2 SP7 Brightness
+#define ParamLMG_CHP2_SP7_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP7_Brightness)))
+// Profil 2 SP7 ExtColorTempMode
+#define ParamLMG_CHP2_SP7_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP7_ExtColorTempMode)))
+// Profil 2 SP7 ExtMixPercent
+#define ParamLMG_CHP2_SP7_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP7_ExtMixPercent)))
+// Profil 2 SP8 Active
+#define ParamLMG_CHP2_SP8_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP8_Active)) & LMG_CHP2_SP8_ActiveMask))
+// Profil 2 SP8 AnchorType
+#define ParamLMG_CHP2_SP8_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP8_AnchorType)))
+// Profil 2 SP8 Hour
+#define ParamLMG_CHP2_SP8_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP8_Hour)))
+// Profil 2 SP8 Minute
+#define ParamLMG_CHP2_SP8_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP8_Minute)))
+// Profil 2 SP8 OffsetMinutes
+#define ParamLMG_CHP2_SP8_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP2_SP8_OffsetMinutes)))
+// Profil 2 SP8 ClampMode
+#define ParamLMG_CHP2_SP8_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP8_ClampMode)))
+// Profil 2 SP8 ClampHour
+#define ParamLMG_CHP2_SP8_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP8_ClampHour)))
+// Profil 2 SP8 ClampMinute
+#define ParamLMG_CHP2_SP8_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP8_ClampMinute)))
+// Profil 2 SP8 Kelvin
+#define ParamLMG_CHP2_SP8_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP2_SP8_Kelvin)))
+// Profil 2 SP8 Brightness
+#define ParamLMG_CHP2_SP8_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP8_Brightness)))
+// Profil 2 SP8 ExtColorTempMode
+#define ParamLMG_CHP2_SP8_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP8_ExtColorTempMode)))
+// Profil 2 SP8 ExtMixPercent
+#define ParamLMG_CHP2_SP8_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP8_ExtMixPercent)))
+// Profil 2 SP9 Active
+#define ParamLMG_CHP2_SP9_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP9_Active)) & LMG_CHP2_SP9_ActiveMask))
+// Profil 2 SP9 AnchorType
+#define ParamLMG_CHP2_SP9_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP9_AnchorType)))
+// Profil 2 SP9 Hour
+#define ParamLMG_CHP2_SP9_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP9_Hour)))
+// Profil 2 SP9 Minute
+#define ParamLMG_CHP2_SP9_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP9_Minute)))
+// Profil 2 SP9 OffsetMinutes
+#define ParamLMG_CHP2_SP9_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP2_SP9_OffsetMinutes)))
+// Profil 2 SP9 ClampMode
+#define ParamLMG_CHP2_SP9_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP9_ClampMode)))
+// Profil 2 SP9 ClampHour
+#define ParamLMG_CHP2_SP9_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP9_ClampHour)))
+// Profil 2 SP9 ClampMinute
+#define ParamLMG_CHP2_SP9_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP9_ClampMinute)))
+// Profil 2 SP9 Kelvin
+#define ParamLMG_CHP2_SP9_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP2_SP9_Kelvin)))
+// Profil 2 SP9 Brightness
+#define ParamLMG_CHP2_SP9_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP9_Brightness)))
+// Profil 2 SP9 ExtColorTempMode
+#define ParamLMG_CHP2_SP9_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP9_ExtColorTempMode)))
+// Profil 2 SP9 ExtMixPercent
+#define ParamLMG_CHP2_SP9_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP9_ExtMixPercent)))
+// Profil 2 SP10 Active
+#define ParamLMG_CHP2_SP10_Active                    ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP10_Active)) & LMG_CHP2_SP10_ActiveMask))
+// Profil 2 SP10 AnchorType
+#define ParamLMG_CHP2_SP10_AnchorType                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP10_AnchorType)))
+// Profil 2 SP10 Hour
+#define ParamLMG_CHP2_SP10_Hour                      (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP10_Hour)))
+// Profil 2 SP10 Minute
+#define ParamLMG_CHP2_SP10_Minute                    (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP10_Minute)))
+// Profil 2 SP10 OffsetMinutes
+#define ParamLMG_CHP2_SP10_OffsetMinutes             ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP2_SP10_OffsetMinutes)))
+// Profil 2 SP10 ClampMode
+#define ParamLMG_CHP2_SP10_ClampMode                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP10_ClampMode)))
+// Profil 2 SP10 ClampHour
+#define ParamLMG_CHP2_SP10_ClampHour                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP10_ClampHour)))
+// Profil 2 SP10 ClampMinute
+#define ParamLMG_CHP2_SP10_ClampMinute               (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP10_ClampMinute)))
+// Profil 2 SP10 Kelvin
+#define ParamLMG_CHP2_SP10_Kelvin                    (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP2_SP10_Kelvin)))
+// Profil 2 SP10 Brightness
+#define ParamLMG_CHP2_SP10_Brightness                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP10_Brightness)))
+// Profil 2 SP10 ExtColorTempMode
+#define ParamLMG_CHP2_SP10_ExtColorTempMode          (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP10_ExtColorTempMode)))
+// Profil 2 SP10 ExtMixPercent
+#define ParamLMG_CHP2_SP10_ExtMixPercent             (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP2_SP10_ExtMixPercent)))
+// Profil 3 SP1 Active
+#define ParamLMG_CHP3_SP1_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP1_Active)) & LMG_CHP3_SP1_ActiveMask))
+// Profil 3 SP1 AnchorType
+#define ParamLMG_CHP3_SP1_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP1_AnchorType)))
+// Profil 3 SP1 Hour
+#define ParamLMG_CHP3_SP1_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP1_Hour)))
+// Profil 3 SP1 Minute
+#define ParamLMG_CHP3_SP1_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP1_Minute)))
+// Profil 3 SP1 OffsetMinutes
+#define ParamLMG_CHP3_SP1_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP3_SP1_OffsetMinutes)))
+// Profil 3 SP1 ClampMode
+#define ParamLMG_CHP3_SP1_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP1_ClampMode)))
+// Profil 3 SP1 ClampHour
+#define ParamLMG_CHP3_SP1_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP1_ClampHour)))
+// Profil 3 SP1 ClampMinute
+#define ParamLMG_CHP3_SP1_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP1_ClampMinute)))
+// Profil 3 SP1 Kelvin
+#define ParamLMG_CHP3_SP1_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP3_SP1_Kelvin)))
+// Profil 3 SP1 Brightness
+#define ParamLMG_CHP3_SP1_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP1_Brightness)))
+// Profil 3 SP1 ExtColorTempMode
+#define ParamLMG_CHP3_SP1_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP1_ExtColorTempMode)))
+// Profil 3 SP1 ExtMixPercent
+#define ParamLMG_CHP3_SP1_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP1_ExtMixPercent)))
+// Profil 3 SP2 Active
+#define ParamLMG_CHP3_SP2_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP2_Active)) & LMG_CHP3_SP2_ActiveMask))
+// Profil 3 SP2 AnchorType
+#define ParamLMG_CHP3_SP2_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP2_AnchorType)))
+// Profil 3 SP2 Hour
+#define ParamLMG_CHP3_SP2_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP2_Hour)))
+// Profil 3 SP2 Minute
+#define ParamLMG_CHP3_SP2_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP2_Minute)))
+// Profil 3 SP2 OffsetMinutes
+#define ParamLMG_CHP3_SP2_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP3_SP2_OffsetMinutes)))
+// Profil 3 SP2 ClampMode
+#define ParamLMG_CHP3_SP2_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP2_ClampMode)))
+// Profil 3 SP2 ClampHour
+#define ParamLMG_CHP3_SP2_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP2_ClampHour)))
+// Profil 3 SP2 ClampMinute
+#define ParamLMG_CHP3_SP2_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP2_ClampMinute)))
+// Profil 3 SP2 Kelvin
+#define ParamLMG_CHP3_SP2_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP3_SP2_Kelvin)))
+// Profil 3 SP2 Brightness
+#define ParamLMG_CHP3_SP2_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP2_Brightness)))
+// Profil 3 SP2 ExtColorTempMode
+#define ParamLMG_CHP3_SP2_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP2_ExtColorTempMode)))
+// Profil 3 SP2 ExtMixPercent
+#define ParamLMG_CHP3_SP2_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP2_ExtMixPercent)))
+// Profil 3 SP3 Active
+#define ParamLMG_CHP3_SP3_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP3_Active)) & LMG_CHP3_SP3_ActiveMask))
+// Profil 3 SP3 AnchorType
+#define ParamLMG_CHP3_SP3_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP3_AnchorType)))
+// Profil 3 SP3 Hour
+#define ParamLMG_CHP3_SP3_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP3_Hour)))
+// Profil 3 SP3 Minute
+#define ParamLMG_CHP3_SP3_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP3_Minute)))
+// Profil 3 SP3 OffsetMinutes
+#define ParamLMG_CHP3_SP3_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP3_SP3_OffsetMinutes)))
+// Profil 3 SP3 ClampMode
+#define ParamLMG_CHP3_SP3_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP3_ClampMode)))
+// Profil 3 SP3 ClampHour
+#define ParamLMG_CHP3_SP3_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP3_ClampHour)))
+// Profil 3 SP3 ClampMinute
+#define ParamLMG_CHP3_SP3_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP3_ClampMinute)))
+// Profil 3 SP3 Kelvin
+#define ParamLMG_CHP3_SP3_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP3_SP3_Kelvin)))
+// Profil 3 SP3 Brightness
+#define ParamLMG_CHP3_SP3_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP3_Brightness)))
+// Profil 3 SP3 ExtColorTempMode
+#define ParamLMG_CHP3_SP3_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP3_ExtColorTempMode)))
+// Profil 3 SP3 ExtMixPercent
+#define ParamLMG_CHP3_SP3_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP3_ExtMixPercent)))
+// Profil 3 SP4 Active
+#define ParamLMG_CHP3_SP4_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP4_Active)) & LMG_CHP3_SP4_ActiveMask))
+// Profil 3 SP4 AnchorType
+#define ParamLMG_CHP3_SP4_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP4_AnchorType)))
+// Profil 3 SP4 Hour
+#define ParamLMG_CHP3_SP4_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP4_Hour)))
+// Profil 3 SP4 Minute
+#define ParamLMG_CHP3_SP4_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP4_Minute)))
+// Profil 3 SP4 OffsetMinutes
+#define ParamLMG_CHP3_SP4_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP3_SP4_OffsetMinutes)))
+// Profil 3 SP4 ClampMode
+#define ParamLMG_CHP3_SP4_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP4_ClampMode)))
+// Profil 3 SP4 ClampHour
+#define ParamLMG_CHP3_SP4_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP4_ClampHour)))
+// Profil 3 SP4 ClampMinute
+#define ParamLMG_CHP3_SP4_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP4_ClampMinute)))
+// Profil 3 SP4 Kelvin
+#define ParamLMG_CHP3_SP4_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP3_SP4_Kelvin)))
+// Profil 3 SP4 Brightness
+#define ParamLMG_CHP3_SP4_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP4_Brightness)))
+// Profil 3 SP4 ExtColorTempMode
+#define ParamLMG_CHP3_SP4_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP4_ExtColorTempMode)))
+// Profil 3 SP4 ExtMixPercent
+#define ParamLMG_CHP3_SP4_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP4_ExtMixPercent)))
+// Profil 3 SP5 Active
+#define ParamLMG_CHP3_SP5_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP5_Active)) & LMG_CHP3_SP5_ActiveMask))
+// Profil 3 SP5 AnchorType
+#define ParamLMG_CHP3_SP5_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP5_AnchorType)))
+// Profil 3 SP5 Hour
+#define ParamLMG_CHP3_SP5_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP5_Hour)))
+// Profil 3 SP5 Minute
+#define ParamLMG_CHP3_SP5_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP5_Minute)))
+// Profil 3 SP5 OffsetMinutes
+#define ParamLMG_CHP3_SP5_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP3_SP5_OffsetMinutes)))
+// Profil 3 SP5 ClampMode
+#define ParamLMG_CHP3_SP5_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP5_ClampMode)))
+// Profil 3 SP5 ClampHour
+#define ParamLMG_CHP3_SP5_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP5_ClampHour)))
+// Profil 3 SP5 ClampMinute
+#define ParamLMG_CHP3_SP5_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP5_ClampMinute)))
+// Profil 3 SP5 Kelvin
+#define ParamLMG_CHP3_SP5_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP3_SP5_Kelvin)))
+// Profil 3 SP5 Brightness
+#define ParamLMG_CHP3_SP5_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP5_Brightness)))
+// Profil 3 SP5 ExtColorTempMode
+#define ParamLMG_CHP3_SP5_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP5_ExtColorTempMode)))
+// Profil 3 SP5 ExtMixPercent
+#define ParamLMG_CHP3_SP5_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP5_ExtMixPercent)))
+// Profil 3 SP6 Active
+#define ParamLMG_CHP3_SP6_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP6_Active)) & LMG_CHP3_SP6_ActiveMask))
+// Profil 3 SP6 AnchorType
+#define ParamLMG_CHP3_SP6_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP6_AnchorType)))
+// Profil 3 SP6 Hour
+#define ParamLMG_CHP3_SP6_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP6_Hour)))
+// Profil 3 SP6 Minute
+#define ParamLMG_CHP3_SP6_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP6_Minute)))
+// Profil 3 SP6 OffsetMinutes
+#define ParamLMG_CHP3_SP6_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP3_SP6_OffsetMinutes)))
+// Profil 3 SP6 ClampMode
+#define ParamLMG_CHP3_SP6_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP6_ClampMode)))
+// Profil 3 SP6 ClampHour
+#define ParamLMG_CHP3_SP6_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP6_ClampHour)))
+// Profil 3 SP6 ClampMinute
+#define ParamLMG_CHP3_SP6_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP6_ClampMinute)))
+// Profil 3 SP6 Kelvin
+#define ParamLMG_CHP3_SP6_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP3_SP6_Kelvin)))
+// Profil 3 SP6 Brightness
+#define ParamLMG_CHP3_SP6_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP6_Brightness)))
+// Profil 3 SP6 ExtColorTempMode
+#define ParamLMG_CHP3_SP6_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP6_ExtColorTempMode)))
+// Profil 3 SP6 ExtMixPercent
+#define ParamLMG_CHP3_SP6_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP6_ExtMixPercent)))
+// Profil 3 SP7 Active
+#define ParamLMG_CHP3_SP7_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP7_Active)) & LMG_CHP3_SP7_ActiveMask))
+// Profil 3 SP7 AnchorType
+#define ParamLMG_CHP3_SP7_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP7_AnchorType)))
+// Profil 3 SP7 Hour
+#define ParamLMG_CHP3_SP7_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP7_Hour)))
+// Profil 3 SP7 Minute
+#define ParamLMG_CHP3_SP7_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP7_Minute)))
+// Profil 3 SP7 OffsetMinutes
+#define ParamLMG_CHP3_SP7_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP3_SP7_OffsetMinutes)))
+// Profil 3 SP7 ClampMode
+#define ParamLMG_CHP3_SP7_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP7_ClampMode)))
+// Profil 3 SP7 ClampHour
+#define ParamLMG_CHP3_SP7_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP7_ClampHour)))
+// Profil 3 SP7 ClampMinute
+#define ParamLMG_CHP3_SP7_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP7_ClampMinute)))
+// Profil 3 SP7 Kelvin
+#define ParamLMG_CHP3_SP7_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP3_SP7_Kelvin)))
+// Profil 3 SP7 Brightness
+#define ParamLMG_CHP3_SP7_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP7_Brightness)))
+// Profil 3 SP7 ExtColorTempMode
+#define ParamLMG_CHP3_SP7_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP7_ExtColorTempMode)))
+// Profil 3 SP7 ExtMixPercent
+#define ParamLMG_CHP3_SP7_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP7_ExtMixPercent)))
+// Profil 3 SP8 Active
+#define ParamLMG_CHP3_SP8_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP8_Active)) & LMG_CHP3_SP8_ActiveMask))
+// Profil 3 SP8 AnchorType
+#define ParamLMG_CHP3_SP8_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP8_AnchorType)))
+// Profil 3 SP8 Hour
+#define ParamLMG_CHP3_SP8_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP8_Hour)))
+// Profil 3 SP8 Minute
+#define ParamLMG_CHP3_SP8_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP8_Minute)))
+// Profil 3 SP8 OffsetMinutes
+#define ParamLMG_CHP3_SP8_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP3_SP8_OffsetMinutes)))
+// Profil 3 SP8 ClampMode
+#define ParamLMG_CHP3_SP8_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP8_ClampMode)))
+// Profil 3 SP8 ClampHour
+#define ParamLMG_CHP3_SP8_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP8_ClampHour)))
+// Profil 3 SP8 ClampMinute
+#define ParamLMG_CHP3_SP8_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP8_ClampMinute)))
+// Profil 3 SP8 Kelvin
+#define ParamLMG_CHP3_SP8_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP3_SP8_Kelvin)))
+// Profil 3 SP8 Brightness
+#define ParamLMG_CHP3_SP8_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP8_Brightness)))
+// Profil 3 SP8 ExtColorTempMode
+#define ParamLMG_CHP3_SP8_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP8_ExtColorTempMode)))
+// Profil 3 SP8 ExtMixPercent
+#define ParamLMG_CHP3_SP8_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP8_ExtMixPercent)))
+// Profil 3 SP9 Active
+#define ParamLMG_CHP3_SP9_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP9_Active)) & LMG_CHP3_SP9_ActiveMask))
+// Profil 3 SP9 AnchorType
+#define ParamLMG_CHP3_SP9_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP9_AnchorType)))
+// Profil 3 SP9 Hour
+#define ParamLMG_CHP3_SP9_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP9_Hour)))
+// Profil 3 SP9 Minute
+#define ParamLMG_CHP3_SP9_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP9_Minute)))
+// Profil 3 SP9 OffsetMinutes
+#define ParamLMG_CHP3_SP9_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP3_SP9_OffsetMinutes)))
+// Profil 3 SP9 ClampMode
+#define ParamLMG_CHP3_SP9_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP9_ClampMode)))
+// Profil 3 SP9 ClampHour
+#define ParamLMG_CHP3_SP9_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP9_ClampHour)))
+// Profil 3 SP9 ClampMinute
+#define ParamLMG_CHP3_SP9_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP9_ClampMinute)))
+// Profil 3 SP9 Kelvin
+#define ParamLMG_CHP3_SP9_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP3_SP9_Kelvin)))
+// Profil 3 SP9 Brightness
+#define ParamLMG_CHP3_SP9_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP9_Brightness)))
+// Profil 3 SP9 ExtColorTempMode
+#define ParamLMG_CHP3_SP9_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP9_ExtColorTempMode)))
+// Profil 3 SP9 ExtMixPercent
+#define ParamLMG_CHP3_SP9_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP9_ExtMixPercent)))
+// Profil 3 SP10 Active
+#define ParamLMG_CHP3_SP10_Active                    ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP10_Active)) & LMG_CHP3_SP10_ActiveMask))
+// Profil 3 SP10 AnchorType
+#define ParamLMG_CHP3_SP10_AnchorType                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP10_AnchorType)))
+// Profil 3 SP10 Hour
+#define ParamLMG_CHP3_SP10_Hour                      (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP10_Hour)))
+// Profil 3 SP10 Minute
+#define ParamLMG_CHP3_SP10_Minute                    (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP10_Minute)))
+// Profil 3 SP10 OffsetMinutes
+#define ParamLMG_CHP3_SP10_OffsetMinutes             ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP3_SP10_OffsetMinutes)))
+// Profil 3 SP10 ClampMode
+#define ParamLMG_CHP3_SP10_ClampMode                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP10_ClampMode)))
+// Profil 3 SP10 ClampHour
+#define ParamLMG_CHP3_SP10_ClampHour                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP10_ClampHour)))
+// Profil 3 SP10 ClampMinute
+#define ParamLMG_CHP3_SP10_ClampMinute               (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP10_ClampMinute)))
+// Profil 3 SP10 Kelvin
+#define ParamLMG_CHP3_SP10_Kelvin                    (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP3_SP10_Kelvin)))
+// Profil 3 SP10 Brightness
+#define ParamLMG_CHP3_SP10_Brightness                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP10_Brightness)))
+// Profil 3 SP10 ExtColorTempMode
+#define ParamLMG_CHP3_SP10_ExtColorTempMode          (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP10_ExtColorTempMode)))
+// Profil 3 SP10 ExtMixPercent
+#define ParamLMG_CHP3_SP10_ExtMixPercent             (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP3_SP10_ExtMixPercent)))
+// Profil 4 SP1 Active
+#define ParamLMG_CHP4_SP1_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP1_Active)) & LMG_CHP4_SP1_ActiveMask))
+// Profil 4 SP1 AnchorType
+#define ParamLMG_CHP4_SP1_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP1_AnchorType)))
+// Profil 4 SP1 Hour
+#define ParamLMG_CHP4_SP1_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP1_Hour)))
+// Profil 4 SP1 Minute
+#define ParamLMG_CHP4_SP1_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP1_Minute)))
+// Profil 4 SP1 OffsetMinutes
+#define ParamLMG_CHP4_SP1_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP4_SP1_OffsetMinutes)))
+// Profil 4 SP1 ClampMode
+#define ParamLMG_CHP4_SP1_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP1_ClampMode)))
+// Profil 4 SP1 ClampHour
+#define ParamLMG_CHP4_SP1_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP1_ClampHour)))
+// Profil 4 SP1 ClampMinute
+#define ParamLMG_CHP4_SP1_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP1_ClampMinute)))
+// Profil 4 SP1 Kelvin
+#define ParamLMG_CHP4_SP1_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP4_SP1_Kelvin)))
+// Profil 4 SP1 Brightness
+#define ParamLMG_CHP4_SP1_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP1_Brightness)))
+// Profil 4 SP1 ExtColorTempMode
+#define ParamLMG_CHP4_SP1_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP1_ExtColorTempMode)))
+// Profil 4 SP1 ExtMixPercent
+#define ParamLMG_CHP4_SP1_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP1_ExtMixPercent)))
+// Profil 4 SP2 Active
+#define ParamLMG_CHP4_SP2_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP2_Active)) & LMG_CHP4_SP2_ActiveMask))
+// Profil 4 SP2 AnchorType
+#define ParamLMG_CHP4_SP2_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP2_AnchorType)))
+// Profil 4 SP2 Hour
+#define ParamLMG_CHP4_SP2_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP2_Hour)))
+// Profil 4 SP2 Minute
+#define ParamLMG_CHP4_SP2_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP2_Minute)))
+// Profil 4 SP2 OffsetMinutes
+#define ParamLMG_CHP4_SP2_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP4_SP2_OffsetMinutes)))
+// Profil 4 SP2 ClampMode
+#define ParamLMG_CHP4_SP2_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP2_ClampMode)))
+// Profil 4 SP2 ClampHour
+#define ParamLMG_CHP4_SP2_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP2_ClampHour)))
+// Profil 4 SP2 ClampMinute
+#define ParamLMG_CHP4_SP2_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP2_ClampMinute)))
+// Profil 4 SP2 Kelvin
+#define ParamLMG_CHP4_SP2_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP4_SP2_Kelvin)))
+// Profil 4 SP2 Brightness
+#define ParamLMG_CHP4_SP2_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP2_Brightness)))
+// Profil 4 SP2 ExtColorTempMode
+#define ParamLMG_CHP4_SP2_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP2_ExtColorTempMode)))
+// Profil 4 SP2 ExtMixPercent
+#define ParamLMG_CHP4_SP2_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP2_ExtMixPercent)))
+// Profil 4 SP3 Active
+#define ParamLMG_CHP4_SP3_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP3_Active)) & LMG_CHP4_SP3_ActiveMask))
+// Profil 4 SP3 AnchorType
+#define ParamLMG_CHP4_SP3_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP3_AnchorType)))
+// Profil 4 SP3 Hour
+#define ParamLMG_CHP4_SP3_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP3_Hour)))
+// Profil 4 SP3 Minute
+#define ParamLMG_CHP4_SP3_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP3_Minute)))
+// Profil 4 SP3 OffsetMinutes
+#define ParamLMG_CHP4_SP3_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP4_SP3_OffsetMinutes)))
+// Profil 4 SP3 ClampMode
+#define ParamLMG_CHP4_SP3_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP3_ClampMode)))
+// Profil 4 SP3 ClampHour
+#define ParamLMG_CHP4_SP3_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP3_ClampHour)))
+// Profil 4 SP3 ClampMinute
+#define ParamLMG_CHP4_SP3_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP3_ClampMinute)))
+// Profil 4 SP3 Kelvin
+#define ParamLMG_CHP4_SP3_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP4_SP3_Kelvin)))
+// Profil 4 SP3 Brightness
+#define ParamLMG_CHP4_SP3_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP3_Brightness)))
+// Profil 4 SP3 ExtColorTempMode
+#define ParamLMG_CHP4_SP3_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP3_ExtColorTempMode)))
+// Profil 4 SP3 ExtMixPercent
+#define ParamLMG_CHP4_SP3_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP3_ExtMixPercent)))
+// Profil 4 SP4 Active
+#define ParamLMG_CHP4_SP4_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP4_Active)) & LMG_CHP4_SP4_ActiveMask))
+// Profil 4 SP4 AnchorType
+#define ParamLMG_CHP4_SP4_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP4_AnchorType)))
+// Profil 4 SP4 Hour
+#define ParamLMG_CHP4_SP4_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP4_Hour)))
+// Profil 4 SP4 Minute
+#define ParamLMG_CHP4_SP4_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP4_Minute)))
+// Profil 4 SP4 OffsetMinutes
+#define ParamLMG_CHP4_SP4_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP4_SP4_OffsetMinutes)))
+// Profil 4 SP4 ClampMode
+#define ParamLMG_CHP4_SP4_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP4_ClampMode)))
+// Profil 4 SP4 ClampHour
+#define ParamLMG_CHP4_SP4_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP4_ClampHour)))
+// Profil 4 SP4 ClampMinute
+#define ParamLMG_CHP4_SP4_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP4_ClampMinute)))
+// Profil 4 SP4 Kelvin
+#define ParamLMG_CHP4_SP4_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP4_SP4_Kelvin)))
+// Profil 4 SP4 Brightness
+#define ParamLMG_CHP4_SP4_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP4_Brightness)))
+// Profil 4 SP4 ExtColorTempMode
+#define ParamLMG_CHP4_SP4_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP4_ExtColorTempMode)))
+// Profil 4 SP4 ExtMixPercent
+#define ParamLMG_CHP4_SP4_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP4_ExtMixPercent)))
+// Profil 4 SP5 Active
+#define ParamLMG_CHP4_SP5_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP5_Active)) & LMG_CHP4_SP5_ActiveMask))
+// Profil 4 SP5 AnchorType
+#define ParamLMG_CHP4_SP5_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP5_AnchorType)))
+// Profil 4 SP5 Hour
+#define ParamLMG_CHP4_SP5_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP5_Hour)))
+// Profil 4 SP5 Minute
+#define ParamLMG_CHP4_SP5_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP5_Minute)))
+// Profil 4 SP5 OffsetMinutes
+#define ParamLMG_CHP4_SP5_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP4_SP5_OffsetMinutes)))
+// Profil 4 SP5 ClampMode
+#define ParamLMG_CHP4_SP5_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP5_ClampMode)))
+// Profil 4 SP5 ClampHour
+#define ParamLMG_CHP4_SP5_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP5_ClampHour)))
+// Profil 4 SP5 ClampMinute
+#define ParamLMG_CHP4_SP5_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP5_ClampMinute)))
+// Profil 4 SP5 Kelvin
+#define ParamLMG_CHP4_SP5_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP4_SP5_Kelvin)))
+// Profil 4 SP5 Brightness
+#define ParamLMG_CHP4_SP5_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP5_Brightness)))
+// Profil 4 SP5 ExtColorTempMode
+#define ParamLMG_CHP4_SP5_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP5_ExtColorTempMode)))
+// Profil 4 SP5 ExtMixPercent
+#define ParamLMG_CHP4_SP5_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP5_ExtMixPercent)))
+// Profil 4 SP6 Active
+#define ParamLMG_CHP4_SP6_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP6_Active)) & LMG_CHP4_SP6_ActiveMask))
+// Profil 4 SP6 AnchorType
+#define ParamLMG_CHP4_SP6_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP6_AnchorType)))
+// Profil 4 SP6 Hour
+#define ParamLMG_CHP4_SP6_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP6_Hour)))
+// Profil 4 SP6 Minute
+#define ParamLMG_CHP4_SP6_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP6_Minute)))
+// Profil 4 SP6 OffsetMinutes
+#define ParamLMG_CHP4_SP6_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP4_SP6_OffsetMinutes)))
+// Profil 4 SP6 ClampMode
+#define ParamLMG_CHP4_SP6_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP6_ClampMode)))
+// Profil 4 SP6 ClampHour
+#define ParamLMG_CHP4_SP6_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP6_ClampHour)))
+// Profil 4 SP6 ClampMinute
+#define ParamLMG_CHP4_SP6_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP6_ClampMinute)))
+// Profil 4 SP6 Kelvin
+#define ParamLMG_CHP4_SP6_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP4_SP6_Kelvin)))
+// Profil 4 SP6 Brightness
+#define ParamLMG_CHP4_SP6_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP6_Brightness)))
+// Profil 4 SP6 ExtColorTempMode
+#define ParamLMG_CHP4_SP6_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP6_ExtColorTempMode)))
+// Profil 4 SP6 ExtMixPercent
+#define ParamLMG_CHP4_SP6_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP6_ExtMixPercent)))
+// Profil 4 SP7 Active
+#define ParamLMG_CHP4_SP7_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP7_Active)) & LMG_CHP4_SP7_ActiveMask))
+// Profil 4 SP7 AnchorType
+#define ParamLMG_CHP4_SP7_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP7_AnchorType)))
+// Profil 4 SP7 Hour
+#define ParamLMG_CHP4_SP7_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP7_Hour)))
+// Profil 4 SP7 Minute
+#define ParamLMG_CHP4_SP7_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP7_Minute)))
+// Profil 4 SP7 OffsetMinutes
+#define ParamLMG_CHP4_SP7_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP4_SP7_OffsetMinutes)))
+// Profil 4 SP7 ClampMode
+#define ParamLMG_CHP4_SP7_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP7_ClampMode)))
+// Profil 4 SP7 ClampHour
+#define ParamLMG_CHP4_SP7_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP7_ClampHour)))
+// Profil 4 SP7 ClampMinute
+#define ParamLMG_CHP4_SP7_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP7_ClampMinute)))
+// Profil 4 SP7 Kelvin
+#define ParamLMG_CHP4_SP7_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP4_SP7_Kelvin)))
+// Profil 4 SP7 Brightness
+#define ParamLMG_CHP4_SP7_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP7_Brightness)))
+// Profil 4 SP7 ExtColorTempMode
+#define ParamLMG_CHP4_SP7_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP7_ExtColorTempMode)))
+// Profil 4 SP7 ExtMixPercent
+#define ParamLMG_CHP4_SP7_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP7_ExtMixPercent)))
+// Profil 4 SP8 Active
+#define ParamLMG_CHP4_SP8_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP8_Active)) & LMG_CHP4_SP8_ActiveMask))
+// Profil 4 SP8 AnchorType
+#define ParamLMG_CHP4_SP8_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP8_AnchorType)))
+// Profil 4 SP8 Hour
+#define ParamLMG_CHP4_SP8_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP8_Hour)))
+// Profil 4 SP8 Minute
+#define ParamLMG_CHP4_SP8_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP8_Minute)))
+// Profil 4 SP8 OffsetMinutes
+#define ParamLMG_CHP4_SP8_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP4_SP8_OffsetMinutes)))
+// Profil 4 SP8 ClampMode
+#define ParamLMG_CHP4_SP8_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP8_ClampMode)))
+// Profil 4 SP8 ClampHour
+#define ParamLMG_CHP4_SP8_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP8_ClampHour)))
+// Profil 4 SP8 ClampMinute
+#define ParamLMG_CHP4_SP8_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP8_ClampMinute)))
+// Profil 4 SP8 Kelvin
+#define ParamLMG_CHP4_SP8_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP4_SP8_Kelvin)))
+// Profil 4 SP8 Brightness
+#define ParamLMG_CHP4_SP8_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP8_Brightness)))
+// Profil 4 SP8 ExtColorTempMode
+#define ParamLMG_CHP4_SP8_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP8_ExtColorTempMode)))
+// Profil 4 SP8 ExtMixPercent
+#define ParamLMG_CHP4_SP8_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP8_ExtMixPercent)))
+// Profil 4 SP9 Active
+#define ParamLMG_CHP4_SP9_Active                     ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP9_Active)) & LMG_CHP4_SP9_ActiveMask))
+// Profil 4 SP9 AnchorType
+#define ParamLMG_CHP4_SP9_AnchorType                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP9_AnchorType)))
+// Profil 4 SP9 Hour
+#define ParamLMG_CHP4_SP9_Hour                       (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP9_Hour)))
+// Profil 4 SP9 Minute
+#define ParamLMG_CHP4_SP9_Minute                     (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP9_Minute)))
+// Profil 4 SP9 OffsetMinutes
+#define ParamLMG_CHP4_SP9_OffsetMinutes              ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP4_SP9_OffsetMinutes)))
+// Profil 4 SP9 ClampMode
+#define ParamLMG_CHP4_SP9_ClampMode                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP9_ClampMode)))
+// Profil 4 SP9 ClampHour
+#define ParamLMG_CHP4_SP9_ClampHour                  (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP9_ClampHour)))
+// Profil 4 SP9 ClampMinute
+#define ParamLMG_CHP4_SP9_ClampMinute                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP9_ClampMinute)))
+// Profil 4 SP9 Kelvin
+#define ParamLMG_CHP4_SP9_Kelvin                     (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP4_SP9_Kelvin)))
+// Profil 4 SP9 Brightness
+#define ParamLMG_CHP4_SP9_Brightness                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP9_Brightness)))
+// Profil 4 SP9 ExtColorTempMode
+#define ParamLMG_CHP4_SP9_ExtColorTempMode           (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP9_ExtColorTempMode)))
+// Profil 4 SP9 ExtMixPercent
+#define ParamLMG_CHP4_SP9_ExtMixPercent              (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP9_ExtMixPercent)))
+// Profil 4 SP10 Active
+#define ParamLMG_CHP4_SP10_Active                    ((bool)(knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP10_Active)) & LMG_CHP4_SP10_ActiveMask))
+// Profil 4 SP10 AnchorType
+#define ParamLMG_CHP4_SP10_AnchorType                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP10_AnchorType)))
+// Profil 4 SP10 Hour
+#define ParamLMG_CHP4_SP10_Hour                      (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP10_Hour)))
+// Profil 4 SP10 Minute
+#define ParamLMG_CHP4_SP10_Minute                    (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP10_Minute)))
+// Profil 4 SP10 OffsetMinutes
+#define ParamLMG_CHP4_SP10_OffsetMinutes             ((int16_t)knx.paramWord(LMG_ParamCalcIndex(LMG_CHP4_SP10_OffsetMinutes)))
+// Profil 4 SP10 ClampMode
+#define ParamLMG_CHP4_SP10_ClampMode                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP10_ClampMode)))
+// Profil 4 SP10 ClampHour
+#define ParamLMG_CHP4_SP10_ClampHour                 (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP10_ClampHour)))
+// Profil 4 SP10 ClampMinute
+#define ParamLMG_CHP4_SP10_ClampMinute               (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP10_ClampMinute)))
+// Profil 4 SP10 Kelvin
+#define ParamLMG_CHP4_SP10_Kelvin                    (knx.paramWord(LMG_ParamCalcIndex(LMG_CHP4_SP10_Kelvin)))
+// Profil 4 SP10 Brightness
+#define ParamLMG_CHP4_SP10_Brightness                (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP10_Brightness)))
+// Profil 4 SP10 ExtColorTempMode
+#define ParamLMG_CHP4_SP10_ExtColorTempMode          (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP10_ExtColorTempMode)))
+// Profil 4 SP10 ExtMixPercent
+#define ParamLMG_CHP4_SP10_ExtMixPercent             (knx.paramByte(LMG_ParamCalcIndex(LMG_CHP4_SP10_ExtMixPercent)))
 
 // deprecated
 #define LMG_KoOffset 403
 
 // Communication objects per channel (multiple occurrence)
 #define LMG_KoBlockOffset 403
-#define LMG_KoBlockSize 8
+#define LMG_KoBlockSize 22
 
 #define LMG_KoCalcNumber(index) (index + LMG_KoBlockOffset + _channelIndex * LMG_KoBlockSize)
 #define LMG_KoCalcIndex(number) ((number >= LMG_KoCalcNumber(0) && number < LMG_KoCalcNumber(LMG_KoBlockSize)) ? (number - LMG_KoBlockOffset) % LMG_KoBlockSize : -1)
@@ -645,6 +2262,20 @@
 #define LMG_KoCHAmbientLux 5
 #define LMG_KoCHDayNight 6
 #define LMG_KoCHAdaptiveActive 7
+#define LMG_KoCHStatusCombined 8
+#define LMG_KoCHLockColor 9
+#define LMG_KoCHLockBrightness 10
+#define LMG_KoCHPreviewMinutes 11
+#define LMG_KoCHPreviewColorTemp 12
+#define LMG_KoCHPreviewBrightness 13
+#define LMG_KoCHDayProgress 14
+#define LMG_KoCHDayPhase 15
+#define LMG_KoCHExtBrightnessPercent 16
+#define LMG_KoCHExtBrightnessLux 17
+#define LMG_KoCHExtColorTempKelvin 18
+#define LMG_KoCHExtColorTempScalar 19
+#define LMG_KoCHReserve1 20
+#define LMG_KoCHReserve2 21
 
 // LM %C%: Status-Soll-Helligkeit
 #define KoLMG_CHStatusBrightness                  (knx.getGroupObject(LMG_KoCalcNumber(LMG_KoCHStatusBrightness)))
@@ -662,39 +2293,67 @@
 #define KoLMG_CHDayNight                          (knx.getGroupObject(LMG_KoCalcNumber(LMG_KoCHDayNight)))
 // LM %C%: Adaptive Helligkeit aktiv
 #define KoLMG_CHAdaptiveActive                    (knx.getGroupObject(LMG_KoCalcNumber(LMG_KoCHAdaptiveActive)))
+// LM %C%: Status-Soll Kombi (Tunable White)
+#define KoLMG_CHStatusCombined                    (knx.getGroupObject(LMG_KoCalcNumber(LMG_KoCHStatusCombined)))
+// LM %C%: Sperre Farbtemperatur
+#define KoLMG_CHLockColor                         (knx.getGroupObject(LMG_KoCalcNumber(LMG_KoCHLockColor)))
+// LM %C%: Sperre Helligkeit
+#define KoLMG_CHLockBrightness                    (knx.getGroupObject(LMG_KoCalcNumber(LMG_KoCHLockBrightness)))
+// LM %C%: Vorausschau Minuten
+#define KoLMG_CHPreviewMinutes                    (knx.getGroupObject(LMG_KoCalcNumber(LMG_KoCHPreviewMinutes)))
+// LM %C%: Vorausschau Farbtemperatur
+#define KoLMG_CHPreviewColorTemp                  (knx.getGroupObject(LMG_KoCalcNumber(LMG_KoCHPreviewColorTemp)))
+// LM %C%: Vorausschau Helligkeit
+#define KoLMG_CHPreviewBrightness                 (knx.getGroupObject(LMG_KoCalcNumber(LMG_KoCHPreviewBrightness)))
+// LM %C%: Tages-Fortschritt
+#define KoLMG_CHDayProgress                       (knx.getGroupObject(LMG_KoCalcNumber(LMG_KoCHDayProgress)))
+// LM %C%: Tagesphase
+#define KoLMG_CHDayPhase                          (knx.getGroupObject(LMG_KoCalcNumber(LMG_KoCHDayPhase)))
+// LM %C%: Externe Helligkeit (Prozent)
+#define KoLMG_CHExtBrightnessPercent              (knx.getGroupObject(LMG_KoCalcNumber(LMG_KoCHExtBrightnessPercent)))
+// LM %C%: Externe Helligkeit (Lux)
+#define KoLMG_CHExtBrightnessLux                  (knx.getGroupObject(LMG_KoCalcNumber(LMG_KoCHExtBrightnessLux)))
+// LM %C%: Externe Farbtemperatur (Kelvin)
+#define KoLMG_CHExtColorTempKelvin                (knx.getGroupObject(LMG_KoCalcNumber(LMG_KoCHExtColorTempKelvin)))
+// LM %C%: Externe Farbtemperatur (Skalar)
+#define KoLMG_CHExtColorTempScalar                (knx.getGroupObject(LMG_KoCalcNumber(LMG_KoCHExtColorTempScalar)))
+// reserved
+#define KoLMG_CHReserve1                          (knx.getGroupObject(LMG_KoCalcNumber(LMG_KoCHReserve1)))
+// reserved
+#define KoLMG_CHReserve2                          (knx.getGroupObject(LMG_KoCalcNumber(LMG_KoCHReserve2)))
 
-#define HUE_HUEBridgeMode                       4502      // 8 Bits, Bit 7-0
-#define HUE_HUEBridgeIP                         4503      // IP address, 4 Byte
-#define HUE_HUEResetAuth                        4528      // 1 Bit, Bit 7
+#define HUE_HUEBridgeMode                       15336      // 8 Bits, Bit 7-0
+#define HUE_HUEBridgeIP                         15337      // IP address, 4 Byte
+#define HUE_HUEResetAuth                        15362      // 1 Bit, Bit 7
 #define     HUE_HUEResetAuthMask 0x80
 #define     HUE_HUEResetAuthShift 7
-#define HUE_HUEShowConnectionStatus             4528      // 1 Bit, Bit 6
+#define HUE_HUEShowConnectionStatus             15362      // 1 Bit, Bit 6
 #define     HUE_HUEShowConnectionStatusMask 0x40
 #define     HUE_HUEShowConnectionStatusShift 6
-#define HUE_HUEPairingWindow                    4532      // uint8_t
-#define HUE_HUESwitchOnTransitionSec            5538      // uint8_t
-#define HUE_HUESwitchOffTransitionSec           5539      // uint8_t
-#define HUE_HUEChannelCount                     4531      // uint8_t
-#define HUE_HUEHueScene1RID                     5895      // char*, 40 Byte
+#define HUE_HUEPairingWindow                    15366      // uint8_t
+#define HUE_HUESwitchOnTransitionSec            16372      // uint8_t
+#define HUE_HUESwitchOffTransitionSec           16373      // uint8_t
+#define HUE_HUEChannelCount                     15365      // uint8_t
+#define HUE_HUEHueScene1RID                     16729      // char*, 40 Byte
 #define     HUE_HUEHueScene1RIDLength 40
-#define HUE_HUEHueScene2RID                     5935      // char*, 40 Byte
+#define HUE_HUEHueScene2RID                     16769      // char*, 40 Byte
 #define     HUE_HUEHueScene2RIDLength 40
-#define HUE_HUEHueScene3RID                     5975      // char*, 40 Byte
+#define HUE_HUEHueScene3RID                     16809      // char*, 40 Byte
 #define     HUE_HUEHueScene3RIDLength 40
-#define HUE_HUEHueScene4RID                     6015      // char*, 40 Byte
+#define HUE_HUEHueScene4RID                     16849      // char*, 40 Byte
 #define     HUE_HUEHueScene4RIDLength 40
-#define HUE_HUEHueScene5RID                     6055      // char*, 40 Byte
+#define HUE_HUEHueScene5RID                     16889      // char*, 40 Byte
 #define     HUE_HUEHueScene5RIDLength 40
-#define HUE_HUEHueScene6RID                     6095      // char*, 40 Byte
+#define HUE_HUEHueScene6RID                     16929      // char*, 40 Byte
 #define     HUE_HUEHueScene6RIDLength 40
-#define HUE_HUEHueScene7RID                     6135      // char*, 40 Byte
+#define HUE_HUEHueScene7RID                     16969      // char*, 40 Byte
 #define     HUE_HUEHueScene7RIDLength 40
-#define HUE_HUEHueScene8RID                     6175      // char*, 40 Byte
+#define HUE_HUEHueScene8RID                     17009      // char*, 40 Byte
 #define     HUE_HUEHueScene8RIDLength 40
-#define HUE_HUEScenesEnable                     6215      // 1 Bit, Bit 7
+#define HUE_HUEScenesEnable                     17049      // 1 Bit, Bit 7
 #define     HUE_HUEScenesEnableMask 0x80
 #define     HUE_HUEScenesEnableShift 7
-#define HUE_HUERelDimRepeatMs                   6216      // uint16_t
+#define HUE_HUERelDimRepeatMs                   17050      // uint16_t
 
 // Bridge Erkennung
 #define ParamHUE_HUEBridgeMode                       (knx.paramByte(HUE_HUEBridgeMode))
@@ -741,8 +2400,8 @@
 // Dimmgeschwindigkeit
 #define ParamHUE_HUERelDimRepeatMs                   (knx.paramWord(HUE_HUERelDimRepeatMs))
 
-#define HUE_KoHUEConnectionStatus 531
-#define HUE_KoHUEPairingTrigger 532
+#define HUE_KoHUEConnectionStatus 758
+#define HUE_KoHUEPairingTrigger 759
 
 // Hue-Bridge: Verbindungsstatus
 #define KoHUE_HUEConnectionStatus                 (knx.getGroupObject(HUE_KoHUEConnectionStatus))
@@ -752,7 +2411,7 @@
 #define HUE_ChannelCount 32
 
 // Parameter per channel
-#define HUE_ParamBlockOffset 6218
+#define HUE_ParamBlockOffset 17052
 #define HUE_ParamBlockSize 184
 #define HUE_ParamCalcIndex(index) (index + HUE_ParamBlockOffset + _channelIndex * HUE_ParamBlockSize)
 
@@ -1490,10 +3149,10 @@
 #define ParamHUE_CHNativeHueAction                   ((bool)(knx.paramByte(HUE_ParamCalcIndex(HUE_CHNativeHueAction)) & HUE_CHNativeHueActionMask))
 
 // deprecated
-#define HUE_KoOffset 533
+#define HUE_KoOffset 760
 
 // Communication objects per channel (multiple occurrence)
-#define HUE_KoBlockOffset 533
+#define HUE_KoBlockOffset 760
 #define HUE_KoBlockSize 12
 
 #define HUE_KoCalcNumber(index) (index + HUE_KoBlockOffset + _channelIndex * HUE_KoBlockSize)
@@ -1538,272 +3197,272 @@
 // Szene
 #define KoHUE_CHScene                             (knx.getGroupObject(HUE_KoCalcNumber(HUE_KoCHScene)))
 
-#define LOG_VisibleChannels                     12106      // uint8_t
-#define LOG_VacationKo                          12107      // 1 Bit, Bit 7
+#define LOG_VisibleChannels                     22940      // uint8_t
+#define LOG_VacationKo                          22941      // 1 Bit, Bit 7
 #define     LOG_VacationKoMask 0x80
 #define     LOG_VacationKoShift 7
-#define LOG_HolidayKo                           12107      // 1 Bit, Bit 6
+#define LOG_HolidayKo                           22941      // 1 Bit, Bit 6
 #define     LOG_HolidayKoMask 0x40
 #define     LOG_HolidayKoShift 6
-#define LOG_VacationRead                        12107      // 1 Bit, Bit 5
+#define LOG_VacationRead                        22941      // 1 Bit, Bit 5
 #define     LOG_VacationReadMask 0x20
 #define     LOG_VacationReadShift 5
-#define LOG_HolidaySend                         12107      // 1 Bit, Bit 4
+#define LOG_HolidaySend                         22941      // 1 Bit, Bit 4
 #define     LOG_HolidaySendMask 0x10
 #define     LOG_HolidaySendShift 4
-#define LOG_Neujahr                             12108      // 1 Bit, Bit 7
+#define LOG_Neujahr                             22942      // 1 Bit, Bit 7
 #define     LOG_NeujahrMask 0x80
 #define     LOG_NeujahrShift 7
-#define LOG_DreiKoenige                         12108      // 1 Bit, Bit 6
+#define LOG_DreiKoenige                         22942      // 1 Bit, Bit 6
 #define     LOG_DreiKoenigeMask 0x40
 #define     LOG_DreiKoenigeShift 6
-#define LOG_Weiberfastnacht                     12108      // 1 Bit, Bit 5
+#define LOG_Weiberfastnacht                     22942      // 1 Bit, Bit 5
 #define     LOG_WeiberfastnachtMask 0x20
 #define     LOG_WeiberfastnachtShift 5
-#define LOG_Rosenmontag                         12108      // 1 Bit, Bit 4
+#define LOG_Rosenmontag                         22942      // 1 Bit, Bit 4
 #define     LOG_RosenmontagMask 0x10
 #define     LOG_RosenmontagShift 4
-#define LOG_Fastnachtsdienstag                  12108      // 1 Bit, Bit 3
+#define LOG_Fastnachtsdienstag                  22942      // 1 Bit, Bit 3
 #define     LOG_FastnachtsdienstagMask 0x08
 #define     LOG_FastnachtsdienstagShift 3
-#define LOG_Aschermittwoch                      12108      // 1 Bit, Bit 2
+#define LOG_Aschermittwoch                      22942      // 1 Bit, Bit 2
 #define     LOG_AschermittwochMask 0x04
 #define     LOG_AschermittwochShift 2
-#define LOG_Frauentag                           12108      // 1 Bit, Bit 1
+#define LOG_Frauentag                           22942      // 1 Bit, Bit 1
 #define     LOG_FrauentagMask 0x02
 #define     LOG_FrauentagShift 1
-#define LOG_Gruendonnerstag                     12108      // 1 Bit, Bit 0
+#define LOG_Gruendonnerstag                     22942      // 1 Bit, Bit 0
 #define     LOG_GruendonnerstagMask 0x01
 #define     LOG_GruendonnerstagShift 0
-#define LOG_Karfreitag                          12109      // 1 Bit, Bit 7
+#define LOG_Karfreitag                          22943      // 1 Bit, Bit 7
 #define     LOG_KarfreitagMask 0x80
 #define     LOG_KarfreitagShift 7
-#define LOG_Ostersonntag                        12109      // 1 Bit, Bit 6
+#define LOG_Ostersonntag                        22943      // 1 Bit, Bit 6
 #define     LOG_OstersonntagMask 0x40
 #define     LOG_OstersonntagShift 6
-#define LOG_Ostermontag                         12109      // 1 Bit, Bit 5
+#define LOG_Ostermontag                         22943      // 1 Bit, Bit 5
 #define     LOG_OstermontagMask 0x20
 #define     LOG_OstermontagShift 5
-#define LOG_TagDerArbeit                        12109      // 1 Bit, Bit 4
+#define LOG_TagDerArbeit                        22943      // 1 Bit, Bit 4
 #define     LOG_TagDerArbeitMask 0x10
 #define     LOG_TagDerArbeitShift 4
-#define LOG_Himmelfahrt                         12109      // 1 Bit, Bit 3
+#define LOG_Himmelfahrt                         22943      // 1 Bit, Bit 3
 #define     LOG_HimmelfahrtMask 0x08
 #define     LOG_HimmelfahrtShift 3
-#define LOG_Pfingstsonntag                      12109      // 1 Bit, Bit 2
+#define LOG_Pfingstsonntag                      22943      // 1 Bit, Bit 2
 #define     LOG_PfingstsonntagMask 0x04
 #define     LOG_PfingstsonntagShift 2
-#define LOG_Pfingstmontag                       12109      // 1 Bit, Bit 1
+#define LOG_Pfingstmontag                       22943      // 1 Bit, Bit 1
 #define     LOG_PfingstmontagMask 0x02
 #define     LOG_PfingstmontagShift 1
-#define LOG_Fronleichnam                        12109      // 1 Bit, Bit 0
+#define LOG_Fronleichnam                        22943      // 1 Bit, Bit 0
 #define     LOG_FronleichnamMask 0x01
 #define     LOG_FronleichnamShift 0
-#define LOG_Friedensfest                        12110      // 1 Bit, Bit 7
+#define LOG_Friedensfest                        22944      // 1 Bit, Bit 7
 #define     LOG_FriedensfestMask 0x80
 #define     LOG_FriedensfestShift 7
-#define LOG_MariaHimmelfahrt                    12110      // 1 Bit, Bit 6
+#define LOG_MariaHimmelfahrt                    22944      // 1 Bit, Bit 6
 #define     LOG_MariaHimmelfahrtMask 0x40
 #define     LOG_MariaHimmelfahrtShift 6
-#define LOG_DeutscheEinheit                     12110      // 1 Bit, Bit 5
+#define LOG_DeutscheEinheit                     22944      // 1 Bit, Bit 5
 #define     LOG_DeutscheEinheitMask 0x20
 #define     LOG_DeutscheEinheitShift 5
-#define LOG_Reformationstag                     12110      // 1 Bit, Bit 4
+#define LOG_Reformationstag                     22944      // 1 Bit, Bit 4
 #define     LOG_ReformationstagMask 0x10
 #define     LOG_ReformationstagShift 4
-#define LOG_Allerheiligen                       12110      // 1 Bit, Bit 3
+#define LOG_Allerheiligen                       22944      // 1 Bit, Bit 3
 #define     LOG_AllerheiligenMask 0x08
 #define     LOG_AllerheiligenShift 3
-#define LOG_BussBettag                          12110      // 1 Bit, Bit 2
+#define LOG_BussBettag                          22944      // 1 Bit, Bit 2
 #define     LOG_BussBettagMask 0x04
 #define     LOG_BussBettagShift 2
-#define LOG_Advent1                             12110      // 1 Bit, Bit 1
+#define LOG_Advent1                             22944      // 1 Bit, Bit 1
 #define     LOG_Advent1Mask 0x02
 #define     LOG_Advent1Shift 1
-#define LOG_Advent2                             12110      // 1 Bit, Bit 0
+#define LOG_Advent2                             22944      // 1 Bit, Bit 0
 #define     LOG_Advent2Mask 0x01
 #define     LOG_Advent2Shift 0
-#define LOG_Advent3                             12111      // 1 Bit, Bit 7
+#define LOG_Advent3                             22945      // 1 Bit, Bit 7
 #define     LOG_Advent3Mask 0x80
 #define     LOG_Advent3Shift 7
-#define LOG_Advent4                             12111      // 1 Bit, Bit 6
+#define LOG_Advent4                             22945      // 1 Bit, Bit 6
 #define     LOG_Advent4Mask 0x40
 #define     LOG_Advent4Shift 6
-#define LOG_Heiligabend                         12111      // 1 Bit, Bit 5
+#define LOG_Heiligabend                         22945      // 1 Bit, Bit 5
 #define     LOG_HeiligabendMask 0x20
 #define     LOG_HeiligabendShift 5
-#define LOG_Weihnachtstag1                      12111      // 1 Bit, Bit 4
+#define LOG_Weihnachtstag1                      22945      // 1 Bit, Bit 4
 #define     LOG_Weihnachtstag1Mask 0x10
 #define     LOG_Weihnachtstag1Shift 4
-#define LOG_Weihnachtstag2                      12111      // 1 Bit, Bit 3
+#define LOG_Weihnachtstag2                      22945      // 1 Bit, Bit 3
 #define     LOG_Weihnachtstag2Mask 0x08
 #define     LOG_Weihnachtstag2Shift 3
-#define LOG_Silvester                           12111      // 1 Bit, Bit 2
+#define LOG_Silvester                           22945      // 1 Bit, Bit 2
 #define     LOG_SilvesterMask 0x04
 #define     LOG_SilvesterShift 2
-#define LOG_Nationalfeiertag                    12111      // 1 Bit, Bit 1
+#define LOG_Nationalfeiertag                    22945      // 1 Bit, Bit 1
 #define     LOG_NationalfeiertagMask 0x02
 #define     LOG_NationalfeiertagShift 1
-#define LOG_MariaEmpfaengnis                    12111      // 1 Bit, Bit 0
+#define LOG_MariaEmpfaengnis                    22945      // 1 Bit, Bit 0
 #define     LOG_MariaEmpfaengnisMask 0x01
 #define     LOG_MariaEmpfaengnisShift 0
-#define LOG_NationalfeiertagSchweiz             12112      // 1 Bit, Bit 7
+#define LOG_NationalfeiertagSchweiz             22946      // 1 Bit, Bit 7
 #define     LOG_NationalfeiertagSchweizMask 0x80
 #define     LOG_NationalfeiertagSchweizShift 7
-#define LOG_Totensonntag                        12112      // 1 Bit, Bit 6
+#define LOG_Totensonntag                        22946      // 1 Bit, Bit 6
 #define     LOG_TotensonntagMask 0x40
 #define     LOG_TotensonntagShift 6
-#define LOG_Weltkindertag                       12112      // 1 Bit, Bit 5
+#define LOG_Weltkindertag                       22946      // 1 Bit, Bit 5
 #define     LOG_WeltkindertagMask 0x20
 #define     LOG_WeltkindertagShift 5
-#define LOG_UserFormula1                        12113      // char*, 99 Byte
+#define LOG_UserFormula1                        22947      // char*, 99 Byte
 #define     LOG_UserFormula1Length 99
-#define LOG_UserFormula1Active                  12212      // 1 Bit, Bit 7
+#define LOG_UserFormula1Active                  23046      // 1 Bit, Bit 7
 #define     LOG_UserFormula1ActiveMask 0x80
 #define     LOG_UserFormula1ActiveShift 7
-#define LOG_UserFormula2                        12213      // char*, 99 Byte
+#define LOG_UserFormula2                        23047      // char*, 99 Byte
 #define     LOG_UserFormula2Length 99
-#define LOG_UserFormula2Active                  12312      // 1 Bit, Bit 7
+#define LOG_UserFormula2Active                  23146      // 1 Bit, Bit 7
 #define     LOG_UserFormula2ActiveMask 0x80
 #define     LOG_UserFormula2ActiveShift 7
-#define LOG_UserFormula3                        12313      // char*, 99 Byte
+#define LOG_UserFormula3                        23147      // char*, 99 Byte
 #define     LOG_UserFormula3Length 99
-#define LOG_UserFormula3Active                  12412      // 1 Bit, Bit 7
+#define LOG_UserFormula3Active                  23246      // 1 Bit, Bit 7
 #define     LOG_UserFormula3ActiveMask 0x80
 #define     LOG_UserFormula3ActiveShift 7
-#define LOG_UserFormula4                        12413      // char*, 99 Byte
+#define LOG_UserFormula4                        23247      // char*, 99 Byte
 #define     LOG_UserFormula4Length 99
-#define LOG_UserFormula4Active                  12512      // 1 Bit, Bit 7
+#define LOG_UserFormula4Active                  23346      // 1 Bit, Bit 7
 #define     LOG_UserFormula4ActiveMask 0x80
 #define     LOG_UserFormula4ActiveShift 7
-#define LOG_UserFormula5                        12513      // char*, 99 Byte
+#define LOG_UserFormula5                        23347      // char*, 99 Byte
 #define     LOG_UserFormula5Length 99
-#define LOG_UserFormula5Active                  12612      // 1 Bit, Bit 7
+#define LOG_UserFormula5Active                  23446      // 1 Bit, Bit 7
 #define     LOG_UserFormula5ActiveMask 0x80
 #define     LOG_UserFormula5ActiveShift 7
-#define LOG_UserFormula6                        12613      // char*, 99 Byte
+#define LOG_UserFormula6                        23447      // char*, 99 Byte
 #define     LOG_UserFormula6Length 99
-#define LOG_UserFormula6Active                  12712      // 1 Bit, Bit 7
+#define LOG_UserFormula6Active                  23546      // 1 Bit, Bit 7
 #define     LOG_UserFormula6ActiveMask 0x80
 #define     LOG_UserFormula6ActiveShift 7
-#define LOG_UserFormula7                        12713      // char*, 99 Byte
+#define LOG_UserFormula7                        23547      // char*, 99 Byte
 #define     LOG_UserFormula7Length 99
-#define LOG_UserFormula7Active                  12812      // 1 Bit, Bit 7
+#define LOG_UserFormula7Active                  23646      // 1 Bit, Bit 7
 #define     LOG_UserFormula7ActiveMask 0x80
 #define     LOG_UserFormula7ActiveShift 7
-#define LOG_UserFormula8                        12813      // char*, 99 Byte
+#define LOG_UserFormula8                        23647      // char*, 99 Byte
 #define     LOG_UserFormula8Length 99
-#define LOG_UserFormula8Active                  12912      // 1 Bit, Bit 7
+#define LOG_UserFormula8Active                  23746      // 1 Bit, Bit 7
 #define     LOG_UserFormula8ActiveMask 0x80
 #define     LOG_UserFormula8ActiveShift 7
-#define LOG_UserFormula9                        12913      // char*, 99 Byte
+#define LOG_UserFormula9                        23747      // char*, 99 Byte
 #define     LOG_UserFormula9Length 99
-#define LOG_UserFormula9Active                  13012      // 1 Bit, Bit 7
+#define LOG_UserFormula9Active                  23846      // 1 Bit, Bit 7
 #define     LOG_UserFormula9ActiveMask 0x80
 #define     LOG_UserFormula9ActiveShift 7
-#define LOG_UserFormula10                       13013      // char*, 99 Byte
+#define LOG_UserFormula10                       23847      // char*, 99 Byte
 #define     LOG_UserFormula10Length 99
-#define LOG_UserFormula10Active                 13112      // 1 Bit, Bit 7
+#define LOG_UserFormula10Active                 23946      // 1 Bit, Bit 7
 #define     LOG_UserFormula10ActiveMask 0x80
 #define     LOG_UserFormula10ActiveShift 7
-#define LOG_UserFormula11                       13113      // char*, 99 Byte
+#define LOG_UserFormula11                       23947      // char*, 99 Byte
 #define     LOG_UserFormula11Length 99
-#define LOG_UserFormula11Active                 13212      // 1 Bit, Bit 7
+#define LOG_UserFormula11Active                 24046      // 1 Bit, Bit 7
 #define     LOG_UserFormula11ActiveMask 0x80
 #define     LOG_UserFormula11ActiveShift 7
-#define LOG_UserFormula12                       13213      // char*, 99 Byte
+#define LOG_UserFormula12                       24047      // char*, 99 Byte
 #define     LOG_UserFormula12Length 99
-#define LOG_UserFormula12Active                 13312      // 1 Bit, Bit 7
+#define LOG_UserFormula12Active                 24146      // 1 Bit, Bit 7
 #define     LOG_UserFormula12ActiveMask 0x80
 #define     LOG_UserFormula12ActiveShift 7
-#define LOG_UserFormula13                       13313      // char*, 99 Byte
+#define LOG_UserFormula13                       24147      // char*, 99 Byte
 #define     LOG_UserFormula13Length 99
-#define LOG_UserFormula13Active                 13412      // 1 Bit, Bit 7
+#define LOG_UserFormula13Active                 24246      // 1 Bit, Bit 7
 #define     LOG_UserFormula13ActiveMask 0x80
 #define     LOG_UserFormula13ActiveShift 7
-#define LOG_UserFormula14                       13413      // char*, 99 Byte
+#define LOG_UserFormula14                       24247      // char*, 99 Byte
 #define     LOG_UserFormula14Length 99
-#define LOG_UserFormula14Active                 13512      // 1 Bit, Bit 7
+#define LOG_UserFormula14Active                 24346      // 1 Bit, Bit 7
 #define     LOG_UserFormula14ActiveMask 0x80
 #define     LOG_UserFormula14ActiveShift 7
-#define LOG_UserFormula15                       13513      // char*, 99 Byte
+#define LOG_UserFormula15                       24347      // char*, 99 Byte
 #define     LOG_UserFormula15Length 99
-#define LOG_UserFormula15Active                 13612      // 1 Bit, Bit 7
+#define LOG_UserFormula15Active                 24446      // 1 Bit, Bit 7
 #define     LOG_UserFormula15ActiveMask 0x80
 #define     LOG_UserFormula15ActiveShift 7
-#define LOG_UserFormula16                       13613      // char*, 99 Byte
+#define LOG_UserFormula16                       24447      // char*, 99 Byte
 #define     LOG_UserFormula16Length 99
-#define LOG_UserFormula16Active                 13712      // 1 Bit, Bit 7
+#define LOG_UserFormula16Active                 24546      // 1 Bit, Bit 7
 #define     LOG_UserFormula16ActiveMask 0x80
 #define     LOG_UserFormula16ActiveShift 7
-#define LOG_UserFormula17                       13713      // char*, 99 Byte
+#define LOG_UserFormula17                       24547      // char*, 99 Byte
 #define     LOG_UserFormula17Length 99
-#define LOG_UserFormula17Active                 13812      // 1 Bit, Bit 7
+#define LOG_UserFormula17Active                 24646      // 1 Bit, Bit 7
 #define     LOG_UserFormula17ActiveMask 0x80
 #define     LOG_UserFormula17ActiveShift 7
-#define LOG_UserFormula18                       13813      // char*, 99 Byte
+#define LOG_UserFormula18                       24647      // char*, 99 Byte
 #define     LOG_UserFormula18Length 99
-#define LOG_UserFormula18Active                 13912      // 1 Bit, Bit 7
+#define LOG_UserFormula18Active                 24746      // 1 Bit, Bit 7
 #define     LOG_UserFormula18ActiveMask 0x80
 #define     LOG_UserFormula18ActiveShift 7
-#define LOG_UserFormula19                       13913      // char*, 99 Byte
+#define LOG_UserFormula19                       24747      // char*, 99 Byte
 #define     LOG_UserFormula19Length 99
-#define LOG_UserFormula19Active                 14012      // 1 Bit, Bit 7
+#define LOG_UserFormula19Active                 24846      // 1 Bit, Bit 7
 #define     LOG_UserFormula19ActiveMask 0x80
 #define     LOG_UserFormula19ActiveShift 7
-#define LOG_UserFormula20                       14013      // char*, 99 Byte
+#define LOG_UserFormula20                       24847      // char*, 99 Byte
 #define     LOG_UserFormula20Length 99
-#define LOG_UserFormula20Active                 14112      // 1 Bit, Bit 7
+#define LOG_UserFormula20Active                 24946      // 1 Bit, Bit 7
 #define     LOG_UserFormula20ActiveMask 0x80
 #define     LOG_UserFormula20ActiveShift 7
-#define LOG_UserFormula21                       14113      // char*, 99 Byte
+#define LOG_UserFormula21                       24947      // char*, 99 Byte
 #define     LOG_UserFormula21Length 99
-#define LOG_UserFormula21Active                 14212      // 1 Bit, Bit 7
+#define LOG_UserFormula21Active                 25046      // 1 Bit, Bit 7
 #define     LOG_UserFormula21ActiveMask 0x80
 #define     LOG_UserFormula21ActiveShift 7
-#define LOG_UserFormula22                       14213      // char*, 99 Byte
+#define LOG_UserFormula22                       25047      // char*, 99 Byte
 #define     LOG_UserFormula22Length 99
-#define LOG_UserFormula22Active                 14312      // 1 Bit, Bit 7
+#define LOG_UserFormula22Active                 25146      // 1 Bit, Bit 7
 #define     LOG_UserFormula22ActiveMask 0x80
 #define     LOG_UserFormula22ActiveShift 7
-#define LOG_UserFormula23                       14313      // char*, 99 Byte
+#define LOG_UserFormula23                       25147      // char*, 99 Byte
 #define     LOG_UserFormula23Length 99
-#define LOG_UserFormula23Active                 14412      // 1 Bit, Bit 7
+#define LOG_UserFormula23Active                 25246      // 1 Bit, Bit 7
 #define     LOG_UserFormula23ActiveMask 0x80
 #define     LOG_UserFormula23ActiveShift 7
-#define LOG_UserFormula24                       14413      // char*, 99 Byte
+#define LOG_UserFormula24                       25247      // char*, 99 Byte
 #define     LOG_UserFormula24Length 99
-#define LOG_UserFormula24Active                 14512      // 1 Bit, Bit 7
+#define LOG_UserFormula24Active                 25346      // 1 Bit, Bit 7
 #define     LOG_UserFormula24ActiveMask 0x80
 #define     LOG_UserFormula24ActiveShift 7
-#define LOG_UserFormula25                       14513      // char*, 99 Byte
+#define LOG_UserFormula25                       25347      // char*, 99 Byte
 #define     LOG_UserFormula25Length 99
-#define LOG_UserFormula25Active                 14612      // 1 Bit, Bit 7
+#define LOG_UserFormula25Active                 25446      // 1 Bit, Bit 7
 #define     LOG_UserFormula25ActiveMask 0x80
 #define     LOG_UserFormula25ActiveShift 7
-#define LOG_UserFormula26                       14613      // char*, 99 Byte
+#define LOG_UserFormula26                       25447      // char*, 99 Byte
 #define     LOG_UserFormula26Length 99
-#define LOG_UserFormula26Active                 14712      // 1 Bit, Bit 7
+#define LOG_UserFormula26Active                 25546      // 1 Bit, Bit 7
 #define     LOG_UserFormula26ActiveMask 0x80
 #define     LOG_UserFormula26ActiveShift 7
-#define LOG_UserFormula27                       14713      // char*, 99 Byte
+#define LOG_UserFormula27                       25547      // char*, 99 Byte
 #define     LOG_UserFormula27Length 99
-#define LOG_UserFormula27Active                 14812      // 1 Bit, Bit 7
+#define LOG_UserFormula27Active                 25646      // 1 Bit, Bit 7
 #define     LOG_UserFormula27ActiveMask 0x80
 #define     LOG_UserFormula27ActiveShift 7
-#define LOG_UserFormula28                       14813      // char*, 99 Byte
+#define LOG_UserFormula28                       25647      // char*, 99 Byte
 #define     LOG_UserFormula28Length 99
-#define LOG_UserFormula28Active                 14912      // 1 Bit, Bit 7
+#define LOG_UserFormula28Active                 25746      // 1 Bit, Bit 7
 #define     LOG_UserFormula28ActiveMask 0x80
 #define     LOG_UserFormula28ActiveShift 7
-#define LOG_UserFormula29                       14913      // char*, 99 Byte
+#define LOG_UserFormula29                       25747      // char*, 99 Byte
 #define     LOG_UserFormula29Length 99
-#define LOG_UserFormula29Active                 15012      // 1 Bit, Bit 7
+#define LOG_UserFormula29Active                 25846      // 1 Bit, Bit 7
 #define     LOG_UserFormula29ActiveMask 0x80
 #define     LOG_UserFormula29ActiveShift 7
-#define LOG_UserFormula30                       15013      // char*, 99 Byte
+#define LOG_UserFormula30                       25847      // char*, 99 Byte
 #define     LOG_UserFormula30Length 99
-#define LOG_UserFormula30Active                 15112      // 1 Bit, Bit 7
+#define LOG_UserFormula30Active                 25946      // 1 Bit, Bit 7
 #define     LOG_UserFormula30ActiveMask 0x80
 #define     LOG_UserFormula30ActiveShift 7
 
@@ -2052,7 +3711,7 @@
 #define LOG_ChannelCount 50
 
 // Parameter per channel
-#define LOG_ParamBlockOffset 15113
+#define LOG_ParamBlockOffset 25947
 #define LOG_ParamBlockSize 89
 #define LOG_ParamCalcIndex(index) (index + LOG_ParamBlockOffset + _channelIndex * LOG_ParamBlockSize)
 
@@ -3957,7 +5616,7 @@
 // Ausgang
 #define KoLOG_KOfO                                (knx.getGroupObject(LOG_KoCalcNumber(LOG_KoKOfO)))
 
-#define FCB_VisibleChannels                     19563      // uint8_t
+#define FCB_VisibleChannels                     30397      // uint8_t
 
 // Verfügbare Kanäle
 #define ParamFCB_VisibleChannels                     (knx.paramByte(FCB_VisibleChannels))
@@ -3965,7 +5624,7 @@
 #define FCB_ChannelCount 15
 
 // Parameter per channel
-#define FCB_ParamBlockOffset 19564
+#define FCB_ParamBlockOffset 30398
 #define FCB_ParamBlockSize 81
 #define FCB_ParamCalcIndex(index) (index + FCB_ParamBlockOffset + _channelIndex * FCB_ParamBlockSize)
 
@@ -5037,7 +6696,7 @@
 #define BASE_KommentarModuleModuleParamSize 0
 #define BASE_KommentarModuleSubmodulesParamSize 0
 #define BASE_KommentarModuleParamSize 0
-#define BASE_KommentarModuleParamOffset 20779
+#define BASE_KommentarModuleParamOffset 31613
 #define BASE_KommentarModuleCalcIndex(index, m1) (index + BASE_KommentarModuleParamOffset + _channelIndex * BASE_KommentarModuleCount * BASE_KommentarModuleParamSize + m1 * BASE_KommentarModuleParamSize)
 
 
